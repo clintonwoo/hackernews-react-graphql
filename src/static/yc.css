@@ -1,0 +1,21 @@
+body { font-family:Verdana; font-size:8.5pt; }
+td { font-family:Verdana; font-size:8.5pt; line-height:138%; }
+blockquote {line-height:122%; }
+p { margin-bottom:15px; }
+
+a:link    { color:#222222; }
+a:visited { color:#444444; }
+b { color:#333333; }
+
+.foot { font-size:7.5pt; }
+.foot a:link, .foot a:visited { text-decoration:none; }
+.foot a:hover { text-decoration:underline; }
+
+.apply a:link { color:#0000ff; font-size:9pt; }
+.apply a:visited { color:#0000ff; font-size:9pt; }
+
+.title { font-size:10pt; }
+.title b { color:#000000; }
+
+.big { margin-top:3ex; }
+.small { margin-top:-1.6ex; }

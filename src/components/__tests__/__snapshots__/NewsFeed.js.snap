@@ -1,0 +1,536 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsFeed component renders news items passed in as props 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div>
+    <NewsFeed
+        favoriteVisible={false}
+        newsItem={
+            Object {
+                "commentCount": 0,
+                "comments": Array [],
+                "creationTime": 2017-09-21T20:12:16.000Z,
+                "downvoteCount": 0,
+                "downvotes": Array [],
+                "id": 1222,
+                "link": "https://www.shavelikeaboss.com.au",
+                "points": 122.1233,
+                "rank": 0,
+                "submitterId": "clintonwoo",
+                "text": "Clinton has done it yet again, absolutely winning the internet.",
+                "title": "Clinton wins again",
+                "upvoteCount": 10,
+                "upvotes": Set {
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                },
+              }
+        }
+        text={undefined}
+    />
+    <NewsFeed
+        favoriteVisible={false}
+        newsItem={
+            Object {
+                "commentCount": 1,
+                "comments": Array [
+                  Object {
+                    "commenterId": "clintonwoo",
+                    "creationTime": 2017-09-21T20:12:20.000Z,
+                    "downvoteCount": 0,
+                    "downvotes": Array [],
+                    "id": 123331,
+                    "text": "I know this might come accross as bragging, but I just won the internet again.",
+                    "upvoteCount": 4,
+                    "upvotes": Set {
+                      1,
+                      2,
+                      3,
+                      4,
+                    },
+                  },
+                ],
+                "creationTime": 2017-09-21T20:12:17.000Z,
+                "downvoteCount": 0,
+                "downvotes": Array [],
+                "id": 1223,
+                "link": null,
+                "points": 20,
+                "rank": 1,
+                "text": "It's unbelievable.",
+                "title": "Clinton wins yet another time",
+                "upvoteCount": 0,
+                "upvotes": Array [],
+              }
+        }
+        text={undefined}
+    />
+</div>,
+  "nodes": Array [
+    <div>
+      <NewsFeed
+            favoriteVisible={false}
+            newsItem={
+                  Object {
+                        "commentCount": 0,
+                        "comments": Array [],
+                        "creationTime": 2017-09-21T20:12:16.000Z,
+                        "downvoteCount": 0,
+                        "downvotes": Array [],
+                        "id": 1222,
+                        "link": "https://www.shavelikeaboss.com.au",
+                        "points": 122.1233,
+                        "rank": 0,
+                        "submitterId": "clintonwoo",
+                        "text": "Clinton has done it yet again, absolutely winning the internet.",
+                        "title": "Clinton wins again",
+                        "upvoteCount": 10,
+                        "upvotes": Set {
+                          1,
+                          2,
+                          3,
+                          4,
+                          5,
+                          6,
+                          7,
+                          8,
+                          9,
+                          10,
+                        },
+                      }
+            }
+            text={undefined}
+      />
+      <NewsFeed
+            favoriteVisible={false}
+            newsItem={
+                  Object {
+                        "commentCount": 1,
+                        "comments": Array [
+                          Object {
+                            "commenterId": "clintonwoo",
+                            "creationTime": 2017-09-21T20:12:20.000Z,
+                            "downvoteCount": 0,
+                            "downvotes": Array [],
+                            "id": 123331,
+                            "text": "I know this might come accross as bragging, but I just won the internet again.",
+                            "upvoteCount": 4,
+                            "upvotes": Set {
+                              1,
+                              2,
+                              3,
+                              4,
+                            },
+                          },
+                        ],
+                        "creationTime": 2017-09-21T20:12:17.000Z,
+                        "downvoteCount": 0,
+                        "downvotes": Array [],
+                        "id": 1223,
+                        "link": null,
+                        "points": 20,
+                        "rank": 1,
+                        "text": "It's unbelievable.",
+                        "title": "Clinton wins yet another time",
+                        "upvoteCount": 0,
+                        "upvotes": Array [],
+                      }
+            }
+            text={undefined}
+      />
+</div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <NewsFeed
+        newsItems={
+                Array [
+                        Object {
+                          "commentCount": 0,
+                          "comments": Array [],
+                          "creationTime": 2017-09-21T20:12:16.000Z,
+                          "downvoteCount": 0,
+                          "downvotes": Array [],
+                          "id": 1222,
+                          "link": "https://www.shavelikeaboss.com.au",
+                          "points": 122.1233,
+                          "rank": 0,
+                          "submitterId": "clintonwoo",
+                          "text": "Clinton has done it yet again, absolutely winning the internet.",
+                          "title": "Clinton wins again",
+                          "upvoteCount": 10,
+                          "upvotes": Set {
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9,
+                            10,
+                          },
+                        },
+                        Object {
+                          "commentCount": 1,
+                          "comments": Array [
+                            Object {
+                              "commenterId": "clintonwoo",
+                              "creationTime": 2017-09-21T20:12:20.000Z,
+                              "downvoteCount": 0,
+                              "downvotes": Array [],
+                              "id": 123331,
+                              "text": "I know this might come accross as bragging, but I just won the internet again.",
+                              "upvoteCount": 4,
+                              "upvotes": Set {
+                                1,
+                                2,
+                                3,
+                                4,
+                              },
+                            },
+                          ],
+                          "creationTime": 2017-09-21T20:12:17.000Z,
+                          "downvoteCount": 0,
+                          "downvotes": Array [],
+                          "id": 1223,
+                          "link": null,
+                          "points": 20,
+                          "rank": 1,
+                          "text": "It's unbelievable.",
+                          "title": "Clinton wins yet another time",
+                          "upvoteCount": 0,
+                          "upvotes": Array [],
+                        },
+                      ]
+        }
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "newsItems": Array [
+            Object {
+              "commentCount": 0,
+              "comments": Array [],
+              "creationTime": 2017-09-21T20:12:16.000Z,
+              "downvoteCount": 0,
+              "downvotes": Array [],
+              "id": 1222,
+              "link": "https://www.shavelikeaboss.com.au",
+              "points": 122.1233,
+              "rank": 0,
+              "submitterId": "clintonwoo",
+              "text": "Clinton has done it yet again, absolutely winning the internet.",
+              "title": "Clinton wins again",
+              "upvoteCount": 10,
+              "upvotes": Set {
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+              },
+            },
+            Object {
+              "commentCount": 1,
+              "comments": Array [
+                Object {
+                  "commenterId": "clintonwoo",
+                  "creationTime": 2017-09-21T20:12:20.000Z,
+                  "downvoteCount": 0,
+                  "downvotes": Array [],
+                  "id": 123331,
+                  "text": "I know this might come accross as bragging, but I just won the internet again.",
+                  "upvoteCount": 4,
+                  "upvotes": Set {
+                    1,
+                    2,
+                    3,
+                    4,
+                  },
+                },
+              ],
+              "creationTime": 2017-09-21T20:12:17.000Z,
+              "downvoteCount": 0,
+              "downvotes": Array [],
+              "id": 1223,
+              "link": null,
+              "points": 20,
+              "rank": 1,
+              "text": "It's unbelievable.",
+              "title": "Clinton wins yet another time",
+              "upvoteCount": 0,
+              "upvotes": Array [],
+            },
+          ],
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div>
+          <NewsFeed
+                    favoriteVisible={false}
+                    newsItem={
+                              Object {
+                                        "commentCount": 0,
+                                        "comments": Array [],
+                                        "creationTime": 2017-09-21T20:12:16.000Z,
+                                        "downvoteCount": 0,
+                                        "downvotes": Array [],
+                                        "id": 1222,
+                                        "link": "https://www.shavelikeaboss.com.au",
+                                        "points": 122.1233,
+                                        "rank": 0,
+                                        "submitterId": "clintonwoo",
+                                        "text": "Clinton has done it yet again, absolutely winning the internet.",
+                                        "title": "Clinton wins again",
+                                        "upvoteCount": 10,
+                                        "upvotes": Set {
+                                          1,
+                                          2,
+                                          3,
+                                          4,
+                                          5,
+                                          6,
+                                          7,
+                                          8,
+                                          9,
+                                          10,
+                                        },
+                                      }
+                    }
+                    text={undefined}
+          />
+          <NewsFeed
+                    favoriteVisible={false}
+                    newsItem={
+                              Object {
+                                        "commentCount": 1,
+                                        "comments": Array [
+                                          Object {
+                                            "commenterId": "clintonwoo",
+                                            "creationTime": 2017-09-21T20:12:20.000Z,
+                                            "downvoteCount": 0,
+                                            "downvotes": Array [],
+                                            "id": 123331,
+                                            "text": "I know this might come accross as bragging, but I just won the internet again.",
+                                            "upvoteCount": 4,
+                                            "upvotes": Set {
+                                              1,
+                                              2,
+                                              3,
+                                              4,
+                                            },
+                                          },
+                                        ],
+                                        "creationTime": 2017-09-21T20:12:17.000Z,
+                                        "downvoteCount": 0,
+                                        "downvotes": Array [],
+                                        "id": 1223,
+                                        "link": null,
+                                        "points": 20,
+                                        "rank": 1,
+                                        "text": "It's unbelievable.",
+                                        "title": "Clinton wins yet another time",
+                                        "upvoteCount": 0,
+                                        "upvotes": Array [],
+                                      }
+                    }
+                    text={undefined}
+          />
+</div>,
+        "_debugID": 2,
+        "_renderedOutput": <div>
+          <NewsFeed
+                    favoriteVisible={false}
+                    newsItem={
+                              Object {
+                                        "commentCount": 0,
+                                        "comments": Array [],
+                                        "creationTime": 2017-09-21T20:12:16.000Z,
+                                        "downvoteCount": 0,
+                                        "downvotes": Array [],
+                                        "id": 1222,
+                                        "link": "https://www.shavelikeaboss.com.au",
+                                        "points": 122.1233,
+                                        "rank": 0,
+                                        "submitterId": "clintonwoo",
+                                        "text": "Clinton has done it yet again, absolutely winning the internet.",
+                                        "title": "Clinton wins again",
+                                        "upvoteCount": 10,
+                                        "upvotes": Set {
+                                          1,
+                                          2,
+                                          3,
+                                          4,
+                                          5,
+                                          6,
+                                          7,
+                                          8,
+                                          9,
+                                          10,
+                                        },
+                                      }
+                    }
+                    text={undefined}
+          />
+          <NewsFeed
+                    favoriteVisible={false}
+                    newsItem={
+                              Object {
+                                        "commentCount": 1,
+                                        "comments": Array [
+                                          Object {
+                                            "commenterId": "clintonwoo",
+                                            "creationTime": 2017-09-21T20:12:20.000Z,
+                                            "downvoteCount": 0,
+                                            "downvotes": Array [],
+                                            "id": 123331,
+                                            "text": "I know this might come accross as bragging, but I just won the internet again.",
+                                            "upvoteCount": 4,
+                                            "upvotes": Set {
+                                              1,
+                                              2,
+                                              3,
+                                              4,
+                                            },
+                                          },
+                                        ],
+                                        "creationTime": 2017-09-21T20:12:17.000Z,
+                                        "downvoteCount": 0,
+                                        "downvotes": Array [],
+                                        "id": 1223,
+                                        "link": null,
+                                        "points": 20,
+                                        "rank": 1,
+                                        "text": "It's unbelievable.",
+                                        "title": "Clinton wins yet another time",
+                                        "upvoteCount": 0,
+                                        "upvotes": Array [],
+                                      }
+                    }
+                    text={undefined}
+          />
+</div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <NewsFeed
+    newsItems={
+        Array [
+            Object {
+              "commentCount": 0,
+              "comments": Array [],
+              "creationTime": 2017-09-21T20:12:16.000Z,
+              "downvoteCount": 0,
+              "downvotes": Array [],
+              "id": 1222,
+              "link": "https://www.shavelikeaboss.com.au",
+              "points": 122.1233,
+              "rank": 0,
+              "submitterId": "clintonwoo",
+              "text": "Clinton has done it yet again, absolutely winning the internet.",
+              "title": "Clinton wins again",
+              "upvoteCount": 10,
+              "upvotes": Set {
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+              },
+            },
+            Object {
+              "commentCount": 1,
+              "comments": Array [
+                Object {
+                  "commenterId": "clintonwoo",
+                  "creationTime": 2017-09-21T20:12:20.000Z,
+                  "downvoteCount": 0,
+                  "downvotes": Array [],
+                  "id": 123331,
+                  "text": "I know this might come accross as bragging, but I just won the internet again.",
+                  "upvoteCount": 4,
+                  "upvotes": Set {
+                    1,
+                    2,
+                    3,
+                    4,
+                  },
+                },
+              ],
+              "creationTime": 2017-09-21T20:12:17.000Z,
+              "downvoteCount": 0,
+              "downvotes": Array [],
+              "id": 1223,
+              "link": null,
+              "points": 20,
+              "rank": 1,
+              "text": "It's unbelievable.",
+              "title": "Clinton wins yet another time",
+              "upvoteCount": 0,
+              "upvotes": Array [],
+            },
+          ]
+    }
+/>,
+}
+`;

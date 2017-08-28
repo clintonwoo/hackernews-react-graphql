@@ -1,0 +1,61 @@
+{
+  "name": "hackernews",
+  "version": "0.1.0",
+  "description": "A hacker news clone built from the ground up to demonstrate React and GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "babel-node src/server.js",
+    "graphiql": "babel-node ./src/data/graphiql",
+    "test": "jest",
+    "build": "yarn install && next build src && next export src -o build/static",
+    "prod": "next build src && next start src",
+    "deploy": ""
+  },
+  "keywords": [
+    "hacker-news",
+    "clone",
+    "react",
+    "graphql"
+  ],
+  "author": "Clinton D'Annolfo",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "express": "^4.15.4",
+    "express-graphql": "^0.6.7",
+    "graphql": "^0.10.5",
+    "graphql-tools": "^1.2.1",
+    "next": "^3.0.6",
+    "passport": "^0.4.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-apollo": "^1.4.14",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.2.1",
+    "flow-bin": "^0.53.1",
+    "graphiql": "^0.11.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^20.0.4",
+    "jest-enzyme": "^3.8.0",
+    "react-test-renderer": "^15.6.1",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
