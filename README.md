@@ -1,32 +1,41 @@
-Hacker News Clone
+## Hacker News Clone  [![GitHub stars](https://img.shields.io/github/stars/clintonwoo/hackersnews-clone-react-graphql.svg?style=social&label=Star)](https://github.com/clintonwoo/hackersnews-clone-react-graphql/stargazers) [![GitHub followers](https://img.shields.io/github/followers/clintonwoo.svg?style=social&label=Follow)](https://github.com/clintonwoo/hackersnews-clone-react-graphql/) [![GitHub issues](https://img.shields.io/github/issues/clintonwoo/hackersnews-clone-react-graphql.svg)](https://github.com/clintonwoo/hackersnews-clone-react-graphql/issues) [![](https://img.shields.io/github/issues-pr-raw/clintonwoo/hackersnews-clone-react-graphql.svg)](https://github.com/clintonwoo/hackersnews-clone-react-graphql/pulls)
 
-React (UI Framework)
-Next.js (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
-Apollo (GraphQL Client)
-Redux (State Management)
-GraphQL (Web Data API)
-Express (Web App Server)
-Node.js (Web Server)
-Jest (Tests)
-Bulma (CSS Framework)
+This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 
-How To Start
+## Features
+- React (UI Framework)
+- GraphQL (Web Data API)
+- Apollo (GraphQL Client)
+- Next.js (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
+- Redux (State Management)
+- Node.js (Web Server)
+- Express (Web App Server)
+- Passport.js (Authentication)
+- Babel (JS Transpiling)
+- ESLint (JS Best Practices/Code Highlighting)
+- Jest (Tests)
 
-npm install
-npm run dev
+## How To Start
 
-How To Test
+`npm install`
+`npm run dev`
 
-npm run jest
+## How To Test
 
-How To Deploy
+`npm run jest`
 
-npm run build
-npm run deploy
+This project uses Jest as a testing framework. Jest can do snapshot testing of react components. Whenever a component is updated to a functioning up-to-date state, please update the snapshots using `jest --updateSnapshot`.
 
-Contributing
+## How To Deploy
 
-License
+`npm run build`
+`npm run deploy`
 
-Credits
+## Contributing
+Pull requests are welcome. File an issue for ideas, conversation or feedback.
 
+## License
+Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.
+
+## Community
+After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.

@@ -1,6 +1,6 @@
 {
   "name": "hackernews",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A hacker news clone built from the ground up to demonstrate React and GraphQL",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "graphql"
   ],
   "author": "Clinton D'Annolfo",
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "express": "^4.15.4",
@@ -29,7 +29,7 @@
     "passport": "^0.4.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-apollo": "^1.4.14",
+    "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "url": "^0.11.0"
