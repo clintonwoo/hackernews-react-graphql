@@ -2,20 +2,20 @@ import React from 'react';
 // import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import NewsFeed from '../NewsFeed';
+import NewsTitle from '../NewsTitle';
 import data from '../../data/SampleData';
 
 
-describe('NewsFeed component', () => {
+describe('NewsTitle component', () => {
   // it('shallow renders', () => {
   //   const wrapper = shallow(
   //     <NewsFeed />,
   //   );
   //   expect(wrapper).toMatchSnapshot();
   // });
-  it('renders news items passed in as props', () => {
+  it('renders news item properties passed in as props', () => {
     const wrapper = shallow((
-      <NewsFeed newsItems={data.newsItems} />
+      <NewsTitle {...data.newsItems[0]} rankVisible={true} />
     ));
     expect(wrapper).toMatchSnapshot();
   });

@@ -6,7 +6,7 @@ const passport = require('passport');
 
 const graphQLHTTP = require('express-graphql');
 const bodyParser = require('body-parser');
-const Schema = require('./data/Schema');
+import Schema from './data/Schema';
 
 const config = require('./config');
 

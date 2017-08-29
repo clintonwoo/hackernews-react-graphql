@@ -23,9 +23,9 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 
 ## How To Test
 
-`npm run jest`
+`npm test` or `npm run test`
 
-This project uses Jest as a testing framework. Jest can do snapshot testing of react components. Whenever a component is updated to a functioning up-to-date state, please update the snapshots using `jest --updateSnapshot`.
+This project uses Jest as a testing framework. Jest can do snapshot testing of react components. Whenever a component is updated to a functioning up-to-date state, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
 
 ## How To Deploy
 

@@ -18,7 +18,7 @@ const typeDefs = `
     id: Int!
     commenterId: String!
     text: String
-    creationTime: Int
+    creationTime: String
     upvotes: [Int]
     upvoteCount: Int
   }
@@ -27,7 +27,7 @@ const typeDefs = `
     id: Int!
     submitterId: String!
     author: User
-    creationTime: Int
+    creationTime: String
     url: String
     title: String
     text: String
@@ -41,7 +41,7 @@ const typeDefs = `
 
   type User {
     id: String!
-    creationTime: Int
+    creationTime: String
     firstName: String
     lastName: String
     email: String

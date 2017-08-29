@@ -16,11 +16,11 @@ class NewsTitle extends Component {
     rank: PropTypes.number,
     rankVisible: PropTypes.bool.isRequired,
   }
-  static defaultProps = {
-    text: undefined,
-    url: undefined,
-    rank: undefined,
-  }
+  // static defaultProps = {
+  //   text: undefined,
+  //   url: undefined,
+  //   // rank: undefined,
+  // }
 
   upvote() {
 
@@ -30,6 +30,7 @@ class NewsTitle extends Component {
   }
   render() {
     // const hostname = ;
+    // console.log(this.props)
     return (
       <tr className="athing" id={this.props.id}>
         <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">

@@ -2,7 +2,7 @@ import React from 'react';
 // import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import NewsFeed from '../NewsFeed';
+import NewsDetail from '../NewsDetail';
 import data from '../../data/SampleData';
 
 
@@ -15,7 +15,7 @@ describe('NewsFeed component', () => {
   // });
   it('renders news items passed in as props', () => {
     const wrapper = shallow((
-      <NewsFeed newsItems={data.newsItems} />
+      <NewsDetail {...data.newsItems[0]} favoriteVisible={false} />
     ));
     expect(wrapper).toMatchSnapshot();
   });

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 import url from 'url';
 
-class NewsItem extends Component {
+class NewsDetail extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     // creationTime: PropTypes.instanceOf(Date).isRequired,
@@ -16,11 +17,11 @@ class NewsItem extends Component {
     // rank: PropTypes.number,
     // rankVisible: PropTypes.bool.isRequired,
   }
-  static defaultProps = {
-    text: undefined,
-    url: undefined,
-    rank: undefined,
-  }
+  // static defaultProps = {
+  //   text: undefined,
+  //   url: undefined,
+  //   rank: undefined,
+  // }
 
   upvote() {
 
@@ -29,7 +30,6 @@ class NewsItem extends Component {
 
   }
   render() {
-    // const hostname = ;
     return (
       <tr>
         <td colSpan="2" />
@@ -42,19 +42,21 @@ class NewsItem extends Component {
               default: return `${this.props.commentCount} comments`;
             }
           })()}
-          </a>{this.props.favoriteVisible && ' | favorite'}           
+          </a>{this.props.favoriteVisible && ' | favorite'}
         </td>
       </tr>
     );
   }
 }
-// this.props.commentCount > 0 ? `${this.props.commentCount} comments` : 'discuss'
-//<tr className="athing" id={this.props.id}>
-  //    upvote.  <a href={this.props.url ? this.props.url : `/item?id=${this.props.id}`}>this.props.title</a> {this.props.url  && `(${<a href={this.props.url}>{url.parse(this.props.url).hostname}</a>})`}
-    //</tr>
 
-// <tr>
-//       {this.props.points} points by {this.props.submitterId} {this.props.creationTime} hours/minutes ago | hide {  this.props.commentCount} comments{this.props.favoriteVisible && ' | favorite'}
-//     </tr>
+const post = gql`
+  fragment NewsDetail on entry {
+    id
+    submitterId
+    commentCount
+    points
+    favoriteVisible
+  }
+`
 
-export default NewsItem;
+export default NewsDetail;
