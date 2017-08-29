@@ -12,6 +12,7 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Express (Web App Server)
 - Passport.js (Authentication)
 - Babel (JS Transpiling)
+- Flow (Static Types)
 - ESLint (JS Best Practices/Code Highlighting)
 - Jest (Tests)
 

@@ -67,7 +67,7 @@ export default {
       comments: [],
       commentCount: 0,
       rank: 29,
-      points: 122.1233,
+      points: 122,
     },
     {
       id: 1223,

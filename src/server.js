@@ -1,8 +1,11 @@
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+
 const express = require('express');
 const next = require('next');
 const passport = require('passport');
 
 const graphQLHTTP = require('express-graphql');
+const bodyParser = require('body-parser');
 const Schema = require('./data/Schema');
 
 const config = require('./config');
@@ -16,11 +19,21 @@ app.prepare()
   .then(() => {
     const server = express();
 
-    server.use('/graphql', graphQLHTTP(request => ({
+    // server.use('/graphql', graphQLHTTP(request => ({
+    //   schema: Schema,
+    //   pretty: true,
+    //   rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
+    // })));
+    server.use('/graphql', bodyParser.json(), graphqlExpress(request => ({
       schema: Schema,
-      pretty: true,
-      rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
+      rootValue: { request },
+      debug: true,
     })));
+
+    server.use('/graphiql', graphiqlExpress({
+      endpointURL: '/graphql',
+    }));
+
 
     // server.use('assets', express.static('../assets'));
 

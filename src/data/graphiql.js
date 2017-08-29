@@ -1,5 +1,3 @@
-// import 'babel/polyfill'
-
 /**  
    * WARNING: THIS USES THE REAL SCHEMA AND DATABASE!
    *
@@ -9,9 +7,9 @@
 // TODO: Can make this graphql server part of the main server using feature flag
 // Example GraphiQL server https://github.com/graphql/graphiql/tree/master/example
 
-import path from 'path';
 import express from 'express';
-import graphQLHTTP from 'express-graphql';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import bodyParser from 'body-parser';
 import Schema from './Schema';
 import { HOST_NAME, APP_PORT } from '../config';
 
@@ -21,25 +19,15 @@ const app = express();
 // app.use(morgan('dev'));
 
 // Mount GraphQL Server middleware
-app.use('/graphql', graphQLHTTP(request => ({
+app.use('/graphql', bodyParser.json(), graphqlExpress(request => ({
   schema: Schema,
-  pretty: true,
-  graphiql: true,
   rootValue: { request },
-}),
-));
+  debug: true,
+})));
 
-// Serve static resources
-// https://expressjs.com/en/starter/static-files.html
-// app.use(express.static(__dirname)); 
-app.use('/node_modules', express.static('node_modules'));
-
-// Serve graphiQL
-app.get('/graphiql', (req, res, next) => {
-  if (req.path === '/graphql') return;
-
-  res.sendFile(path.join(__dirname, '/graphiql.html'));
-});
+app.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
+}));
 
 app.listen(APP_PORT, () => {
   logger.info(`==> 📈 GraphQL Server on http://${HOST_NAME}:${APP_PORT}/graphql`);
