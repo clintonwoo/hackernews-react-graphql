@@ -28,8 +28,6 @@ module.exports = {
       '/submit': { page: '/submit' },
       '/threads': { page: '/threads' },
 
-  //     '/about': { page: '/about' },
-  //     // '/post': { page: '/post'},
   //     '/p/975': { page: '/post', query: { id: '975' } },
   //     '/p/481': { page: '/post', query: { id: '481' } },
     };

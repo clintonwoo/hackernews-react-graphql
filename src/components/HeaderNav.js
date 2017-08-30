@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 
 const HeaderNav = props => (
-  // const threads = <span> | </span><a href="/threads?id=clintonwoo">threads</a>;
   props.isNavVisible ?
     <span className="pagetop">
       <b className="hnname">

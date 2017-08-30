@@ -2,7 +2,7 @@
 
 This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 
-## Features
+## Featuring
 - React (UI Framework)
 - GraphQL (Web Data API)
 - Apollo (GraphQL Client)
@@ -15,6 +15,23 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Flow (Static Types)
 - ESLint (JS Best Practices/Code Highlighting)
 - Jest (Tests)
+
+## Benefits
+- Declarative UI (react)
+- Flux State Management (redux)
+- GraphQL Query Colocation/Client (react-apollo)
+- JS Web Server (express)
+- Declarative GraphQL Schema (react-tools)
+- GraphQL Query Batching (apollo-server-express)
+- GraphQL Stored Queries (apollo-server-express)
+- Easy GraphiQL Include (apollo-server-express)
+- Local Authentication Strategy (passport)
+- Server Side Rendering (next)
+- Build to Static Website (next)
+- Hot Module Reloading (next)
+- Code Splitting (next)
+- Snapshot Testing (jest)
+
 
 ## How To Start
 

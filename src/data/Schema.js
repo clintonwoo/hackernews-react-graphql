@@ -51,12 +51,34 @@ const typeDefs = `
     favorites: [Int]
   }
 
-  # the schema allows the following query:
+  # the schema allows the following queries:
   type Query {
+    feed(
+      # The sort order for the feed
+      type: FeedType!,
+
+      # The number of items to skip, for pagination
+      skip: Int,
+  
+      # The number of items to fetch starting from the offset, for pagination
+      first: Int
+    ): [NewsItem]
     newsItems: [NewsItem]
     user(id: String!): User
     # posts: [Post]
     # author(id: Int!): Author
+  }
+
+  # A list of options for the sort order of the feed
+  enum FeedType {
+    # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
+    HOT
+  
+    # Newest entries first
+    NEW
+  
+    # Highest score entries first
+    TOP
   }
 
   # this schema allows the following mutation:

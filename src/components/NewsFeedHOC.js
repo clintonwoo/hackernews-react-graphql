@@ -9,16 +9,19 @@ const NewsFeedHOC = ({ data: { loading, error, newsItems } }) => {
   if (newsItems && newsItems.length) {
     return (
       <NewsFeed newsItems={newsItems} />
-    )
+    );
   }
-  return <div>Loading</div>
+  return <div>Loading</div>;
 };
 // NewsFeedHOC.propTypes = {
 //   data: PropTypes
 // }
-//query allNewsItems($first: Int!, $skip: Int!) {
+  // query allPosts($first: Int!, $skip: Int!) {
+  //   allPosts(orderBy: createdAt_DESC, first: $first, skip: $skip) {
+  //     query frontPageNewsItems($first: Int!, $skip: Int!) {
+  //   feed(type: HOT, skip: $skip, first: $first){
 const allNewsItems = gql`
-  query {
+  query frontPageNewsItems {
     newsItems {
       id
       creationTime
@@ -32,13 +35,14 @@ const allNewsItems = gql`
     }
   }
 `;
+const POSTS_PER_PAGE = 30;
 export default graphql(allNewsItems, {
-  // options: {
-  //   variables: {
-  //     skip: 0,
-  //     first: POSTS_PER_PAGE
-  //   }
-  // },
+  options: {
+    variables: {
+      skip: 0,
+      first: POSTS_PER_PAGE
+    }
+  },
   props: ({ data }) => ({
     data,
     // loadMorePosts: () => {

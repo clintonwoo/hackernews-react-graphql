@@ -20,7 +20,6 @@ export default {
       rank: 1,
       points: 171,
     },
-    //  (kate.io)
     {
       id: 1225,
       creationTime: new Date(2017, 8, 24, 18, 12, 16),

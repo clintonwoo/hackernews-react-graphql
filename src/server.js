@@ -4,7 +4,6 @@ const express = require('express');
 const next = require('next');
 const passport = require('passport');
 
-const graphQLHTTP = require('express-graphql');
 const bodyParser = require('body-parser');
 import Schema from './data/Schema';
 
@@ -19,14 +18,9 @@ app.prepare()
   .then(() => {
     const server = express();
 
-    // server.use('/graphql', graphQLHTTP(request => ({
-    //   schema: Schema,
-    //   pretty: true,
-    //   rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
-    // })));
     server.use('/graphql', bodyParser.json(), graphqlExpress(request => ({
       schema: Schema,
-      rootValue: { request },
+      rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
       debug: true,
     })));
 
