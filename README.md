@@ -17,9 +17,11 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Jest (Tests)
 
 ## Benefits
+Front End
 - Declarative UI (react)
 - Flux State Management (redux)
-- GraphQL Query Colocation/Client (react-apollo)
+- GraphQL Query Colocation (react-apollo)
+Server
 - JS Web Server (express)
 - Declarative GraphQL Schema (react-tools)
 - GraphQL Query Batching (apollo-server-express)
@@ -27,9 +29,10 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Easy GraphiQL Include (apollo-server-express)
 - Local Authentication Strategy (passport)
 - Server Side Rendering (next)
-- Build to Static Website (next)
-- Hot Module Reloading (next)
 - Code Splitting (next)
+- Build to Static Website (next)
+Dev/Test
+- Hot Module Reloading (next)
 - Snapshot Testing (jest)
 
 
