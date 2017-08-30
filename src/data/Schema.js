@@ -91,7 +91,7 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    newsItems: () => getNewsItems(),
+    newsItems: () => getNewsItems().sort((a, b) => (a.rank - b.rank)),
     user: (_, { id }) => getUser(id),
   },
   Mutation: {
