@@ -21,8 +21,9 @@ Front End
 - Declarative UI (react)
 - Flux State Management (redux)
 - GraphQL Query Colocation (react-apollo)
+
 Server
-- JS Web Server (express)
+- Universal JS (node & express)
 - Declarative GraphQL Schema (react-tools)
 - GraphQL Query Batching (apollo-server-express)
 - GraphQL Stored Queries (apollo-server-express)
@@ -31,6 +32,7 @@ Server
 - Server Side Rendering (next)
 - Code Splitting (next)
 - Build to Static Website (next)
+
 Dev/Test
 - Hot Module Reloading (next)
 - Snapshot Testing (jest)
