@@ -40,12 +40,18 @@ Dev/Test
 ## One Click Download
 
 You can download and run the repo with one command to rule them all:
+
 `git clone https://github.com/clintonwoo/hackersnews-react-graphql.git && cd hackersnews-react-graphql && npm install && npm run dev`
 
 ## How To Start
 
 `npm install`
+
 `npm run dev`
+
+## Configuration
+
+You can include a .env file in your project root to configure settings (this is the 'dotenv' npm package). The project runs out of the box with default settings. Config is in the /src/config.js file. This .env file is included in .gitignore.
 
 ## How To Test
 
@@ -55,7 +61,8 @@ This project uses Jest as a testing framework. Jest can do snapshot testing of r
 
 ## How To Deploy
 
-`npm run build`
+If you just want to generate build files: `npm run build`
+
 `npm run deploy`
 
 ## Contributing

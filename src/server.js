@@ -1,12 +1,14 @@
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-
+import dotenv from 'dotenv/config';
 import express from 'express';
 import next from 'next';
 import passport from 'passport';
-
 import bodyParser from 'body-parser';
-import Schema from './data/Schema';
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'apollo-server-express';
 
+import Schema from './data/Schema';
 import {
   appPath,
   APP_PORT,
@@ -17,8 +19,7 @@ import {
   dev,
 } from './config';
 
-const app = next({ dir: appPath, dev: dev });
-
+const app = next({ dir: appPath, dev });
 
 const handle = app.getRequestHandler();
 
@@ -28,7 +29,11 @@ app.prepare()
 
     server.use(graphQLPath, bodyParser.json(), graphqlExpress(request => ({
       schema: Schema,
-      rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
+      rootValue: { request },
+      // In this example, only the user ID is serialized to the session,
+      // keeping the amount of data stored within the session small. When
+      // subsequent requests are received, this ID is used to find the user,
+      // which will be restored to req.user.
       debug: true,
     })));
 
@@ -70,6 +75,8 @@ app.prepare()
 
     server.listen(APP_PORT, (err) => {
       if (err) throw err;
+      console.log('> Environment by .env:');
+      console.log(dotenv);
       console.log(`> Ready on ${APP_URI}`);
       console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
     });

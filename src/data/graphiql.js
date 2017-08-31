@@ -8,8 +8,12 @@
 // Example GraphiQL server https://github.com/graphql/graphiql/tree/master/example
 
 import express from 'express';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'apollo-server-express';
+
 import Schema from './Schema';
 import {
   APP_PORT,
