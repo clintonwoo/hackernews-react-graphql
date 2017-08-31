@@ -1,15 +1,23 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-const express = require('express');
-const next = require('next');
-const passport = require('passport');
+import express from 'express';
+import next from 'next';
+import passport from 'passport';
 
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 import Schema from './data/Schema';
 
-const config = require('./config');
+import {
+  appPath,
+  APP_PORT,
+  APP_URI,
+  graphQLPath,
+  graphiQLPath,
+  GRAPHQL_URL,
+  dev,
+} from './config';
 
-const app = next({ dir: config.appPath, dev: config.dev });
+const app = next({ dir: appPath, dev: dev });
 
 
 const handle = app.getRequestHandler();
@@ -18,14 +26,14 @@ app.prepare()
   .then(() => {
     const server = express();
 
-    server.use('/graphql', bodyParser.json(), graphqlExpress(request => ({
+    server.use(graphQLPath, bodyParser.json(), graphqlExpress(request => ({
       schema: Schema,
       rootValue: { request }, // In this example, only the user ID is serialized to the session, keeping the amount of data stored within the session small. When subsequent requests are received, this ID is used to find the user, which will be restored to req.user.
       debug: true,
     })));
 
-    server.use('/graphiql', graphiqlExpress({
-      endpointURL: '/graphql',
+    server.use(graphiQLPath, graphiqlExpress({
+      endpointURL: graphQLPath,
     }));
 
 
@@ -60,10 +68,10 @@ app.prepare()
 
     server.get('*', (req, res) => handle(req, res));
 
-    server.listen(config.APP_PORT, (err) => {
+    server.listen(APP_PORT, (err) => {
       if (err) throw err;
-      console.log('> Ready on http://localhost:3000');
-      console.log('> GraphQL Ready on http://localhost:3000/graphql');
+      console.log(`> Ready on ${APP_URI}`);
+      console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
     });
   })
   .catch((ex) => {

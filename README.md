@@ -37,6 +37,10 @@ Dev/Test
 - Hot Module Reloading (next)
 - Snapshot Testing (jest)
 
+## One Click Download
+
+You can download and run the repo with one command to rule them all:
+`git clone https://github.com/clintonwoo/hackersnews-react-graphql.git && cd hackersnews-react-graphql && npm install && npm run dev`
 
 ## How To Start
 

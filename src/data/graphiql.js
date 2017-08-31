@@ -11,7 +11,13 @@ import express from 'express';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import Schema from './Schema';
-import { HOST_NAME, APP_PORT } from '../config';
+import {
+  APP_PORT,
+  graphQLPath,
+  graphiQLPath,
+  GRAPHQL_URL,
+  GRAPHIQL_URL,
+} from '../config';
 
 const logger = console; // global.logger;
 
@@ -19,17 +25,17 @@ const app = express();
 // app.use(morgan('dev'));
 
 // Mount GraphQL Server middleware
-app.use('/graphql', bodyParser.json(), graphqlExpress(request => ({
+app.use(graphQLPath, bodyParser.json(), graphqlExpress(request => ({
   schema: Schema,
   rootValue: { request },
   debug: true,
 })));
 
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
+app.use(graphiQLPath, graphiqlExpress({
+  endpointURL: graphQLPath,
 }));
 
 app.listen(APP_PORT, () => {
-  logger.info(`==> 📈 GraphQL Server on http://${HOST_NAME}:${APP_PORT}/graphql`);
-  logger.info(`==> 🌎  Go to http://${HOST_NAME}:${APP_PORT}`);
+  logger.info(`==> 📈 GraphQL Server on ${GRAPHQL_URL}`);
+  logger.info(`==> 🌎  Go to ${GRAPHIQL_URL}`);
 });

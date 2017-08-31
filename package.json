@@ -2,12 +2,14 @@
   "name": "hackernews",
   "version": "0.2.0",
   "description": "A hacker news clone built from the ground up to demonstrate React and GraphQL",
+  "engines" : { "node" : ">=6.9.4" },
   "scripts": {
     "dev": "babel-node src/server.js",
     "graphiql": "babel-node ./src/data/graphiql",
     "test": "jest",
     "build": "yarn install && next build src && next export src -o build/static",
     "prod": "next build src && next start src",
+    "start": "babel-node src/server.js",
     "deploy": ""
   },
   "keywords": [
