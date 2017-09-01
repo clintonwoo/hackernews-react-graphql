@@ -40,8 +40,8 @@ export default graphql(allNewsItems, {
   options: {
     variables: {
       skip: 0,
-      first: POSTS_PER_PAGE
-    }
+      first: POSTS_PER_PAGE,
+    },
   },
   props: ({ data }) => ({
     data,
@@ -61,5 +61,5 @@ export default graphql(allNewsItems, {
     //     }
     //   })
     // }
-  })
+  }),
 })(NewsFeedHOC);

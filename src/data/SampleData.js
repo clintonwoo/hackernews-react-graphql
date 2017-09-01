@@ -6,7 +6,7 @@ export default {
   newsItems: [
     {
       id: 1224,
-      creationTime: new Date(2017, 8, 21, 16, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: '“Learning How to Learn,” the most popular course on Coursera',
       text: null,
@@ -22,7 +22,7 @@ export default {
     },
     {
       id: 1225,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'luu',
       title: 'Weird Python Integers',
       text: null,
@@ -38,7 +38,7 @@ export default {
     },
     {
       id: 1226,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'aLee',
       title: 'I spent my career in tech and wasn’t prepared for its effect on my kids',
       text: null,
@@ -54,7 +54,7 @@ export default {
     },
     {
       id: 1222,
-      creationTime: new Date(2017, 8, 21, 16, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'clintonwoo',
       title: 'Clinton wins again',
       text: null,
@@ -70,7 +70,7 @@ export default {
     },
     {
       id: 1223,
-      creationTime: new Date(2017, 8, 21, 16, 12, 17),
+      creationTime: 1506024737000,
       submitterId: 'john',
       title: 'Clinton wins yet another time',
       text: 'It\'s unbelievable.',
@@ -82,7 +82,7 @@ export default {
       comments: [
         {
           id: 123331,
-          creationTime: new Date(2017, 8, 21, 16, 12, 20),
+          creationTime: 1506024740000,
           commenterId: 'clintonwoo',
           text: 'I know this might come accross as bragging, but I just won the internet again.',
           upvotes: new Set([1, 2, 3, 4]),
@@ -97,7 +97,7 @@ export default {
     },
     {
       id: 1227,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Water Found Deep Inside the Moon',
       text: null,
@@ -113,7 +113,7 @@ export default {
     },
     {
       id: 1228,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'How did “Handbook for Mortals” get on the NYT bestseller list?',
       text: null,
@@ -129,7 +129,7 @@ export default {
     },
     {
       id: 1229,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Titan in depth: Security in plaintext',
       text: null,
@@ -145,7 +145,7 @@ export default {
     },
     {
       id: 1230,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'The Librem 5: A Matrix-Native FLOSS Smartphone',
       text: null,
@@ -161,7 +161,7 @@ export default {
     },
     {
       id: 1231,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Generic GPU Kernels in Julia',
       text: null,
@@ -177,7 +177,7 @@ export default {
     },
     {
       id: 1232,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'VW Strike in Slovakia Exposes a European Divide',
       text: null,
@@ -193,7 +193,7 @@ export default {
     },
     {
       id: 1233,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Gtk-rs: The huge and long awaited release is finally here',
       text: null,
@@ -209,7 +209,7 @@ export default {
     },
     {
       id: 1234,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Rich Hickey\'s Greatest Hits',
       text: null,
@@ -225,7 +225,7 @@ export default {
     },
     {
       id: 1235,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers',
       text: null,
@@ -241,7 +241,7 @@ export default {
     },
     {
       id: 1236,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'How Redlining’s Racist Effects Lasted for Decades',
       text: null,
@@ -257,7 +257,7 @@ export default {
     },
     {
       id: 1237,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Uber, Mired in Corporate Scandals, Sees Uptick in Bookings',
       text: null,
@@ -273,7 +273,7 @@ export default {
     },
     {
       id: 1238,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Feather: Open-source icons',
       text: null,
@@ -289,7 +289,7 @@ export default {
     },
     {
       id: 1239,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Spacex Launch Webcast: Formosat-5 Mission',
       text: null,
@@ -305,7 +305,7 @@ export default {
     },
     {
       id: 1240,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Ask HN: What is your favorite CS paper?',
       text: null,
@@ -321,7 +321,7 @@ export default {
     },
     {
       id: 1241,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Launch HN: Life Bot (YC S17) – Voice app to help with daily activities',
       text: null,
@@ -337,7 +337,7 @@ export default {
     },
     {
       id: 1242,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Debian reproducibility statistics',
       text: null,
@@ -353,7 +353,7 @@ export default {
     },
     {
       id: 1243,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'The Scotsmen Who Invented Modernity',
       text: null,
@@ -369,7 +369,7 @@ export default {
     },
     {
       id: 1244,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Deterministic Browser',
       text: null,
@@ -385,7 +385,7 @@ export default {
     },
     {
       id: 1245,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Deep Learning for Siri’s Voice',
       text: null,
@@ -401,7 +401,7 @@ export default {
     },
     {
       id: 1246,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'I\'m giving up on HPKP',
       text: null,
@@ -417,7 +417,7 @@ export default {
     },
     {
       id: 1247,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Introducing App Engine Firewall',
       text: null,
@@ -433,7 +433,7 @@ export default {
     },
     {
       id: 1248,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Profiling Internet Users in Africa: Insights from the Google Play Store',
       text: null,
@@ -449,7 +449,7 @@ export default {
     },
     {
       id: 1249,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Turing.jl: A Fresh Approach to Probabilistic Programming in Julia',
       text: null,
@@ -465,7 +465,7 @@ export default {
     },
     {
       id: 1250,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'GCC tiny',
       text: null,
@@ -481,7 +481,7 @@ export default {
     },
     {
       id: 1251,
-      creationTime: new Date(2017, 8, 24, 18, 12, 16),
+      creationTime: 1506024736000,
       submitterId: 'hvo',
       title: 'Tesorio is hiring engineers and a product designer to modernize finance teams',
       text: null,
@@ -581,20 +581,20 @@ export default {
     {
       // id: 1, // username is Primary Key
       id: 'clintonwoo', // Aka. username
-      creationTime: new Date(2017, 8, 21, 16, 10, 14),
+      creationTime: 1506024614000,
       firstName: 'Clinton',
       lastName: 'D\'Annolfo',
-      dob: new Date(1992, 12, 6),
+      dateOfBirth: 723618000000,
       posts: [1222],
       hidden: [],
       email: 'clinton@hotmail.com',
     },
     {
       id: 'john', // Aka. username
-      creationTime: new Date(2017, 8, 21, 16, 9, 14),
+      creationTime: 1506024554000,
       firstName: 'John',
       lastName: 'Doe',
-      dob: new Date(1987, 7, 2),
+      dateOfBirth: 554875200000,
       posts: [1223],
       hidden: [],
       email: 'john@doe.com',

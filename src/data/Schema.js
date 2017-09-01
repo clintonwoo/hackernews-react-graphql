@@ -1,5 +1,13 @@
 // import { find, filter } from 'lodash';
-import { makeExecutableSchema } from 'graphql-tools';
+import {
+  GraphQLScalarType,
+} from 'graphql';
+import {
+  Kind,
+} from 'graphql/language';
+import {
+  makeExecutableSchema,
+} from 'graphql-tools';
 import {
   getNewsItems,
   getNewsItem,
@@ -14,11 +22,13 @@ import {
 // http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
 
 const typeDefs = `
+  scalar Date 
+
   type Comment {
     id: Int!
     commenterId: String!
     text: String
-    creationTime: String
+    creationTime: Date
     upvotes: [Int]
     upvoteCount: Int
   }
@@ -27,7 +37,7 @@ const typeDefs = `
     id: Int!
     submitterId: String!
     author: User
-    creationTime: String
+    creationTime: Date
     url: String
     title: String
     text: String
@@ -41,7 +51,7 @@ const typeDefs = `
 
   type User {
     id: String!
-    creationTime: String
+    creationTime: Date
     firstName: String
     lastName: String
     email: String
@@ -110,6 +120,30 @@ const resolvers = {
   NewsItem: {
     author: newsItem => getUser(newsItem.submitterId),
   },
+  Date: new GraphQLScalarType({
+    // http://dev.apollodata.com/tools/graphql-tools/scalars.html#Date-as-a-scalar
+    name: 'Date',
+    description: 'UTC number of milliseconds since midnight Jan 1 1970 as in JS date',
+    parseValue(value) {
+      // Turn an input into a date which we want as a number
+      // value from the client
+      return new Date(value).valueOf();
+    },
+    serialize(value) {
+      // Convert Date to number primitive .getTime() or .valueOf()
+      // value sent to the client
+      if (value instanceof Date) return value.valueOf();
+      return value;
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        // ast value is always in string format
+        // parseInt turns a string number into number of base param 2
+        return parseInt(ast.value, 10);
+      }
+      return null;
+    },
+  }),
 };
 
 export default makeExecutableSchema({

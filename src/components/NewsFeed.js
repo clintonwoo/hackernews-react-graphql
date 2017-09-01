@@ -43,7 +43,7 @@ const NewsFeed = (props) => {
 NewsFeed.propTypes = {
   newsItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    creationTime: PropTypes.string.isRequired, //PropTypes.instanceOf(Date).isRequired,
+    creationTime: PropTypes.number.isRequired, //PropTypes.instanceOf(Date).isRequired,
     submitterId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string,

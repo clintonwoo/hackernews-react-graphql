@@ -115,7 +115,7 @@ ShallowWrapper {
       "_currentElement": <NewsDetail
         commentCount={44}
         comments={Array []}
-        creationTime={2017-09-21T20:12:16.000Z}
+        creationTime={1506024736000}
         favoriteVisible={false}
         hidden={Array []}
         hiddenCount={0}
@@ -138,7 +138,7 @@ ShallowWrapper {
         "props": Object {
           "commentCount": 44,
           "comments": Array [],
-          "creationTime": 2017-09-21T20:12:16.000Z,
+          "creationTime": 1506024736000,
           "favoriteVisible": false,
           "hidden": Array [],
           "hiddenCount": 0,
@@ -283,7 +283,7 @@ ShallowWrapper {
   "unrendered": <NewsDetail
     commentCount={44}
     comments={Array []}
-    creationTime={2017-09-21T20:12:16.000Z}
+    creationTime={1506024736000}
     favoriteVisible={false}
     hidden={Array []}
     hiddenCount={0}
