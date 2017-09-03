@@ -1,4 +1,4 @@
-## Hacker News Clone  [![GitHub stars](https://img.shields.io/github/stars/clintonwoo/hackersnews-react-graphql.svg?style=social&label=Star)](https://github.com/clintonwoo/hackersnews-react-graphql/stargazers) [![GitHub followers](https://img.shields.io/github/followers/clintonwoo.svg?style=social&label=Follow)](https://github.com/clintonwoo/hackersnews-react-graphql/) [![GitHub issues](https://img.shields.io/github/issues/clintonwoo/hackersnews-react-graphql.svg)](https://github.com/clintonwoo/hackersnews-react-graphql/issues) [![](https://img.shields.io/github/issues-pr-raw/clintonwoo/hackersnews-react-graphql.svg)](https://github.com/clintonwoo/hackersnews-react-graphql/pulls)
+## Hacker News Clone  [![GitHub stars](https://img.shields.io/github/stars/clintonwoo/hackernews-react-graphql.svg?style=social&label=Star)](https://github.com/clintonwoo/hackernews-react-graphql/stargazers) [![GitHub followers](https://img.shields.io/github/followers/clintonwoo.svg?style=social&label=Follow)](https://github.com/clintonwoo/hackernews-react-graphql/) [![GitHub issues](https://img.shields.io/github/issues/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/issues) [![](https://img.shields.io/github/issues-pr-raw/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/pulls)
 
 This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 
@@ -41,7 +41,7 @@ Dev/Test
 
 You can download and run the repo with one command to rule them all:
 
-`git clone https://github.com/clintonwoo/hackersnews-react-graphql.git && cd hackersnews-react-graphql && npm install && npm run dev`
+`git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm run dev`
 
 ## How To Start
 
