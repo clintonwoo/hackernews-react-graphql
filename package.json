@@ -10,7 +10,7 @@
     "graphiql": "babel-node ./src/data/graphiql",
     "test": "jest",
     "build": "yarn install && next build src",
-    "build-container": "npm run build && docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 clintonwoo/hackernews-react-graphql",
+    "build-container": "npm run build && docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
     "build-static-website": "yarn install && next build src && next export src -o build/static",
     "start": "NODE_ENV=production babel-node src/server.js"
   },
