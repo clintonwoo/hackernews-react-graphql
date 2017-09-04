@@ -16,15 +16,15 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - ESLint (JS Best Practices/Code Highlighting)
 - Jest (Tests)
 - Yarn Package Manager (Better Dependencies)
-- Docker (Containers)
+- Docker (Container Deployment)
 
 ## Benefits
-__Front End__
+**Front End**
 - Declarative UI (react)
 - Flux State Management (redux)
 - GraphQL Query Colocation (react-apollo)
 
-__Server__
+**Server**
 - Universal JS (node & express)
 - Declarative GraphQL Schema (react-tools)
 - GraphQL Query Batching (apollo-server-express)
@@ -36,7 +36,7 @@ __Server__
 - Build to Static Website (next)
 - Container Based Runtime (docker)
 
-__Dev/Test__
+**Dev/Test**
 - Hot Module Reloading (next)
 - Snapshot Testing (jest)
 - Faster package install (yarn)
@@ -49,7 +49,7 @@ You can download and run the repo with one command to rule them all:
 
 ## How To Start
 
-Running the app in dev mode is fully featured including hot module reloading:
+Running the app in dev mode is fully featured including *hot module reloading*:
 
 `npm install`
 
@@ -61,7 +61,7 @@ To run in production mode:
 
 ## Configuration
 
-The project runs out of the box with default settings (/src/config.js). You can include a .env file in your project root to configure settings (this is the 'dotenv' npm package). The .env file is included in .gitignore.
+The project runs out of the box with default settings (*/src/config.js*). You can include a .env file in your project root to configure settings (this is the '*dotenv*' npm package). The *.env* file is included in *.gitignore*.
 
 ## How To Test
 
@@ -71,7 +71,7 @@ This project uses Jest and can do snapshot testing of React components. Whenever
 
 ## How To Build For Deployment
 
-`npm run build`: NextJS app with entry point /src/server.js that uses Node.js/Express.
+`npm run build`: NextJS app with entry point */src/server.js* that uses Node.js/Express.
 
 OR
 
@@ -81,7 +81,7 @@ OR
 
 NextJS lets us make a powerful static website but server rendering dynamic routes can be difficult.
 
-`npm run build-static-website`: Builds static website to /build/static. Use a static web server eg. NGINX/Github Pages.
+`npm run build-static-website`: Builds static website to */build/static*. Use a static web server *eg.* NGINX/Github Pages.
 
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
