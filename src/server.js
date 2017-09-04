@@ -1,4 +1,6 @@
-import dotenv from 'dotenv/config';
+// import dotenv from 'dotenv/config';
+const dotenv = require('dotenv').config();
+
 import express from 'express';
 import next from 'next';
 import passport from 'passport';

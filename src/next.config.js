@@ -32,5 +32,7 @@ module.exports = {
   //     '/p/481': { page: '/post', query: { id: '481' } },
     };
   },
-  distDir: '../build/.next',
+  // Optional property to set the path where Next runs, requires more config
+  // distDir: './src/.next',
+  // distDir: '../build/.next',
 };

@@ -15,14 +15,16 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Flow (Static Types)
 - ESLint (JS Best Practices/Code Highlighting)
 - Jest (Tests)
+- Yarn Package Manager (Better Dependencies)
+- Docker (Containers)
 
 ## Benefits
-Front End
+__Front End__
 - Declarative UI (react)
 - Flux State Management (redux)
 - GraphQL Query Colocation (react-apollo)
 
-Server
+__Server__
 - Universal JS (node & express)
 - Declarative GraphQL Schema (react-tools)
 - GraphQL Query Batching (apollo-server-express)
@@ -32,10 +34,12 @@ Server
 - Server Side Rendering (next)
 - Code Splitting (next)
 - Build to Static Website (next)
+- Container Based Runtime (docker)
 
-Dev/Test
+__Dev/Test__
 - Hot Module Reloading (next)
 - Snapshot Testing (jest)
+- Faster package install (yarn)
 
 ## One Click Download
 
@@ -45,25 +49,39 @@ You can download and run the repo with one command to rule them all:
 
 ## How To Start
 
+Running the app in dev mode is fully featured including hot module reloading:
+
 `npm install`
 
 `npm run dev`
 
+To run in production mode:
+
+`npm run build && npm start`
+
 ## Configuration
 
-You can include a .env file in your project root to configure settings (this is the 'dotenv' npm package). The project runs out of the box with default settings. Config is in the /src/config.js file. This .env file is included in .gitignore.
+The project runs out of the box with default settings (/src/config.js). You can include a .env file in your project root to configure settings (this is the 'dotenv' npm package). The .env file is included in .gitignore.
 
 ## How To Test
 
 `npm test` or `npm run test`
 
-This project uses Jest as a testing framework. Jest can do snapshot testing of react components. Whenever a component is updated to a functioning up-to-date state, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
+This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
 
-## How To Deploy
+## How To Build For Deployment
 
-If you just want to generate build files: `npm run build`
+`npm run build`: NextJS app with entry point /src/server.js that uses Node.js/Express.
 
-`npm run deploy`
+OR
+
+`npm run build-container` Docker Container: Uses the above build and can be deployed easily.
+
+**Static Website (Optional)**
+
+NextJS lets us make a powerful static website but server rendering dynamic routes can be difficult.
+
+`npm run build-static-website`: Builds static website to /build/static. Use a static web server eg. NGINX/Github Pages.
 
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
