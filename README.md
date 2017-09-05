@@ -3,43 +3,43 @@
 This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 
 ## Featuring
-- React (UI Framework)
-- GraphQL (Web Data API)
-- Apollo (GraphQL Client)
-- Next.js (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
-- Redux (State Management)
-- Node.js (Web Server)
-- Express (Web App Server)
-- Passport.js (Authentication)
-- Babel (JS Transpiling)
-- Flow (Static Types)
-- ESLint (JS Best Practices/Code Highlighting)
-- Jest (Tests)
-- Yarn Package Manager (Better Dependencies)
-- Docker (Container Deployment)
+- React - (UI Framework)
+- GraphQL - (Web Data API)
+- Apollo - (GraphQL Client)
+- Next - (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
+- Redux - (State Management)
+- Node.js - (Web Server)
+- Express - (Web App Server)
+- Passport - (Authentication)
+- Babel - (JS Transpiling)
+- Flow - (Static Types)
+- ESLint - (JS Best Practices/Code Highlighting)
+- Jest - (Tests)
+- Yarn Package Manager - (Better Dependencies)
+- Docker - (Container Deployment)
 
 ## Benefits
 **Front End**
-- Declarative UI (react)
-- Flux State Management (redux)
-- GraphQL Query Colocation (react-apollo)
+- Declarative UI - (react)
+- Flux State Management - (redux)
+- GraphQL Query Colocation - (react-apollo)
 
 **Server**
-- Universal JS (node & express)
-- Declarative GraphQL Schema (react-tools)
-- GraphQL Query Batching (apollo-server-express)
-- GraphQL Stored Queries (apollo-server-express)
-- Easy GraphiQL Include (apollo-server-express)
-- Local Authentication Strategy (passport)
-- Server Side Rendering (next)
-- Code Splitting (next)
-- Build to Static Website (next)
-- Container Based Runtime (docker)
+- Universal JS - (node & express)
+- Declarative GraphQL Schema - (react-tools)
+- GraphQL Query Batching - (apollo-server-express)
+- GraphQL Stored Queries - (apollo-server-express)
+- Easy GraphiQL Include - (apollo-server-express)
+- Local Authentication Strategy - (passport)
+- Server Side Rendering - (next)
+- Code Splitting - (next)
+- Build to Static Website - (next)
+- Container Based Runtime - (docker)
 
 **Dev/Test**
-- Hot Module Reloading (next)
-- Snapshot Testing (jest)
-- Faster package install (yarn)
+- Hot Module Reloading - (next)
+- Snapshot Testing - (jest)
+- Faster Package Install - (yarn)
 
 ## One Click Download
 

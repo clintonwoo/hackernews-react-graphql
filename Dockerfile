@@ -1,5 +1,5 @@
-# Using Node docker image with Yarn package manager
-FROM kkarczmarczyk/node-yarn:6.9-slim
+# Using latest LTS release of Node (comes with Yarn package manager by default)
+FROM node:6.11.2-alpine
 
 # Create an app directory on the container
 WORKDIR /usr/src/app
@@ -16,8 +16,8 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Expose the container port on the OS
-# The docker run command takes -p argument to foward exposed port to network
+# Expose the container port to the OS
+# docker run takes -p argument to forward this port to network
 EXPOSE 3000
 
 # Start the application

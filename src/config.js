@@ -11,5 +11,3 @@ export const APP_PORT = process.env.APP_PORT || 3000;
 export const APP_URI = `http://${HOST_NAME}:${APP_PORT}`;
 export const GRAPHQL_URL = `${APP_URI}${graphQLPath}`;
 export const GRAPHIQL_URL = `${APP_URI}${graphiQLPath}`;
-
-console.log(`Dev: ${dev}`);

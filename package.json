@@ -7,6 +7,8 @@
   },
   "scripts": {
     "dev": "babel-node src/server.js",
+    "debug": "DEBUG=* npm run dev",
+    "debug-mode": "babel-node debug --inspect --debug-brk src/server.js",
     "graphiql": "babel-node ./src/data/graphiql",
     "test": "jest",
     "build": "yarn install && next build src",

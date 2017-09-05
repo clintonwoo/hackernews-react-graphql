@@ -21,6 +21,8 @@ import {
   dev,
 } from './config';
 
+console.log(`Dev: ${dev}`);
+
 const app = next({ dir: appPath, dev });
 
 const handle = app.getRequestHandler();
