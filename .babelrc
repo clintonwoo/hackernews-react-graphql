@@ -2,12 +2,13 @@
   "presets": [
     [
       "env",
-       {
-          "targets": {
-            "node": "current",
-            "browsers": ["last 2 versions"]
-      	},
-    }],
+      {
+        "targets": {
+          "node": "current",
+          "browsers": ["last 2 versions"]
+        }
+      }
+    ],
     "stage-0", // Unstable and unrecommended, especially below stage 3
     "react"
   ]

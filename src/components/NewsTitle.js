@@ -38,7 +38,7 @@ class NewsTitle extends Component {
         </td>
         <td style={{ verticalAlign: 'top' }} className="votelinks">
           <center>
-            <a onClick={this.upvote} href="vote?id=15077519&amp;how=up&amp;auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d&amp; goto=news"><div className="votearrow" title="upvote"></div></a>
+            <a onClick={this.upvote} href="vote?id=15077519&amp;how=up&amp;auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d&amp; goto=news"><div className="votearrow" title="upvote" /></a>
           </center>
         </td>
         <td className="title">

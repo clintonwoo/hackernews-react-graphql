@@ -1,6 +1,15 @@
 ## Hacker News Clone  [![GitHub stars](https://img.shields.io/github/stars/clintonwoo/hackernews-react-graphql.svg?style=social&label=Star)](https://github.com/clintonwoo/hackernews-react-graphql/stargazers) [![GitHub followers](https://img.shields.io/github/followers/clintonwoo.svg?style=social&label=Follow)](https://github.com/clintonwoo/hackernews-react-graphql/) [![GitHub issues](https://img.shields.io/github/issues/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/issues) [![](https://img.shields.io/github/issues-pr-raw/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/pulls)
 
 This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
+<p align="center" margin-bottom="0">
+  <a href="http://www.hnclone.win">
+    <img width="570" height="300" src="/Users/clintondannolfo/Documents/Developer/Playground/hackernews-next/docs/HN-Demo.gif">
+  </a>
+</p>
+<p align="center">
+  <a href="http://www.hnclone.win">Live Demo</a>
+</p>
+
 
 ## Featuring
 - React - (UI Framework)
@@ -65,7 +74,7 @@ The project runs out of the box with default settings (*/src/config.js*). You ca
 
 ## How To Test
 
-`npm test` or `npm run test`
+`npm test`
 
 This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
 
@@ -82,6 +91,23 @@ OR
 NextJS lets us make a powerful static website but server rendering dynamic routes can be difficult.
 
 `npm run build-static-website`: Builds static website to */build/static*. Use a static web server *eg.* NGINX/Github Pages.
+
+## Debugging
+
+```js
+const NewsFeed = props => {
+  debugger;
+  return (
+    <NewsItem {...props} />
+  )
+}
+```
+
+```npm run debug-mode ```
+
+Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code for your troubleshooting convenience.
+
+You can open the inspector link in Google Chrome to see the call stack, scope and variables etc. Google search to [learn more](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27).
 
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
