@@ -5,22 +5,16 @@ import url from 'url';
 class NewsTitle extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
-    // creationTime: PropTypes.instanceOf(Date).isRequired,
-    // submitterId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    // text: PropTypes.string,
     url: PropTypes.string,
-    // commentCount: PropTypes.number.isRequired,
-    // points: PropTypes.number.isRequired,
-    // favoriteVisible: PropTypes.bool.isRequired,
     rank: PropTypes.number,
     rankVisible: PropTypes.bool.isRequired,
   }
-  // static defaultProps = {
-  //   text: undefined,
-  //   url: undefined,
-  //   // rank: undefined,
-  // }
+  static defaultProps = {
+    // text: undefined,
+    url: undefined,
+    rank: undefined,
+  }
 
   upvote() {
 
@@ -29,8 +23,6 @@ class NewsTitle extends Component {
 
   }
   render() {
-    // const hostname = ;
-    // console.log(this.props)
     return (
       <tr className="athing" id={this.props.id}>
         <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
@@ -42,7 +34,17 @@ class NewsTitle extends Component {
           </center>
         </td>
         <td className="title">
-          <a href={this.props.url ? this.props.url : `item?id=${this.props.id}`} className="storylink">{this.props.title}</a>{this.props.url && <span className="sitebit comhead"> (<a href={`from?site=${url.parse(this.props.url).hostname}`}><span className="sitestr">{url.parse(this.props.url).hostname}</span></a>)</span>}
+          <a href={this.props.url ? this.props.url : `item?id=${this.props.id}`} className="storylink">
+            {this.props.title}
+          </a>
+          {
+            this.props.url &&
+            <span className="sitebit comhead"> (
+              <a href={`from?site=${url.parse(this.props.url).hostname}`}>
+                <span className="sitestr">{url.parse(this.props.url).hostname}</span>
+              </a>)
+            </span>
+          }
         </td>
       </tr>
     );

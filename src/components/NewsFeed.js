@@ -9,12 +9,22 @@ import NewsDetail from './NewsDetail';
 const NewsFeed = (props) => {
   // props.newsItems.sort((a, b) => (a.rank - b.rank));
   const rows = [];
-  props.newsItems.forEach((newsItem) => {
+  props.newsItems.forEach((newsItem, index) => {
     rows.push(
-      <NewsTitle key={`${newsItem.id.toString()}title`} rankVisible={true} {...newsItem} />,
+      <NewsTitle 
+        key={`${newsItem.id.toString()}title`}
+        rankVisible={true}
+        rank={index}
+        {...newsItem}
+      />,
     );
     rows.push(
-      <NewsDetail key={`${newsItem.id.toString()}detail`} favoriteVisible={false} {...newsItem} />,
+      <NewsDetail
+        key={`${newsItem.id.toString()}detail`}
+        favoriteVisible={false}
+        isPostScrutinyVisible={props.isPostScrutinyVisible}
+        {...newsItem}
+      />,
     );
     rows.push(<tr className="spacer" key={`${newsItem.id.toString()}spacer`} style={{ height: 5 }} />);
   });
@@ -40,10 +50,14 @@ const NewsFeed = (props) => {
     </tr>
   );
 };
+NewsFeed.defaultProps = {
+  isPostScrutinyVisible: false,
+};
 NewsFeed.propTypes = {
+  isPostScrutinyVisible: PropTypes.bool,
   newsItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    creationTime: PropTypes.number.isRequired, //PropTypes.instanceOf(Date).isRequired,
+    creationTime: PropTypes.number.isRequired,
     submitterId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string,

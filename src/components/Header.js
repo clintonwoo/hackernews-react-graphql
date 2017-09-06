@@ -18,16 +18,23 @@ const Header = props => (
             <td style={{ lineHeight: '12px', height: '10px', padding: '0px' }}>
               <HeaderNav {...props} />
             </td>
-            {
-              props.isUserVisible &&
-              <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
-                <span className="pagetop">
-                  <a href="/user?id=clintonwoo">clintonwoo</a>
-                  {' (1) | '}
-                  <a href="/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=news">logout</a>
-                </span>
-              </td>
-            }
+            
+            <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
+              {
+                props.user ?
+                  <span className="pagetop">
+                    <a href={`/user?id=${props.user.id}`}>
+                      {props.user.id}
+                    </a>
+                    ` (${props.user.karma}) | `
+                    <a href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${props.currentURL}`}>logout</a>
+                  </span>
+                  :
+                  <span className="pagetop">
+                    <a href={`/login?goto=${props.currentURL}`}>login</a>
+                  </span>
+              }
+            </td>
           </tr>
         </tbody>
       </table>
@@ -35,12 +42,15 @@ const Header = props => (
   </tr>
 );
 Header.defaultProps = {
-  userId: null,
+  user: null,
 };
 Header.propTypes = {
-  userId: PropTypes.string,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    karma: PropTypes.number,
+  }),
+  currentURL: PropTypes.string.isRequired,
   isNavVisible: PropTypes.bool.isRequired,
-  isUserVisible: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
 };
 

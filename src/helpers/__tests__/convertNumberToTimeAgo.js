@@ -8,7 +8,7 @@ const ONE_HOUR = 3.6e+6;
 const ONE_MINUTE = 60000;
 
 describe('convertNumberToTimeAgo helper function', () => {
-  it('accepts negative numbers', () => {
+  it('accepts negative numbers (date older than 1970)', () => {
     const now = new Date();
     const sixtyYearsAgo = new Date(now.valueOf() - (ONE_YEAR * 60));
     expect(sixtyYearsAgo.valueOf()).toBeLessThan(0);
@@ -63,5 +63,8 @@ describe('convertNumberToTimeAgo helper function', () => {
     const now = new Date();
     const oneMinuteAgo = new Date(now.valueOf() - ONE_MINUTE);
     expect(convertNumberToTimeAgo(oneMinuteAgo.valueOf())).toMatch('1 minute ago');
+  });
+  it('throws an error for date in the future', () => {
+    
   });
 });

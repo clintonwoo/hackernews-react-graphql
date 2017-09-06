@@ -22,6 +22,9 @@ import {
   GRAPHQL_URL,
   GRAPHIQL_URL,
 } from '../config';
+import {
+  Feed,
+} from './models';
 
 const logger = console; // global.logger;
 
@@ -32,6 +35,10 @@ const app = express();
 app.use(graphQLPath, bodyParser.json(), graphqlExpress(request => ({
   schema: Schema,
   rootValue: { request },
+  context: {
+    // user,
+    Feed: new Feed(),
+  },
   debug: true,
 })));
 

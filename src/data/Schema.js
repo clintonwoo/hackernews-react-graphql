@@ -21,44 +21,59 @@ import {
 // Read the complete docs for graphql-tools here:
 // http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
 
+/*
+  Schema properties are in following order:
+    Alphabetical
+    Resolved fields (requires extra db work)
+
+  Comments are provided when property is not obvious
+*/
 const typeDefs = `
-  scalar Date 
 
   type Comment {
     id: Int!
+    creationTime: Date
+    # The ID of the comment submitter
     commenterId: String!
     text: String
-    creationTime: Date
     upvotes: [Int]
     upvoteCount: Int
   }
+
+  scalar Date
   
   type NewsItem {
     id: Int!
-    submitterId: String!
-    author: User
-    creationTime: Date
-    url: String
-    title: String
-    text: String
     comments: [Comment]
     commentCount: Int
+    creationTime: Date!
+    points: Int
+    rank: Int
+    # The ID of the news item submitter
+    submitterId: String!
+    # The news item headline
+    title: String!
+    text: String
     upvotes: [Int]
     upvoteCount: Int
-    rank: Int
-    points: Int
+    url: String
+
+    # Fetches the author based on submitterId
+    author: User
   }
 
   type User {
+    # The user ID is a string of the username
     id: String!
     creationTime: Date
-    firstName: String
-    lastName: String
+    dateOfBirth: Date
     email: String
-    dateOfBirth: Int
+    favorites: [Int]
+    firstName: String
+    karma: Int
+    lastName: String
     likes: [Int]
     posts: [Int]
-    favorites: [Int]
   }
 
   # the schema allows the following queries:
@@ -67,16 +82,21 @@ const typeDefs = `
       # The sort order for the feed
       type: FeedType!,
 
-      # The number of items to skip, for pagination
-      skip: Int,
-  
-      # The number of items to fetch starting from the offset, for pagination
+      # The number of items to fetch (starting from the skip index), for pagination
       first: Int
+
+      # The number of items to skip, for pagination
+      skip: Int,    
     ): [NewsItem]
-    newsItems: [NewsItem]
+
+    # The currently logged in user or null if not logged in
+    me: User
+
+    # A news item
+    newsItem(id: Int!): NewsItem
+
+    # A user
     user(id: String!): User
-    # posts: [Post]
-    # author(id: Int!): Author
   }
 
   # A list of options for the sort order of the feed
@@ -101,7 +121,17 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    newsItems: () => getNewsItems().sort((a, b) => (a.rank - b.rank)),
+    feed(root, { type, first, skip }, context) {
+      // Could maybe put this constant limit of 30 items into config
+      const limit = (first < 1 || first > 30) ? 30 : first;
+      return context.Feed.getForType(type, limit, skip);
+    },
+
+    me: (_, __, context) => context.userId && getUser(context.userId),
+
+    newsItem: (_, { id }) => getNewsItem(id),
+    // getNewsItems().sort((a, b) => (a.rank - b.rank)),
+
     user: (_, { id }) => getUser(id),
   },
   Mutation: {
@@ -151,7 +181,7 @@ export default makeExecutableSchema({
   resolvers,
 });
 
-
+// Example query (old)
 // query {
 //   newsItems {
 //     id

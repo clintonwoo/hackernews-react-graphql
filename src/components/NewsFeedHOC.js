@@ -4,11 +4,11 @@ import { graphql, gql } from 'react-apollo';
 
 import NewsFeed from './NewsFeed';
 
-const NewsFeedHOC = ({ data: { loading, error, newsItems } }) => {
+const NewsFeedHOC = ({ data: { loading, error, feed } }) => {
   if (error) return <div>Error loading news items.</div>;
-  if (newsItems && newsItems.length) {
+  if (feed && feed.length) {
     return (
-      <NewsFeed newsItems={newsItems} />
+      <NewsFeed newsItems={feed} />
     );
   }
   return <div>Loading</div>;
@@ -16,13 +16,10 @@ const NewsFeedHOC = ({ data: { loading, error, newsItems } }) => {
 // NewsFeedHOC.propTypes = {
 //   data: PropTypes
 // }
-  // query allPosts($first: Int!, $skip: Int!) {
   //   allPosts(orderBy: createdAt_DESC, first: $first, skip: $skip) {
-  //     query frontPageNewsItems($first: Int!, $skip: Int!) {
-  //   feed(type: HOT, skip: $skip, first: $first){
-const allNewsItems = gql`
-  query frontPageNewsItems {
-    newsItems {
+const hotNewsItems = gql`
+  query hotNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
+    feed(type: $type, first: $first, skip: $skip) {
       id
       creationTime
       submitterId
@@ -35,12 +32,17 @@ const allNewsItems = gql`
     }
   }
 `;
+
 const POSTS_PER_PAGE = 30;
-export default graphql(allNewsItems, {
+const pageNumber = 0;
+const skip = POSTS_PER_PAGE * pageNumber;
+
+export default graphql(hotNewsItems, {
   options: {
     variables: {
-      skip: 0,
+      type: 'HOT',
       first: POSTS_PER_PAGE,
+      skip,
     },
   },
   props: ({ data }) => ({

@@ -32,6 +32,7 @@ export default (number) => {
     case timeAgo >= 0:
       return '1 minute ago';
     default:
-      throw new Error('convertNumberToTimeAgo: unhandled switch statement');
+      // timeAgo < 0 is in the future
+      throw new Error(`convertNumberToTimeAgo: number ${number} timeAgo ${timeAgo}, is date older than 1970 or in the future?`);
   }
 };

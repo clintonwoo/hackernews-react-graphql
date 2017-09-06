@@ -4,6 +4,11 @@ import data from './SampleData';
 
 // TODO: Implement caching in-memory or using caching app e.g. Memcached, Redis 
 
+// Rank News Items
+export function rankNewsItems() {
+  
+}
+
 /* NEWS ITEMS */
 export function getNewsFeed() {
   // Needs pagination
@@ -15,6 +20,10 @@ export function getNewsItems() {
 }
 export function getNewsItem(id) {
   return data.newsItems.find(newsItem => newsItem.id === id);
+}
+export function createNewsItem(newsItem) {
+  data.newsItems.push(newsItem);
+  return newsItem;
 }
 export function upvoteNewsItem(id, userId) {
   const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
