@@ -3,7 +3,7 @@
 This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 <p align="center" margin-bottom="0">
   <a href="http://www.hnclone.win">
-    <img width="570" height="300" src="/Users/clintondannolfo/Documents/Developer/Playground/hackernews-next/docs/HN-Demo.gif">
+    <img width="570" height="300" src="docs/HN-Demo.gif">
   </a>
 </p>
 <p align="center">
