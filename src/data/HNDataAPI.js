@@ -7,8 +7,7 @@ import {
 
 // https://github.com/HackerNews/API
 
-/* Seed Data from HN API */
-export default function seed() {
+function seedTopStories() {
   // Top stories = front page
   fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(response => response.json())
@@ -30,7 +29,10 @@ export default function seed() {
           })),
       );
     });
+  setTimeout(seedTopStories, 300000);
+}
 
+function seedNewStories() {
   // New stories = newest
   fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
     .then(response => response.json())
@@ -52,4 +54,11 @@ export default function seed() {
           })),
       );
     });
+  setTimeout(seedNewStories, 75000);
+}
+
+/* Seed Data from HN API */
+export default function seed() {
+  seedTopStories();
+  seedNewStories();
 }
