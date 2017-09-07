@@ -28,7 +28,8 @@ function seedTopStories() {
             url: post.url,
           })),
       );
-    });
+    })
+    .catch(reason => console.log(reason));
   setTimeout(seedTopStories, 300000);
 }
 
@@ -53,7 +54,8 @@ function seedNewStories() {
             url: post.url,
           })),
       );
-    });
+    })
+    .catch(reason => console.log(reason));
   setTimeout(seedNewStories, 75000);
 }
 
