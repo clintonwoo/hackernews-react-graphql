@@ -29,6 +29,7 @@ function seedTopStories() {
           })),
       );
     });
+  setTimeout(seedTopStories, 300000);
 }
 
 function seedNewStories() {
@@ -53,10 +54,11 @@ function seedNewStories() {
           })),
       );
     });
+  setTimeout(seedNewStories, 75000);
 }
 
 /* Seed Data from HN API */
 export default function seed() {
-  setInterval(seedTopStories, 300000);
-  setInterval(seedNewStories, 75000);
+  seedTopStories();
+  seedNewStories();
 }
