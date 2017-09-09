@@ -2,6 +2,7 @@
 // Interface: Voteable (Object can be voted on) upvotes, upvoteCount, hidden, hiddenCount,
 // Data Type: Comment, can be on a news item or another comment
 // Every time an upvote/downvote/comment is made, update the count
+
 export default {
   /* A ranking of the hottest posts */
   hot: [
@@ -15,6 +16,57 @@ export default {
     1242, 1241, 1240, 1239, 1238, 1237, 1236, 1235, 1234,
     1233, 1232, 1231, 1230, 1229, 1228, 1227, 1226, 1225,
     1224, 1223, 1222,
+  ],
+  hotStoriesCache: [
+    {
+      id: 1224,
+      creationTime: 1504740146516,
+      submitterId: 'hvo',
+      title: '“Learning How to Learn,” the most popular course on Coursera',
+      text: null,
+      url: 'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
+      upvotes: new Set([]),
+      upvoteCount: 10,
+      hidden: [],
+      hiddenCount: 0,
+      comments: [],
+      commentCount: 44,
+      points: 171,
+      rank: 1,
+    },
+    {
+      id: 1225,
+      creationTime: 1504740146516,
+      submitterId: 'luu',
+      title: 'Weird Python Integers',
+      text: null,
+      url: 'https://kate.io/blog/2017/08/22/weird-python-integers/',
+      upvotes: new Set([]),
+      upvoteCount: 10,
+      hidden: [],
+      hiddenCount: 0,
+      comments: [],
+      commentCount: 38,
+      points: 125,
+      rank: 2,
+    },
+  ],
+  newStoriesCache: [
+    {
+      id: 2000,
+      creationTime: new Date().valueOf(),
+      submitterId: 'new_user',
+      title: 'I love graphQL!!',
+      text: null,
+      url: 'https://www.graphql.org',
+      upvotes: new Set([]),
+      upvoteCount: 1,
+      hidden: [],
+      hiddenCount: 0,
+      comments: [],
+      commentCount: 44,
+      points: 171,
+    },
   ],
   newsItems: [
     {

@@ -28,14 +28,17 @@ import {
   getUser,
 } from './data/Database';
 import {
+  Comment,
   Feed,
+  NewsItem,
+  User,
 } from './data/models';
 
 console.log(`Dev: ${dev}`);
 
 
 // Populate the in-memory data using the HN api
-seed();
+// seed();
 
 const app = next({ dir: appPath, dev });
 
@@ -107,7 +110,10 @@ app.prepare()
         rootValue: { req },
         context: {
           // user,
-          Feed: new Feed(),
+          Feed,
+          NewsItem,
+          Comment,
+          User,
           userId: req.user,
         },
         debug: dev,

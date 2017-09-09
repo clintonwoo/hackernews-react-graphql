@@ -1,4 +1,3 @@
-// import { find, filter } from 'lodash';
 import {
   GraphQLScalarType,
 } from 'graphql';
@@ -8,15 +7,6 @@ import {
 import {
   makeExecutableSchema,
 } from 'graphql-tools';
-import {
-  getNewsItems,
-  getNewsItem,
-  upvoteNewsItem,
-  downvoteNewsItem,
-  getUser,
-  getUsers,
-  createUser,
-} from './Database';
 
 // Read the complete docs for graphql-tools here:
 // http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
@@ -32,30 +22,48 @@ const typeDefs = `
 
   type Comment {
     id: Int!
+
     creationTime: Date
+
     # The ID of the comment submitter
     commenterId: String!
+
+    # The comment
     text: String
+
     upvotes: [Int]
+
     upvoteCount: Int
   }
 
   scalar Date
   
   type NewsItem {
+
     id: Int!
+
     comments: [Comment]
+
     commentCount: Int
+
     creationTime: Date!
+
     points: Int
+
     rank: Int
+
     # The ID of the news item submitter
     submitterId: String!
+
     # The news item headline
     title: String!
+
     text: String
+
     upvotes: [Int]
+
     upvoteCount: Int
+
     url: String
 
     # Fetches the author based on submitterId
@@ -65,14 +73,23 @@ const typeDefs = `
   type User {
     # The user ID is a string of the username
     id: String!
+
     creationTime: Date
+
     dateOfBirth: Date
+
     email: String
+
     favorites: [Int]
+
     firstName: String
+
     karma: Int
+
     lastName: String
+
     likes: [Int]
+    
     posts: [Int]
   }
 
@@ -117,9 +134,31 @@ const typeDefs = `
       postId: Int!
     ): NewsItem
   }
+
 `;
 
 const resolvers = {
+
+  /*
+    http://dev.apollodata.com/tools/graphql-tools/resolvers.html
+    
+    Resolver function signature:
+      fieldName(obj, args, context, info) { result }
+    
+    obj: The object that contains the result returned from the
+      resolver on the parent field, or, in the case of a top-level
+      Query field, the rootValue passed from the server configuration.
+      This argument enables the nested nature of GraphQL queries.
+
+    context: This is an object shared by all resolvers in a particular
+      query, and is used to contain per-request state, including
+      authentication information, dataloader instances, and anything
+      else that should be taken into account when resolving the query
+  */
+  
+
+  /*          QUERY RESOLVERS        */
+
   Query: {
     feed(root, { type, first, skip }, context) {
       // Could maybe put this constant limit of 30 items into config
@@ -127,29 +166,31 @@ const resolvers = {
       return context.Feed.getForType(type, limit, skip);
     },
 
-    me: (_, __, context) => context.userId && getUser(context.userId),
+    me: (_, __, context) => context.userId && context.User.getUser(context.userId),
 
-    newsItem: (_, { id }) => getNewsItem(id),
+    newsItem: (_, { id }, context) => context.NewsItem.getNewsItem(id),
     // getNewsItems().sort((a, b) => (a.rank - b.rank)),
 
-    user: (_, { id }) => getUser(id),
+    user: (_, { id }, context) => context.User.getUser(id),
   },
+
+  /*       MUTATION RESOLVERS       */
+
   Mutation: {
-    upvoteNewsItem: (_, { postId }) => {
-      const post = getNewsItem(postId);
-      if (!post) {
-        throw new Error(`Couldn't find post with id ${postId}`);
-      }
-      post.upvoteCount += 1;
-      return post;
-    },
+    upvoteNewsItem: (_, { postId }, context) => context.NewsItem.upvoteNewsItem(postId),
   },
+
+  /*       GRAPHQL TYPE RESOLVERS        */
+
   User: {
-    posts: author => getNewsItems().filter(newsItem => newsItem.submitterId === author.id), //filter(posts, { authorId: author.id }),
+    posts: (user, _, context) => context.User.getPostsForUser(user.id),
+    // getNewsItems().filter(newsItem => newsItem.submitterId === user.id),
   },
+
   NewsItem: {
-    author: newsItem => getUser(newsItem.submitterId),
+    author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
   },
+
   Date: new GraphQLScalarType({
     // http://dev.apollodata.com/tools/graphql-tools/scalars.html#Date-as-a-scalar
     name: 'Date',
