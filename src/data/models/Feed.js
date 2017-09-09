@@ -45,7 +45,7 @@ class Feed {
     }
   }
   rebuildNews(type) {
-    setTimeout(this.rebuildNews, 1000 * 60 * 15, type);
+    setTimeout.call(this, this.rebuildNews, 1000 * 60 * 15, type);
     return Promise.all(
       this[type].map(id => new Promise((resolve, reject) => {
         api.child(`item/${id}`).once('value', (snapshot) => {
