@@ -23,11 +23,7 @@ class Feed {
   constructor() {
     console.log('feed constructor');
     ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
-      api.child(`${feedType}stories`).once('value', (snapshot) => {
-        this[feedType] = snapshot.val();
-        console.log(`Updated ${feedType} ids`);
-        this.rebuildNews(feedType);
-      });
+      this.rebuildNews(feedType);
     });
   }
   getForType(type, first, skip) {
@@ -44,37 +40,42 @@ class Feed {
         return sampleData.newsItems.slice(skip, skip + first);
     }
   }
-  rebuildNews(type) {
-    setTimeout.call(this, this.rebuildNews, 1000 * 60 * 15, type);
-    return Promise.all(
-      this[type].map(id => new Promise((resolve, reject) => {
-        api.child(`item/${id}`).once('value', (snapshot) => {
-          const post = snapshot.val();
-          if (post !== null) {
-            const newsItem = {
-              id: post.id,
-              creationTime: post.time * 1000,
-              commentCount: post.descendants || 0,
-              points: post.score,
-              submitterId: post.by,
-              title: post.title,
-              url: post.url,
-            };
-            cache.setNewsItem(newsItem);
-            console.log(`Created Post: ${post.id}`);
-            resolve(newsItem);
-          } else {
-            debugger
-            reject(post);
-          }
-          
-        }, reject);
-      })),
-    )
-      .then((newsItems) => {
-        console.log(newsItems);
-        this[`${type}NewsItems`] = newsItems.map((newsItem, index) => ({ ...newsItem, rank: index + 1 }));
-      });
+
+  rebuildNews = (feedType) => {
+    setTimeout(this.rebuildNews, 1000 * 60 * 15, feedType);
+    api.child(`${feedType}stories`).once('value', (feedSnapshot) => {
+      this[feedType] = feedSnapshot.val();
+      console.log(`Updated ${feedType} ids`);
+      Promise.all(
+        this[feedType].map(id => new Promise((resolve, reject) => {
+          api.child(`item/${id}`).once('value', (postSnapshot) => {
+            const post = postSnapshot.val();
+            if (post !== null) {
+              const newsItem = {
+                id: post.id,
+                creationTime: post.time * 1000,
+                commentCount: post.descendants || 0,
+                points: post.score,
+                submitterId: post.by,
+                title: post.title,
+                url: post.url,
+              };
+              cache.setNewsItem(newsItem);
+              console.log(`Created Post: ${post.id}`);
+              resolve(newsItem);
+            } else {
+              debugger
+              reject(post);
+            }
+          }, reject);
+        })),
+      )
+        .then((newsItems) => {
+          console.log(newsItems);
+          newsItems.forEach((newsItem, index) => newsItem.rank = index + 1);
+          this[`${feedType}NewsItems`] = newsItems;
+        });
+    });
   }
   // rebuildHotNews() {
   //   setTimeout(this.rebuildHotNews, 1000 * 60 * 15);
