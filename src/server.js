@@ -1,12 +1,14 @@
 const dotenv = require('dotenv').config();
 // import dotenv from 'dotenv/config'; is bugged and can't be inspected
+console.info('> Environment by .env:');
+console.info(dotenv);
 
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import next from 'next';
 import passport from 'passport';
-import LocalStrategy from 'passport-local'
+import LocalStrategy from 'passport-local';
 import bodyParser from 'body-parser';
 import {
   graphqlExpress,
@@ -14,15 +16,6 @@ import {
 } from 'apollo-server-express';
 
 import Schema from './data/Schema';
-import {
-  appPath,
-  APP_PORT,
-  APP_URI,
-  graphQLPath,
-  graphiQLPath,
-  GRAPHQL_URL,
-  dev,
-} from './config';
 import seed from './data/HNDataAPI';
 import {
   getUser,
@@ -33,9 +26,15 @@ import {
   NewsItem,
   User,
 } from './data/models';
-
-console.log(`Dev: ${dev}`);
-
+import {
+  appPath,
+  APP_PORT,
+  APP_URI,
+  graphQLPath,
+  graphiQLPath,
+  GRAPHQL_URL,
+  dev,
+} from './config';
 
 // Populate the in-memory data using the HN api
 // seed();
@@ -147,10 +146,9 @@ app.prepare()
 
     server.listen(APP_PORT, (err) => {
       if (err) throw err;
-      console.log('> Environment by .env:');
-      console.log(dotenv);
       console.log(`> Ready on ${APP_URI}`);
       console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
+      console.log(`Dev: ${dev}`);
     });
   })
   .catch((ex) => {

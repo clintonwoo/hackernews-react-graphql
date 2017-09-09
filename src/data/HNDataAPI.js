@@ -1,12 +1,19 @@
+import Firebase from 'firebase';
 import fetch from 'isomorphic-fetch';
+// const debug = require('debug');
 
 import * as DB from './Database';
 import sampleData from './SampleData';
 import cache from './Cache';
 import {
   HN_API_URL,
+  HN_DB_URI,
+  HN_API_VERSION,
 } from '../config';
-import debug from '../helpers/logger';
+// import {
+//   Feed,
+// } from './models';
+
 
 // https://github.com/HackerNews/API
 
@@ -14,17 +21,18 @@ import debug from '../helpers/logger';
 
 
 export function fetchNewsItem(id) {
-  debug(`Fetching ${HN_API_URL}/item/${id}.json`);
-  return fetch(`${HN_API_URL}/item/${id}.json`)
+  console.log(`Fetching ${HN_API_URL}/item/${id}.json`);
+  return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
     .then(response => response.json());
 }
 
 export function getHotNewsItems() {
   // Top stories are the front page
-  debug(`Fetching ${HN_API_URL}/topstories.json`);
-  return fetch(`${HN_API_URL}/topstories.json`)
+  console.log('Fetching /topstories.json');
+  // const url = `${HN_API_URL}/topstories.json`;
+  return fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
     .then(response => response.json())
-    .catch(reason => debug(reason));
+    .catch(reason => console.log(reason));
 }
 
 /* END */
@@ -38,12 +46,12 @@ function seedTopStories() {
     .then(response => response.json())
     .then((topPostIDs) => {
       // Replace sample data with live data
-      sampleData.hot = topPostIDs;
+      sampleData.top = topPostIDs;
 
       // Sequentially fetch URL's
       topPostIDs.reduce((previous, postId) =>
         previous.then(() => {
-          debug(`making request to ${HN_API_URL}/item/${postId}.json`);
+          console.log(`making request to ${HN_API_URL}/item/${postId}.json`);
           return fetch(`${HN_API_URL}/item/${postId}.json`)
             .then((post) => {
               DB.createNewsItem({
@@ -55,9 +63,9 @@ function seedTopStories() {
                 title: post.title,
                 url: post.url,
               });
-              debug(`created Post ${postId}`);
+              console.log(`created Post ${postId}`);
             })
-            .catch(reason => debug(reason));
+            .catch(reason => console.log(reason));
         }),
       Promise.resolve());
 
@@ -75,7 +83,7 @@ function seedTopStories() {
       //     })),
       // );
     })
-    .catch(reason => debug(reason));
+    .catch(reason => console.log(reason));
   setTimeout(seedTopStories, 1000 * 60 * 5);
 }
 
@@ -101,7 +109,7 @@ function seedNewStories() {
           })),
       );
     })
-    .catch(reason => debug(reason));
+    .catch(reason => console.log(reason));
   setTimeout(seedNewStories, 1000 * 60 * 1);
 }
 

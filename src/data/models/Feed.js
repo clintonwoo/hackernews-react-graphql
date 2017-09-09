@@ -1,30 +1,57 @@
+import Firebase from 'firebase';
+import debug from 'debug';
+
 import sampleData from '../SampleData';
 import * as DB from '../Database';
 import * as HNDB from '../HNDataAPI';
 import cache from '../Cache';
-import debug from '../../helpers/logger';
+import {
+  HN_API_URL,
+  HN_DB_URI,
+  HN_API_VERSION,
+} from '../../config';
+
+const logger = debug('app:HNDataAPI');
+logger.log = console.log.bind(console);
+
+Firebase.initializeApp({
+  databaseURL: HN_DB_URI,
+});
+const api = Firebase.database().ref(HN_API_VERSION);
 
 class Feed {
+  constructor() {
+    console.log('feed constructor');
+    ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
+      api.child(`${feedType}stories`).once('value', (snapshot) => {
+        this[feedType] = snapshot.val();
+        console.log(`Updated ${feedType} ids`);
+        this.rebuildNews(feedType);
+      });
+    });
+  }
   getForType(type, first, skip) {
     switch (type) {
       case 'HOT': {
-        return this.hotNewsItems.slice(skip, first + skip);
+        return this.topNewsItems.slice(skip, first + skip);
       }
       case 'NEW':
-        if (cache.isReady) return cache.getNewNewsItems(first, skip);
-        return DB.getNewNewsItems(first, skip);
+        return this.newNewsItems.slice(skip, first + skip);
       case 'TOP':
+        if (cache.isReady) return cache.getTopNewsItems(first, skip);
         return DB.getTopNewsItems(first, skip);
       default:
         return sampleData.newsItems.slice(skip, skip + first);
     }
   }
-  rebuildHotNews() {
-    return HNDB.getHotNewsItems()
-      .then(topPostIDs => Promise.all(
-        topPostIDs.map(id => HNDB.fetchNewsItem(id))
-          .then((post) => {
-            cache.setNewsItem({
+  rebuildNews(type) {
+    setTimeout(this.rebuildNews, 1000 * 60 * 15, type);
+    return Promise.all(
+      this[type].map(id => new Promise((resolve, reject) => {
+        api.child(`item/${id}`).once('value', (snapshot) => {
+          const post = snapshot.val();
+          if (post !== null) {
+            const newsItem = {
               id: post.id,
               creationTime: post.time * 1000,
               commentCount: post.descendants || 0,
@@ -32,25 +59,67 @@ class Feed {
               submitterId: post.by,
               title: post.title,
               url: post.url,
-            });
-            debug(`created Post ${post.id}`);
-          }))
-        .then((hotNews) => {
-          this.hot = topPostIDs;
-          this.hotNewsItems = hotNews.map((newsItem, index) => newsItem.rank = index)
-        }));
+            };
+            cache.setNewsItem(newsItem);
+            console.log(`Created Post: ${post.id}`);
+            resolve(newsItem);
+          } else {
+            debugger
+            reject(post);
+          }
+          
+        }, reject);
+      })),
+    )
+      .then((newsItems) => {
+        console.log(newsItems);
+        this[`${type}NewsItems`] = newsItems.map((newsItem, index) => ({ ...newsItem, rank: index + 1 }));
+      });
   }
+  // rebuildHotNews() {
+  //   setTimeout(this.rebuildHotNews, 1000 * 60 * 15);
+  //   return HNDB.gettopNewsItems()
+  //     .then(topPostIDs => Promise.all(
+  //       topPostIDs.map(id => HNDB.fetchNewsItem(id)
+  //         .then((post) => {
+  //           cache.setNewsItem({
+  //             id: post.id,
+  //             creationTime: post.time * 1000,
+  //             commentCount: post.descendants || 0,
+  //             points: post.score,
+  //             submitterId: post.by,
+  //             title: post.title,
+  //             url: post.url,
+  //           });
+  //           logger(`created Post ${post.id}`);
+  //         })))
+  //       .then((hotNews) => {
+  //         console.log(hotNews)
+  //         this.top = topPostIDs;
+  //         this.topNewsItems = hotNews.map((newsItem, index) => ({ ...newsItem, rank: index }));
+  //       }));
+  // }
   // rebuildNewNews()
 
-  /* A ranking of the hottest posts */
-  hot = sampleData.hot;
+
+  /* Arrays of post ids in descending rank order */
+  top = sampleData.top;
   new = sampleData.new;
-  hotNewsItems = sampleData.hotStoriesCache;
+  show = [];
+  ask = [];
+  job = [];
+  
+  /* A pre constructed cache of news feeds */
+  topNewsItems = sampleData.topStoriesCache;
+  newNewsItems = [];
+  showNewsItems = [];
+  askNewsItems = [];
+  jobNewsItems = [];
 
   /*                     BEGIN FEED                         */
 
-  getHotNewsItems(first, skip) {
-    return this.hot.slice(skip, skip + first)
+  gettopNewsItems(first, skip) {
+    return this.top.slice(skip, skip + first)
       .map((postId, index) => ({
         ...this.getNewsItem(postId),
         rank: skip + index + 1,

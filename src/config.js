@@ -4,8 +4,10 @@ export const graphiQLPath = '/graphiql';
 export const dev = process.env.NODE_ENV !== 'production';
 export const appPath = process.env.NODE_ENV === 'production' ? './src' : './src';
 
-export const DB_URI = process.env.DB_URI || '';
-export const HN_API_URL = process.env.HN_API_URL || 'https://hacker-news.firebaseio.com/v0';
+export const HN_DB_URI = process.env.DB_URI || 'https://hacker-news.firebaseio.com';
+export const HN_API_VERSION = process.env.HN_API_VERSION || '/v0';
+export const HN_API_URL = process.env.HN_API_URL || `${HN_DB_URI}${HN_API_VERSION}`;
+
 export const HOST_NAME = process.env.HOST_NAME || 'localhost';
 export const APP_PORT = process.env.APP_PORT || 3000;
 
