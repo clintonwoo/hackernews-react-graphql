@@ -16,7 +16,9 @@ import {
 } from 'apollo-server-express';
 
 import Schema from './data/Schema';
-import seed from './data/HNDataAPI';
+import {
+  seedCache,
+} from './data/HNDataAPI';
 import {
   getUser,
 } from './data/Database';
@@ -37,7 +39,7 @@ import {
 } from './config';
 
 // Populate the in-memory data using the HN api
-// seed();
+seedCache();
 
 const app = next({ dir: appPath, dev });
 
