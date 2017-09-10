@@ -1,5 +1,6 @@
+
 module.exports = {
-  exportPathMap() {
+  exportPathMap: function exportPathMap() {
     return {
       '/': { page: '/' },
       '/news': { page: '/' },
@@ -28,11 +29,27 @@ module.exports = {
       '/submit': { page: '/submit' },
       '/threads': { page: '/threads' },
 
-  //     '/p/975': { page: '/post', query: { id: '975' } },
-  //     '/p/481': { page: '/post', query: { id: '481' } },
+      //     '/p/975': { page: '/post', query: { id: '975' } },
+      //     '/p/481': { page: '/post', query: { id: '481' } },
     };
   },
-  // Optional property to set the path where Next runs, requires more config
-  // distDir: './src/.next',
-  // distDir: '../build/.next',
+  // webpack: (config, { dev }) => {
+  //   // Perform customizations to webpack config
+  //   if (!dev) {
+  //     config.module.rules.push({
+  //       test: /\.(css|ico|gif)$/,
+  //       use: [
+  //         {
+  //           loader: 'file-loader',
+  //           options: {
+  //             outputPath: 'static/',
+  //           },
+  //         },
+  //       ],
+  //     });
+  //   }
+
+  //   // Important: return the modified config
+  //   return config;
+  // },
 };

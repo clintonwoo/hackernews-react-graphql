@@ -90,8 +90,12 @@ const rebuildFeed = (feedType) => {
 export function seedCache() {
   // TODO: Build sample cache then seed
   console.log('Seeding cache');
-  ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
-    rebuildFeed(feedType);
-  });
+  function delayedSeed() {
+    ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
+      rebuildFeed(feedType);
+    });
+  }
+  setTimeout(delayedSeed, 1000 * 60 * 1);
+  // Delay seeding the cache so we don't spam using Nodemon
 }
 /*  END SEED DATA */

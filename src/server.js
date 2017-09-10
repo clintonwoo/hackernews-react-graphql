@@ -148,7 +148,7 @@ app.prepare()
 
     server.listen(APP_PORT, (err) => {
       if (err) throw err;
-      console.log(`> Ready on ${APP_URI}`);
+      console.log(`> App ready on ${APP_URI}`);
       console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
       console.log(`Dev: ${dev}`);
     });

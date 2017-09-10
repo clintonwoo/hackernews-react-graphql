@@ -1,9 +1,10 @@
 import debug from 'debug';
 
 import sampleData from '../SampleData';
-import * as DB from '../Database';
-import * as HNDB from '../HNDataAPI';
 import cache from '../Cache';
+import * as HNDB from '../HNDataAPI';
+import * as DB from '../Database';
+
 
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
@@ -35,7 +36,7 @@ class Feed {
   
   /* A pre constructed cache of news feeds */
   topNewsItems = sampleData.topStoriesCache;
-  newNewsItems = [];
+  newNewsItems = sampleData.topStoriesCache;
   showNewsItems = [];
   askNewsItems = [];
   jobNewsItems = [];

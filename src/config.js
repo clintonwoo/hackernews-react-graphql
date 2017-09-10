@@ -2,7 +2,7 @@ export const graphQLPath = '/graphql';
 export const graphiQLPath = '/graphiql';
 
 export const dev = process.env.NODE_ENV !== 'production';
-export const appPath = process.env.NODE_ENV === 'production' ? './src' : './src';
+export const appPath = process.env.NODE_ENV === 'production' ? './build/app' : './src';
 
 export const HN_DB_URI = process.env.DB_URI || 'https://hacker-news.firebaseio.com';
 export const HN_API_VERSION = process.env.HN_API_VERSION || '/v0';
