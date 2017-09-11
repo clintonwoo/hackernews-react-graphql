@@ -5,13 +5,13 @@ import cache from '../Cache';
 import * as HNDB from '../HNDataAPI';
 import * as DB from '../Database';
 
-
-const logger = debug('app:HNDataAPI');
+const logger = debug('app:Feed');
 logger.log = console.log.bind(console);
 
 
 class Feed {
   getForType(type, first, skip) {
+    logger(`Get first ${first} ${type} stories skip ${skip}.`);
     switch (type) {
       case 'HOT': {
         // In this app demo the HN data is preconstructed in-memory

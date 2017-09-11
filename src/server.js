@@ -51,20 +51,19 @@ app.prepare()
 
     /* BEGIN PASSPORT.JS AUTHENTICATION */
 
-    // passport.use(new LocalStrategy(
-    //   (username, password, done) => {
-    //     User.findOne({ username }, (err, user) => {
-    //       if (err) { return done(err); }
-    //       if (!user) {
-    //         return done(null, false, { message: 'Incorrect username.' });
-    //       }
-    //       if (!user.validPassword(password)) {
-    //         return done(null, false, { message: 'Incorrect password.' });
-    //       }
-    //       return done(null, user);
-    //     });
-    //   }
-    // ));
+    passport.use(new LocalStrategy(
+      (username, password, done) => {
+        const user = User.getUser(username);
+        // if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        return done(null, user);
+      }
+    ));
 
     /*
       In this example, only the user ID is serialized to the session,
@@ -72,22 +71,22 @@ app.prepare()
       subsequent requests are received, this ID is used to find the user,
       which will be restored to req.user.
     */
-    // passport.serializeUser((user, cb) => {
-    //   cb(null, user.id);
-    // });
-    // passport.deserializeUser(async (id, cb) => {
-    //   const user = await getUser(id);
-    //   cb(null, user);
-    // });
-    // server.use(cookieParser());
-    // server.use(session({
-    //   secret: 'mysecret',
-    //   resave: false,
-    //   saveUninitialized: false,
-    //   cookie: { secure: true },
-    // }));
-    // server.use(passport.initialize());
-    // server.use(passport.session());
+    passport.serializeUser((user, cb) => {
+      cb(null, user.id);
+    });
+    passport.deserializeUser(async (id, cb) => {
+      const user = await Feed.getUser(id);
+      cb(null, user);
+    });
+    server.use(cookieParser());
+    server.use(session({
+      secret: 'mysecret',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { secure: true },
+    }));
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     server.post('/login', passport.authenticate(
       'local',

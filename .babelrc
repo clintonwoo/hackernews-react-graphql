@@ -11,5 +11,8 @@
     ],
     "stage-0", // Unstable and unrecommended, especially below stage 3
     "react"
+  ],
+  "plugins": [
+    ["transform-runtime"]
   ]
 }

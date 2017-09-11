@@ -35,11 +35,9 @@ ShallowWrapper {
             <a
                 href="item?id=15077449"
             >
-                3 hours ago
+                4 days ago
             </a>
         </span>
-         
-        <span />
          | 
         <a
             href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
@@ -84,11 +82,9 @@ ShallowWrapper {
                   <a
                         href="item?id=15077449"
                   >
-                        3 hours ago
+                        4 days ago
                   </a>
             </span>
-             
-            <span />
              | 
             <a
                   href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
@@ -115,18 +111,17 @@ ShallowWrapper {
       "_currentElement": <NewsDetail
         commentCount={44}
         comments={Array []}
-        creationTime={1506024736000}
+        creationTime={1504740146516}
         favoriteVisible={false}
         hidden={Array []}
         hiddenCount={0}
         id={1224}
         points={171}
-        rank={1}
         submitterId="hvo"
         text={null}
         title="“Learning How to Learn,” the most popular course on Coursera"
         upvoteCount={10}
-        upvotes={Set {}}
+        upvotes={Array []}
         url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,
       "_debugID": 1,
@@ -138,18 +133,17 @@ ShallowWrapper {
         "props": Object {
           "commentCount": 44,
           "comments": Array [],
-          "creationTime": 1506024736000,
+          "creationTime": 1504740146516,
           "favoriteVisible": false,
           "hidden": Array [],
           "hiddenCount": 0,
           "id": 1224,
           "points": 171,
-          "rank": 1,
           "submitterId": "hvo",
           "text": null,
           "title": "“Learning How to Learn,” the most popular course on Coursera",
           "upvoteCount": 10,
-          "upvotes": Set {},
+          "upvotes": Array [],
           "url": "https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well",
         },
         "refs": Object {},
@@ -199,11 +193,9 @@ ShallowWrapper {
                               <a
                                         href="item?id=15077449"
                               >
-                                        3 hours ago
+                                        4 days ago
                               </a>
                     </span>
-                     
-                    <span />
                      | 
                     <a
                               href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
@@ -248,11 +240,9 @@ ShallowWrapper {
                               <a
                                         href="item?id=15077449"
                               >
-                                        3 hours ago
+                                        4 days ago
                               </a>
                     </span>
-                     
-                    <span />
                      | 
                     <a
                               href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
@@ -283,18 +273,17 @@ ShallowWrapper {
   "unrendered": <NewsDetail
     commentCount={44}
     comments={Array []}
-    creationTime={1506024736000}
+    creationTime={1504740146516}
     favoriteVisible={false}
     hidden={Array []}
     hiddenCount={0}
     id={1224}
     points={171}
-    rank={1}
     submitterId="hvo"
     text={null}
     title="“Learning How to Learn,” the most popular course on Coursera"
     upvoteCount={10}
-    upvotes={Set {}}
+    upvotes={Array []}
     url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,
 }

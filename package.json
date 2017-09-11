@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "babel-node src/server.js",
     "nodemon": "nodemon src/server.js --exec babel-node",
-    "debug": "DEBUG=app npm run dev",
+    "debug": "DEBUG=app:* npm run dev",
     "debug-all": "DEBUG=* npm run dev",
     "debug-mode": "babel-node debug src/server.js",
     "graphiql": "babel-node ./src/data/graphiql",

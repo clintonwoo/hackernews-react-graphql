@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import Head from 'next/head';
 
-import regeneratorRuntime from 'babel-runtime/regenerator';
+// import regeneratorRuntime from 'babel-runtime/regenerator';
 
 import initApollo from './initApollo';
 

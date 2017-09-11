@@ -1,9 +1,9 @@
 import Firebase from 'firebase';
-import fetch from 'isomorphic-fetch';
-// const debug = require('debug');
+// import fetch from 'isomorphic-fetch';
+import debug from 'debug';
 
-import * as DB from './Database';
-import sampleData from './SampleData';
+// import * as DB from './Database';
+// import sampleData from './SampleData';
 import cache from './Cache';
 import {
   HN_API_URL,
@@ -13,6 +13,9 @@ import {
 import {
   Feed,
 } from './models';
+
+const logger = debug('app:HNDataAPI');
+logger.log = console.log.bind(console);
 
 Firebase.initializeApp({
   databaseURL: HN_DB_URI,
@@ -25,7 +28,7 @@ const api = Firebase.database().ref(HN_API_VERSION);
 /* BEGIN NEWS ITEMS */
 
 export function fetchNewsItem(id) {
-  console.log(`Fetching ${HN_API_URL}/item/${id}.json`);
+  logger(`Fetching ${HN_API_URL}/item/${id}.json`);
 
   return new Promise((resolve, reject) => {
     api.child(`item/${id}`).once('value', (postSnapshot) => {
@@ -41,7 +44,7 @@ export function fetchNewsItem(id) {
           url: post.url,
         };
         cache.setNewsItem(newsItem);
-        console.log(`Created Post: ${post.id}`);
+        logger(`Created Post: ${post.id}`);
         resolve(newsItem);
       } else {
         reject(post);
@@ -51,12 +54,12 @@ export function fetchNewsItem(id) {
 
   // return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
   //   .then(response => response.json())
-  //   .catch(reason => console.log(reason));
+  //   .catch(reason => logger(reason));
 }
 
 export function getFeed(feedType) {
   // Top stories are the front page
-  console.log(`Fetching /${feedType}stories.json`);
+  logger(`Fetching /${feedType}stories.json`);
 
   return new Promise((resolve, reject) => {
     api.child(`${feedType}stories`).once('value', (feedSnapshot) => {
@@ -66,7 +69,7 @@ export function getFeed(feedType) {
 
   // return fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
   //   .then(response => response.json())
-  //   .catch(reason => console.log(reason));
+  //   .catch(reason => logger(reason));
 }
 
 const rebuildFeed = (feedType) => {
@@ -74,11 +77,11 @@ const rebuildFeed = (feedType) => {
   getFeed(feedType)
     .then(feed => Promise.all(feed.map(id => fetchNewsItem(id)))
       .then((newsItems) => {
-        console.log(newsItems);
+        logger(newsItems);
         newsItems.forEach((newsItem, index) => newsItem.rank = index + 1);
         Feed[`${feedType}NewsItems`] = newsItems;
         Feed[feedType] = feed;
-        console.log(`Updated ${feedType} ids`);
+        logger(`Updated ${feedType} ids`);
       }),
     );
 };
@@ -89,14 +92,14 @@ const rebuildFeed = (feedType) => {
 
 export function seedCache() {
   // TODO: Build sample cache then seed
-  console.log('Seeding cache');
+  logger('Seeding cache');
   function delayedSeed() {
     ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
       rebuildFeed(feedType);
     });
   }
 
-  console.log('Waiting 1 min before seeding the app with data.');
+  logger('Waiting 1 min before seeding the app with data.');
   setTimeout(delayedSeed, 1000 * 60 * 1);
   // Delay seeding the cache so we don't spam using Nodemon
 }
