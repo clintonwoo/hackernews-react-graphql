@@ -95,6 +95,8 @@ export function seedCache() {
       rebuildFeed(feedType);
     });
   }
+
+  console.log('Waiting 1 min before seeding the app with data.');
   setTimeout(delayedSeed, 1000 * 60 * 1);
   // Delay seeding the cache so we don't spam using Nodemon
 }

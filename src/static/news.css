@@ -84,7 +84,7 @@ pre:hover { overflow:auto }
 @media only screen
 and (min-width : 300px)
 and (max-width : 750px) {
-  #hnmain { width: 100%; }
+  #hnmain { width: 100% !important; }
   body { padding: 0; margin: 0; width: 100%; -webkit-text-size-adjust: none; }
   td { height: inherit !important; }
   .title, .comment { font-size: inherit;  }

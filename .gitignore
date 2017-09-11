@@ -4,6 +4,7 @@ logs
 
 .next
 build/static
+build/app
 .env
 
 .DS_Store

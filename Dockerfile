@@ -17,7 +17,7 @@ ENV NODE_ENV=production
 
 # Project copy build, install dependencies
 COPY --from=devBuild /usr/src/app/build/app ./build/app
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock README.md ./
 RUN yarn install --prod
 
 # Install curl to do healthchecks
