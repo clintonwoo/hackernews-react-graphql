@@ -10,8 +10,9 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
   <a href="http://www.hnclone.win">Live Demo</a>
 </p>
 
+## Overview
 
-## Featuring
+#### Featuring
 - React - (UI Framework)
 - GraphQL - (Web Data API)
 - Apollo - (GraphQL Client)
@@ -27,7 +28,7 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Yarn Package Manager - (Better Dependencies)
 - Docker - (Container Deployment)
 
-## Benefits
+#### Benefits
 **Front End**
 - Declarative UI - (react)
 - Flux State Management - (redux)
@@ -50,13 +51,15 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Snapshot Testing - (jest)
 - Faster Package Install - (yarn)
 
-## One Click Download
+## How To Start
+
+#### One Click Download
 
 You can download and run the repo with one command to rule them all:
 
 `git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm run dev`
 
-## How To Start
+#### Setup
 
 Running the app in dev mode is fully featured including *hot module reloading*:
 
@@ -68,15 +71,32 @@ To run in production mode:
 
 `npm run build && npm start`
 
-## Configuration
+#### Configuration
 
 The project runs out of the box with default settings (*/src/config.js*). You can include a .env file in your project root to configure settings (this is the '*dotenv*' npm package). The *.env* file is included in *.gitignore*.
 
 ## How To Test
 
+#### Jest
+
 `npm test`
 
 This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
+
+#### Debugging
+
+```npm run debug-mode ```
+
+```js
+const NewsFeed = props => {
+  debugger;
+  return <NewsItem {...props} />
+}
+```
+
+Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code for your troubleshooting convenience.
+
+You can open the inspector link in Google Chrome to see the call stack, scope and variables etc. Google search to [learn more](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27).
 
 ## How To Build For Deployment
 
@@ -84,38 +104,22 @@ This project uses Jest and can do snapshot testing of React components. Whenever
 
 OR
 
-`npm run build-docker` `npm run build-docker`
+`npm run build-docker`
 Docker Container: Builds a docker container using Dockerfile.
 
 
-**Static Website (Optional)**
+#### Static Website (Optional)
 
-NextJS lets us make a powerful static website but server rendering dynamic routes can be difficult.
+NextJS lets us make a powerful static website but you need to consider if you need server side rendering.
 
 `npm run build-static-website`: Builds static website to */build/static*. Use a static web server *eg.* NGINX/Github Pages.
 
-## Debugging
-
-```js
-const NewsFeed = props => {
-  debugger;
-  return (
-    <NewsItem {...props} />
-  )
-}
-```
-
-```npm run debug-mode ```
-
-Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code for your troubleshooting convenience.
-
-You can open the inspector link in Google Chrome to see the call stack, scope and variables etc. Google search to [learn more](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27).
 
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
 
-## License
-Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.
-
-## Community
+### Community
 After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.
+
+#### License
+Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.
