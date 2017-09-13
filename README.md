@@ -97,7 +97,7 @@ Debug mode (it's built into node.js) with *debugger* breakpoints like above can 
 
 ## How To Build For Deployment
 
-`npm run build`: NextJS app with entry point */src/server.js* that uses Node.js/Express.
+`npm run build`: NextJS app with entry point *server.js* that uses Node.js/Express.
 
 OR
 
@@ -115,6 +115,8 @@ NextJS lets us make a powerful static website but you need to consider if you ne
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
 
+### Community
 After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.
 
+### License
 Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.
