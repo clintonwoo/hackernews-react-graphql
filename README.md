@@ -12,7 +12,7 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 
 ## Overview
 
-#### Featuring
+### Featuring
 - React - (UI Framework)
 - GraphQL - (Web Data API)
 - Apollo - (GraphQL Client)
@@ -28,7 +28,7 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Yarn Package Manager - (Better Dependencies)
 - Docker - (Container Deployment)
 
-#### Benefits
+### Benefits
 **Front End**
 - Declarative UI - (react)
 - Flux State Management - (redux)
@@ -53,13 +53,13 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 
 ## How To Start
 
-#### One Click Download
+### One Click Download
 
 You can download and run the repo with one command to rule them all:
 
 `git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm run dev`
 
-#### Setup
+### Setup
 
 Running the app in dev mode is fully featured including *hot module reloading*:
 
@@ -71,32 +71,29 @@ To run in production mode:
 
 `npm run build && npm start`
 
-#### Configuration
+### Configuration
 
 The project runs out of the box with default settings (*/src/config.js*). You can include a .env file in your project root to configure settings (this is the '*dotenv*' npm package). The *.env* file is included in *.gitignore*.
 
 ## How To Test
 
-#### Jest
+### Jest
 
 `npm test`
 
 This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
 
-#### Debugging
+### Debugging
 
 ```npm run debug-mode ```
 
 ```js
-const NewsFeed = props => {
   debugger;
-  return <NewsItem {...props} />
-}
+  return <NewsItem {...props} />;
 ```
 
-Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code for your troubleshooting convenience.
+Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code so you can inspect runtime.
 
-You can open the inspector link in Google Chrome to see the call stack, scope and variables etc. Google search to [learn more](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27).
 
 ## How To Build For Deployment
 
@@ -118,8 +115,6 @@ NextJS lets us make a powerful static website but you need to consider if you ne
 ## Contributing
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
 
-### Community
 After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.
 
-#### License
 Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.

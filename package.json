@@ -18,7 +18,7 @@
     "build-clean": "rm -rf build/app",
     "build-next": "NODE_ENV=production yarn install --dev && next build src",
     "build-docker": "docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
-    "build-static-website": "NODE_ENV=production rm -r build/static && yarn install --dev && next build src && next export src -o build/static",
+    "build-static-website": "NODE_ENV=production rm -rf build/static && yarn install --dev && next build src && next export src -o build/static",
     "start": "NODE_ENV=production node build/app/server.js"
   },
   "keywords": [
