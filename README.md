@@ -84,7 +84,9 @@ This project uses Jest and can do snapshot testing of React components. Whenever
 
 OR
 
-`npm run build-docker` Docker Container: Uses the above build and can be deployed easily.
+`npm run build-docker` `npm run build-docker`
+Docker Container: Builds a docker container using Dockerfile.
+
 
 **Static Website (Optional)**
 

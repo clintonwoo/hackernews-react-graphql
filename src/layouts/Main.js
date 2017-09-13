@@ -24,7 +24,7 @@ const Main = props => (
           userId={props.user.id}
         />
         <tr style={{ height: '10px' }} />
-        {props.children}
+        { props.children }
         { props.isFooterVisible && <Footer /> }
       </tbody>
     </table>

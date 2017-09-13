@@ -94,7 +94,7 @@ export function seedCache() {
   // TODO: Build sample cache then seed
   logger('Seeding cache');
   function delayedSeed() {
-    ['top', 'new', 'show', 'ask', 'jobs'].forEach((feedType) => {
+    ['top', 'new', 'show', 'ask', 'job'].forEach((feedType) => {
       rebuildFeed(feedType);
     });
   }

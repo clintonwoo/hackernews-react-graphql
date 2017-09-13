@@ -12,12 +12,14 @@ class NewsDetail extends Component {
     creationTime: PropTypes.number.isRequired,
     submitterId: PropTypes.string.isRequired,
     title: PropTypes.string,
-    isPostScrutinyVisible: PropTypes.bool.isRequired,
+    isPostScrutinyVisible: PropTypes.bool,
     points: PropTypes.number.isRequired,
-    favoriteVisible: PropTypes.bool.isRequired,
+    isFavoriteVisible: PropTypes.bool,
   }
   static defaultProps = {
     title: undefined,
+    isFavoriteVisible: true,
+    isPostScrutinyVisible: false,
   }
 
   upvote() {
@@ -46,16 +48,29 @@ class NewsDetail extends Component {
           <a href="/hide?id=15077449&amp;goto=news&amp;auth=15140ad499d896ef90cc72930b3fb7706f6d6398" onClick={this.hidestory}>
           hide
           </a>
+          {
+            this.props.isPostScrutinyVisible &&
+            <span>
+              {' | '}
+              <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0" onClick={this.hidestory}>
+              past
+              </a>
+              {' | '}
+              <a href="https://www.google.com/search?q=Sublime%20Text%203.0" onClick={this.hidestory}>
+              web
+              </a>
+            </span>
+          }
           {' | '}
           <a href={`/item?id=${this.props.id}`}>
             {} {(() => {
               switch (this.props.commentCount) {
-                case 0:  return 'discuss';
-                case 1:  return '1 comment';
+                case 0: return 'discuss';
+                case 1: return '1 comment';
                 default: return `${this.props.commentCount} comments`;
               }
             })()}
-          </a>{this.props.favoriteVisible && ' | favorite'}
+          </a>{this.props.isFavoriteVisible && ' | favorite'}
         </td>
       </tr>
     );
@@ -68,7 +83,7 @@ const post = gql`
     submitterId
     commentCount
     points
-    favoriteVisible
+    isFavoriteVisible
   }
 `
 

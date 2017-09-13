@@ -8,12 +8,13 @@ class NewsTitle extends Component {
     title: PropTypes.string.isRequired,
     url: PropTypes.string,
     rank: PropTypes.number,
-    rankVisible: PropTypes.bool.isRequired,
+    isRankVisible: PropTypes.bool,
   }
   static defaultProps = {
     // text: undefined,
     url: undefined,
     rank: undefined,
+    isRankVisible: true,
   }
 
   upvote() {
@@ -26,7 +27,7 @@ class NewsTitle extends Component {
     return (
       <tr className="athing" id={this.props.id}>
         <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
-          <span className="rank">{this.props.rankVisible && `${this.props.rank}.`}</span>
+          <span className="rank">{this.props.isRankVisible && `${this.props.rank}.`}</span>
         </td>
         <td style={{ verticalAlign: 'top' }} className="votelinks">
           <center>

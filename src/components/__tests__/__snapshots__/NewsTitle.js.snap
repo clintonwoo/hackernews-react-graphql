@@ -153,9 +153,9 @@ ShallowWrapper {
         hidden={Array []}
         hiddenCount={0}
         id={1224}
+        isRankVisible={true}
         points={171}
         rank={undefined}
-        rankVisible={true}
         submitterId="hvo"
         text={null}
         title="“Learning How to Learn,” the most popular course on Coursera"
@@ -176,9 +176,9 @@ ShallowWrapper {
           "hidden": Array [],
           "hiddenCount": 0,
           "id": 1224,
+          "isRankVisible": true,
           "points": 171,
           "rank": undefined,
-          "rankVisible": true,
           "submitterId": "hvo",
           "text": null,
           "title": "“Learning How to Learn,” the most popular course on Coursera",
@@ -355,9 +355,9 @@ ShallowWrapper {
     hidden={Array []}
     hiddenCount={0}
     id={1224}
+    isRankVisible={true}
     points={171}
     rank={undefined}
-    rankVisible={true}
     submitterId="hvo"
     text={null}
     title="“Learning How to Learn,” the most popular course on Coursera"

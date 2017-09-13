@@ -15,7 +15,7 @@ describe('NewsFeed component', () => {
   // });
   it('renders news items passed in as props', () => {
     const wrapper = shallow((
-      <NewsDetail {...data.newsItems[0]} favoriteVisible={false} />
+      <NewsDetail {...data.newsItems[0]} isFavoriteVisible={false} />
     ));
     expect(wrapper).toMatchSnapshot();
   });

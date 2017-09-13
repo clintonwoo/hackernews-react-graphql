@@ -13,7 +13,7 @@ const NewsFeed = (props) => {
     rows.push(
       <NewsTitle 
         key={`${newsItem.id.toString()}title`}
-        rankVisible={true}
+        isRankVisible={true}
         rank={index}
         {...newsItem}
       />,
@@ -21,7 +21,7 @@ const NewsFeed = (props) => {
     rows.push(
       <NewsDetail
         key={`${newsItem.id.toString()}detail`}
-        favoriteVisible={false}
+        isFavoriteVisible={false}
         isPostScrutinyVisible={props.isPostScrutinyVisible}
         {...newsItem}
       />,
@@ -40,8 +40,8 @@ const NewsFeed = (props) => {
               <NewsItem
                 key={newsItem.id.toString()}
                 {...newsItem}
-                rankVisible={true}
-                favoriteVisible={false}
+                isRankVisible={true}
+                isFavoriteVisible={false}
               />
             ))*/}
           </tbody>

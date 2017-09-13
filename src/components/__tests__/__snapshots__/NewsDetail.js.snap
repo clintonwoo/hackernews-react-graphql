@@ -35,7 +35,7 @@ ShallowWrapper {
             <a
                 href="item?id=15077449"
             >
-                4 days ago
+                6 days ago
             </a>
         </span>
          | 
@@ -82,7 +82,7 @@ ShallowWrapper {
                   <a
                         href="item?id=15077449"
                   >
-                        4 days ago
+                        6 days ago
                   </a>
             </span>
              | 
@@ -112,10 +112,11 @@ ShallowWrapper {
         commentCount={44}
         comments={Array []}
         creationTime={1504740146516}
-        favoriteVisible={false}
         hidden={Array []}
         hiddenCount={0}
         id={1224}
+        isFavoriteVisible={false}
+        isPostScrutinyVisible={false}
         points={171}
         submitterId="hvo"
         text={null}
@@ -134,10 +135,11 @@ ShallowWrapper {
           "commentCount": 44,
           "comments": Array [],
           "creationTime": 1504740146516,
-          "favoriteVisible": false,
           "hidden": Array [],
           "hiddenCount": 0,
           "id": 1224,
+          "isFavoriteVisible": false,
+          "isPostScrutinyVisible": false,
           "points": 171,
           "submitterId": "hvo",
           "text": null,
@@ -193,7 +195,7 @@ ShallowWrapper {
                               <a
                                         href="item?id=15077449"
                               >
-                                        4 days ago
+                                        6 days ago
                               </a>
                     </span>
                      | 
@@ -240,7 +242,7 @@ ShallowWrapper {
                               <a
                                         href="item?id=15077449"
                               >
-                                        4 days ago
+                                        6 days ago
                               </a>
                     </span>
                      | 
@@ -274,10 +276,11 @@ ShallowWrapper {
     commentCount={44}
     comments={Array []}
     creationTime={1504740146516}
-    favoriteVisible={false}
     hidden={Array []}
     hiddenCount={0}
     id={1224}
+    isFavoriteVisible={false}
+    isPostScrutinyVisible={false}
     points={171}
     submitterId="hvo"
     text={null}
