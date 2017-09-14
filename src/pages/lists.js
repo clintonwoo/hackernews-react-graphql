@@ -11,7 +11,7 @@ const HomePage = () => (
           <tbody>
             <tr>
               <td>
-                <Link prefetch href="leaders">
+                <Link prefetch href="/leaders">
                   <a>leaders</a>
                 </Link>
               </td>
@@ -21,17 +21,17 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="front">
+                <Link prefetch href="/front">
                   <a>front</a>
                 </Link>
               </td>
               <td>
-                Front page submissions for a given day (e.g. <a href="front?day=2016-06-20">2016-06-20</a>), ordered by time spent there.
+                Front page submissions for a given day (e.g. <a href="/front?day=2016-06-20">2016-06-20</a>), ordered by time spent there.
               </td>
             </tr>
             <tr>
               <td>
-                <Link prefetch href="best">
+                <Link prefetch href="/best">
                   <a>best</a>
                 </Link>
               </td>
@@ -41,7 +41,7 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="active">
+                <Link prefetch href="/active">
                   <a>active</a>
                 </Link>
               </td>
@@ -51,7 +51,7 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="bestcomments">
+                <Link prefetch href="/bestcomments">
                   <a>bestcomments</a>
                 </Link>
               </td>
@@ -61,7 +61,7 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="noobstories">
+                <Link prefetch href="/noobstories">
                   <a>noobstories</a>
                 </Link>
               </td>
@@ -71,7 +71,7 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="noobcomments">
+                <Link prefetch href="/noobcomments">
                   <a>noobcomments</a>
                 </Link>
               </td>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 
 const Footer = props => (
   <tr>
@@ -14,16 +14,18 @@ const Footer = props => (
       </table>
       <br />
       <center>
-        <span className="yclinks"><a href="/newsguidelines">Guidelines</a>
-        &nbsp;| <a href="/newsfaq">FAQ</a>
-        &nbsp;| <a href="mailto:hn@ycombinator.com">Support</a>
-        &nbsp;| <a href="https://github.com/HackerNews/API">API</a>
-        &nbsp;| <a href="/security">Security</a>
-        &nbsp;| <a href="/lists">Lists</a>
-        &nbsp;| <a href="/bookmarklet">Bookmarklet</a>
-        &nbsp;| <a href="/dmca">DMCA</a>
-        &nbsp;| <a href="http://www.ycombinator.com/apply/">Apply to YC</a>
-        &nbsp;| <a href="mailto:hn@ycombinator.com">Contact</a></span>
+        <span className="yclinks">
+          <a href="/newsguidelines">Guidelines</a>
+          &nbsp;| <Link prefetch href="/newsfaq"><a>FAQ</a></Link>
+          &nbsp;| <a href="mailto:hn@ycombinator.com">Support</a>
+          &nbsp;| <a href="https://github.com/HackerNews/API">API</a>
+          &nbsp;| <Link prefetch href="/security"><a>Security</a></Link>
+          &nbsp;| <Link prefetch href="/lists"><a>Lists</a></Link>
+          &nbsp;| <Link prefetch href="/bookmarklet"><a>Bookmarklet</a></Link>
+          &nbsp;| <Link prefetch href="/dmca"><a>DMCA</a></Link>
+          &nbsp;| <a href="http://www.ycombinator.com/apply/">Apply to YC</a>
+          &nbsp;| <a href="mailto:hn@ycombinator.com">Contact</a>
+        </span>
         <br />
         <br />
         <form method="get" action="//hn.algolia.com/" style={{ marginBottom: '1em' }} >Search:

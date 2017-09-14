@@ -30,12 +30,12 @@ class Comment extends React.Component {
                 <td className="default">
                   <div style={{ marginTop: '2px', marginBottom: '-10px' }}>
                     <span className="comhead">
-                      <Link prefetch href="user?id=mstade">
+                      <Link prefetch href="/user?id=mstade">
                         <a className="hnuser">mstade</a>
                       </Link>
                       <span className="age">
                         {' '}
-                        <Link prefetch href="item?id=15238246">
+                        <Link prefetch href="/item?id=15238246">
                           <a>1 hour ago</a>
                         </Link>
                       </span>
@@ -60,7 +60,7 @@ class Comment extends React.Component {
                         <p>
                           <font size="1">
                             <u>
-                              <Link prefetch href="reply?id=15238246&amp;goto=item%3Fid%3D15237896%2315238246">
+                              <Link prefetch href="/reply?id=15238246&amp;goto=item%3Fid%3D15237896%2315238246">
                                 <a>reply</a>
                               </Link>
                             </u>

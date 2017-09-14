@@ -1,8 +1,4 @@
-const dotenv = require('dotenv').config();
-// import dotenv from 'dotenv/config'; is bugged and can't be inspected
-console.info('> Environment by .env:');
-console.info(dotenv);
-
+import dotenv from 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -75,7 +71,7 @@ app.prepare()
       cb(null, user.id);
     });
     passport.deserializeUser(async (id, cb) => {
-      const user = await Feed.getUser(id);
+      const user = await User.getUser(id);
       cb(null, user);
     });
     server.use(cookieParser());

@@ -30,7 +30,7 @@ const Login = () => (
       <br />
       <input type="submit" value="login" />
     </form>
-    <Link prefetch href="forgot">
+    <Link prefetch href="/forgot">
       <a>Forgot your password?</a>
     </Link>
     <br />

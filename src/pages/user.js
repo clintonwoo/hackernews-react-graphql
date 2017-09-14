@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Main from '../layouts/Main';
 
@@ -16,9 +17,11 @@ const HomePage = () => (
               <tr className="athing">
                 <td valign="top">user:</td>
                 <td timestamp="1503454410">
-                  <a href="/user?id=clintonwoo" className="hnuser">
-                    <font color="#3c963c">clintonwoo</font>
-                  </a>
+                  <Link prefetch href="/user?id=clintonwoo">
+                    <a className="hnuser">
+                      <font color="#3c963c">clintonwoo</font>
+                    </a>
+                  </Link>
                 </td>
               </tr>
               <tr>
@@ -33,9 +36,11 @@ const HomePage = () => (
                 <td>
                   <textarea cols="60" rows="5" wrap="virtual" name="about" />
                   <font size="-2">
-                    <a href="formatdoc" tabIndex="-1">
-                      <font color="#afafaf">help</font>
-                    </a>
+                    <Link prefetch href="/formatdoc">
+                      <a tabIndex="-1">
+                        <font color="#afafaf">help</font>
+                      </a>
+                    </Link>
                   </font>
                 </td>
               </tr>
@@ -84,37 +89,49 @@ const HomePage = () => (
               <tr>
                 <td />
                 <td>
-                  <a href="/changepw"><u>change password</u></a>
+                  <Link prefetch href="/changepw">
+                    <a><u>change password</u></a>
+                  </Link>
                 </td>
               </tr>
               <tr>
                 <td />
                 <td>
-                  <a href="/submitted?id=clintonwoo"><u>submissions</u></a>
+                  <Link prefetch href="/submitted?id=clintonwoo">
+                    <a><u>submissions</u></a>
+                  </Link>
                 </td>
               </tr>
               <tr>
                 <td />
                 <td>
-                  <a href="/threads?id=clintonwoo"><u>comments</u></a>
+                  <Link prefetch href="/threads?id=clintonwoo">
+                    <a><u>comments</u></a>
+                  </Link>
                 </td>
               </tr>
               <tr>
                 <td />
                 <td>
-                  <a href="/hidden"><u>hidden</u></a>
+                  <Link prefetch href="/hidden">
+                    <a><u>hidden</u></a>
+                  </Link>
                 </td>
               </tr>
               <tr>
                 <td />
                 <td>
-                  <a href="/upvoted?id=clintonwoo">
-                    <u>upvoted submissions</u>
-                  </a>
+                  <Link prefetch href="/upvoted?id=clintonwoo">
+                    <a>
+                      <u>upvoted submissions</u>
+                    </a>
+                  </Link>
                   {' / '}
-                  <a href="/upvoted?id=clintonwoo&amp;comments=t">
-                    <u>comments</u>
-                  </a>
+                  <Link prefetch href="/upvoted?id=clintonwoo&amp;comments=t">
+                    <a>
+                      <u>comments</u>
+                    </a>
+                  </Link>
                   &nbsp;&nbsp;
                   <span style={{ fontStyle: 'italic' }}>(private)</span>
                 </td>
@@ -122,13 +139,17 @@ const HomePage = () => (
               <tr>
                 <td />
                 <td>
-                  <a href="/favorites?id=clintonwoo">
-                    <u>favorite submissions</u>
-                  </a>
+                  <Link prefetch href="/favorites?id=clintonwoo">
+                    <a>
+                      <u>favorite submissions</u>
+                    </a>
+                  </Link>
                   {' / '}
-                  <a href="/favorites?id=clintonwoo&amp;comments=t">
-                    <u>comments</u>
-                  </a>
+                  <Link prefetch href="/favorites?id=clintonwoo&amp;comments=t">
+                    <a>
+                      <u>comments</u>
+                    </a>
+                  </Link>
                   &nbsp;&nbsp;
                   <span style={{ fontStyle: 'italic' }}>(shared)</span>
                 </td>

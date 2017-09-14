@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Notice from '../layouts/Notice';
 
@@ -134,7 +135,7 @@ const NewsWelcome = () => (
     <ul>
       <li>The state of the PRNG used to generate cookies could be determined from observed outputs. This allowed an attacker to fairly easily determine valid user cookies and compromise accounts.</li>
     </ul>
-    See <a href="https://news.ycombinator.com/item?id=639976">https://news.ycombinator.com/item?id=639976</a> for details.
+    See <Link prefetch href="/item?id=639976"><a>https://news.ycombinator.com/item?id=639976</a></Link> for details.
     <p />
     <p>
       <b>Missing From This List?</b> If you reported a vulnerability to us and don&#39;t see your name, please shoot us an email and we&#39;ll happily add you. We crawled through tons of emails trying to find all reports but inevitably missed some.

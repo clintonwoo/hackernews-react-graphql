@@ -1,33 +1,50 @@
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const HeaderNav = props => (
   props.isNavVisible ?
     <span className="pagetop">
       <b className="hnname">
-        <a href="news">{props.title}</a>
+        <Link prefetch href="/news">
+          <a>{props.title}</a>
+        </Link>
       </b>
       &nbsp;
-      {props.userId && <a href="/newswelcome">welcome</a>}
+      {props.userId && <Link prefetch href="/newswelcome"><a>welcome</a></Link>}
       {props.userId && ' | '}
-      <a href="/newest">new</a>
+      <Link prefetch href="/newest">
+        <a>new</a>
+      </Link>
       {props.userId && ' | '}
-      {props.userId && <a href={`/threads?id=${props.userId}`}>threads</a>}
+      {props.userId && <Link prefetch href={`/threads?id=${props.userId}`}><a>threads</a></Link>}
       {' | '}
-      <a href="/newcomments">comments</a>
+      <Link prefetch href="/newcomments">
+        <a>comments</a>
+      </Link>
       {' | '}
-      <a href="/show">show</a>
+      <Link prefetch href="/show">
+        <a>show</a>
+      </Link>
       {' | '}
-      <a href="/ask">ask</a>
+      <Link prefetch href="/ask">
+        <a>ask</a>
+      </Link>
       {' | '}
-      <a href="/jobs">jobs</a>
+      <Link prefetch href="/jobs">
+        <a>jobs</a>
+      </Link>
       {' | '}
-      <a href="/submit">submit</a>
+      <Link prefetch href="/submit">
+        <a>submit</a>
+      </Link>
     </span>
     :
     <span className="pagetop">
       <b className="hnname">
-        <a href="news">{props.title}</a>
+        <Link prefetch href="/news">
+          <a>{props.title}</a>
+        </Link>
       </b>
     </span>
 );

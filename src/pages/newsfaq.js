@@ -10,7 +10,7 @@ const NewsWelcome = () => (
     <br />
     <b>Are there rules about submissions and comments?</b>
     <p>
-      <Link prefetch href="newsguidelines">
+      <Link prefetch href="/newsguidelines">
         <a>https://news.ycombinator.com/newsguidelines</a>
       </Link>
     </p>
@@ -46,7 +46,7 @@ const NewsWelcome = () => (
       <b>What kind of formatting can you use in comments?</b>
     </p>
     <p>
-      <Link prefetch href="formatdoc">
+      <Link prefetch href="/formatdoc">
         <a>http://news.ycombinator.com/formatdoc</a>
       </Link>
     </p>
@@ -114,7 +114,7 @@ const NewsWelcome = () => (
     </p>
     <p>
       A regular &quot;Who Is Hiring?&quot; thread appears on the first weekday of each
-      month. Most job ads are welcome there. (But only an account called <Link prefetch href="submitted?id=whoishiring"><a>whoishiring</a></Link> is allowed to submit
+      month. Most job ads are welcome there. (But only an account called <Link prefetch href="/submitted?id=whoishiring"><a>whoishiring</a></Link> is allowed to submit
       the thread itself. This prevents a race to post it first.)
     </p>
     <p>
@@ -160,7 +160,7 @@ const NewsWelcome = () => (
       <b>How do I submit a poll?</b>
     </p>
     <p>
-      <Link prefetch href="newpoll">
+      <Link prefetch href="/newpoll">
         <a>http://news.ycombinator.com/newpoll</a>
       </Link>
     </p>
@@ -169,13 +169,13 @@ const NewsWelcome = () => (
       <b>How do I reset my password?</b>
     </p>
     <p>
-      If you have an email address in your profile, you can request a password reset <Link prefetch href="https://news.ycombinator.com/forgot?id="><a>here</a></Link>. If you haven&#39;t, you can create a new account or email hn@ycombinator.com for help.
+      If you have an email address in your profile, you can request a password reset <Link prefetch href="/forgot?id="><a>here</a></Link>. If you haven&#39;t, you can create a new account or email hn@ycombinator.com for help.
     </p>
     <p>
       <b>My IP address seems to be banned. How can I unban it?</b>
     </p>
     <p>
-      If you request many pages too quickly, your IP address might get banned. The <Link prefetch href="https://news.ycombinator.com/item?id=4761102"><a>self-serve unbanning procedure</a></Link> works most of the time.
+      If you request many pages too quickly, your IP address might get banned. The <Link prefetch href="/item?id=4761102"><a>self-serve unbanning procedure</a></Link> works most of the time.
     </p>
     <p>
       <br />

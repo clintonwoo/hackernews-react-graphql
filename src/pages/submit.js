@@ -73,7 +73,7 @@ class Newest extends React.Component {
                       thread.
                       <br />
                       <br />
-                      You can also submit via <Link prefetch href="bookmarklet"><a rel="nofollow"><u>bookmarklet</u></a></Link>.
+                      You can also submit via <Link prefetch href="/bookmarklet"><a rel="nofollow"><u>bookmarklet</u></a></Link>.
                     </td>
                   </tr>
                 </tbody>
