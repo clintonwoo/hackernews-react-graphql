@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Main from '../layouts/Main';
 
@@ -10,14 +11,19 @@ const HomePage = () => (
           <tbody>
             <tr>
               <td>
-                <a href="leaders">leaders</a></td>
+                <Link prefetch href="leaders">
+                  <a>leaders</a>
+                </Link>
+              </td>
               <td>
                 Users with most karma.
               </td>
             </tr>
             <tr>
               <td>
-                <a href="front">front</a>
+                <Link prefetch href="front">
+                  <a>front</a>
+                </Link>
               </td>
               <td>
                 Front page submissions for a given day (e.g. <a href="front?day=2016-06-20">2016-06-20</a>), ordered by time spent there.
@@ -25,7 +31,9 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <a href="best">best</a>
+                <Link prefetch href="best">
+                  <a>best</a>
+                </Link>
               </td>
               <td>
                 Highest-voted recent links.
@@ -33,7 +41,9 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <a href="active">active</a>
+                <Link prefetch href="active">
+                  <a>active</a>
+                </Link>
               </td>
               <td>
                 Most active current discussions.
@@ -41,7 +51,9 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <a href="bestcomments">bestcomments</a>
+                <Link prefetch href="bestcomments">
+                  <a>bestcomments</a>
+                </Link>
               </td>
               <td>
                 Highest-voted recent comments.
@@ -49,7 +61,9 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <a href="noobstories">noobstories</a>
+                <Link prefetch href="noobstories">
+                  <a>noobstories</a>
+                </Link>
               </td>
               <td>
                 Submissions from new accounts.
@@ -57,7 +71,9 @@ const HomePage = () => (
             </tr>
             <tr>
               <td>
-                <a href="noobcomments">noobcomments</a>
+                <Link prefetch href="noobcomments">
+                  <a>noobcomments</a>
+                </Link>
               </td>
               <td>
                 Comments from new accounts.

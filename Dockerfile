@@ -1,5 +1,5 @@
 # DEV BUILD STEP
-FROM node:6.11.2-alpine as devBuild
+FROM node:8.5-alpine as devBuild
 WORKDIR /usr/src/app
 
 # Copy the source and build
@@ -9,7 +9,7 @@ RUN yarn run build
 
 # PROD BUILD STEP
 # Using latest LTS release of Node (comes with Yarn package manager by default)
-FROM node:6.11.2-alpine
+FROM node:8.5-alpine
 
 # Create an app directory on the container
 WORKDIR /usr/src/app

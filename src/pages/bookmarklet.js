@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Notice from '../layouts/Notice';
 
@@ -10,7 +11,7 @@ const NewsWelcome = () => (
     <div id="main">
       <p id="first">
         Thanks to Phil Kast for writing this bookmarklet for submitting
-        links to <a href="/">Hacker News</a>.
+        links to <Link prefetch href="/"><a>Hacker News</a></Link>.
         When you click on the bookmarklet, it will submit the page you&#39;re on.
         To install, drag this link to your browser toolbar:
         <br />

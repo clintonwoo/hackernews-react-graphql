@@ -97,7 +97,7 @@ Debug mode (it's built into node.js) with *debugger* breakpoints like above can 
 
 ## How To Build For Deployment
 
-`npm run build`: NextJS app with entry point *server.js* that uses Node.js/Express.
+`npm run build`: NextJS app with entry point *server.js* that uses Node.js/Express. Uses Babel compiler to transpile project src to build.
 
 OR
 

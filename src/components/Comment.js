@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 
 class Comment extends React.Component {
   vote() {
@@ -18,7 +18,7 @@ class Comment extends React.Component {
             <tbody>
               <tr>
                 <td className="ind">
-                  <img alt="" src="s.gif" height="1" width="0"/* Width varies depending on comment level*/ />
+                  <img alt="" src="/static/s.gif" height="1" width="0"/* Width varies depending on comment level*/ />
                 </td>
                 <td style={{ verticalAlign: 'top' }} className="votelinks">
                   <center>
@@ -30,10 +30,14 @@ class Comment extends React.Component {
                 <td className="default">
                   <div style={{ marginTop: '2px', marginBottom: '-10px' }}>
                     <span className="comhead">
-                      <a href="user?id=mstade" className="hnuser">mstade</a>
+                      <Link prefetch href="user?id=mstade">
+                        <a className="hnuser">mstade</a>
+                      </Link>
                       <span className="age">
                         {' '}
-                        <a href="item?id=15238246">1 hour ago</a>
+                        <Link prefetch href="item?id=15238246">
+                          <a>1 hour ago</a>
+                        </Link>
                       </span>
                       {' '}
                       <span id="unv_15238246" />
@@ -50,20 +54,19 @@ class Comment extends React.Component {
                       </p>
                       <p>
                         Of course, if the business is perfectly sustainable then you know, carry on as you where.
-                    <span>
-                    </span>
-                    </p>
-                    <div className="reply">
-                      <p>
-                        <font size="1">
-                          <u>
-                            <a href="reply?id=15238246&amp;goto=item%3Fid%3D15237896%2315238246">
-                              reply
-                            </a>
-                          </u>
-                        </font>
+                        <span />
                       </p>
-                    </div>
+                      <div className="reply">
+                        <p>
+                          <font size="1">
+                            <u>
+                              <Link prefetch href="reply?id=15238246&amp;goto=item%3Fid%3D15237896%2315238246">
+                                <a>reply</a>
+                              </Link>
+                            </u>
+                          </font>
+                        </p>
+                      </div>
                     </span>
                   </div>
                 </td>

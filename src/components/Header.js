@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import HeaderNav from './HeaderNav';
@@ -11,9 +12,11 @@ const Header = props => (
         <tbody>
           <tr>
             <td style={{ width: '18px', padding: '0px', paddingRight: '4px' }}>
-              <a href="/">
-                <img src="/static/y18.gif" style={{ width: '18px', height: '18px', border: '1px', borderColor: 'white', borderStyle: 'solid' }} />
-              </a>
+              <Link prefetch href="/">
+                <a>
+                  <img src="/static/y18.gif" style={{ width: '18px', height: '18px', border: '1px', borderColor: 'white', borderStyle: 'solid' }} />
+                </a>
+              </Link>
             </td>
             <td style={{ lineHeight: '12px', height: '10px', padding: '0px' }}>
               <HeaderNav {...props} />
@@ -23,15 +26,21 @@ const Header = props => (
               {
                 props.user ?
                   <span className="pagetop">
-                    <a href={`/user?id=${props.user.id}`}>
-                      {props.user.id}
-                    </a>
+                    <Link prefetch href={`/user?id=${props.user.id}`}>
+                      <a>
+                        {props.user.id}
+                      </a>
+                    </Link>
                     ` (${props.user.karma}) | `
                     <a href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${props.currentURL}`}>logout</a>
                   </span>
                   :
                   <span className="pagetop">
-                    <a href={`/login?goto=${props.currentURL}`}>login</a>
+                    <Link prefetch href={`/login?goto=${props.currentURL}`}>
+                      <a>
+                        login
+                      </a>
+                    </Link>
                   </span>
               }
             </td>

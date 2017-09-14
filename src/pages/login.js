@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Blank from '../layouts/Blank';
 
@@ -29,7 +30,9 @@ const Login = () => (
       <br />
       <input type="submit" value="login" />
     </form>
-    <a href="forgot">Forgot your password?</a>
+    <Link prefetch href="forgot">
+      <a>Forgot your password?</a>
+    </Link>
     <br />
     <br />
     <b>Create Account</b>

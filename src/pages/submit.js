@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Main from '../layouts/Main';
 import NewsFeed from '../components/NewsFeed';
@@ -72,7 +73,7 @@ class Newest extends React.Component {
                       thread.
                       <br />
                       <br />
-                      You can also submit via <a href="bookmarklet.html" rel="nofollow"><u>bookmarklet</u></a>.
+                      You can also submit via <Link prefetch href="bookmarklet"><a rel="nofollow"><u>bookmarklet</u></a></Link>.
                     </td>
                   </tr>
                 </tbody>

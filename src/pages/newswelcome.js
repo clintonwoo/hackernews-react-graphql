@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Notice from '../layouts/Notice';
 
@@ -7,9 +8,9 @@ const NewsWelcome = () => (
     <b>Welcome to Hacker News</b>
     <br /><br />
     <p>
-      <a href="/">Hacker News</a> is a bit
+      <Link prefetch href="/"><a>Hacker News</a></Link> is a bit
       different from other community sites, and we&#39;d appreciate it if
-      you&#39;d take a minute to read the following as well as the <a href="/newsguidelines">official     guidelines</a>.
+      you&#39;d take a minute to read the following as well as the <Link prefetch href="/newsguidelines"><a>official     guidelines</a></Link>.
     </p>
     <p>
       HN is an experiment.  As a rule, a community site that becomes
@@ -37,9 +38,9 @@ const NewsWelcome = () => (
       The worst thing to post or upvote is something that&#39;s
       intensely but shallowly interesting: gossip about famous people,
       funny or cute pictures or videos, partisan political articles, etc.
-      If you let <ax href="http://en.wikipedia.org/wiki/Nile_perch">that
+      If you let <a href="http://en.wikipedia.org/wiki/Nile_perch">that
       sort of thing onto a news site, it will push
-      aside the deeply interesting stuff, which tends to be quieter.</ax>
+      aside the deeply interesting stuff, which tends to be quieter.</a>
     </p>
     <p>
       The most important principle on HN, though, is to make thoughtful

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
 
@@ -35,7 +36,7 @@ class NewsTitle extends Component {
           </center>
         </td>
         <td className="title">
-          <a href={this.props.url ? this.props.url : `item?id=${this.props.id}`} className="storylink">
+          <a className="storylink" href={this.props.url ? this.props.url : `item?id=${this.props.id}`}>
             {this.props.title}
           </a>
           {
