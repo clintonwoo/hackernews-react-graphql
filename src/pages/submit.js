@@ -2,25 +2,23 @@ import React from 'react';
 import Link from 'next/link';
 
 import Main from '../layouts/Main';
-import NewsFeed from '../components/NewsFeed';
+import withData from '../helpers/withData';
 
 import data from '../data/SampleData';
 
 class Newest extends React.Component {
   onInput() {
-    this;
-    return "tlen(this)";
+    console.log(this);
   }
   onFocus() {
-    this;
-    return "tlen(this)";
+    console.log(this);
   }
   submit() {
-    this;
+    console.log(this);
   }
   render() {
     return (
-      <Main title={'Submit'} isNavVisible={false} isFooterVisible={false}>
+      <Main currentURL={this.props.url.pathname} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
         <tr>
           <td>
             <form method="post" action="/r">
@@ -86,4 +84,4 @@ class Newest extends React.Component {
   }
 }
 
-export default Newest;
+export default withData(Newest);

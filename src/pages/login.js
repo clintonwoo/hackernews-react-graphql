@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Blank from '../layouts/Blank';
 
 
-const Login = () => (
+export default props => (
   <Blank>
     <b>Login</b>
     <br />
@@ -62,5 +62,3 @@ const Login = () => (
     </form>
   </Blank>
 );
-
-export default Login;

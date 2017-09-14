@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Notice from '../layouts/Notice';
 
-const NewsWelcome = () => (
+export default props => (
   <Notice>
     <b>Bookmarklet</b>
     <br />
@@ -29,7 +29,7 @@ const NewsWelcome = () => (
           </tr>
         </tbody>
       </table>
-      <p align="center">
+      <p style={{ align: 'center' }}>
         <span className="foot">
           <br />
           <br />
@@ -38,5 +38,3 @@ const NewsWelcome = () => (
     </div>
   </Notice>
 );
-
-export default NewsWelcome;

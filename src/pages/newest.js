@@ -4,25 +4,14 @@ import {
   gql,
 } from 'react-apollo';
 
-import MainHOC from '../layouts/MainHOC';
-import NewsFeed from '../components/NewsFeed';
+import Main from '../layouts/Main';
+import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
 const pageNumber = 0;
 const skip = POSTS_PER_PAGE * pageNumber;
-
-const NewsFeedRenderer = ({ data: { loading, error, feed } }) => {
-  if (error) return <div>Error loading news items.</div>;
-  if (feed && feed.length) {
-    return (
-      <NewsFeed newsItems={feed} />
-    );
-  }
-  return <div>Loading</div>;
-};
-
-const hotNewsItems = gql`
+const query = gql`
   query NewestFeed($type: FeedType!, $first: Int!, $skip: Int!) {
     feed(type: $type, first: $first, skip: $skip) {
       id
@@ -37,22 +26,23 @@ const hotNewsItems = gql`
     }
   }
 `;
+const variables = {
+  type: 'NEW',
+  first: POSTS_PER_PAGE,
+  skip,
+};
 
-const NewsFeedHOC = graphql(hotNewsItems, {
+const NewestNewsFeed = graphql(query, {
   options: {
-    variables: {
-      type: 'NEW',
-      first: POSTS_PER_PAGE,
-      skip,
-    },
+    variables,
   },
   props: ({ data }) => ({
     data,
   }),
-})(NewsFeedRenderer);
+})(NewsFeedApolloHOC);
 
 export default withData(props => (
-  <MainHOC>
-    <NewsFeedHOC />
-  </MainHOC>
+  <Main currentURL={props.url.pathname}>
+    <NewestNewsFeed />
+  </Main>
 ));

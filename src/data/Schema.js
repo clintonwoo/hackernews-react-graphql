@@ -119,13 +119,10 @@ const typeDefs = `
   # A list of options for the sort order of the feed
   enum FeedType {
     # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
-    HOT
+    TOP
   
     # Newest entries first
     NEW
-  
-    # Highest score entries first
-    TOP
   }
 
   # this schema allows the following mutation:

@@ -13,15 +13,15 @@ class Feed {
   getForType(type, first, skip) {
     logger(`Get first ${first} ${type} stories skip ${skip}.`);
     switch (type) {
-      case 'HOT': {
+      case 'TOP': {
         // In this app demo the HN data is preconstructed in-memory
         return this.topNewsItems.slice(skip, first + skip);
       }
       case 'NEW':
         return this.newNewsItems.slice(skip, first + skip);
-      case 'TOP':
-        if (cache.isReady) return cache.getTopNewsItems(first, skip);
-        return DB.getTopNewsItems(first, skip);
+      // case 'TOP':
+      //   if (cache.isReady) return cache.getTopNewsItems(first, skip);
+      //   return DB.getTopNewsItems(first, skip);
       default:
         return sampleData.newsItems.slice(skip, skip + first);
     }

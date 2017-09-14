@@ -2,13 +2,12 @@ import React from 'react';
 
 import Main from '../layouts/Main';
 import NewsFeed from '../components/NewsFeed';
+import withData from '../helpers/withData';
 
 import data from '../data/SampleData';
 
-const HomePage = () => (
-  <Main>
+export default withData(props => (
+  <Main currentURL={props.url.pathname}>
     <h1>Change PW</h1>
   </Main>
-);
-
-export default HomePage;
+));

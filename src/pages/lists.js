@@ -2,9 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 
 import Main from '../layouts/Main';
+import withData from '../helpers/withData';
 
-const HomePage = () => (
-  <Main>
+export default withData(props => (
+  <Main currentURL={props.url.pathname}>
     <tr>
       <td>
         <table style={{ borderSpacing: '7px 0px' }}>
@@ -84,6 +85,4 @@ const HomePage = () => (
       </td>
     </tr>
   </Main>
-);
-
-export default HomePage;
+));

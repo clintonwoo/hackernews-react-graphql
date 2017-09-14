@@ -6,7 +6,7 @@ const HeaderNav = props => (
   props.isNavVisible ?
     <span className="pagetop">
       <b className="hnname">
-        <Link prefetch href="/news">
+        <Link prefetch href="/" as="/news">
           <a>{props.title}</a>
         </Link>
       </b>
@@ -41,11 +41,7 @@ const HeaderNav = props => (
     </span>
     :
     <span className="pagetop">
-      <b className="hnname">
-        <Link prefetch href="/news">
-          <a>{props.title}</a>
-        </Link>
-      </b>
+      <b>{props.title}</b>
     </span>
 );
 HeaderNav.defaultProps = {

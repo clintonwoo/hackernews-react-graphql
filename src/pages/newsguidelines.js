@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Notice from '../layouts/Notice';
 
-const NewsWelcome = () => (
+export default () => (
   <Notice>
     <b>Hacker News Guidelines</b>
     <br />
@@ -136,5 +136,3 @@ const NewsWelcome = () => (
 
   </Notice>
 );
-
-export default NewsWelcome;

@@ -11,7 +11,7 @@ const NewsFeed = (props) => {
   const rows = [];
   props.newsItems.forEach((newsItem, index) => {
     rows.push(
-      <NewsTitle 
+      <NewsTitle
         key={`${newsItem.id.toString()}title`}
         isRankVisible={true}
         rank={index}

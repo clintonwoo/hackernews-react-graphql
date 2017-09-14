@@ -18,7 +18,7 @@ const Notice = props => (
         <tr>
           <td style={{ backgroundColor: '#fafaf0' }}>
             <a href="http://www.ycombinator.com">
-              <img src="/static/yc500.gif" style={{ border: '0px' }} width="500" />
+              <img alt="" src="/static/yc500.gif" style={{ border: '0px' }} width="500" />
             </a>
             <br />
             <br />

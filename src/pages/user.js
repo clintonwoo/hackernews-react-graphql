@@ -2,10 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 
 import Main from '../layouts/Main';
+import withData from '../helpers/withData';
 
 import data from '../data/SampleData';
 
-const HomePage = () => (
+export default withData(props => (
   <Main user={data.users[0]} isFooterVisible={false} >
     <tr>
       <td>
@@ -164,7 +165,4 @@ const HomePage = () => (
       </td>
     </tr>
   </Main>
-);
-
-
-export default HomePage;
+));

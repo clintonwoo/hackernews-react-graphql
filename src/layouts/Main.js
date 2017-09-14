@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import {
+  graphql,
+  gql,
+} from 'react-apollo';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -15,13 +19,14 @@ const Main = props => (
       <link rel="stylesheet" type="text/css" href="/static/news.css" />
       <link rel="shortcut icon" href="/static/favicon.ico" />
     </Head>
-    <table style={{ border: '0px', padding: '0px', borderSpacing: '0px', borderCollapse: 'collapse', width: '85%', backgroundColor: '#f6f6ef' }} id="hnmain">
+    <table id="hnmain" style={{ border: '0px', padding: '0px', borderSpacing: '0px', borderCollapse: 'collapse', width: '85%', backgroundColor: '#f6f6ef' }}>
       <tbody>
         <Header
           title={props.title}
           isNavVisible={props.isNavVisible}
           isUserVisible={props.isUserVisible}
-          userId={props.user.id}
+          user={props.me && props.me.id}
+          currentURL={props.currentURL}
         />
         <tr style={{ height: '10px' }} />
         { props.children }
@@ -51,6 +56,24 @@ Main.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string,
   }),
+  currentURL: PropTypes.string.isRequired,
 };
 
-export default Main;
+const me = gql`
+query User {
+  me {
+    id
+    karma
+  }
+}`;
+
+export default graphql(me, {
+  options: {
+    variables: {
+    },
+  },
+  props: ({ data }) => ({
+    data,
+  }),
+})(Main);
+

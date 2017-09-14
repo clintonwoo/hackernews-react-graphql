@@ -11,7 +11,7 @@ const paragraphStyle2 = { marginTop: '7.5pt', marginRight: '0in', marginBottom: 
 const bSpanStyle = { fontSize: '13.5pt', fontFamily: 'Helvetica', color: '#444444' };
 
 
-const DMCA = () => (
+export default props => (
   <Blank>
     <Head>
       <link rel="stylesheet" type="text/css" href="/static/dmca.css" />
@@ -127,5 +127,3 @@ const DMCA = () => (
     <p className="MsoNormal">&nbsp;</p>
   </Blank>
 );
-
-export default DMCA;

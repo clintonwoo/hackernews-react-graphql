@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Main from '../layouts/Main';
+import withData from '../helpers/withData';
 
-const HomePage = () => (
+export default withData(props => (
   <Main
     isFooterVisible={false}
     isNavVisible={false}
@@ -42,6 +43,4 @@ const HomePage = () => (
       </td>
     </tr>
   </Main>
-);
-
-export default HomePage;
+));

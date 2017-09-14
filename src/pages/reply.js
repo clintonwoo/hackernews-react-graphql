@@ -5,10 +5,12 @@ import NewsTitle from '../components/NewsTitle';
 import NewsDetail from '../components/NewsDetail';
 import CommentBox from '../components/CommentBox';
 import Comments from '../components/Comments';
+import withData from '../helpers/withData';
+
 import data from '../data/SampleData';
 
-const HomePage = () => (
-  <Main>
+export default withData(props => (
+  <Main currentURL={props.url.pathname}>
     <tr>
       <td style={{ padding: '0px' }} >
         <table style={{ border: '0px', padding: '0px', borderCollapse: 'collapse', borderSpacing: '0px' }} className="itemlist">
@@ -27,6 +29,4 @@ const HomePage = () => (
       </td>
     </tr>
   </Main>
-);
-
-export default HomePage;
+));
