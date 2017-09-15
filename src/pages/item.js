@@ -1,32 +1,60 @@
 import React from 'react';
+import { graphql, gql } from 'react-apollo';
 
 import Main from '../layouts/Main';
+import NewsItem from '../components/NewsItemWithApolloRenderer';
 import NewsTitle from '../components/NewsTitle';
 import NewsDetail from '../components/NewsDetail';
-import CommentBox from '../components/CommentBox';
 import Comments from '../components/Comments';
 import withData from '../helpers/withData';
 
-import data from '../data/SampleData';
+const query = gql`
+  query NewsItemWithComments($id: Int!) {
+    newsItem(id: $id) {
+      id,
+      comments {
+        ...Comments
+      }
+      ...NewsTitle
+      ...NewsDetail
+    }
+  }
+  ${NewsTitle.fragments.newsItem}
+  ${NewsDetail.fragments.newsItem}
+  ${Comments.fragments.comment}
+`;
+const variables = {
+  id: 1235,
+};
 
-export default withData(props => (
-  <Main currentURL={props.url.pathname}>
-    <tr>
-      <td style={{ padding: '0px' }} >
-        <table style={{ border: '0px', padding: '0px', borderCollapse: 'collapse', borderSpacing: '0px' }} className="itemlist">
-          <tbody>
-            <NewsTitle isRankVisible={false} {...data.newsItems[5]} />
-            <NewsDetail isPostScrutinyVisible={true} {...data.newsItems[5]} />
-            <tr key="morespace" className="morespace" style={{ height: '10px' }} />
-            <CommentBox {...data.newsItems[5]} />
-          </tbody>
-        </table>
-        <br />
-        <br />
-        <Comments {...data.newsItems[5]} />
-        <br />
-        <br />
-      </td>
-    </tr>
-  </Main>
-));
+const NewsItemWithComments = graphql(query, {
+  options: {
+    variables,
+  },
+  props: ({ data }) => ({
+    data,
+  }),
+  loadMorePosts: data => data.fetchMore({
+    variables: {
+      skip: data.allNewsItems.length,
+    },
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      if (!fetchMoreResult) {
+        return previousResult;
+      }
+      return Object.assign({}, previousResult, {
+        // Append the new posts results to the old one
+        allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
+      });
+    },
+  }),
+})(NewsItem);
+
+export default withData((props) => {
+  variables.id = (props.url.query && +props.url.query.id) || 0;
+  return (
+    <Main currentURL={props.url.pathname}>
+      <NewsItemWithComments />
+    </Main>
+  );
+});

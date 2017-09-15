@@ -13,21 +13,31 @@ class NewsDetail extends Component {
     commentCount: PropTypes.number.isRequired,
     creationTime: PropTypes.number.isRequired,
     submitterId: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    isPostScrutinyVisible: PropTypes.bool,
     points: PropTypes.number.isRequired,
+    isPostScrutinyVisible: PropTypes.bool,
     isFavoriteVisible: PropTypes.bool,
   }
   static defaultProps = {
-    title: undefined,
     isFavoriteVisible: true,
     isPostScrutinyVisible: false,
   }
+  static fragments = {
+    newsItem: gql`
+      fragment NewsDetail on NewsItem {
+        id,
+        commentCount,
+        creationTime,
+        submitterId,
+        points
+      }
+    `,
+  };
 
   upvote() {
-
+    console.log(this);
   }
   hidestory() {
+    console.log(this);
     return "/hide?id=15077449&amp;goto=news&amp;auth=15140ad499d896ef90cc72930b3fb7706f6d6398";
   }
   render() {
@@ -85,15 +95,5 @@ class NewsDetail extends Component {
     );
   }
 }
-
-const post = gql`
-  fragment NewsDetail on entry {
-    id
-    submitterId
-    commentCount
-    points
-    isFavoriteVisible
-  }
-`
 
 export default NewsDetail;

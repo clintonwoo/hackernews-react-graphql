@@ -1,11 +1,13 @@
-import data from '../SampleData';
-import * as DB from '../Database';
 import cache from '../Cache';
+import * as HNDB from '../HNDataAPI';
+import * as DB from '../Database';
+
+import data from '../SampleData';
 
 export default class NewsItem {
   static getNewsItem(id) {
     // Check cache first?
-    return cache.getNewsItem(id) || DB.getNewsItem(id);
+    return cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
   }
   static upvoteNewsItem(id) {
     const post = DB.getNewsItem(id);

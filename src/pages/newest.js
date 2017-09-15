@@ -5,26 +5,21 @@ import {
 } from 'react-apollo';
 
 import Main from '../layouts/Main';
+import NewsFeed from '../components/NewsFeed';
 import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
-const pageNumber = 0;
+let pageNumber = 0;
 const skip = POSTS_PER_PAGE * pageNumber;
+
 const query = gql`
   query NewestFeed($type: FeedType!, $first: Int!, $skip: Int!) {
     feed(type: $type, first: $first, skip: $skip) {
-      id
-      creationTime
-      submitterId
-      title
-      text
-      url
-      commentCount
-      rank
-      points
+      ...NewsFeed
     }
   }
+  ${NewsFeed.fragments.newsItem}
 `;
 const variables = {
   type: 'NEW',
@@ -41,8 +36,12 @@ const NewestNewsFeed = graphql(query, {
   }),
 })(NewsFeedApolloHOC);
 
-export default withData(props => (
-  <Main currentURL={props.url.pathname}>
-    <NewestNewsFeed />
-  </Main>
-));
+export default withData((props) => {
+  pageNumber = (props.url.query && +props.url.query.p) || 0;
+  variables.skip = POSTS_PER_PAGE * pageNumber;
+  return (
+    <Main currentURL={props.url.pathname}>
+      <NewestNewsFeed currentURL={props.url.pathname} />
+    </Main>
+  );
+});

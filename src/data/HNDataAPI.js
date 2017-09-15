@@ -1,9 +1,6 @@
 import Firebase from 'firebase';
-// import fetch from 'isomorphic-fetch';
 import debug from 'debug';
 
-// import * as DB from './Database';
-// import sampleData from './SampleData';
 import cache from './Cache';
 import {
   HN_API_URL,
@@ -38,6 +35,7 @@ export function fetchNewsItem(id) {
           id: post.id,
           creationTime: post.time * 1000,
           commentCount: post.descendants || 0,
+          comments: post.kids || [],
           points: post.score,
           submitterId: post.by,
           title: post.title,
@@ -57,8 +55,31 @@ export function fetchNewsItem(id) {
   //   .catch(reason => logger(reason));
 }
 
+export function fetchComment(id) {
+  logger(`Fetching ${HN_API_URL}/item/${id}.json`);
+  return new Promise((resolve, reject) => {
+    api.child(`item/${id}`).once('value', (itemSnapshot) => {
+      const item = itemSnapshot.val();
+      if (item !== null && !item.deleted) {
+        const comment = {
+          id: item.id,
+          creationTime: item.time * 1000,
+          comments: item.kids || [],
+          parent: item.parent,
+          submitterId: item.by,
+          text: item.text,
+        };
+        cache.setComment(comment);
+        logger(`Created Comment: ${item.id}`);
+        resolve(comment);
+      } else {
+        reject(item);
+      }
+    }, reject);
+  });
+}
+
 export function getFeed(feedType) {
-  // Top stories are the front page
   logger(`Fetching /${feedType}stories.json`);
 
   return new Promise((resolve, reject) => {
@@ -66,10 +87,6 @@ export function getFeed(feedType) {
       resolve(feedSnapshot.val());
     }, reject);
   });
-
-  // return fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
-  //   .then(response => response.json())
-  //   .catch(reason => logger(reason));
 }
 
 const rebuildFeed = (feedType) => {

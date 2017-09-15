@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// import { graphql, gql } from 'react-apollo';
+import { gql } from 'react-apollo';
 
 import NewsTitle from './NewsTitle';
 import NewsDetail from './NewsDetail';
@@ -29,7 +28,14 @@ const NewsFeed = (props) => {
     rows.push(<tr className="spacer" key={`${newsItem.id.toString()}spacer`} style={{ height: 5 }} />);
   });
   rows.push(<tr key="morespace" className="morespace" style={{ height: '10px' }} />);
-  rows.push(<tr key="morelinktr"><td key="morelinkcolspan" colSpan="2" /><td key="morelinktd" className="title"><a key="morelink" href="/news?p=2" className="morelink" rel="nofollow">More</a></td></tr>);
+  rows.push(
+    <tr key="morelinktr">
+      <td key="morelinkcolspan" colSpan="2" />
+      <td key="morelinktd" className="title">
+        <a key="morelink" href={`${props.currentURL}?p=2`} className="morelink" rel="nofollow">More</a>
+      </td>
+    </tr>,
+  );
 
   return (
     <tr>
@@ -64,8 +70,19 @@ NewsFeed.propTypes = {
     url: PropTypes.string,
     commentCount: PropTypes.number.isRequired,
     points: PropTypes.number.isRequired,
-    // favoriteVisible: PropTypes.bool.isRequired,
   })).isRequired,
+  currentURL: PropTypes.string.isRequired,
+};
+NewsFeed.fragments = {
+  newsItem: gql`
+    fragment NewsFeed on NewsItem {
+      id
+      ...NewsTitle
+      ...NewsDetail
+    }
+    ${NewsTitle.fragments.newsItem}
+    ${NewsDetail.fragments.newsItem}
+  `,
 };
 
 export default NewsFeed;

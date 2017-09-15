@@ -25,15 +25,17 @@ const typeDefs = `
 
     creationTime: Date
 
-    # The ID of the comment submitter
-    commenterId: String!
+    comments: [Comment]
 
-    # The comment
+    parent: Int!
+
+    # The ID of the user who submitted the comment
+    submitterId: String
+
     text: String
 
-    upvotes: [Int]
-
-    upvoteCount: Int
+    # The User who submitted the comment
+    author: User
   }
 
   scalar Date
@@ -95,6 +97,9 @@ const typeDefs = `
 
   # the schema allows the following queries:
   type Query {
+    # A comment, it's parent could be another comment or a news item.
+    comment(id: Int!): Comment
+
     feed(
       # The sort order for the feed
       type: FeedType!,
@@ -156,7 +161,10 @@ const resolvers = {
 
   /*          QUERY RESOLVERS        */
 
+
   Query: {
+    comment: (_, { id }, context) => context.Comment.getComment(id),
+
     feed(root, { type, first, skip }, context) {
       // Could maybe put this constant limit of 30 items into config
       const limit = (first < 1 || first > 30) ? 30 : first;
@@ -173,19 +181,17 @@ const resolvers = {
 
   /*       MUTATION RESOLVERS       */
 
+
   Mutation: {
     upvoteNewsItem: (_, { postId }, context) => context.NewsItem.upvoteNewsItem(postId),
   },
 
   /*       GRAPHQL TYPE RESOLVERS        */
 
-  User: {
-    posts: (user, _, context) => context.User.getPostsForUser(user.id),
-    // getNewsItems().filter(newsItem => newsItem.submitterId === user.id),
-  },
 
-  NewsItem: {
-    author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
+  Comment: {
+    author: (comment, _, context) => context.User.getUser(comment.submitterId),
+    comments: (comment, _, context) => comment.comments.map(commentId => context.Comment.getComment(commentId)),
   },
 
   Date: new GraphQLScalarType({
@@ -212,6 +218,16 @@ const resolvers = {
       return null;
     },
   }),
+
+  NewsItem: {
+    author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
+    comments: (newsItem, _, context) => newsItem.comments.map(commentId => context.Comment.getComment(commentId)),
+  },
+
+  User: {
+    posts: (user, _, context) => context.User.getPostsForUser(user.id),
+    // getNewsItems().filter(newsItem => newsItem.submitterId === user.id),
+  },
 };
 
 export default makeExecutableSchema({

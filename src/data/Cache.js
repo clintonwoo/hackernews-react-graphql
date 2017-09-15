@@ -13,9 +13,8 @@ import {
 
 export function warmCache() {
   // Fetch the front pages
-  Feed.getForType('HOT', 30, 0);
-  Feed.getForType('NEW', 30, 0);
   Feed.getForType('TOP', 30, 0);
+  Feed.getForType('NEW', 30, 0);
 
   // Run every 15 mins
   setTimeout(warmCache, 1000 * 60 * 15);
@@ -48,12 +47,26 @@ class Cache {
     return this.userCache.dump();
   }
 
-  createUser(user) {
+  setUser(user) {
     this.userCache.set(user.id, user);
     return user;
   }
 
   /*                    END USERS                         */
+
+  /*                   BEGIN COMMENTS                        */
+
+
+  getComment(id) {
+    return this.commentCache.get(id);
+  }
+
+  setComment(comment) {
+    this.userCache.set(comment.id, comment);
+    return comment;
+  }
+
+  /*                    END COMMENTS                         */
 
   /*                   BEGIN CACHES                         */
 
@@ -69,6 +82,10 @@ class Cache {
   userCache = LRU({
     max: 500,
     maxAge: 1000 * 60 * 60 * 2, // 2 hour cache: ms * s * m
+  })
+  commentCache = LRU({
+    max: 5000,
+    maxAge: 1000 * 60 * 60 * 1, // 1 hour cache: ms * s * m
   })
 
   /*                   END CACHES                         */

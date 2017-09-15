@@ -16,7 +16,7 @@ export default withData(props => (
           <table border="0">
             <tbody>
               <tr className="athing">
-                <td valign="top">user:</td>
+                <td style={{ vAlign: 'top' }}>user:</td>
                 <td timestamp="1503454410">
                   <Link prefetch href="/user?id=clintonwoo">
                     <a className="hnuser">
@@ -26,14 +26,14 @@ export default withData(props => (
                 </td>
               </tr>
               <tr>
-                <td valign="top">created:</td><td>4 days ago</td>
+                <td style={{ vAlign: 'top' }}>created:</td><td>4 days ago</td>
               </tr>
               <tr>
-                <td valign="top">karma:</td>
+                <td style={{ vAlign: 'top' }}>karma:</td>
                 <td>1</td>
               </tr>
               <tr>
-                <td valign="top">about:</td>
+                <td style={{ vAlign: 'top' }}>about:</td>
                 <td>
                   <textarea cols="60" rows="5" wrap="virtual" name="about" />
                   <font size="-2">
@@ -46,13 +46,13 @@ export default withData(props => (
                 </td>
               </tr>
               <tr>
-                <td valign="top">email:</td>
+                <td style={{ vAlign: 'top' }}>email:</td>
                 <td>
                   <input type="text" name="uemail" value="clinton.d@iinet.net.au" size="60" />
                 </td>
               </tr>
               <tr>
-                <td valign="top">showdead:</td>
+                <td style={{ vAlign: 'top' }}>showdead:</td>
                 <td>
                   <select name="showd">
                     <option>yes</option>
@@ -61,7 +61,7 @@ export default withData(props => (
                 </td>
               </tr>
               <tr>
-                <td valign="top">noprocrast:</td>
+                <td style={{ vAlign: 'top' }}>noprocrast:</td>
                 <td>
                   <select name="nopro">
                     <option>yes</option>
@@ -70,19 +70,19 @@ export default withData(props => (
                 </td>
               </tr>
               <tr>
-                <td valign="top">maxvisit:</td>
+                <td style={{ vAlign: 'top' }}>maxvisit:</td>
                 <td>
                   <input type="text" name="maxv" value="20" size="16" />
                 </td>
               </tr>
               <tr>
-                <td valign="top">minaway:</td>
+                <td style={{ vAlign: 'top' }}>minaway:</td>
                 <td>
                   <input type="text" name="mina" value="180" size="16" />
                 </td>
               </tr>
               <tr>
-                <td valign="top">delay:</td>
+                <td style={{ vAlign: 'top' }}>delay:</td>
                 <td>
                   <input type="text" name="delay" value="0" size="16" />
                 </td>

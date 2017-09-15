@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
+import { gql } from 'react-apollo';
 
 class NewsTitle extends Component {
   static propTypes = {
@@ -17,12 +18,22 @@ class NewsTitle extends Component {
     rank: undefined,
     isRankVisible: true,
   }
+  static fragments = {
+    newsItem: gql`
+      fragment NewsTitle on NewsItem {
+        id,
+        title,
+        url,
+        rank
+      }
+    `,
+  };
 
   upvote() {
-
+    console.log(this);
   }
   hidestory() {
-
+    console.log(this);
   }
   render() {
     return (

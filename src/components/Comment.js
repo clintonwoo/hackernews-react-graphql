@@ -1,7 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { gql } from 'react-apollo';
 import Link from 'next/link';
 
+import convertNumberToTimeAgo from '../helpers/convertNumberToTimeAgo';
+
 class Comment extends React.Component {
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    creationTime: PropTypes.number.isRequired,
+    indentationLevel: PropTypes.number.isRequired,
+    submitterId: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      creationTime: PropTypes.number.isRequired,
+      submitterId: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired,
+  }
+  static fragments = {
+    comment: gql`
+      fragment Comment on Comment {
+        id,
+        creationTime,
+        comments {
+          id,
+          creationTime,
+          submitterId,
+          text
+        },
+        submitterId,
+        text,
+      }
+    `,
+  }
   vote() {
     this;
     return "vote(event, this, &quot;up&quot;)";
@@ -18,7 +51,7 @@ class Comment extends React.Component {
             <tbody>
               <tr>
                 <td className="ind">
-                  <img alt="" src="/static/s.gif" height="1" width="0"/* Width varies depending on comment level*/ />
+                  <img alt="" src="/static/s.gif" height="1" width={`${this.props.indentationLevel * 40}px`}/* Width varies depending on comment level*/ />
                 </td>
                 <td style={{ verticalAlign: 'top' }} className="votelinks">
                   <center>
@@ -31,12 +64,12 @@ class Comment extends React.Component {
                   <div style={{ marginTop: '2px', marginBottom: '-10px' }}>
                     <span className="comhead">
                       <Link prefetch href="/user?id=mstade">
-                        <a className="hnuser">mstade</a>
+                        <a className="hnuser">{this.props.submitterId}</a>
                       </Link>
                       <span className="age">
                         {' '}
-                        <Link prefetch href="/item?id=15238246">
-                          <a>1 hour ago</a>
+                        <Link prefetch href={`/item?id=${this.props.id}`}>
+                          <a>{convertNumberToTimeAgo(this.props.creationTime)}</a>
                         </Link>
                       </span>
                       {' '}
@@ -50,17 +83,12 @@ class Comment extends React.Component {
                   <br />
                   <div className="comment">
                     <span className="c00">
-                      I honestly can't believe I'm saying this, but: can you please enable me to buy a new license for 4.0 even though it may not even be on the road map yet? Or switch to / enable a subscriber model which is paid yearly and gives access to all upgrades?<p>I rely so much on sublime for my day to day work and I fear the $80 or whatever I paid for it whenever ago is too cheap for the amount of value I'm getting out of it, and I'd hate to see this magnificent piece of software fall by the wayside because of an unsustainable business model.
-                      </p>
-                      <p>
-                        Of course, if the business is perfectly sustainable then you know, carry on as you where.
-                        <span />
-                      </p>
+                      <span dangerouslySetInnerHTML={{__html: this.props.text}} />
                       <div className="reply">
                         <p>
                           <font size="1">
                             <u>
-                              <Link prefetch href="/reply?id=15238246&amp;goto=item%3Fid%3D15237896%2315238246">
+                              <Link prefetch href={`/reply?id=${this.props.id}&goto=item%3Fid%3D${this.props.id}`}>
                                 <a>reply</a>
                               </Link>
                             </u>
