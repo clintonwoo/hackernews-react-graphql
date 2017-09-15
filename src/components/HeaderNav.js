@@ -14,29 +14,34 @@ const HeaderNav = props => (
       {props.userId && <Link prefetch href="/newswelcome"><a>welcome</a></Link>}
       {props.userId && ' | '}
       <Link prefetch href="/newest">
-        <a>new</a>
+        <a className={props.currentURL === '/newest' ? 'topsel' : ''}>new</a>
       </Link>
       {props.userId && ' | '}
-      {props.userId && <Link prefetch href={`/threads?id=${props.userId}`}><a>threads</a></Link>}
+      {
+        props.userId &&
+        <Link prefetch href={`/threads?id=${props.userId}`}>
+          <a className={props.currentURL === '/threads' ? 'topsel' : ''}>threads</a>
+        </Link>
+      }
       {' | '}
       <Link prefetch href="/newcomments">
-        <a>comments</a>
+        <a className={props.currentURL === '/newcomments' ? 'topsel' : ''}>comments</a>
       </Link>
       {' | '}
       <Link prefetch href="/show">
-        <a>show</a>
+        <a className={props.currentURL === '/show' ? 'topsel' : ''}>show</a>
       </Link>
       {' | '}
       <Link prefetch href="/ask">
-        <a>ask</a>
+        <a className={props.currentURL === '/ask' ? 'topsel' : ''}>ask</a>
       </Link>
       {' | '}
       <Link prefetch href="/jobs">
-        <a>jobs</a>
+        <a className={props.currentURL === '/jobs' ? 'topsel' : ''}>jobs</a>
       </Link>
       {' | '}
       <Link prefetch href="/submit">
-        <a>submit</a>
+        <a className={props.currentURL === '/submit' ? 'topsel' : ''}>submit</a>
       </Link>
     </span>
     :
@@ -49,6 +54,7 @@ HeaderNav.defaultProps = {
 };
 HeaderNav.propTypes = {
   userId: PropTypes.string,
+  currentURL: PropTypes.string.isRequired,
   isNavVisible: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
 };

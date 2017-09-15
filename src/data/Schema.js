@@ -23,14 +23,14 @@ const typeDefs = `
   type Comment {
     id: Int!
 
-    creationTime: Date
+    creationTime: Date!
 
-    comments: [Comment]
+    comments: [Comment]!
 
     parent: Int!
 
     # The ID of the user who submitted the comment
-    submitterId: String
+    submitterId: String!
 
     text: String
 
@@ -128,6 +128,15 @@ const typeDefs = `
   
     # Newest entries first
     NEW
+
+    # SHOW HN articles
+    SHOW
+
+    # ASK HN articles
+    ASK
+
+    # Job listings
+    JOB
   }
 
   # this schema allows the following mutation:
@@ -157,7 +166,7 @@ const resolvers = {
       authentication information, dataloader instances, and anything
       else that should be taken into account when resolving the query
   */
-  
+
 
   /*          QUERY RESOLVERS        */
 
@@ -191,7 +200,9 @@ const resolvers = {
 
   Comment: {
     author: (comment, _, context) => context.User.getUser(comment.submitterId),
-    comments: (comment, _, context) => comment.comments.map(commentId => context.Comment.getComment(commentId)),
+    comments: (comment, _, context) => context.Comment.getComments(comment.comments),
+    // 
+    // comment.comments.map(commentId => context.Comment.getComment(commentId)),
   },
 
   Date: new GraphQLScalarType({
@@ -221,7 +232,8 @@ const resolvers = {
 
   NewsItem: {
     author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
-    comments: (newsItem, _, context) => newsItem.comments.map(commentId => context.Comment.getComment(commentId)),
+    comments: (newsItem, _, context) => context.Comment.getComments(newsItem.comments),
+    // newsItem.comments.map(commentId => context.Comment.getComment(commentId)),
   },
 
   User: {

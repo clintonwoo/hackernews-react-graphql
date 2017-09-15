@@ -14,14 +14,17 @@ class Feed {
     logger(`Get first ${first} ${type} stories skip ${skip}.`);
     switch (type) {
       case 'TOP': {
-        // In this app demo the HN data is preconstructed in-memory
+        // In this app the HN data is reconstructed in-memory
         return this.topNewsItems.slice(skip, first + skip);
       }
       case 'NEW':
         return this.newNewsItems.slice(skip, first + skip);
-      // case 'TOP':
-      //   if (cache.isReady) return cache.getTopNewsItems(first, skip);
-      //   return DB.getTopNewsItems(first, skip);
+      case 'SHOW':
+        return this.showNewsItems.slice(skip, first + skip);
+      case 'ASK':
+        return this.askNewsItems.slice(skip, first + skip);
+      case 'JOB':
+        return this.jobNewsItems.slice(skip, first + skip);
       default:
         return sampleData.newsItems.slice(skip, skip + first);
     }
@@ -37,9 +40,9 @@ class Feed {
   /* A pre constructed cache of news feeds */
   topNewsItems = sampleData.topStoriesCache;
   newNewsItems = sampleData.topStoriesCache;
-  showNewsItems = [];
-  askNewsItems = [];
-  jobNewsItems = [];
+  showNewsItems = sampleData.topStoriesCache;
+  askNewsItems = sampleData.topStoriesCache;
+  jobNewsItems = sampleData.topStoriesCache;
 
   /*                     BEGIN FEED                         */
 

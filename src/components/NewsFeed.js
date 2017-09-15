@@ -8,11 +8,13 @@ import NewsDetail from './NewsDetail';
 const NewsFeed = (props) => {
   // props.newsItems.sort((a, b) => (a.rank - b.rank));
   const rows = [];
+  if (props.notice) rows.push(...props.notice);
   props.newsItems.forEach((newsItem, index) => {
     rows.push(
       <NewsTitle
         key={`${newsItem.id.toString()}title`}
-        isRankVisible={true}
+        isRankVisible={props.isRankVisible}
+        isUpvoteVisible={props.isUpvoteVisible}
         rank={index}
         {...newsItem}
       />,
@@ -22,6 +24,7 @@ const NewsFeed = (props) => {
         key={`${newsItem.id.toString()}detail`}
         isFavoriteVisible={false}
         isPostScrutinyVisible={props.isPostScrutinyVisible}
+        isJobListing={props.isJobListing}
         {...newsItem}
       />,
     );
@@ -58,6 +61,10 @@ const NewsFeed = (props) => {
 };
 NewsFeed.defaultProps = {
   isPostScrutinyVisible: false,
+  isJobListing: false,
+  isRankVisible: true,
+  isUpvoteVisible: true,
+  notice: null,
 };
 NewsFeed.propTypes = {
   isPostScrutinyVisible: PropTypes.bool,
@@ -71,6 +78,10 @@ NewsFeed.propTypes = {
     commentCount: PropTypes.number.isRequired,
     points: PropTypes.number.isRequired,
   })).isRequired,
+  notice: PropTypes.arrayOf(PropTypes.element),
+  isJobListing: PropTypes.bool,
+  isRankVisible: PropTypes.bool,
+  isUpvoteVisible: PropTypes.bool,
   currentURL: PropTypes.string.isRequired,
 };
 NewsFeed.fragments = {

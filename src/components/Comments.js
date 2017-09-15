@@ -6,23 +6,40 @@ import Comment from './Comment';
 
 const Comments = (props) => {
   const rows = [];
+  function buildComment(comment, indent) {
+    return (
+      <Comment
+        key={comment.id}
+        parentId={comment.parent}
+        indentationLevel={indent}
+        {...comment}
+      />
+    );
+  }
   props.newsItem.comments.forEach((rootComment) => {
-    rows.push(<Comment
-      key={rootComment.id}
-      parentId={props.newsItem.id}
-      indentationLevel={0}
-      {...rootComment}
-    />);
-    rootComment.comments.forEach((one) => {
-      rows.push(<Comment
-        key={one.id}
-        parentId={one.parent}
-        indentationLevel={1}
-        {...one}
-      />);
+    rows.push(buildComment(rootComment, 0));
+    
+    rootComment.comments.forEach((commentOne) => {
+      rows.push(buildComment(commentOne, 1));
+
+      commentOne.comments.forEach((commentTwo) => {
+        rows.push(buildComment((commentTwo), 2));
+
+        commentTwo.comments.forEach((commentThree) => {
+          rows.push(buildComment(commentThree, 3));
+
+          commentThree.comments.forEach((commentFour) => {
+            rows.push(buildComment(commentFour, 4));
+            
+            commentFour.comments.forEach((commentFive) => {
+              rows.push(buildComment(commentFive, 5));
+            });
+          });
+        });
+      });
     });
   });
-  
+
   return (
     <table className="comment-tree" style={{ border: '0' }} >
       <tbody>
@@ -48,6 +65,18 @@ Comments.fragments = {
       id,
       comments {
         id,
+        comments {
+          id,
+          comments {
+            id,
+            comments {
+              id,
+              ...Comment
+            }
+            ...Comment
+          }
+          ...Comment
+        }
         ...Comment
       }
       ...Comment
@@ -55,12 +84,5 @@ Comments.fragments = {
     ${Comment.fragments.comment}
   `,
 };
-// comments {
-//   id
-//   ...Comment
-// }
-// ...Comment
-// comments {
-//   ...Comment
-// }
+
 export default Comments;

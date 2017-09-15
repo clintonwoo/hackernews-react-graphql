@@ -133,6 +133,5 @@ export default () => (
         <br />
       </span>
     </p>
-
   </Notice>
 );

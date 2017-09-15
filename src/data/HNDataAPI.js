@@ -60,7 +60,7 @@ export function fetchComment(id) {
   return new Promise((resolve, reject) => {
     api.child(`item/${id}`).once('value', (itemSnapshot) => {
       const item = itemSnapshot.val();
-      if (item !== null && !item.deleted) {
+      if (item !== null && !item.deleted && !item.dead) {
         const comment = {
           id: item.id,
           creationTime: item.time * 1000,
@@ -107,17 +107,15 @@ const rebuildFeed = (feedType) => {
 
 /* BEGIN SEED DATA */
 
-export function seedCache() {
+export function seedCache(delay) {
   // TODO: Build sample cache then seed
-  logger('Seeding cache');
-  function delayedSeed() {
+  logger(`Waiting ${delay} ms before seeding the app with data.`);
+  setTimeout(() => {
+    logger('Seeding cache');
     ['top', 'new', 'show', 'ask', 'job'].forEach((feedType) => {
       rebuildFeed(feedType);
     });
-  }
-
-  logger('Waiting 1 min before seeding the app with data.');
-  setTimeout(delayedSeed, 1000 * 60 * 1);
-  // Delay seeding the cache so we don't spam using Nodemon
+  }, delay);
+  // Delay seeding the cache so we don't spam in dev
 }
 /*  END SEED DATA */

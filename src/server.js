@@ -34,8 +34,9 @@ import {
   dev,
 } from './config';
 
-// Populate the in-memory data using the HN api
-seedCache();
+// Seed the in-memory data using the HN api
+const delay = dev ? 1000 * 60 * 0 /* 1 minute */ : 0;
+seedCache(delay);
 
 const app = next({ dir: appPath, dev });
 

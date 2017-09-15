@@ -10,6 +10,7 @@ export default withData(props => (
   <Main currentURL={props.url.pathname}>
     <NewsFeed
       newsItems={data.newsItems /*this.props.newsItems*/}
+      currentURL={props.url.pathname}
     />
   </Main>
 ));

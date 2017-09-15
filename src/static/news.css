@@ -37,6 +37,7 @@ a:visited { color:#828282; text-decoration:none; }
 .cdd, .cdd a:link, .cdd a:visited { color:#dddddd; }
 
 .pagetop a:visited { color:#000000;}
+.topsel { color:#ffffff !important; }
 .topsel a:link, .topsel a:visited { color:#ffffff; }
 
 .subtext a:link, .subtext a:visited { color:#828282; }

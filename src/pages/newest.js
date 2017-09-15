@@ -41,7 +41,7 @@ export default withData((props) => {
   variables.skip = POSTS_PER_PAGE * pageNumber;
   return (
     <Main currentURL={props.url.pathname}>
-      <NewestNewsFeed currentURL={props.url.pathname} />
+      <NewestNewsFeed options={{ currentURL: props.url.pathname }} />
     </Main>
   );
 });

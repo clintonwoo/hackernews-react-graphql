@@ -52,7 +52,7 @@ export default withData((props) => {
   variables.skip = POSTS_PER_PAGE * pageNumber;
   return (
     <Main currentURL={props.url.pathname}>
-      <TopNewsFeed currentURL={props.url.pathname} />
+      <TopNewsFeed options={{ currentURL: props.url.pathname }} />
     </Main>
-  )
+  );
 });

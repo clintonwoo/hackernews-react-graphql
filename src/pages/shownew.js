@@ -19,12 +19,12 @@ const query = gql`
   ${NewsFeed.fragments.newsItem}
 `;
 const variables = {
-  type: 'JOB',
+  type: 'SHOW',
   first: POSTS_PER_PAGE,
   skip,
 };
 
-const JobNewsFeed = graphql(query, {
+const ShowHNNewsFeed = graphql(query, {
   options: {
     variables,
   },
@@ -51,28 +51,24 @@ export default withData((props) => {
   pageNumber = (props.url.query && +props.url.query.p) || 0;
   variables.skip = POSTS_PER_PAGE * pageNumber;
   const notice = [
-    <tr key="noticetopspacer" style={{ height: '20px' }} />,
-    <tr key="notice">
-      <td />
-      <td><img alt="" src="/static/s.gif" height="1" width="14" /></td>
+    <tr style={{ height: '5px' }} />,
+    <tr>
+      <td colSpan="2" />
       <td>
-        These are jobs at startups that were funded by Y Combinator.
-        You can also get a job at a YC startup through <a href="https://triplebyte.com/?ref=yc_jobs"><u>Triplebyte</u></a>.
+        Please read the <a href="showhn.html"><u>rules</u></a>. You can also
+        browse the <a href="shownew"><u>newest</u></a> Show HNs.
       </td>
     </tr>,
-    <tr key="noticebottomspacer" style={{ height: '20px' }} />,
+    <tr style={{ height: '10px' }} />,
   ];
   return (
     <Main currentURL={props.url.pathname}>
-      <JobNewsFeed options={{
+      <ShowHNNewsFeed options={{
         currentURL: props.url.pathname,
-        isRankVisible: false,
-        isUpvoteVisible: false,
-        isJobListing: true,
         notice,
       }}
       />
     </Main>
-  );
+  )
 });
 
