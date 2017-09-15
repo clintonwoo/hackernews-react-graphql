@@ -100,7 +100,8 @@ const rebuildFeed = (feedType) => {
         Feed[feedType] = feed;
         logger(`Updated ${feedType} ids`);
       }),
-    );
+    )
+    .catch(reason => logger(`Error building feed: ${reason}`));
 };
 
 /* END NEWS ITEMS */

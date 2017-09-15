@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { gql } from 'react-apollo';
 import Link from 'next/link';
+import renderHTML from 'react-render-html';
 
 import convertNumberToTimeAgo from '../helpers/convertNumberToTimeAgo';
 
@@ -35,13 +36,13 @@ class Comment extends React.Component {
       }
     `,
   }
-  vote() {
-    this;
-    return "vote(event, this, &quot;up&quot;)";
+  vote = () => {
+    // this;
+    // return "vote(event, this, &quot;up&quot;)";
   }
-  toggle() {
-    this;
-    return "toggle(event, 15238246)";
+  toggle = () => {
+    // this;
+    // return "toggle(event, 15238246)";
   }
   render() {
     return (
@@ -83,7 +84,7 @@ class Comment extends React.Component {
                   <br />
                   <div className="comment">
                     <span className="c00">
-                      <span dangerouslySetInnerHTML={{__html: this.props.text}} />
+                      <span >{renderHTML(this.props.text)}</span>
                       <div className="reply">
                         <p>
                           <font size="1">

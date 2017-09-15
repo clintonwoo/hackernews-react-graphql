@@ -12,7 +12,8 @@ export default class Comment {
   }
   static getComments(ids) {
     return Promise.all(ids.map(commentId => Comment.getComment(commentId)))
-      .then(comments => comments.filter(comment => comment !== undefined));
+      .then(comments => comments.filter(comment => comment !== undefined))
+      .catch(reason => logger(`Rejected comments: ${reason}`));
     // return Promise.all(ids.map(comment => cache.getComment(comment.id) || HNDB.fetchComment(comment.id)));
     // return ids.map(comment => cache.getComment(comment.id) || HNDB.fetchComment(comment.id));
   }
