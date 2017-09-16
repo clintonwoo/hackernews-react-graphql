@@ -16,7 +16,7 @@
     "flow": "flow",
     "build": "npm run build-clean && yarn install --dev && babel src -d build/app --ignore '**/*__tests__' && cp -R src/static build/app/static && next build build/app",
     "build-clean": "rm -rf build/app",
-    "build-next": "NODE_ENV=production yarn install --dev && next build src",
+    "build-next": "yarn install --dev && next build src",
     "build-docker": "docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
     "build-static-website": "NODE_ENV=production rm -rf build/static && yarn install --dev && next build src && next export src -o build/static",
     "start": "NODE_ENV=production node build/app/server.js"
@@ -52,7 +52,7 @@
     "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
-    "react-render-html": "^0.5.0",
+    "react-render-html": "0.1.5",
     "url": "^0.11.0"
   },
   "devDependencies": {

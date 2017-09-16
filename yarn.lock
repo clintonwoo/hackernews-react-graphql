@@ -10,10 +10,6 @@
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.9.4.tgz#cdeb6bcbef9b6c584374b81aa7f48ecf3da404fa"
 
-"@types/node@^6.0.46":
-  version "6.0.88"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.88.tgz#f618f11a944f6a18d92b5c472028728a3e3d4b66"
-
 "@types/react@^15.0.22":
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-15.6.1.tgz#497f7228762da4432e335957cb34fe9b40f150ae"
@@ -1138,7 +1134,7 @@ babel-runtime@6.23.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
-babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0, babel-runtime@^6.6.1:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -4893,11 +4889,9 @@ parse5@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94"
 
-parse5@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/parse5/-/parse5-3.0.2.tgz#05eff57f0ef4577fb144a79f8b9a967a6cc44510"
-  dependencies:
-    "@types/node" "^6.0.46"
+parse5@^2.0.2:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-2.2.3.tgz#0c4fc41c1000c5e6b93d48b03f8083837834e9f6"
 
 parseurl@~1.3.1:
   version "1.3.1"
@@ -5238,9 +5232,9 @@ react-apollo@^1.4.15:
     object-assign "^4.0.1"
     prop-types "^15.5.8"
 
-react-attr-converter@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/react-attr-converter/-/react-attr-converter-0.3.1.tgz#4a2abf6d907b7ddae4d862dfec80e489ce41ad6e"
+react-attr-converter@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-attr-converter/-/react-attr-converter-0.1.1.tgz#0591f5a1146e3ab9c8e4d303d6cf966f5e6d7608"
 
 react-deep-force-update@^2.0.1:
   version "2.1.0"
@@ -5283,13 +5277,20 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-render-html@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/react-render-html/-/react-render-html-0.5.0.tgz#74cbf896b9ab83a1cf3c444ff064373576ff41ec"
+react-render-html@0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-render-html/-/react-render-html-0.1.5.tgz#09f85a8c425024dcabf816e4084c566a379569e4"
   dependencies:
-    camelcase "^3.0.0"
-    parse5 "^3.0.2"
-    react-attr-converter "^0.3.1"
+    parse5 "^2.0.2"
+    react-attr-converter "0.1.1"
+    react-styling "^1.5.0"
+
+react-styling@^1.5.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-styling/-/react-styling-1.6.2.tgz#1a1d9860ac40beeb0c9672a517a4d5366fe9dfc0"
+  dependencies:
+    babel-runtime "^6.6.1"
+    style-builder "^1.0.13"
 
 react-test-renderer@^15.6.1:
   version "15.6.1"
@@ -5946,6 +5947,12 @@ strip-indent@^1.0.1:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+
+style-builder@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/style-builder/-/style-builder-1.0.13.tgz#908f71f77c8ed62df80e20772a2325165f8d3687"
+  dependencies:
+    object-assign "^4.0.1"
 
 styled-jsx@^1.0.8:
   version "1.0.10"
