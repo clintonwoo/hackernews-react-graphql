@@ -51,6 +51,17 @@ This project is a clone of hacker news rewritten with universal Javascript, usin
 - Snapshot Testing - (jest)
 - Faster Package Install - (yarn)
 
+
+### Architecture Overview
+
+<img alt="Hacker News Clone Architecture Overview" width="auto" height="auto" src="docs/HN-Clone-Architecture-overview.png">
+
+### Execution Path
+
+*Server.js* is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using *getInitialProps* hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
+
+When the client receives the page it preloads next page JS designated with <Link prefetch *href="/"*>. When the client navigates to the linked page it only needs to make a GraphQL query to render. *Great!*
+
 ### Directory Structure
 
 Each directory contains a README.
@@ -64,12 +75,6 @@ Each directory contains a README.
 You can download and run the repo with one command to rule them all:
 
 `git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm run dev`
-
-### Execution Path
-
-Server.js is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using getInitialProps hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
-
-When the client receives the page it preloads next page JS designated with <Link prefetch *href=""*>. When the client navigates to the linked page it only needs to make a GraphQL query to render. *Great!*
 
 ### Setup
 
@@ -131,4 +136,4 @@ Pull requests are welcome. File an issue for ideas, conversation or feedback.
 After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.
 
 ### License
-Apache 2.0 License. Copyright © 2017, Clinton D'Annolfo. All rights reserved.
+MIT License. Copyright © 2017 Clinton D'Annolfo. All rights reserved.
