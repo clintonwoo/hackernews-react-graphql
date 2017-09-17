@@ -48,17 +48,15 @@ class Feed {
 
   getTopNewsItems(first, skip) {
     return this.top.slice(skip, skip + first)
-      .map((postId, index) => ({
+      .map(postId => ({
         ...this.getNewsItem(postId),
-        rank: skip + index + 1,
       }));
   }
 
   getNewNewsItems(first, skip) {
     return this.new.slice(skip, skip + first)
-      .map((postId, index) => ({
+      .map(postId => ({
         ...this.getNewsItem(postId),
-        rank: skip + index + 1,
       }));
   }
 

@@ -8,7 +8,6 @@ import Main from '../layouts/Main';
 import Comment from '../components/Comment';
 import withData from '../helpers/withData';
 
-// import data from '../data/SampleData';
 
 const query = gql`
   query Comment($id: Int!) {
@@ -108,7 +107,7 @@ const ReplyToComment = graphql(query, {
 export default withData((props) => {
   variables.id = (props.url.query && +props.url.query.id) || 0;
   return (
-    <Main currentURL={props.url.pathname}>
+    <Main title="Add Comment" currentURL={props.url.pathname} isNavVisible={false}>
       <ReplyToComment />
     </Main>
   );

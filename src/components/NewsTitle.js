@@ -25,8 +25,7 @@ class NewsTitle extends Component {
       fragment NewsTitle on NewsItem {
         id,
         title,
-        url,
-        rank
+        url
       }
     `,
   };

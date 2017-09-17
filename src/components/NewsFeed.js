@@ -7,6 +7,8 @@ import NewsDetail from './NewsDetail';
 
 const NewsFeed = (props) => {
   // props.newsItems.sort((a, b) => (a.rank - b.rank));
+  const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
+
   const rows = [];
   if (props.notice) rows.push(...props.notice);
   props.newsItems.forEach((newsItem, index) => {
@@ -15,7 +17,7 @@ const NewsFeed = (props) => {
         key={`${newsItem.id.toString()}title`}
         isRankVisible={props.isRankVisible}
         isUpvoteVisible={props.isUpvoteVisible}
-        rank={index}
+        rank={props.skip + index + 1}
         {...newsItem}
       />,
     );
@@ -35,7 +37,7 @@ const NewsFeed = (props) => {
     <tr key="morelinktr">
       <td key="morelinkcolspan" colSpan="2" />
       <td key="morelinktd" className="title">
-        <a key="morelink" href={`${props.currentURL}?p=2`} className="morelink" rel="nofollow">More</a>
+        <a key="morelink" href={`${props.currentURL}?p=${nextPage}`} className="morelink" rel="nofollow">More</a>
       </td>
     </tr>,
   );
@@ -45,14 +47,7 @@ const NewsFeed = (props) => {
       <td style={{ padding: '0px' }} >
         <table style={{ border: '0px', padding: '0px', borderCollapse: 'collapse', borderSpacing: '0px' }} className="itemlist">
           <tbody>
-            {rows /*props.newsItems.map(newsItem => (
-              <NewsItem
-                key={newsItem.id.toString()}
-                {...newsItem}
-                isRankVisible={true}
-                isFavoriteVisible={false}
-              />
-            ))*/}
+            { rows }
           </tbody>
         </table>
       </td>
@@ -68,6 +63,7 @@ NewsFeed.defaultProps = {
 };
 NewsFeed.propTypes = {
   isPostScrutinyVisible: PropTypes.bool,
+  first: PropTypes.number.isRequired,
   newsItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     creationTime: PropTypes.number.isRequired,
@@ -79,6 +75,7 @@ NewsFeed.propTypes = {
     points: PropTypes.number.isRequired,
   })).isRequired,
   notice: PropTypes.arrayOf(PropTypes.element),
+  skip: PropTypes.number.isRequired,
   isJobListing: PropTypes.bool,
   isRankVisible: PropTypes.bool,
   isUpvoteVisible: PropTypes.bool,
@@ -87,7 +84,7 @@ NewsFeed.propTypes = {
 NewsFeed.fragments = {
   newsItem: gql`
     fragment NewsFeed on NewsItem {
-      id
+      id,
       ...NewsTitle
       ...NewsDetail
     }

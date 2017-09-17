@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Footer = props => (
   <tr>
     <td style={{ padding: '0px' }}>
-      <img src="/static/s.gif" height="10" width="0" />
+      <img alt="" src="/static/s.gif" height="10" width="0" />
       <table style={{ height: '2px', width: '100%', borderSpacing: '0px', /*borderCollapse: 'collapse'*/ }}>
         <tbody>
           <tr>

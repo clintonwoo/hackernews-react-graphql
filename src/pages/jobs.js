@@ -9,7 +9,7 @@ import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
 let pageNumber = 0;
-const skip = POSTS_PER_PAGE * pageNumber;
+
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
     feed(type: $type, first: $first, skip: $skip) {
@@ -21,7 +21,7 @@ const query = gql`
 const variables = {
   type: 'JOB',
   first: POSTS_PER_PAGE,
-  skip,
+  skip: POSTS_PER_PAGE * pageNumber,
 };
 
 const JobNewsFeed = graphql(query, {
@@ -66,9 +66,11 @@ export default withData((props) => {
     <Main currentURL={props.url.pathname}>
       <JobNewsFeed options={{
         currentURL: props.url.pathname,
+        first: variables.first,
         isRankVisible: false,
         isUpvoteVisible: false,
         isJobListing: true,
+        skip: variables.skip,
         notice,
       }}
       />

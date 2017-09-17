@@ -11,7 +11,6 @@ import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
 let pageNumber = 0;
-const skip = POSTS_PER_PAGE * pageNumber;
 
 const query = gql`
   query NewestFeed($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -24,7 +23,7 @@ const query = gql`
 const variables = {
   type: 'NEW',
   first: POSTS_PER_PAGE,
-  skip,
+  skip: POSTS_PER_PAGE * pageNumber,
 };
 
 const NewestNewsFeed = graphql(query, {
@@ -41,7 +40,7 @@ export default withData((props) => {
   variables.skip = POSTS_PER_PAGE * pageNumber;
   return (
     <Main currentURL={props.url.pathname}>
-      <NewestNewsFeed options={{ currentURL: props.url.pathname }} />
+      <NewestNewsFeed options={{ currentURL: props.url.pathname, first: variables.first, skip: variables.skip }} />
     </Main>
   );
 });

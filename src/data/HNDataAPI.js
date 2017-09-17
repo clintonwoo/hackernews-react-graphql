@@ -86,7 +86,6 @@ const rebuildFeed = (feedType) => {
     .then(feed => Promise.all(feed.map(id => fetchNewsItem(id)))
       .then((newsItems) => {
         logger(newsItems);
-        newsItems.forEach((newsItem, index) => newsItem.rank = index + 1);
         Feed[`${feedType}NewsItems`] = newsItems;
         Feed[feedType] = feed;
         logger(`Updated ${feedType} ids`);

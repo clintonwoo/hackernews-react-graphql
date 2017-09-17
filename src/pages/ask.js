@@ -9,7 +9,7 @@ import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
 let pageNumber = 0;
-const skip = POSTS_PER_PAGE * pageNumber;
+
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
     feed(type: $type, first: $first, skip: $skip) {
@@ -21,7 +21,7 @@ const query = gql`
 const variables = {
   type: 'ASK',
   first: POSTS_PER_PAGE,
-  skip,
+  skip: POSTS_PER_PAGE * pageNumber,
 };
 
 const AskNewsFeed = graphql(query, {
@@ -52,8 +52,13 @@ export default withData((props) => {
   variables.skip = POSTS_PER_PAGE * pageNumber;
   return (
     <Main currentURL={props.url.pathname}>
-      <AskNewsFeed options={{ currentURL: props.url.pathname }} />
+      <AskNewsFeed options={{
+        currentURL: props.url.pathname,
+        first: variables.first,
+        skip: variables.skip,
+      }}
+      />
     </Main>
-  )
+  );
 });
 
