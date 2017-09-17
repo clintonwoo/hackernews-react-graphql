@@ -1,6 +1,6 @@
 ## Hacker News Clone  [![GitHub stars](https://img.shields.io/github/stars/clintonwoo/hackernews-react-graphql.svg?style=social&label=Star)](https://github.com/clintonwoo/hackernews-react-graphql/stargazers) [![GitHub followers](https://img.shields.io/github/followers/clintonwoo.svg?style=social&label=Follow)](https://github.com/clintonwoo/hackernews-react-graphql/) [![GitHub issues](https://img.shields.io/github/issues/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/issues) [![](https://img.shields.io/github/issues-pr-raw/clintonwoo/hackernews-react-graphql.svg)](https://github.com/clintonwoo/hackernews-react-graphql/pulls)
 
-This project is a clone of hacker news rewritten with universal Javascript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
+This project is a clone of hacker news rewritten with universal JavaScript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
 <p align="center" margin-bottom="0">
   <a href="http://www.hnclone.win" target="_blank">
     <img alt="Hacker News Clone Demo" width="auto" height="auto" src="docs/HN-Demo.jpg">
