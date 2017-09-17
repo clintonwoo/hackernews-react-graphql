@@ -1,4 +1,3 @@
-import data from '../SampleData';
 import * as DB from '../Database';
 import cache from '../Cache';
 

@@ -2,7 +2,6 @@ import cache from '../Cache';
 import * as HNDB from '../HNDataAPI';
 import * as DB from '../Database';
 
-import data from '../SampleData';
 
 export default class NewsItem {
   static getNewsItem(id) {

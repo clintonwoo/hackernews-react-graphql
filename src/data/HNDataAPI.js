@@ -24,11 +24,11 @@ const api = Firebase.database().ref(HN_API_VERSION);
 
 /* BEGIN NEWS ITEMS */
 
+
 export function fetchNewsItem(id) {
   logger(`Fetching ${HN_API_URL}/item/${id}.json`);
-
-  return new Promise((resolve, reject) => {
-    api.child(`item/${id}`).once('value', (postSnapshot) => {
+  return api.child(`item/${id}`).once('value')
+    .then((postSnapshot) => {
       const post = postSnapshot.val();
       if (post !== null) {
         const newsItem = {
@@ -43,22 +43,17 @@ export function fetchNewsItem(id) {
         };
         cache.setNewsItem(newsItem);
         logger(`Created Post: ${post.id}`);
-        resolve(newsItem);
-      } else {
-        reject(post);
+        return newsItem;
       }
-    }, reject);
-  });
-
-  // return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-  //   .then(response => response.json())
-  //   .catch(reason => logger(reason));
+      throw post;
+    })
+    .catch(reason => logger(`Fetching news item failed: ${reason}`));
 }
 
 export function fetchComment(id) {
   logger(`Fetching ${HN_API_URL}/item/${id}.json`);
-  return new Promise((resolve, reject) => {
-    api.child(`item/${id}`).once('value', (itemSnapshot) => {
+  return api.child(`item/${id}`).once('value')
+    .then((itemSnapshot) => {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
         const comment = {
@@ -71,22 +66,18 @@ export function fetchComment(id) {
         };
         cache.setComment(comment);
         logger(`Created Comment: ${item.id}`);
-        resolve(comment);
-      } else {
-        reject(item);
+        return comment;
       }
-    }, reject);
-  });
+      throw item;
+    })
+    .catch(reason => logger(`Fetching comment failed: ${reason}`));
 }
 
 export function getFeed(feedType) {
   logger(`Fetching /${feedType}stories.json`);
-
-  return new Promise((resolve, reject) => {
-    api.child(`${feedType}stories`).once('value', (feedSnapshot) => {
-      resolve(feedSnapshot.val());
-    }, reject);
-  });
+  return api.child(`${feedType}stories`).once('value')
+    .then(feedSnapshot => feedSnapshot.val())
+    .catch(reason => logger(`Fetching news feed failed: ${reason}`));
 }
 
 const rebuildFeed = (feedType) => {
@@ -108,8 +99,8 @@ const rebuildFeed = (feedType) => {
 
 /* BEGIN SEED DATA */
 
+
 export function seedCache(delay) {
-  // TODO: Build sample cache then seed
   logger(`Waiting ${delay} ms before seeding the app with data.`);
   setTimeout(() => {
     logger('Seeding cache');
@@ -119,4 +110,5 @@ export function seedCache(delay) {
   }, delay);
   // Delay seeding the cache so we don't spam in dev
 }
+
 /*  END SEED DATA */

@@ -46,11 +46,11 @@ const typeDefs = `
 
     comments: [Comment]
 
-    commentCount: Int
+    commentCount: Int!
 
     creationTime: Date!
 
-    points: Int
+    points: Int!
 
     rank: Int
 
@@ -62,9 +62,9 @@ const typeDefs = `
 
     text: String
 
-    upvotes: [Int]
+    upvotes: [Int]!
 
-    upvoteCount: Int
+    upvoteCount: Int!
 
     url: String
 
@@ -76,7 +76,7 @@ const typeDefs = `
     # The user ID is a string of the username
     id: String!
 
-    creationTime: Date
+    creationTime: Date!
 
     dateOfBirth: Date
 
@@ -86,7 +86,7 @@ const typeDefs = `
 
     firstName: String
 
-    karma: Int
+    karma: Int!
 
     lastName: String
 
@@ -247,9 +247,9 @@ export default makeExecutableSchema({
   resolvers,
 });
 
-// Example query (old)
+// Example query
 // query {
-//   newsItems {
+//   feed(type: 'TOP', first: 30, skip: 0) {
 //     id
 //     submitterId
 //     author {
