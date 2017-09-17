@@ -1,10 +1,6 @@
 import data from './SampleData';
 import cache from './Cache';
 
-// TODO: Add scheduled job to recalculate post rank and points
-
-// TODO: Implement caching in-memory or using caching app e.g. Memcached, Redis 
-
 /*                  BEGIN NEWS ITEMS                      */
 
 
@@ -14,6 +10,7 @@ export function getNewsItem(id) {
 
 export function rankNewsItems() {
   // Would implement this somewhere in the real HN system
+  // A scheduled job to recalculate post rank and points
 }
 
 export function createNewsItem(newsItem) {

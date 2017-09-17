@@ -5,11 +5,7 @@ import NewsFeed from './NewsFeed';
 
 export default ({ data: { loading, error, feed }, options }) => {
   if (error) return <tr><td>Error loading news items.</td></tr>;
-  if (feed && feed.length) {
-    return (
-      <NewsFeed newsItems={feed} {...options} />
-    );
-  }
+  if (feed && feed.length) return <NewsFeed newsItems={feed} {...options} />;
   return (
     <tr>
       <td>

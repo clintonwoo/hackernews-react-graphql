@@ -193,7 +193,7 @@ pre { max-width: 900px; }
   margin: 0 auto;
   width: 15%;
   height: 15%;
-  background-color:rgb(238, 238, 230);
+  background-color:rgba(255, 103, 0, 0.1);
   border-radius: 100%;
   -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
           animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;

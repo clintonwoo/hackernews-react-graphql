@@ -40,7 +40,7 @@ Main.defaultProps = {
   isNavVisible: true,
   isUserVisible: true,
   title: 'Hacker News',
-  user: {
+  me: {
     id: null,
   },
 };
@@ -53,19 +53,20 @@ Main.propTypes = {
   isUserVisible: PropTypes.bool,
   isFooterVisible: PropTypes.bool,
   title: PropTypes.string,
-  user: PropTypes.shape({
+  me: PropTypes.shape({
     id: PropTypes.string,
   }),
   currentURL: PropTypes.string.isRequired,
 };
 
 const me = gql`
-query User {
-  me {
-    id
-    karma
+  query User {
+    me {
+      id
+      karma
+    }
   }
-}`;
+`;
 
 export default graphql(me, {
   options: {
