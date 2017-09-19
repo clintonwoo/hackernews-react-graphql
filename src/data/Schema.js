@@ -39,12 +39,6 @@ const typeDefs = `
   }
 
   scalar Date
-
-  # This type could potentially be used for caching
-  # type Feed {
-  #  id:
-  #  newsItems: [NewsItem]!
-  # }
   
   type NewsItem {
 
