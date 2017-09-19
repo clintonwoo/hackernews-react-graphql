@@ -36,8 +36,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1224}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={0}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="“Learning How to Learn,” the most popular course on Coursera"
@@ -53,6 +54,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1224}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -78,8 +80,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1225}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={125}
-                    rank={1}
+                    rank={NaN}
                     submitterId="luu"
                     text={null}
                     title="Weird Python Integers"
@@ -95,6 +98,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1225}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={125}
                     submitterId="luu"
@@ -120,8 +124,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1226}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={90}
-                    rank={2}
+                    rank={NaN}
                     submitterId="aLee"
                     text={null}
                     title="I spent my career in tech and wasn’t prepared for its effect on my kids"
@@ -137,6 +142,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1226}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={90}
                     submitterId="aLee"
@@ -162,8 +168,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1222}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={122}
-                    rank={3}
+                    rank={NaN}
                     submitterId="clintonwoo"
                     text={null}
                     title="Clinton wins again"
@@ -192,6 +199,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1222}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={122}
                     submitterId="clintonwoo"
@@ -248,8 +256,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1223}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={20}
-                    rank={4}
+                    rank={NaN}
                     submitterId="john"
                     text="It's unbelievable."
                     title="Clinton wins yet another time"
@@ -283,6 +292,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1223}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={20}
                     submitterId="john"
@@ -308,8 +318,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1227}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={455}
-                    rank={5}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Water Found Deep Inside the Moon"
@@ -325,6 +336,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1227}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={455}
                     submitterId="hvo"
@@ -350,8 +362,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1228}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={331}
-                    rank={6}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="How did “Handbook for Mortals” get on the NYT bestseller list?"
@@ -367,6 +380,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1228}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={331}
                     submitterId="hvo"
@@ -392,8 +406,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1229}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={7}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Titan in depth: Security in plaintext"
@@ -409,6 +424,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1229}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -434,8 +450,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1230}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={8}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="The Librem 5: A Matrix-Native FLOSS Smartphone"
@@ -451,6 +468,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1230}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -476,8 +494,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1231}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={9}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Generic GPU Kernels in Julia"
@@ -493,6 +512,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1231}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -518,8 +538,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1232}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={10}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="VW Strike in Slovakia Exposes a European Divide"
@@ -535,6 +556,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1232}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -560,8 +582,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1233}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={11}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Gtk-rs: The huge and long awaited release is finally here"
@@ -577,6 +600,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1233}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -602,8 +626,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1234}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={12}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Rich Hickey's Greatest Hits"
@@ -619,6 +644,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1234}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -644,8 +670,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1235}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={13}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
@@ -661,6 +688,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1235}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -686,8 +714,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1236}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={14}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="How Redlining’s Racist Effects Lasted for Decades"
@@ -703,6 +732,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1236}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -728,8 +758,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1237}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={15}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
@@ -745,6 +776,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1237}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -770,8 +802,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1238}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={16}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Feather: Open-source icons"
@@ -787,6 +820,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1238}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -812,8 +846,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1239}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={17}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Spacex Launch Webcast: Formosat-5 Mission"
@@ -829,6 +864,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1239}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -854,8 +890,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1240}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={18}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Ask HN: What is your favorite CS paper?"
@@ -871,6 +908,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1240}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -896,8 +934,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1241}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={19}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
@@ -913,6 +952,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1241}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -938,8 +978,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1242}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={20}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Debian reproducibility statistics"
@@ -955,6 +996,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1242}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -980,8 +1022,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1243}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={21}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="The Scotsmen Who Invented Modernity"
@@ -997,6 +1040,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1243}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1022,8 +1066,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1244}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={22}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Deterministic Browser"
@@ -1039,6 +1084,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1244}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1064,8 +1110,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1245}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={23}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Deep Learning for Siri’s Voice"
@@ -1081,6 +1128,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1245}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1106,8 +1154,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1246}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={24}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="I'm giving up on HPKP"
@@ -1123,6 +1172,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1246}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1148,8 +1198,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1247}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={25}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Introducing App Engine Firewall"
@@ -1165,6 +1216,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1247}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1190,8 +1242,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1248}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={26}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Profiling Internet Users in Africa: Insights from the Google Play Store"
@@ -1207,6 +1260,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1248}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1232,8 +1286,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1249}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={27}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
@@ -1249,6 +1304,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1249}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1274,8 +1330,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1250}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={28}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="GCC tiny"
@@ -1291,6 +1348,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1250}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1316,8 +1374,9 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1251}
                     isRankVisible={true}
+                    isUpvoteVisible={true}
                     points={171}
-                    rank={29}
+                    rank={NaN}
                     submitterId="hvo"
                     text={null}
                     title="Tesorio is hiring engineers and a product designer to modernize finance teams"
@@ -1333,6 +1392,7 @@ ShallowWrapper {
                     hiddenCount={0}
                     id={1251}
                     isFavoriteVisible={false}
+                    isJobListing={false}
                     isPostScrutinyVisible={false}
                     points={171}
                     submitterId="hvo"
@@ -1367,7 +1427,7 @@ ShallowWrapper {
                     >
                         <a
                             className="morelink"
-                            href="/news?p=2"
+                            href="undefined?p=NaN"
                             rel="nofollow"
                         >
                             More
@@ -1407,8 +1467,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1224}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={0}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="“Learning How to Learn,” the most popular course on Coursera"
@@ -1424,6 +1485,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1224}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1449,8 +1511,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1225}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={125}
-                              rank={1}
+                              rank={NaN}
                               submitterId="luu"
                               text={null}
                               title="Weird Python Integers"
@@ -1466,6 +1529,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1225}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={125}
                               submitterId="luu"
@@ -1491,8 +1555,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1226}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={90}
-                              rank={2}
+                              rank={NaN}
                               submitterId="aLee"
                               text={null}
                               title="I spent my career in tech and wasn’t prepared for its effect on my kids"
@@ -1508,6 +1573,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1226}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={90}
                               submitterId="aLee"
@@ -1533,8 +1599,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1222}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={122}
-                              rank={3}
+                              rank={NaN}
                               submitterId="clintonwoo"
                               text={null}
                               title="Clinton wins again"
@@ -1563,6 +1630,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1222}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={122}
                               submitterId="clintonwoo"
@@ -1619,8 +1687,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1223}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={20}
-                              rank={4}
+                              rank={NaN}
                               submitterId="john"
                               text="It's unbelievable."
                               title="Clinton wins yet another time"
@@ -1654,6 +1723,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1223}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={20}
                               submitterId="john"
@@ -1679,8 +1749,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1227}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={455}
-                              rank={5}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Water Found Deep Inside the Moon"
@@ -1696,6 +1767,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1227}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={455}
                               submitterId="hvo"
@@ -1721,8 +1793,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1228}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={331}
-                              rank={6}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="How did “Handbook for Mortals” get on the NYT bestseller list?"
@@ -1738,6 +1811,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1228}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={331}
                               submitterId="hvo"
@@ -1763,8 +1837,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1229}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={7}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Titan in depth: Security in plaintext"
@@ -1780,6 +1855,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1229}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1805,8 +1881,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1230}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={8}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="The Librem 5: A Matrix-Native FLOSS Smartphone"
@@ -1822,6 +1899,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1230}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1847,8 +1925,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1231}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={9}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Generic GPU Kernels in Julia"
@@ -1864,6 +1943,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1231}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1889,8 +1969,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1232}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={10}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="VW Strike in Slovakia Exposes a European Divide"
@@ -1906,6 +1987,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1232}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1931,8 +2013,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1233}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={11}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Gtk-rs: The huge and long awaited release is finally here"
@@ -1948,6 +2031,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1233}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -1973,8 +2057,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1234}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={12}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Rich Hickey's Greatest Hits"
@@ -1990,6 +2075,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1234}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2015,8 +2101,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1235}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={13}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
@@ -2032,6 +2119,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1235}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2057,8 +2145,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1236}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={14}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="How Redlining’s Racist Effects Lasted for Decades"
@@ -2074,6 +2163,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1236}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2099,8 +2189,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1237}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={15}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
@@ -2116,6 +2207,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1237}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2141,8 +2233,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1238}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={16}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Feather: Open-source icons"
@@ -2158,6 +2251,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1238}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2183,8 +2277,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1239}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={17}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Spacex Launch Webcast: Formosat-5 Mission"
@@ -2200,6 +2295,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1239}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2225,8 +2321,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1240}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={18}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Ask HN: What is your favorite CS paper?"
@@ -2242,6 +2339,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1240}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2267,8 +2365,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1241}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={19}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
@@ -2284,6 +2383,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1241}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2309,8 +2409,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1242}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={20}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Debian reproducibility statistics"
@@ -2326,6 +2427,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1242}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2351,8 +2453,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1243}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={21}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="The Scotsmen Who Invented Modernity"
@@ -2368,6 +2471,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1243}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2393,8 +2497,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1244}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={22}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Deterministic Browser"
@@ -2410,6 +2515,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1244}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2435,8 +2541,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1245}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={23}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Deep Learning for Siri’s Voice"
@@ -2452,6 +2559,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1245}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2477,8 +2585,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1246}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={24}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="I'm giving up on HPKP"
@@ -2494,6 +2603,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1246}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2519,8 +2629,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1247}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={25}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Introducing App Engine Firewall"
@@ -2536,6 +2647,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1247}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2561,8 +2673,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1248}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={26}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Profiling Internet Users in Africa: Insights from the Google Play Store"
@@ -2578,6 +2691,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1248}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2603,8 +2717,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1249}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={27}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
@@ -2620,6 +2735,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1249}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2645,8 +2761,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1250}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={28}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="GCC tiny"
@@ -2662,6 +2779,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1250}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2687,8 +2805,9 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1251}
                               isRankVisible={true}
+                              isUpvoteVisible={true}
                               points={171}
-                              rank={29}
+                              rank={NaN}
                               submitterId="hvo"
                               text={null}
                               title="Tesorio is hiring engineers and a product designer to modernize finance teams"
@@ -2704,6 +2823,7 @@ ShallowWrapper {
                               hiddenCount={0}
                               id={1251}
                               isFavoriteVisible={false}
+                              isJobListing={false}
                               isPostScrutinyVisible={false}
                               points={171}
                               submitterId="hvo"
@@ -2738,7 +2858,7 @@ ShallowWrapper {
                               >
                                     <a
                                           className="morelink"
-                                          href="/news?p=2"
+                                          href="undefined?p=NaN"
                                           rel="nofollow"
                                     >
                                           More
@@ -2757,7 +2877,10 @@ ShallowWrapper {
       "_compositeType": 2,
       "_context": Object {},
       "_currentElement": <NewsFeed
+        isJobListing={false}
         isPostScrutinyVisible={false}
+        isRankVisible={true}
+        isUpvoteVisible={true}
         newsItems={
                 Array [
                         Object {
@@ -3239,6 +3362,7 @@ ShallowWrapper {
                         },
                       ]
         }
+        notice={null}
 />,
       "_debugID": 1,
       "_hostContainerInfo": null,
@@ -3247,7 +3371,10 @@ ShallowWrapper {
         "_reactInternalInstance": [Circular],
         "context": Object {},
         "props": Object {
+          "isJobListing": false,
           "isPostScrutinyVisible": false,
+          "isRankVisible": true,
+          "isUpvoteVisible": true,
           "newsItems": Array [
             Object {
               "commentCount": 44,
@@ -3727,6 +3854,7 @@ ShallowWrapper {
               "url": "https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well",
             },
           ],
+          "notice": null,
         },
         "refs": Object {},
         "state": null,
@@ -3776,8 +3904,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1224}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={0}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="“Learning How to Learn,” the most popular course on Coursera"
@@ -3793,6 +3922,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1224}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -3818,8 +3948,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1225}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={125}
-                                                  rank={1}
+                                                  rank={NaN}
                                                   submitterId="luu"
                                                   text={null}
                                                   title="Weird Python Integers"
@@ -3835,6 +3966,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1225}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={125}
                                                   submitterId="luu"
@@ -3860,8 +3992,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1226}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={90}
-                                                  rank={2}
+                                                  rank={NaN}
                                                   submitterId="aLee"
                                                   text={null}
                                                   title="I spent my career in tech and wasn’t prepared for its effect on my kids"
@@ -3877,6 +4010,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1226}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={90}
                                                   submitterId="aLee"
@@ -3902,8 +4036,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1222}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={122}
-                                                  rank={3}
+                                                  rank={NaN}
                                                   submitterId="clintonwoo"
                                                   text={null}
                                                   title="Clinton wins again"
@@ -3932,6 +4067,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1222}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={122}
                                                   submitterId="clintonwoo"
@@ -3988,8 +4124,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1223}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={20}
-                                                  rank={4}
+                                                  rank={NaN}
                                                   submitterId="john"
                                                   text="It's unbelievable."
                                                   title="Clinton wins yet another time"
@@ -4023,6 +4160,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1223}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={20}
                                                   submitterId="john"
@@ -4048,8 +4186,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1227}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={455}
-                                                  rank={5}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Water Found Deep Inside the Moon"
@@ -4065,6 +4204,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1227}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={455}
                                                   submitterId="hvo"
@@ -4090,8 +4230,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1228}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={331}
-                                                  rank={6}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="How did “Handbook for Mortals” get on the NYT bestseller list?"
@@ -4107,6 +4248,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1228}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={331}
                                                   submitterId="hvo"
@@ -4132,8 +4274,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1229}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={7}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Titan in depth: Security in plaintext"
@@ -4149,6 +4292,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1229}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4174,8 +4318,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1230}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={8}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="The Librem 5: A Matrix-Native FLOSS Smartphone"
@@ -4191,6 +4336,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1230}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4216,8 +4362,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1231}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={9}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Generic GPU Kernels in Julia"
@@ -4233,6 +4380,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1231}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4258,8 +4406,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1232}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={10}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="VW Strike in Slovakia Exposes a European Divide"
@@ -4275,6 +4424,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1232}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4300,8 +4450,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1233}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={11}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Gtk-rs: The huge and long awaited release is finally here"
@@ -4317,6 +4468,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1233}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4342,8 +4494,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1234}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={12}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Rich Hickey's Greatest Hits"
@@ -4359,6 +4512,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1234}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4384,8 +4538,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1235}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={13}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
@@ -4401,6 +4556,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1235}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4426,8 +4582,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1236}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={14}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="How Redlining’s Racist Effects Lasted for Decades"
@@ -4443,6 +4600,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1236}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4468,8 +4626,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1237}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={15}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
@@ -4485,6 +4644,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1237}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4510,8 +4670,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1238}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={16}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Feather: Open-source icons"
@@ -4527,6 +4688,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1238}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4552,8 +4714,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1239}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={17}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Spacex Launch Webcast: Formosat-5 Mission"
@@ -4569,6 +4732,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1239}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4594,8 +4758,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1240}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={18}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Ask HN: What is your favorite CS paper?"
@@ -4611,6 +4776,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1240}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4636,8 +4802,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1241}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={19}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
@@ -4653,6 +4820,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1241}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4678,8 +4846,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1242}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={20}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Debian reproducibility statistics"
@@ -4695,6 +4864,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1242}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4720,8 +4890,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1243}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={21}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="The Scotsmen Who Invented Modernity"
@@ -4737,6 +4908,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1243}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4762,8 +4934,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1244}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={22}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Deterministic Browser"
@@ -4779,6 +4952,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1244}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4804,8 +4978,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1245}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={23}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Deep Learning for Siri’s Voice"
@@ -4821,6 +4996,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1245}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4846,8 +5022,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1246}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={24}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="I'm giving up on HPKP"
@@ -4863,6 +5040,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1246}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4888,8 +5066,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1247}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={25}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Introducing App Engine Firewall"
@@ -4905,6 +5084,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1247}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4930,8 +5110,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1248}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={26}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Profiling Internet Users in Africa: Insights from the Google Play Store"
@@ -4947,6 +5128,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1248}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -4972,8 +5154,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1249}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={27}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
@@ -4989,6 +5172,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1249}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5014,8 +5198,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1250}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={28}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="GCC tiny"
@@ -5031,6 +5216,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1250}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5056,8 +5242,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1251}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={29}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Tesorio is hiring engineers and a product designer to modernize finance teams"
@@ -5073,6 +5260,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1251}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5107,7 +5295,7 @@ ShallowWrapper {
                                                   >
                                                             <a
                                                                       className="morelink"
-                                                                      href="/news?p=2"
+                                                                      href="undefined?p=NaN"
                                                                       rel="nofollow"
                                                             >
                                                                       More
@@ -5147,8 +5335,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1224}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={0}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="“Learning How to Learn,” the most popular course on Coursera"
@@ -5164,6 +5353,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1224}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5189,8 +5379,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1225}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={125}
-                                                  rank={1}
+                                                  rank={NaN}
                                                   submitterId="luu"
                                                   text={null}
                                                   title="Weird Python Integers"
@@ -5206,6 +5397,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1225}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={125}
                                                   submitterId="luu"
@@ -5231,8 +5423,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1226}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={90}
-                                                  rank={2}
+                                                  rank={NaN}
                                                   submitterId="aLee"
                                                   text={null}
                                                   title="I spent my career in tech and wasn’t prepared for its effect on my kids"
@@ -5248,6 +5441,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1226}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={90}
                                                   submitterId="aLee"
@@ -5273,8 +5467,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1222}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={122}
-                                                  rank={3}
+                                                  rank={NaN}
                                                   submitterId="clintonwoo"
                                                   text={null}
                                                   title="Clinton wins again"
@@ -5303,6 +5498,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1222}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={122}
                                                   submitterId="clintonwoo"
@@ -5359,8 +5555,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1223}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={20}
-                                                  rank={4}
+                                                  rank={NaN}
                                                   submitterId="john"
                                                   text="It's unbelievable."
                                                   title="Clinton wins yet another time"
@@ -5394,6 +5591,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1223}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={20}
                                                   submitterId="john"
@@ -5419,8 +5617,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1227}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={455}
-                                                  rank={5}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Water Found Deep Inside the Moon"
@@ -5436,6 +5635,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1227}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={455}
                                                   submitterId="hvo"
@@ -5461,8 +5661,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1228}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={331}
-                                                  rank={6}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="How did “Handbook for Mortals” get on the NYT bestseller list?"
@@ -5478,6 +5679,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1228}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={331}
                                                   submitterId="hvo"
@@ -5503,8 +5705,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1229}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={7}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Titan in depth: Security in plaintext"
@@ -5520,6 +5723,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1229}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5545,8 +5749,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1230}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={8}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="The Librem 5: A Matrix-Native FLOSS Smartphone"
@@ -5562,6 +5767,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1230}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5587,8 +5793,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1231}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={9}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Generic GPU Kernels in Julia"
@@ -5604,6 +5811,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1231}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5629,8 +5837,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1232}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={10}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="VW Strike in Slovakia Exposes a European Divide"
@@ -5646,6 +5855,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1232}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5671,8 +5881,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1233}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={11}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Gtk-rs: The huge and long awaited release is finally here"
@@ -5688,6 +5899,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1233}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5713,8 +5925,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1234}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={12}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Rich Hickey's Greatest Hits"
@@ -5730,6 +5943,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1234}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5755,8 +5969,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1235}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={13}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
@@ -5772,6 +5987,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1235}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5797,8 +6013,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1236}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={14}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="How Redlining’s Racist Effects Lasted for Decades"
@@ -5814,6 +6031,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1236}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5839,8 +6057,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1237}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={15}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
@@ -5856,6 +6075,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1237}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5881,8 +6101,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1238}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={16}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Feather: Open-source icons"
@@ -5898,6 +6119,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1238}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5923,8 +6145,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1239}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={17}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Spacex Launch Webcast: Formosat-5 Mission"
@@ -5940,6 +6163,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1239}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -5965,8 +6189,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1240}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={18}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Ask HN: What is your favorite CS paper?"
@@ -5982,6 +6207,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1240}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6007,8 +6233,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1241}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={19}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
@@ -6024,6 +6251,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1241}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6049,8 +6277,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1242}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={20}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Debian reproducibility statistics"
@@ -6066,6 +6295,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1242}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6091,8 +6321,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1243}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={21}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="The Scotsmen Who Invented Modernity"
@@ -6108,6 +6339,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1243}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6133,8 +6365,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1244}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={22}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Deterministic Browser"
@@ -6150,6 +6383,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1244}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6175,8 +6409,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1245}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={23}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Deep Learning for Siri’s Voice"
@@ -6192,6 +6427,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1245}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6217,8 +6453,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1246}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={24}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="I'm giving up on HPKP"
@@ -6234,6 +6471,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1246}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6259,8 +6497,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1247}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={25}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Introducing App Engine Firewall"
@@ -6276,6 +6515,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1247}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6301,8 +6541,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1248}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={26}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Profiling Internet Users in Africa: Insights from the Google Play Store"
@@ -6318,6 +6559,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1248}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6343,8 +6585,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1249}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={27}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
@@ -6360,6 +6603,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1249}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6385,8 +6629,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1250}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={28}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="GCC tiny"
@@ -6402,6 +6647,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1250}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6427,8 +6673,9 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1251}
                                                   isRankVisible={true}
+                                                  isUpvoteVisible={true}
                                                   points={171}
-                                                  rank={29}
+                                                  rank={NaN}
                                                   submitterId="hvo"
                                                   text={null}
                                                   title="Tesorio is hiring engineers and a product designer to modernize finance teams"
@@ -6444,6 +6691,7 @@ ShallowWrapper {
                                                   hiddenCount={0}
                                                   id={1251}
                                                   isFavoriteVisible={false}
+                                                  isJobListing={false}
                                                   isPostScrutinyVisible={false}
                                                   points={171}
                                                   submitterId="hvo"
@@ -6478,7 +6726,7 @@ ShallowWrapper {
                                                   >
                                                             <a
                                                                       className="morelink"
-                                                                      href="/news?p=2"
+                                                                      href="undefined?p=NaN"
                                                                       rel="nofollow"
                                                             >
                                                                       More
@@ -6501,7 +6749,10 @@ ShallowWrapper {
   },
   "root": [Circular],
   "unrendered": <NewsFeed
+    isJobListing={false}
     isPostScrutinyVisible={false}
+    isRankVisible={true}
+    isUpvoteVisible={true}
     newsItems={
         Array [
             Object {
@@ -6983,6 +7234,7 @@ ShallowWrapper {
             },
           ]
     }
+    notice={null}
 />,
 }
 `;

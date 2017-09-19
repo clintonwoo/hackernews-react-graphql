@@ -22,36 +22,45 @@ ShallowWrapper {
              points
         </span>
          by 
-        <a
-            className="hnuser"
+        <Link
             href="/user?id=hvo"
+            prefetch={true}
         >
-            hvo
-        </a>
+            <a
+                className="hnuser"
+            >
+                hvo
+            </a>
+        </Link>
          
         <span
             className="age"
         >
-            <a
-                href="item?id=15077449"
+            <Link
+                href="/item?id=1224"
+                prefetch={true}
             >
-                6 days ago
-            </a>
+                <a>
+                    12 days ago
+                </a>
+            </Link>
         </span>
          | 
         <a
-            href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
+            href="javascript:void(0)"
             onClick={[Function]}
         >
             hide
         </a>
          | 
-        <a
+        <Link
             href="/item?id=1224"
+            prefetch={true}
         >
-             
-            44 comments
-        </a>
+            <a>
+                44 comments
+            </a>
+        </Link>
     </td>
 </tr>,
   "nodes": Array [
@@ -69,36 +78,45 @@ ShallowWrapper {
                    points
             </span>
              by 
-            <a
-                  className="hnuser"
+            <Link
                   href="/user?id=hvo"
+                  prefetch={true}
             >
-                  hvo
-            </a>
+                  <a
+                        className="hnuser"
+                  >
+                        hvo
+                  </a>
+            </Link>
              
             <span
                   className="age"
             >
-                  <a
-                        href="item?id=15077449"
+                  <Link
+                        href="/item?id=1224"
+                        prefetch={true}
                   >
-                        6 days ago
-                  </a>
+                        <a>
+                              12 days ago
+                        </a>
+                  </Link>
             </span>
              | 
             <a
-                  href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
+                  href="javascript:void(0)"
                   onClick={[Function]}
             >
                   hide
             </a>
              | 
-            <a
+            <Link
                   href="/item?id=1224"
+                  prefetch={true}
             >
-                   
-                  44 comments
-            </a>
+                  <a>
+                        44 comments
+                  </a>
+            </Link>
       </td>
 </tr>,
   ],
@@ -116,6 +134,7 @@ ShallowWrapper {
         hiddenCount={0}
         id={1224}
         isFavoriteVisible={false}
+        isJobListing={false}
         isPostScrutinyVisible={false}
         points={171}
         submitterId="hvo"
@@ -139,6 +158,7 @@ ShallowWrapper {
           "hiddenCount": 0,
           "id": 1224,
           "isFavoriteVisible": false,
+          "isJobListing": false,
           "isPostScrutinyVisible": false,
           "points": 171,
           "submitterId": "hvo",
@@ -182,36 +202,45 @@ ShallowWrapper {
                                points
                     </span>
                      by 
-                    <a
-                              className="hnuser"
+                    <Link
                               href="/user?id=hvo"
+                              prefetch={true}
                     >
-                              hvo
-                    </a>
+                              <a
+                                        className="hnuser"
+                              >
+                                        hvo
+                              </a>
+                    </Link>
                      
                     <span
                               className="age"
                     >
-                              <a
-                                        href="item?id=15077449"
+                              <Link
+                                        href="/item?id=1224"
+                                        prefetch={true}
                               >
-                                        6 days ago
-                              </a>
+                                        <a>
+                                                  12 days ago
+                                        </a>
+                              </Link>
                     </span>
                      | 
                     <a
-                              href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
+                              href="javascript:void(0)"
                               onClick={[Function]}
                     >
                               hide
                     </a>
                      | 
-                    <a
+                    <Link
                               href="/item?id=1224"
+                              prefetch={true}
                     >
-                               
-                              44 comments
-                    </a>
+                              <a>
+                                        44 comments
+                              </a>
+                    </Link>
           </td>
 </tr>,
         "_debugID": 2,
@@ -229,36 +258,45 @@ ShallowWrapper {
                                points
                     </span>
                      by 
-                    <a
-                              className="hnuser"
+                    <Link
                               href="/user?id=hvo"
+                              prefetch={true}
                     >
-                              hvo
-                    </a>
+                              <a
+                                        className="hnuser"
+                              >
+                                        hvo
+                              </a>
+                    </Link>
                      
                     <span
                               className="age"
                     >
-                              <a
-                                        href="item?id=15077449"
+                              <Link
+                                        href="/item?id=1224"
+                                        prefetch={true}
                               >
-                                        6 days ago
-                              </a>
+                                        <a>
+                                                  12 days ago
+                                        </a>
+                              </Link>
                     </span>
                      | 
                     <a
-                              href="/hide?id=15077449&goto=news&auth=15140ad499d896ef90cc72930b3fb7706f6d6398"
+                              href="javascript:void(0)"
                               onClick={[Function]}
                     >
                               hide
                     </a>
                      | 
-                    <a
+                    <Link
                               href="/item?id=1224"
+                              prefetch={true}
                     >
-                               
-                              44 comments
-                    </a>
+                              <a>
+                                        44 comments
+                              </a>
+                    </Link>
           </td>
 </tr>,
       },
@@ -280,6 +318,7 @@ ShallowWrapper {
     hiddenCount={0}
     id={1224}
     isFavoriteVisible={false}
+    isJobListing={false}
     isPostScrutinyVisible={false}
     points={171}
     submitterId="hvo"

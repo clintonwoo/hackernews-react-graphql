@@ -154,6 +154,7 @@ ShallowWrapper {
         hiddenCount={0}
         id={1224}
         isRankVisible={true}
+        isUpvoteVisible={true}
         points={171}
         rank={undefined}
         submitterId="hvo"
@@ -177,6 +178,7 @@ ShallowWrapper {
           "hiddenCount": 0,
           "id": 1224,
           "isRankVisible": true,
+          "isUpvoteVisible": true,
           "points": 171,
           "rank": undefined,
           "submitterId": "hvo",
@@ -356,6 +358,7 @@ ShallowWrapper {
     hiddenCount={0}
     id={1224}
     isRankVisible={true}
+    isUpvoteVisible={true}
     points={171}
     rank={undefined}
     submitterId="hvo"
