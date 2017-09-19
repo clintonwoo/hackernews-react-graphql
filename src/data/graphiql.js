@@ -30,10 +30,9 @@ import {
 } from './models';
 
 
-const logger = console; // global.logger;
+const logger = console;
 
 const app = express();
-// app.use(morgan('dev'));
 
 // Mount GraphQL Server middleware
 app.use(graphQLPath, bodyParser.json(), graphqlExpress(request => ({

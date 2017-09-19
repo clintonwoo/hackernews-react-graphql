@@ -9,7 +9,7 @@ import data from '../data/SampleData';
 export default withData(props => (
   <Main currentURL={props.url.pathname}>
     <NewsFeed
-      newsItems={data.newsItems /*this.props.newsItems*/}
+      newsItems={data.newsItems}
     />
   </Main>
 ));

@@ -173,7 +173,7 @@ const resolvers = {
     comment: (_, { id }, context) => context.Comment.getComment(id),
 
     feed(root, { type, first, skip }, context) {
-      // Could maybe put this constant limit of 30 items into config
+      // Could put this constant limit of 30 items into config
       const limit = (first < 1 || first > 30) ? 30 : first;
       return context.Feed.getForType(type, limit, skip);
     },
@@ -181,7 +181,6 @@ const resolvers = {
     me: (_, __, context) => context.userId && context.User.getUser(context.userId),
 
     newsItem: (_, { id }, context) => context.NewsItem.getNewsItem(id),
-    // getNewsItems().sort((a, b) => (a.rank - b.rank)),
 
     user: (_, { id }, context) => context.User.getUser(id),
   },
@@ -199,8 +198,6 @@ const resolvers = {
   Comment: {
     author: (comment, _, context) => context.User.getUser(comment.submitterId),
     comments: (comment, _, context) => context.Comment.getComments(comment.comments),
-    // 
-    // comment.comments.map(commentId => context.Comment.getComment(commentId)),
   },
 
   Date: new GraphQLScalarType({
@@ -219,9 +216,9 @@ const resolvers = {
       return value;
     },
     parseLiteral(ast) {
+      // ast value is always in string format
       if (ast.kind === Kind.INT) {
-        // ast value is always in string format
-        // parseInt turns a string number into number of base param 2
+        // parseInt turns a string number into number of a certain base
         return parseInt(ast.value, 10);
       }
       return null;
@@ -231,12 +228,10 @@ const resolvers = {
   NewsItem: {
     author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
     comments: (newsItem, _, context) => context.Comment.getComments(newsItem.comments),
-    // newsItem.comments.map(commentId => context.Comment.getComment(commentId)),
   },
 
   User: {
     posts: (user, _, context) => context.User.getPostsForUser(user.id),
-    // getNewsItems().filter(newsItem => newsItem.submitterId === user.id),
   },
 };
 

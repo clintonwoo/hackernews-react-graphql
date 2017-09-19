@@ -125,8 +125,10 @@ app.prepare()
 
     /* BEGIN EXPRESS ROUTES */
 
+    // In this app we don't need to use express to serve static assets
     // server.use('assets', express.static('../assets'));
 
+    // This is how to render a masked route with NextJS
     // server.get('/p/:id', (req, res) => {
     //   const actualPage = '/post';
     //   const queryParams = { id: req.params.id };

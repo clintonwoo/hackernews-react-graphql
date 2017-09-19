@@ -2,7 +2,6 @@ import debug from 'debug';
 
 import cache from '../Cache';
 import * as HNDB from '../HNDataAPI';
-import * as DB from '../Database';
 
 const logger = debug('app:Comment');
 
@@ -14,12 +13,5 @@ export default class Comment {
     return Promise.all(ids.map(commentId => Comment.getComment(commentId)))
       .then(comments => comments.filter(comment => comment !== undefined))
       .catch(reason => logger(`Rejected comments: ${reason}`));
-    // return Promise.all(ids.map(comment => cache.getComment(comment.id) || HNDB.fetchComment(comment.id)));
-    // return ids.map(comment => cache.getComment(comment.id) || HNDB.fetchComment(comment.id));
-  }
-
-  static getCommentsForNewsItem(newsItemId) {
-    // Check cache first?
-    return DB.getNewsItem(newsItemId);
   }
 }

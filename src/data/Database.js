@@ -11,6 +11,7 @@ export function getNewsItem(id) {
 export function rankNewsItems() {
   // Would implement this somewhere in the real HN system
   // A scheduled job to recalculate post rank and points
+  // .sort((a, b) => (a.rank - b.rank))
 }
 
 export function createNewsItem(newsItem) {
@@ -24,7 +25,6 @@ export function createNewsItem(newsItem) {
 export function upvoteNewsItem(id, userId) {
   const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
   newsItemData.upvotes.add(userId);
-  // Counting logic should be internal to the database
   newsItemData.upvoteCount += 1;
 
   return newsItemData;
@@ -33,7 +33,6 @@ export function upvoteNewsItem(id, userId) {
 export function downvoteNewsItem(id, userId) {
   const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
   newsItemData.downvotes.add(userId);
-  // Counting logic should be internal to the database
   newsItemData.downvoteCount += 1;
 
   return newsItemData;
@@ -57,12 +56,10 @@ export function getTopNewsItems(first, skip) {
 }
 
 export function getHotNews() {
-  // Needs pagination
   return data.newsItems;
 }
 
 export function getNewsItems() {
-  // Needs pagination
   return data.newsItems;
 }
 

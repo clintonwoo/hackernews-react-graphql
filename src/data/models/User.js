@@ -9,7 +9,7 @@ export default class User {
     return DB.getNewsItems()
       .filter(newsItem => newsItem.submitterId === id);
   }
-  static validPassword(data) {
+  static validPassword(hash) {
     return false;
   }
 }
