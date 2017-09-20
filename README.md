@@ -114,18 +114,6 @@ The project runs out of the box with default settings (*/src/config.js*). You ca
 
 This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
 
-### Debugging
-
-```npm run debug-mode ```
-
-```js
-  debugger;
-  return <NewsItem {...props} />;
-```
-
-Debug mode (it's built into node.js) with *debugger* breakpoints like above can pause execution of code so you can inspect runtime.
-
-
 ## How To Build For Deployment
 
 `npm run build`: NextJS app with entry point *server.js* that uses Node.js/Express. Uses Babel compiler to transpile project src to build.
