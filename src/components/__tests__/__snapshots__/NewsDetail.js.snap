@@ -41,7 +41,7 @@ ShallowWrapper {
                 prefetch={true}
             >
                 <a>
-                    12 days ago
+                    14 days ago
                 </a>
             </Link>
         </span>
@@ -97,7 +97,7 @@ ShallowWrapper {
                         prefetch={true}
                   >
                         <a>
-                              12 days ago
+                              14 days ago
                         </a>
                   </Link>
             </span>
@@ -221,7 +221,7 @@ ShallowWrapper {
                                         prefetch={true}
                               >
                                         <a>
-                                                  12 days ago
+                                                  14 days ago
                                         </a>
                               </Link>
                     </span>
@@ -277,7 +277,7 @@ ShallowWrapper {
                                         prefetch={true}
                               >
                                         <a>
-                                                  12 days ago
+                                                  14 days ago
                                         </a>
                               </Link>
                     </span>

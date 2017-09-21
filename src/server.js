@@ -106,7 +106,6 @@ app.prepare()
         schema: Schema,
         rootValue: { req },
         context: {
-          // user,
           Feed,
           NewsItem,
           Comment,
@@ -124,9 +123,6 @@ app.prepare()
     /* END GRAPHQL */
 
     /* BEGIN EXPRESS ROUTES */
-
-    // In this app we don't need to use express to serve static assets
-    // server.use('assets', express.static('../assets'));
 
     // This is how to render a masked route with NextJS
     // server.get('/p/:id', (req, res) => {

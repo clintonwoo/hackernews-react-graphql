@@ -29,7 +29,22 @@ export default {
       upvoteCount: 10,
       hidden: [],
       hiddenCount: 0,
-      comments: [],
+      comments: [
+        {
+          id: 15289630,
+          creationTime: 1505863796000,
+          comments: [],
+          submitterId: 'megous',
+          text: 'It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.',
+        },
+        {
+          id: 15289567,
+          creationTime: 1505863042000,
+          comments: [15290063],
+          submitterId: 'NeutronBoy',
+          text: '&gt; Security through obscurity is not the solution, though<p>Security is about layers. Nothing is foolproof. It&#x27;s about implementing layers of controls to reduce your attack surface to an acceptable level, with the trade-off that many controls increase the complexity of your setup or compromises the convenience for your users.<p>For example, for SSH, this probably includes<p>* changing the default port<p>* enforcing SSH key authentication<p>* enforcing passwords on SSH keys<p>* implementing fail2ban<p>* installing jump hosts for internal machines<p>* implementing a VPN rather than external facing hosts (and with that comes all the additional layers for the VPN)<p>* etc...',
+        },
+      ],
       commentCount: 44,
       points: 171,
       rank: 1,

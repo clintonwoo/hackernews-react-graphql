@@ -83,7 +83,7 @@ export default () => (
     <ul>
       <li>A form handling bug led to a XSS vulnerability using <a href="http://www.slideshare.net/Wisec/http-parameter-pollution-a-new-category-of-web-attacks">HTTP parameter polution</a>.</li>
     </ul>
-    <p />    
+    <p />
     <p>
       <b>20150302: Max Bond</b>
     </p>
@@ -98,7 +98,9 @@ export default () => (
     <ul>
       <li>In rare cases some users&#39; profiles (including email addresses and password hashes) were mistakenly published to the Firebase API.</li>
     </ul>
-    See <a href="https://news.ycombinator.com/item?id=8604586">https://news.ycombinator.com/      item?id=8604586</a> for details.
+    <p>
+    See <a href="https://news.ycombinator.com/item?id=8604586">https://news.ycombinator.com/item?id=8604586</a> for details.
+    </p>
     <p />
     <p>
       <b>20141027: San Tran</b>
@@ -135,7 +137,9 @@ export default () => (
     <ul>
       <li>The state of the PRNG used to generate cookies could be determined from observed outputs. This allowed an attacker to fairly easily determine valid user cookies and compromise accounts.</li>
     </ul>
+    <p>
     See <Link prefetch href="/item?id=639976"><a>https://news.ycombinator.com/item?id=639976</a></Link> for details.
+    </p>
     <p />
     <p>
       <b>Missing From This List?</b> If you reported a vulnerability to us and don&#39;t see your name, please shoot us an email and we&#39;ll happily add you. We crawled through tons of emails trying to find all reports but inevitably missed some.

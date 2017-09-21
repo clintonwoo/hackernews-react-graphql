@@ -1,9 +1,12 @@
 import React from 'react';
+import MockDate from 'mockdate';
 // import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 import NewsTitle from '../NewsTitle';
 import data from '../../data/SampleData';
+
+MockDate.set(1506022129802);
 
 
 describe('NewsTitle component', () => {

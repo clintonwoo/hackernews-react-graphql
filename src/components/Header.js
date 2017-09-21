@@ -8,7 +8,7 @@ import HeaderNav from './HeaderNav';
 const Header = props => (
   <tr>
     <td style={{ backgroundColor: '#ff6600', padding: '0px' }} >
-      <table style={{ border: '0px', padding: '2px', /*borderCollapse: 'collapse',*/ borderSpacing: '0px', width: '100%' }}>
+      <table style={{ border: '0px', padding: '2px', borderSpacing: '0px', width: '100%' }}>
         <tbody>
           <tr>
             <td style={{ width: '18px', padding: '0px', paddingRight: '4px' }}>

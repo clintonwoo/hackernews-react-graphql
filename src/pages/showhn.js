@@ -8,8 +8,9 @@ export default () => (
     <b>Show HN</b>
     <br />
     <br />
-
-    Show HN is a way to share something that you've made on Hacker News.
+    <p>
+      Show HN is a way to share something that you've made on Hacker News.
+    </p>
     <p>
       The current Show HNs can be found via <Link prefetch href="/show"><a>show</a></Link> in
       the top bar, and the newest are <Link prefetch href="/shownew"><a>here</a></Link>.
