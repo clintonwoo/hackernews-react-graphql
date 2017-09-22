@@ -177,16 +177,8 @@ ShallowWrapper {
                     upvoteCount={10}
                     upvotes={
                         Array [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7,
-                            8,
-                            9,
-                            10,
+                            "clintonwoo",
+                            "john",
                           ]
                     }
                     url="https://www.shavelikeaboss.com.au"
@@ -208,16 +200,8 @@ ShallowWrapper {
                     upvoteCount={10}
                     upvotes={
                         Array [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7,
-                            8,
-                            9,
-                            10,
+                            "clintonwoo",
+                            "john",
                           ]
                     }
                     url="https://www.shavelikeaboss.com.au"
@@ -1608,16 +1592,8 @@ ShallowWrapper {
                               upvoteCount={10}
                               upvotes={
                                     Array [
-                                          1,
-                                          2,
-                                          3,
-                                          4,
-                                          5,
-                                          6,
-                                          7,
-                                          8,
-                                          9,
-                                          10,
+                                          "clintonwoo",
+                                          "john",
                                         ]
                               }
                               url="https://www.shavelikeaboss.com.au"
@@ -1639,16 +1615,8 @@ ShallowWrapper {
                               upvoteCount={10}
                               upvotes={
                                     Array [
-                                          1,
-                                          2,
-                                          3,
-                                          4,
-                                          5,
-                                          6,
-                                          7,
-                                          8,
-                                          9,
-                                          10,
+                                          "clintonwoo",
+                                          "john",
                                         ]
                               }
                               url="https://www.shavelikeaboss.com.au"
@@ -2943,16 +2911,8 @@ ShallowWrapper {
                           "title": "Clinton wins again",
                           "upvoteCount": 10,
                           "upvotes": Array [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7,
-                            8,
-                            9,
-                            10,
+                            "clintonwoo",
+                            "john",
                           ],
                           "url": "https://www.shavelikeaboss.com.au",
                         },
@@ -3439,16 +3399,8 @@ ShallowWrapper {
               "title": "Clinton wins again",
               "upvoteCount": 10,
               "upvotes": Array [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
+                "clintonwoo",
+                "john",
               ],
               "url": "https://www.shavelikeaboss.com.au",
             },
@@ -4051,16 +4003,8 @@ ShallowWrapper {
                                                   upvoteCount={10}
                                                   upvotes={
                                                             Array [
-                                                                      1,
-                                                                      2,
-                                                                      3,
-                                                                      4,
-                                                                      5,
-                                                                      6,
-                                                                      7,
-                                                                      8,
-                                                                      9,
-                                                                      10,
+                                                                      "clintonwoo",
+                                                                      "john",
                                                                     ]
                                                   }
                                                   url="https://www.shavelikeaboss.com.au"
@@ -4082,16 +4026,8 @@ ShallowWrapper {
                                                   upvoteCount={10}
                                                   upvotes={
                                                             Array [
-                                                                      1,
-                                                                      2,
-                                                                      3,
-                                                                      4,
-                                                                      5,
-                                                                      6,
-                                                                      7,
-                                                                      8,
-                                                                      9,
-                                                                      10,
+                                                                      "clintonwoo",
+                                                                      "john",
                                                                     ]
                                                   }
                                                   url="https://www.shavelikeaboss.com.au"
@@ -5482,16 +5418,8 @@ ShallowWrapper {
                                                   upvoteCount={10}
                                                   upvotes={
                                                             Array [
-                                                                      1,
-                                                                      2,
-                                                                      3,
-                                                                      4,
-                                                                      5,
-                                                                      6,
-                                                                      7,
-                                                                      8,
-                                                                      9,
-                                                                      10,
+                                                                      "clintonwoo",
+                                                                      "john",
                                                                     ]
                                                   }
                                                   url="https://www.shavelikeaboss.com.au"
@@ -5513,16 +5441,8 @@ ShallowWrapper {
                                                   upvoteCount={10}
                                                   upvotes={
                                                             Array [
-                                                                      1,
-                                                                      2,
-                                                                      3,
-                                                                      4,
-                                                                      5,
-                                                                      6,
-                                                                      7,
-                                                                      8,
-                                                                      9,
-                                                                      10,
+                                                                      "clintonwoo",
+                                                                      "john",
                                                                     ]
                                                   }
                                                   url="https://www.shavelikeaboss.com.au"
@@ -6821,16 +6741,8 @@ ShallowWrapper {
               "title": "Clinton wins again",
               "upvoteCount": 10,
               "upvotes": Array [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
+                "clintonwoo",
+                "john",
               ],
               "url": "https://www.shavelikeaboss.com.au",
             },

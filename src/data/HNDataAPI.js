@@ -26,7 +26,7 @@ const api = Firebase.database().ref(HN_API_VERSION);
 
 
 export function fetchNewsItem(id) {
-  logger(`Fetching ${HN_API_URL}/item/${id}.json`);
+  logger(`Fetching post ${HN_API_URL}/item/${id}.json`);
   return api.child(`item/${id}`).once('value')
     .then((postSnapshot) => {
       const post = postSnapshot.val();
@@ -41,7 +41,7 @@ export function fetchNewsItem(id) {
           title: post.title,
           url: post.url,
         };
-        cache.setNewsItem(newsItem);
+        cache.setNewsItem(newsItem.id, newsItem);
         logger(`Created Post: ${post.id}`);
         return newsItem;
       }
@@ -51,7 +51,7 @@ export function fetchNewsItem(id) {
 }
 
 export function fetchComment(id) {
-  logger(`Fetching ${HN_API_URL}/item/${id}.json`);
+  logger(`Fetching comment ${HN_API_URL}/item/${id}.json`);
   return api.child(`item/${id}`).once('value')
     .then((itemSnapshot) => {
       const item = itemSnapshot.val();
@@ -64,7 +64,7 @@ export function fetchComment(id) {
           submitterId: item.by,
           text: item.text,
         };
-        cache.setComment(comment);
+        cache.setComment(comment.id, comment);
         logger(`Created Comment: ${item.id}`);
         return comment;
       }
@@ -77,6 +77,7 @@ export function getFeed(feedType) {
   logger(`Fetching /${feedType}stories.json`);
   return api.child(`${feedType}stories`).once('value')
     .then(feedSnapshot => feedSnapshot.val())
+    .then(feed => feed.filter(newsItem => newsItem !== undefined))
     .catch(reason => logger(`Fetching news feed failed: ${reason}`));
 }
 

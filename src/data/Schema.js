@@ -39,16 +39,38 @@ const typeDefs = `
   }
 
   scalar Date
+
+  # A list of options for the sort order of the feed
+  enum FeedType {
+    # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
+    TOP
+  
+    # Newest entries first
+    NEW
+
+    # SHOW HN articles
+    SHOW
+
+    # ASK HN articles
+    ASK
+
+    # Job listings
+    JOB
+  }
   
   type NewsItem {
 
     id: Int!
 
-    comments: [Comment]
+    comments: [Comment]!
 
     commentCount: Int!
 
     creationTime: Date!
+
+    hidden: [String]!
+
+    hiddenCount: Int!
 
     points: Int!
 
@@ -60,7 +82,7 @@ const typeDefs = `
 
     text: String
 
-    upvotes: [Int]!
+    upvotes: [String]!
 
     upvoteCount: Int!
 
@@ -84,13 +106,15 @@ const typeDefs = `
 
     firstName: String
 
+    hidden: [Int]!
+
     karma: Int!
 
     lastName: String
 
-    likes: [Int]
+    likes: [Int]!
     
-    posts: [Int]
+    posts: [Int]!
   }
 
   # the schema allows the following queries:
@@ -119,29 +143,20 @@ const typeDefs = `
     user(id: String!): User
   }
 
-  # A list of options for the sort order of the feed
-  enum FeedType {
-    # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
-    TOP
-  
-    # Newest entries first
-    NEW
-
-    # SHOW HN articles
-    SHOW
-
-    # ASK HN articles
-    ASK
-
-    # Job listings
-    JOB
-  }
-
-  # this schema allows the following mutation:
+  # This schema allows the following mutations:
   type Mutation {
     upvoteNewsItem (
       postId: Int!
     ): NewsItem
+
+    submitNewsItem (
+      title: String!
+    ): NewsItem
+
+    registerUser (
+      id: String!
+      password: String!
+    ): User
   }
 
 `;
@@ -189,7 +204,20 @@ const resolvers = {
 
 
   Mutation: {
-    upvoteNewsItem: (_, { postId }, context) => context.NewsItem.upvoteNewsItem(postId),
+    upvoteNewsItem: (_, { postId }, context) => {
+      if (!context.userId) throw new Error('Must be logged in to vote.');
+      return context.NewsItem.upvoteNewsItem(postId);
+    },
+
+    submitNewsItem: (_, args, context) => {
+      if (!context.userId) throw new Error('Must be logged in to submit a news item.');
+      return context.NewsItem.submitNewsItem({ ...args, submitterId: context.userId });
+    },
+
+    registerUser: (_, args, context) => {
+      if (context.userId) throw new Error('Logged in user cannot register a user');
+      return context.User.registerUser(args);
+    },
   },
 
   /*       GRAPHQL TYPE RESOLVERS        */

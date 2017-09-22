@@ -23,11 +23,14 @@ export function createNewsItem(newsItem) {
 
 
 export function upvoteNewsItem(id, userId) {
-  const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
-  newsItemData.upvotes.add(userId);
-  newsItemData.upvoteCount += 1;
+  // Upvote the News Item in the DB
 
-  return newsItemData;
+  const newsItem = cache.getNewsItem(id); //data.newsItems.find(newsItem => newsItem.id === id);
+  if (newsItem && !newsItem.upvotes.has(userId)) {
+    newsItem.upvotes.add(userId);
+    newsItem.upvoteCount += 1;
+  }
+  return newsItem;
 }
 
 export function downvoteNewsItem(id, userId) {
@@ -36,6 +39,12 @@ export function downvoteNewsItem(id, userId) {
   newsItemData.downvoteCount += 1;
 
   return newsItemData;
+}
+
+export function submitNewsItem(id, newsItem) {
+  // Submit the News Item in the DB
+  if (cache.setNewsItem(id, newsItem)) return newsItem;
+  throw new Error('Unable to submit News Item.');
 }
 
 /*                  END NEWS ITEMS                      */

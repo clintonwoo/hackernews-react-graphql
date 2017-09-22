@@ -8,7 +8,6 @@ import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
-let pageNumber = 0;
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -18,16 +17,15 @@ const query = gql`
   }
   ${NewsFeed.fragments.newsItem}
 `;
-const variables = {
-  type: 'ASK',
-  first: POSTS_PER_PAGE,
-  skip: POSTS_PER_PAGE * pageNumber,
-};
 
 const AskNewsFeed = graphql(query, {
-  options: {
-    variables,
-  },
+  options: ({ options: { first, skip } }) => ({
+    variables: {
+      type: 'ASK',
+      first,
+      skip,
+    },
+  }),
   props: ({ data }) => ({
     data,
   }),
@@ -48,14 +46,13 @@ const AskNewsFeed = graphql(query, {
 })(NewsFeedApolloHOC);
 
 export default withData((props) => {
-  pageNumber = (props.url.query && +props.url.query.p) || 0;
-  variables.skip = POSTS_PER_PAGE * pageNumber;
+  const pageNumber = (props.url.query && +props.url.query.p) || 0;
   return (
     <Main currentURL={props.url.pathname}>
       <AskNewsFeed options={{
         currentURL: props.url.pathname,
-        first: variables.first,
-        skip: variables.skip,
+        first: POSTS_PER_PAGE,
+        skip: POSTS_PER_PAGE * pageNumber,
       }}
       />
     </Main>

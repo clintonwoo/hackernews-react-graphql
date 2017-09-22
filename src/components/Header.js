@@ -24,14 +24,14 @@ const Header = props => (
             
             <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
               {
-                props.user ?
+                props.me ?
                   <span className="pagetop">
-                    <Link prefetch href={`/user?id=${props.user.id}`}>
+                    <Link prefetch href={`/user?id=${props.me.id}`}>
                       <a>
-                        {props.user.id}
+                        {props.me.id}
                       </a>
                     </Link>
-                    ` (${props.user.karma}) | `
+                    {` (${props.me.karma}) | `}
                     <a href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${props.currentURL}`}>logout</a>
                   </span>
                   :
@@ -51,10 +51,10 @@ const Header = props => (
   </tr>
 );
 Header.defaultProps = {
-  user: null,
+  me: null,
 };
 Header.propTypes = {
-  user: PropTypes.shape({
+  me: PropTypes.shape({
     id: PropTypes.string,
     karma: PropTypes.number,
   }),

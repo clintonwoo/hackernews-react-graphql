@@ -5,6 +5,7 @@ import * as HNDB from '../HNDataAPI';
 import * as DB from '../Database';
 
 const logger = debug('app:NewsItem');
+let newPostIdCounter = 100;
 
 export default class NewsItem {
   static getNewsItem(id) {
@@ -17,11 +18,24 @@ export default class NewsItem {
   }
   
   static upvoteNewsItem(id) {
-    const post = DB.getNewsItem(id);
-    if (!post) {
-      throw new Error(`Couldn't find post with id ${id}`);
-    }
-    post.upvoteCount += 1;
-    return post;
+    return DB.upvoteNewsItem(id);
+  }
+
+  static submitNewsItem({ submitterId, text, url }) {
+    const newsItem = {
+      id: newPostIdCounter += 1,
+      comments: [],
+      commentCount: 0,
+      creationTime: new Date().valueOf(),
+      hidden: [],
+      hiddenCount: 0,
+      points: 1,
+      submitterId,
+      text: text || null,
+      url: url || null,
+      upvotes: [submitterId],
+      upvoteCount: 1,
+    };
+    return DB.submitNewsItem(newsItem.id, newsItem);
   }
 }

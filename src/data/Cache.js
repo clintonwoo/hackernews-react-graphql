@@ -4,10 +4,14 @@
 // Every time an upvote/downvote/comment is made, update the count
 
 import LRU from 'lru-cache';
+import debug from 'debug';
 
 import {
   Feed,
 } from './models';
+
+const logger = debug('app:Cache');
+logger.log = console.log.bind(console);
 
 // The cache is a singleton
 
@@ -30,8 +34,8 @@ class Cache {
     // return this.newsItems.find(newsItem => newsItem.id === id);
     return this.newsItemsCache.get(id);
   }
-  setNewsItem(newsItem) {
-    return this.newsItemsCache.set(newsItem.id, newsItem);
+  setNewsItem(id, newsItem) {
+    return this.newsItemsCache.set(id, newsItem);
   }
 
   /*                  END NEWS ITEMS                      */
@@ -47,8 +51,9 @@ class Cache {
     return this.userCache.dump();
   }
 
-  setUser(user) {
-    this.userCache.set(user.id, user);
+  setUser(id, user) {
+    logger(`Cache set user ${user}`);
+    this.userCache.set(id, user);
     return user;
   }
 
@@ -61,8 +66,9 @@ class Cache {
     return this.commentCache.get(id);
   }
 
-  setComment(comment) {
+  setComment(id, comment) {
     this.userCache.set(comment.id, comment);
+    logger(`Cache set comment ${comment}`);
     return comment;
   }
 

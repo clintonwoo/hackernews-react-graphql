@@ -23,14 +23,13 @@ const query = gql`
   ${NewsDetail.fragments.newsItem}
   ${Comments.fragments.comment}
 `;
-const variables = {
-  id: 1235,
-};
 
 const NewsItemWithComments = graphql(query, {
-  options: {
-    variables,
-  },
+  options: ({ id }) => ({
+    variables: {
+      id,
+    },
+  }),
   props: ({ data }) => ({
     data,
   }),
@@ -50,11 +49,8 @@ const NewsItemWithComments = graphql(query, {
   }),
 })(NewsItem);
 
-export default withData((props) => {
-  variables.id = (props.url.query && +props.url.query.id) || 0;
-  return (
-    <Main currentURL={props.url.pathname}>
-      <NewsItemWithComments />
-    </Main>
-  );
-});
+export default withData(props => (
+  <Main currentURL={props.url.pathname}>
+    <NewsItemWithComments id={(props.url.query && +props.url.query.id) || 0} />
+  </Main>
+));

@@ -8,7 +8,6 @@ import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
-let pageNumber = 0;
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -18,16 +17,15 @@ const query = gql`
   }
   ${NewsFeed.fragments.newsItem}
 `;
-const variables = {
-  type: 'JOB',
-  first: POSTS_PER_PAGE,
-  skip: POSTS_PER_PAGE * pageNumber,
-};
 
 const JobNewsFeed = graphql(query, {
-  options: {
-    variables,
-  },
+  options: ({ options: { first, skip } }) => ({
+    variables: {
+      type: 'JOB',
+      first,
+      skip,
+    },
+  }),
   props: ({ data }) => ({
     data,
   }),
@@ -48,8 +46,7 @@ const JobNewsFeed = graphql(query, {
 })(NewsFeedApolloHOC);
 
 export default withData((props) => {
-  pageNumber = (props.url.query && +props.url.query.p) || 0;
-  variables.skip = POSTS_PER_PAGE * pageNumber;
+  const pageNumber = (props.url.query && +props.url.query.p) || 0;
   const notice = [
     <tr key="noticetopspacer" style={{ height: '20px' }} />,
     <tr key="notice">
@@ -66,11 +63,11 @@ export default withData((props) => {
     <Main currentURL={props.url.pathname}>
       <JobNewsFeed options={{
         currentURL: props.url.pathname,
-        first: variables.first,
+        first: POSTS_PER_PAGE,
         isRankVisible: false,
         isUpvoteVisible: false,
         isJobListing: true,
-        skip: variables.skip,
+        skip: POSTS_PER_PAGE * pageNumber,
         notice,
       }}
       />

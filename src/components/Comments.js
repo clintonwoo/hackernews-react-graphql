@@ -47,7 +47,7 @@ const Comments = (props) => {
       </tbody>
     </table>
   );
-}
+};
 Comments.propTypes = {
   newsItem: PropTypes.shape({
     id: PropTypes.number.isRequired,

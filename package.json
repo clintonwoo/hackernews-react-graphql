@@ -10,7 +10,7 @@
     "nodemon": "nodemon src/server.js --exec babel-node",
     "debug": "DEBUG=app:* npm run dev",
     "debug-all": "DEBUG=* npm run dev",
-    "debug-mode": "babel-node debug src/server.js",
+    "debug-mode": "babel-node --inspect src/server.js",
     "graphiql": "babel-node ./src/data/graphiql",
     "test": "jest",
     "flow": "flow",

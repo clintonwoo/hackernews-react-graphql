@@ -25,7 +25,7 @@ const Main = props => (
           title={props.title}
           isNavVisible={props.isNavVisible}
           isUserVisible={props.isUserVisible}
-          user={props.me && props.me.id}
+          me={props.me}
           currentURL={props.currentURL}
         />
         <tr style={{ height: '10px' }} />
@@ -40,9 +40,7 @@ Main.defaultProps = {
   isNavVisible: true,
   isUserVisible: true,
   title: 'Hacker News',
-  me: {
-    id: null,
-  },
+  me: null,
 };
 Main.propTypes = {
   children: PropTypes.oneOfType([
@@ -55,11 +53,12 @@ Main.propTypes = {
   title: PropTypes.string,
   me: PropTypes.shape({
     id: PropTypes.string,
+    karma: PropTypes.number,
   }),
   currentURL: PropTypes.string.isRequired,
 };
 
-const me = gql`
+const meQuery = gql`
   query User {
     me {
       id
@@ -68,13 +67,12 @@ const me = gql`
   }
 `;
 
-export default graphql(me, {
+export default graphql(meQuery, {
   options: {
-    variables: {
-    },
+    fetchPolicy: 'cache-and-network',
   },
-  props: ({ data }) => ({
-    data,
+  props: ({ data: { me } }) => ({
+    me,
   }),
 })(Main);
 

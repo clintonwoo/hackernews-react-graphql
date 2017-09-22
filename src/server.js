@@ -16,9 +16,6 @@ import {
   seedCache,
 } from './data/HNDataAPI';
 import {
-  getUser,
-} from './data/Database';
-import {
   Comment,
   Feed,
   NewsItem,
@@ -41,7 +38,6 @@ seedCache(delay);
 const app = next({ dir: appPath, dev });
 
 const handle = app.getRequestHandler();
-
 app.prepare()
   .then(() => {
     const server = express();
@@ -55,11 +51,11 @@ app.prepare()
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
-        if (!user.validPassword(password)) {
+        if (!User.validPassword(username, password)) {
           return done(null, false, { message: 'Incorrect password.' });
         }
         return done(null, user);
-      }
+      },
     ));
 
     /*
@@ -75,14 +71,16 @@ app.prepare()
       const user = await User.getUser(id);
       cb(null, user);
     });
-    server.use(cookieParser());
+    server.use(cookieParser('mysecret'));
     server.use(session({
       secret: 'mysecret',
       resave: false,
+      rolling: true,
       saveUninitialized: false,
-      cookie: { secure: true },
+      cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, // Requires https: secure: false
     }));
     server.use(passport.initialize());
+    server.use(bodyParser.urlencoded({ extended: false }));
     server.use(passport.session());
 
     server.post('/login', passport.authenticate(
@@ -102,19 +100,22 @@ app.prepare()
     /* BEGIN GRAPHQL */
 
     server.use(graphQLPath, bodyParser.json(), graphqlExpress(
-      req => ({
-        schema: Schema,
-        rootValue: { req },
-        context: {
-          Feed,
-          NewsItem,
-          Comment,
-          User,
-          userId: req.user,
-        },
-        debug: dev,
-      })),
-    );
+      (req) => {
+        const userId = req.user && req.user.id;
+        return {
+          schema: Schema,
+          rootValue: { req },
+          context: {
+            Feed,
+            NewsItem,
+            Comment,
+            User,
+            userId,
+          },
+          debug: dev,
+        };
+      },
+    ));
 
     server.use(graphiQLPath, graphiqlExpress({
       endpointURL: graphQLPath,
