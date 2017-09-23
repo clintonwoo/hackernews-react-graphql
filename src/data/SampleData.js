@@ -631,6 +631,7 @@ export default {
     {
       // id: 1, // username is Primary Key
       id: 'clintonwoo', // Aka. username
+      about: 'I am a software engineer who lives in New York.',
       creationTime: 1506024614000,
       dateOfBirth: 723618000000,
       email: 'clinton@hotmail.com',
@@ -642,6 +643,7 @@ export default {
     },
     {
       id: 'john', // Aka. username
+      about: 'Just a bloke',
       creationTime: 1506024554000,
       dateOfBirth: 554875200000,
       email: 'john@doe.com',

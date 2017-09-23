@@ -73,6 +73,34 @@ export function fetchComment(id) {
     .catch(reason => logger(`Fetching comment failed: ${reason}`));
 }
 
+export function fetchUser(id) {
+  logger(`Fetching user ${HN_API_URL}/user/${id}.json`);
+  return api.child(`user/${id}`).once('value')
+    .then((itemSnapshot) => {
+      const item = itemSnapshot.val();
+      if (item !== null && !item.deleted && !item.dead) {
+        const user = {
+          id: item.id,
+          about: item.about,
+          creationTime: item.created * 1000,
+          dateOfBirth: null,
+          email: null,
+          firstName: null,
+          hidden: [],
+          karma: item.karma,
+          lastName: null,
+          likes: [],
+          posts: item.submitted,
+        };
+        cache.setUser(user.id, user);
+        logger(`Created User: ${item.id}`, item);
+        return user;
+      }
+      throw item;
+    })
+    .catch(reason => logger(`Fetching user failed: ${reason}`));
+}
+
 export function getFeed(feedType) {
   logger(`Fetching /${feedType}stories.json`);
   return api.child(`${feedType}stories`).once('value')

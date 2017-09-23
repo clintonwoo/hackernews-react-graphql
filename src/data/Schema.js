@@ -100,6 +100,8 @@ const typeDefs = `
     # The user ID is a string of the username
     id: String!
 
+    about: String
+
     creationTime: Date!
 
     dateOfBirth: Date
