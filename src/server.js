@@ -2,7 +2,7 @@ import dotenv from 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import next from 'next';
+import nextApp from 'next';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import bodyParser from 'body-parser';
@@ -35,7 +35,7 @@ import {
 const delay = dev ? 1000 * 60 * 0 /* 1 minute */ : 0;
 seedCache(delay);
 
-const app = next({ dir: appPath, dev });
+const app = nextApp({ dir: appPath, dev });
 
 const handle = app.getRequestHandler();
 app.prepare()
@@ -83,10 +83,14 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(passport.session());
 
-    server.post('/login', passport.authenticate(
+    server.post('/login', (req, res, next) => {
+      if (req.body.creating) req.session.returnTo = `${req.body.goto}${req.body.username}`;
+      else req.session.returnTo = req.body.goto;
+      next();
+    }, passport.authenticate(
       'local',
       {
-        successRedirect: '/',
+        successReturnToOrRedirect: '/',
         failureRedirect: '/login',
       },
     ));

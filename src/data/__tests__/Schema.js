@@ -1,50 +1,61 @@
+import { resolvers } from '../Schema';
+
 import data from '../../data/SampleData';
 
-const comment = data.topStoriesCache[0].comments[0];
+// const comment = data.topStoriesCache[0].comments[0];
+
 
 describe('GraphQL', () => {
-  describe('Queries', () => {
-    it('returns expected data for Feed query', () => {
-      
-      expect(comment);
+  describe('Resolvers', () => {
+    describe('Queries', () => {
+      it('returns expected data for query on Feed', () => {
+        expect(true);
+      });
+      it('returns expected data for query on Comment', () => {
+        const result = resolvers.Query.comment(
+          undefined,
+          { id: data.topStoriesCache[0].comments[0].id },
+          {
+            Comment: {
+              getComment: id => data.topStoriesCache[0].comments.find(comment => comment.id === id),
+            },
+          },
+        );
+        expect(result).toBeDefined();
+      });
+      it('returns expected data for query on Me', () => {
+        
+        expect(true);
+      });
+      it('returns expected data for News Item query', () => {
+        
+        expect(true);
+      });
+      it('returns expected data for User query', () => {
+        
+        expect(true);
+      });
     });
-    it('returns expected data for Comment query', () => {
-      
-      expect(comment);
+    describe('Mutations', () => {
+      it('returns data for upvoteNewsItem mutation', () => {
+        
+        expect(true);
+      });
+      it('returns data for submitNewsItem mutation', () => {
+        
+        expect(true);
+      });
     });
-    it('returns expected data for Me query', () => {
-      
-      expect(comment);
-    });
-    it('returns expected data for News Item query', () => {
-      
-      expect(comment);
-    });
-    it('returns expected data for User query', () => {
-      
-      expect(comment);
-    });
-  });
-
-  describe('Mutations', () => {
-    it('returns data for upvoteNewsItem mutation', () => {
-      
-      expect(comment);
-    });
-    it('returns data for submitNewsItem mutation', () => {
-      
-      expect(comment);
-    });
-  });
-
-  describe('Property Resolvers', () => {
-    it('newsItem author is a user', () => {
-      
-      expect(comment);
-    });
-    it('newsItem comments are comments', () => {
-      
-      expect(comment);
+  
+    describe('Property Resolvers', () => {
+      it('newsItem author is a user', () => {
+        
+        expect(true);
+      });
+      it('newsItem comments are comments', () => {
+        
+        expect(true);
+      });
     });
   });
 });

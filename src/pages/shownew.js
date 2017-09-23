@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
@@ -8,8 +9,7 @@ import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;
-let pageNumber = 0;
-const skip = POSTS_PER_PAGE * pageNumber;
+
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
     feed(type: $type, first: $first, skip: $skip) {
@@ -18,16 +18,15 @@ const query = gql`
   }
   ${NewsFeed.fragments.newsItem}
 `;
-const variables = {
-  type: 'SHOW',
-  first: POSTS_PER_PAGE,
-  skip,
-};
 
 const ShowHNNewsFeed = graphql(query, {
-  options: {
-    variables,
-  },
+  options: ({ options: { first, skip } }) => ({
+    variables: {
+      type: 'SHOW',
+      first,
+      skip,
+    },
+  }),
   props: ({ data }) => ({
     data,
   }),
@@ -48,27 +47,28 @@ const ShowHNNewsFeed = graphql(query, {
 })(NewsFeedApolloHOC);
 
 export default withData((props) => {
-  pageNumber = (props.url.query && +props.url.query.p) || 0;
-  variables.skip = POSTS_PER_PAGE * pageNumber;
+  const pageNumber = (props.url.query && +props.url.query.p) || 0;
   const notice = [
-    <tr style={{ height: '5px' }} />,
-    <tr>
+    <tr key="noticetopspacer" style={{ height: '5px' }} />,
+    <tr key="notice" >
       <td colSpan="2" />
       <td>
-        Please read the <a href="showhn.html"><u>rules</u></a>. You can also
-        browse the <a href="shownew"><u>newest</u></a> Show HNs.
+        Please read the <Link prefetch href="/showhn"><a><u>rules</u></a></Link>. You can also
+        browse the <Link prefetch href="/shownew"><a><u>newest</u></a></Link> Show HNs.
       </td>
     </tr>,
-    <tr style={{ height: '10px' }} />,
+    <tr key="noticebottomspacer" style={{ height: '10px' }} />,
   ];
   return (
     <Main currentURL={props.url.pathname}>
       <ShowHNNewsFeed options={{
         currentURL: props.url.pathname,
+        first: POSTS_PER_PAGE,
+        skip: POSTS_PER_PAGE * pageNumber,
         notice,
       }}
       />
     </Main>
-  )
+  );
 });
 

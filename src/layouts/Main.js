@@ -69,7 +69,8 @@ const meQuery = gql`
 
 export default graphql(meQuery, {
   options: {
-    fetchPolicy: 'cache-and-network',
+    // fetchPolicy: 'cache-and-network',
+    // ssr: false,
   },
   props: ({ data: { me } }) => ({
     me,

@@ -7,9 +7,13 @@ import {
 import {
   makeExecutableSchema,
 } from 'graphql-tools';
+import debug from 'debug';
 
 // Read the complete docs for graphql-tools here:
 // http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
+
+const logger = debug('app:Schema');
+logger.log = console.log.bind(console);
 
 /*
   Schema properties are in following order:
@@ -161,7 +165,7 @@ const typeDefs = `
 
 `;
 
-const resolvers = {
+export const resolvers = {
 
   /*
     http://dev.apollodata.com/tools/graphql-tools/resolvers.html
@@ -193,7 +197,10 @@ const resolvers = {
       return context.Feed.getForType(type, limit, skip);
     },
 
-    me: (_, __, context) => context.userId && context.User.getUser(context.userId),
+    me: (_, __, context) => {
+      logger('Me: userId:', context.userId);
+      return context.userId && context.User.getUser(context.userId);
+    },
 
     newsItem: (_, { id }, context) => context.NewsItem.getNewsItem(id),
 

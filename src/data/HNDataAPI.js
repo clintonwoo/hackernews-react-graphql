@@ -47,7 +47,7 @@ export function fetchNewsItem(id) {
       }
       throw post;
     })
-    .catch(reason => logger(`Fetching news item failed: ${reason}`));
+    .catch(reason => logger(`Fetching post failed: ${reason}`));
 }
 
 export function fetchComment(id) {
@@ -77,7 +77,7 @@ export function getFeed(feedType) {
   logger(`Fetching /${feedType}stories.json`);
   return api.child(`${feedType}stories`).once('value')
     .then(feedSnapshot => feedSnapshot.val())
-    .then(feed => feed.filter(newsItem => newsItem !== undefined))
+    .then(feed => feed.filter(newsItem => newsItem !== undefined && newsItem !== null))
     .catch(reason => logger(`Fetching news feed failed: ${reason}`));
 }
 
@@ -87,7 +87,7 @@ const rebuildFeed = (feedType) => {
     .then(feed => Promise.all(feed.map(id => fetchNewsItem(id)))
       .then((newsItems) => {
         logger(newsItems);
-        Feed[`${feedType}NewsItems`] = newsItems;
+        Feed[`${feedType}NewsItems`] = newsItems.filter(newsItem => newsItem !== undefined && newsItem !== null);
         Feed[feedType] = feed;
         logger(`Updated ${feedType} ids`);
       }),

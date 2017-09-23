@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import HomePage from '../index';
+import Page from '../index';
 
 describe('Home Page', () => {
   it('is defined', () => {
-    const app = shallow(<HomePage serverState={{}} />);
+    const app = shallow(<Page serverState={{}} />);
     expect(app).toBeDefined();
   });
 });
