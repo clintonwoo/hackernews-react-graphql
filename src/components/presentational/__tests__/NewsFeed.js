@@ -3,22 +3,22 @@ import MockDate from 'mockdate';
 // import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import NewsTitle from '../NewsTitle';
-import data from '../../data/SampleData';
+import NewsFeed from '../NewsFeed';
+import data from '../../../data/SampleData';
 
 MockDate.set(1506022129802);
 
 
-describe('NewsTitle component', () => {
+describe('NewsFeed component', () => {
   // it('shallow renders', () => {
   //   const wrapper = shallow(
   //     <NewsFeed />,
   //   );
   //   expect(wrapper).toMatchSnapshot();
   // });
-  it('renders news item properties passed in as props', () => {
+  it('renders news items passed in as props', () => {
     const wrapper = shallow((
-      <NewsTitle {...data.newsItems[0]} isRankVisible={true} rank={1} />
+      <NewsFeed newsItems={data.newsItems} currentURL="/" first={30} skip={0} />
     ));
     expect(wrapper).toMatchSnapshot();
   });

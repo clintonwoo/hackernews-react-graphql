@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
-import Router from 'next/router';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
 
 
-import convertNumberToTimeAgo from '../helpers/convertNumberToTimeAgo';
+import convertNumberToTimeAgo from '../../helpers/convertNumberToTimeAgo';
 
-class NewsDetail extends Component {
+export default class NewsDetail extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     commentCount: PropTypes.number.isRequired,
@@ -35,14 +34,6 @@ class NewsDetail extends Component {
         hidden
         submitterId
         upvoteCount
-      }
-    `,
-    hideNewsItem: gql`
-      mutation HideNewsItem($id: Int!) {
-        hideNewsItem(id: $id) {
-          id
-          hidden
-        }
       }
     `,
   };
@@ -86,12 +77,11 @@ class NewsDetail extends Component {
                 <a href="javascript:void(0)" onClick={() => this.props.hideNewsItem(this.props.id)}>
                   hide
                 </a>
-              :
+                :
                 <a href="javascript:void(0)" onClick={() => this.props.unhideNewsItem(this.props.id)}>
                   hide
                 </a>
             }
-           
             {
               this.props.isPostScrutinyVisible &&
               <span>
@@ -123,21 +113,3 @@ class NewsDetail extends Component {
     );
   }
 }
-
-export default graphql(NewsDetail.fragments.hideNewsItem, {
-  props: ({ ownProps, mutate }) => ({
-    hideNewsItem: id =>
-      mutate({
-        variables: { id },
-      })
-      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
-    unhideNewsItem: id =>
-      mutate({
-        variables: { id },
-      })
-        .catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
-  }),
-})(NewsDetail);
-
-// export default NewsDetail;

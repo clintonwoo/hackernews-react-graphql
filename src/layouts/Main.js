@@ -6,8 +6,8 @@ import {
   gql,
 } from 'react-apollo';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/presentational/Header';
+import Footer from '../components/presentational/Footer';
 
 
 const Main = props => (

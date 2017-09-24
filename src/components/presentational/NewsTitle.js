@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
-import Router from 'next/router';
+import { gql } from 'react-apollo';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
 
-
-class NewsTitle extends Component {
+export default class NewsTitle extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     isRankVisible: PropTypes.bool,
@@ -30,15 +28,6 @@ class NewsTitle extends Component {
         title
         url
         upvoted
-      }
-    `,
-    upvoteNewsItem: gql`
-      mutation UpvoteNewsItem($id: Int!) {
-        upvoteNewsItem(id: $id) {
-          id
-          upvoteCount
-          upvoted
-        }
       }
     `,
   };
@@ -75,16 +64,3 @@ class NewsTitle extends Component {
     );
   }
 }
-
-export default graphql(NewsTitle.fragments.upvoteNewsItem, {
-  props: ({ ownProps, mutate }) => ({
-    upvoteNewsItem: id =>
-      mutate({
-        variables: { id },
-      })
-      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
-  }),
-})(NewsTitle);
-
-// export default NewsTitle;

@@ -31,7 +31,7 @@ export function upvoteNewsItem(id, userId) {
   // Upvote the News Item in the DB
   const newsItem = cache.getNewsItem(id);
   if (newsItem && !newsItem.upvotes.includes(userId)) {
-    newsItem.upvotes.add(userId);
+    newsItem.upvotes.push(userId);
     newsItem.upvoteCount += 1;
     cache.setNewsItem(id, newsItem);
   }
@@ -41,7 +41,7 @@ export function upvoteNewsItem(id, userId) {
 export function unvoteNewsItem(id, userId) {
   const newsItem = cache.getNewsItem(id);
   if (newsItem && !newsItem.upvotes.includes(userId)) {
-    newsItem.upvotes.remove(userId);
+    newsItem.upvotes.splice(newsItem.upvotes.indexOf(userId), 1);
     newsItem.upvoteCount -= 1;
     cache.setNewsItem(id, newsItem);
   }
@@ -50,7 +50,7 @@ export function unvoteNewsItem(id, userId) {
 
 export function downvoteNewsItem(id, userId) {
   const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
-  newsItemData.downvotes.add(userId);
+  newsItemData.downvotes.push(userId);
   newsItemData.downvoteCount += 1;
 
   return newsItemData;
@@ -63,10 +63,10 @@ export function hideNewsItem(id, userId) {
   const user = cache.getUser(userId);
 
   if (user && !user.hides.includes(id) && newsItem && !newsItem.hides.includes(userId)) {
-    user.hides.add(id);
+    user.hides.push(id);
     cache.setUser(id, user);
 
-    newsItem.hides.add(userId);
+    newsItem.hides.push(userId);
     newsItem.hiddenCount += 1;
     cache.setNewsItem(id, newsItem);
 

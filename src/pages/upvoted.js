@@ -5,8 +5,8 @@ import {
 } from 'react-apollo';
 
 import Main from '../layouts/Main';
-import NewsFeed from '../components/NewsFeed';
-import NewsFeedApolloHOC from '../components/NewsFeedWithApolloRenderer';
+import NewsFeed from '../components/presentational/NewsFeed';
+import NewsFeedApolloHOC from '../components/container/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
 
 const POSTS_PER_PAGE = 30;

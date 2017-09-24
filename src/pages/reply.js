@@ -5,7 +5,7 @@ import {
 } from 'react-apollo';
 
 import Main from '../layouts/Main';
-import Comment from '../components/Comment';
+import Comment from '../components/presentational/Comment';
 import withData from '../helpers/withData';
 
 

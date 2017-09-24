@@ -1,0 +1,382 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsTitle component renders news item properties passed in as props 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <tr
+    className="athing"
+    id={1224}
+>
+    <td
+        className="title"
+        style={
+            Object {
+                "textAlign": "right",
+                "verticalAlign": "top",
+              }
+        }
+    >
+        <span
+            className="rank"
+        >
+            1.
+        </span>
+    </td>
+    <td
+        className="votelinks"
+        style={
+            Object {
+                "verticalAlign": "top",
+              }
+        }
+    >
+        <center>
+            <a
+                className=" "
+                href="javascript:void(0)"
+                onClick={[Function]}
+            >
+                <div
+                    className="votearrow"
+                    title="upvote"
+                />
+            </a>
+        </center>
+    </td>
+    <td
+        className="title"
+    >
+        <a
+            className="storylink"
+            href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+        >
+            “Learning How to Learn,” the most popular course on Coursera
+        </a>
+        <span
+            className="sitebit comhead"
+        >
+             (
+            <a
+                href="from?site=www.nytimes.com"
+            >
+                <span
+                    className="sitestr"
+                >
+                    www.nytimes.com
+                </span>
+            </a>
+            )
+        </span>
+    </td>
+</tr>,
+  "nodes": Array [
+    <tr
+      className="athing"
+      id={1224}
+>
+      <td
+            className="title"
+            style={
+                  Object {
+                        "textAlign": "right",
+                        "verticalAlign": "top",
+                      }
+            }
+      >
+            <span
+                  className="rank"
+            >
+                  1.
+            </span>
+      </td>
+      <td
+            className="votelinks"
+            style={
+                  Object {
+                        "verticalAlign": "top",
+                      }
+            }
+      >
+            <center>
+                  <a
+                        className=" "
+                        href="javascript:void(0)"
+                        onClick={[Function]}
+                  >
+                        <div
+                              className="votearrow"
+                              title="upvote"
+                        />
+                  </a>
+            </center>
+      </td>
+      <td
+            className="title"
+      >
+            <a
+                  className="storylink"
+                  href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+            >
+                  “Learning How to Learn,” the most popular course on Coursera
+            </a>
+            <span
+                  className="sitebit comhead"
+            >
+                   (
+                  <a
+                        href="from?site=www.nytimes.com"
+                  >
+                        <span
+                              className="sitestr"
+                        >
+                              www.nytimes.com
+                        </span>
+                  </a>
+                  )
+            </span>
+      </td>
+</tr>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <NewsTitle
+        commentCount={44}
+        comments={Array []}
+        creationTime={1504740146516}
+        hidden={false}
+        hiddenCount={0}
+        hides={Array []}
+        id={1224}
+        isRankVisible={true}
+        isUpvoteVisible={true}
+        rank={1}
+        submitterId="hvo"
+        text={null}
+        title="“Learning How to Learn,” the most popular course on Coursera"
+        upvoteCount={171}
+        upvoteNewsItem={[Function]}
+        upvoted={false}
+        upvotes={Array []}
+        url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": NewsTitle {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "commentCount": 44,
+          "comments": Array [],
+          "creationTime": 1504740146516,
+          "hidden": false,
+          "hiddenCount": 0,
+          "hides": Array [],
+          "id": 1224,
+          "isRankVisible": true,
+          "isUpvoteVisible": true,
+          "rank": 1,
+          "submitterId": "hvo",
+          "text": null,
+          "title": "“Learning How to Learn,” the most popular course on Coursera",
+          "upvoteCount": 171,
+          "upvoteNewsItem": [Function],
+          "upvoted": false,
+          "upvotes": Array [],
+          "url": "https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well",
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <tr
+          className="athing"
+          id={1224}
+>
+          <td
+                    className="title"
+                    style={
+                              Object {
+                                        "textAlign": "right",
+                                        "verticalAlign": "top",
+                                      }
+                    }
+          >
+                    <span
+                              className="rank"
+                    >
+                              1.
+                    </span>
+          </td>
+          <td
+                    className="votelinks"
+                    style={
+                              Object {
+                                        "verticalAlign": "top",
+                                      }
+                    }
+          >
+                    <center>
+                              <a
+                                        className=" "
+                                        href="javascript:void(0)"
+                                        onClick={[Function]}
+                              >
+                                        <div
+                                                  className="votearrow"
+                                                  title="upvote"
+                                        />
+                              </a>
+                    </center>
+          </td>
+          <td
+                    className="title"
+          >
+                    <a
+                              className="storylink"
+                              href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+                    >
+                              “Learning How to Learn,” the most popular course on Coursera
+                    </a>
+                    <span
+                              className="sitebit comhead"
+                    >
+                               (
+                              <a
+                                        href="from?site=www.nytimes.com"
+                              >
+                                        <span
+                                                  className="sitestr"
+                                        >
+                                                  www.nytimes.com
+                                        </span>
+                              </a>
+                              )
+                    </span>
+          </td>
+</tr>,
+        "_debugID": 2,
+        "_renderedOutput": <tr
+          className="athing"
+          id={1224}
+>
+          <td
+                    className="title"
+                    style={
+                              Object {
+                                        "textAlign": "right",
+                                        "verticalAlign": "top",
+                                      }
+                    }
+          >
+                    <span
+                              className="rank"
+                    >
+                              1.
+                    </span>
+          </td>
+          <td
+                    className="votelinks"
+                    style={
+                              Object {
+                                        "verticalAlign": "top",
+                                      }
+                    }
+          >
+                    <center>
+                              <a
+                                        className=" "
+                                        href="javascript:void(0)"
+                                        onClick={[Function]}
+                              >
+                                        <div
+                                                  className="votearrow"
+                                                  title="upvote"
+                                        />
+                              </a>
+                    </center>
+          </td>
+          <td
+                    className="title"
+          >
+                    <a
+                              className="storylink"
+                              href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+                    >
+                              “Learning How to Learn,” the most popular course on Coursera
+                    </a>
+                    <span
+                              className="sitebit comhead"
+                    >
+                               (
+                              <a
+                                        href="from?site=www.nytimes.com"
+                              >
+                                        <span
+                                                  className="sitestr"
+                                        >
+                                                  www.nytimes.com
+                                        </span>
+                              </a>
+                              )
+                    </span>
+          </td>
+</tr>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <NewsTitle
+    commentCount={44}
+    comments={Array []}
+    creationTime={1504740146516}
+    hidden={false}
+    hiddenCount={0}
+    hides={Array []}
+    id={1224}
+    isRankVisible={true}
+    isUpvoteVisible={true}
+    rank={1}
+    submitterId="hvo"
+    text={null}
+    title="“Learning How to Learn,” the most popular course on Coursera"
+    upvoteCount={171}
+    upvoteNewsItem={[Function]}
+    upvoted={false}
+    upvotes={Array []}
+    url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
+}
+`;

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import HeaderNav from './HeaderNav';
 
-
 const Header = props => (
   <tr>
     <td style={{ backgroundColor: '#ff6600', padding: '0px' }} >

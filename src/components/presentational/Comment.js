@@ -4,7 +4,7 @@ import { gql } from 'react-apollo';
 import Link from 'next/link';
 import renderHTML from 'react-render-html';
 
-import convertNumberToTimeAgo from '../helpers/convertNumberToTimeAgo';
+import convertNumberToTimeAgo from '../../helpers/convertNumberToTimeAgo';
 
 
 const Comment = (props) => {

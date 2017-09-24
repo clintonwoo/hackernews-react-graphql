@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { gql } from 'react-apollo';
 
-import NewsTitle from './NewsTitle';
-import NewsDetail from './NewsDetail';
+import NewsTitle from '../container/NewsTitleWithData';
+import NewsDetail from '../container/NewsDetailWithData';
 
 const NewsFeed = (props) => {
   // props.newsItems.sort((a, b) => (a.rank - b.rank));

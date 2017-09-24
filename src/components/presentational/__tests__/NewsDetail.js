@@ -4,7 +4,7 @@ import MockDate from 'mockdate';
 import { shallow } from 'enzyme';
 
 import NewsDetail from '../NewsDetail';
-import data from '../../data/SampleData';
+import data from '../../../data/SampleData';
 
 const newsItem = data.newsItems[0];
 // Snapshot will be out of date if we don't use consistent time agoy
@@ -13,8 +13,9 @@ MockDate.set(1506022129802);
 
 describe('NewsFeed component', () => {
   it('renders news items passed in as props', () => {
+    const hideNewsItem = () => console.log('1');
     const wrapper = shallow(
-      <NewsDetail {...newsItem} isFavoriteVisible={false} />,
+      <NewsDetail {...newsItem} hideNewsItem={hideNewsItem} isFavoriteVisible={false} />,
     );
     expect(wrapper).toMatchSnapshot();
   });

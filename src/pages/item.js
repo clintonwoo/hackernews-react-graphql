@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql, gql } from 'react-apollo';
 
 import Main from '../layouts/Main';
-import NewsItem from '../components/NewsItemWithApolloRenderer';
-import NewsTitle from '../components/NewsTitle';
-import NewsDetail from '../components/NewsDetail';
-import Comments from '../components/Comments';
+import NewsItem from '../components/container/NewsItemWithApolloRenderer';
+import NewsTitle from '../components/presentational/NewsTitle';
+import NewsDetail from '../components/presentational/NewsDetail';
+import Comments from '../components/presentational/Comments';
 import withData from '../helpers/withData';
 
 const query = gql`
