@@ -16,8 +16,10 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
   if (error) return <Blank><tr><td>Error loading news items.</td></tr></Blank>;
   if (!user) return <Blank><tr><td>No such user.</td></tr></Blank>;
 
-  let about = user.about;
+  let about = user.about || '';
+  let email = user.email || '';
   const onAboutChange = (e) => { about = e.target.value; };
+  const onEmailChange = (e) => { email = e.target.value; };
 
   if (me && user.id === me.id) return (
     <Main currentURL={currentURL} isFooterVisible={false} >
@@ -48,7 +50,7 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>about:</td>
                   <td>
-                    <textarea onChange={onAboutChange} cols="60" rows="5" wrap="virtual" name="about" />
+                    <textarea defaultValue={renderHTML(about)} onChange={onAboutChange} cols="60" rows="5" wrap="virtual" name="about" />
                     <font size="-2">
                       <Link prefetch href="/formatdoc">
                         <a tabIndex="-1">
@@ -61,13 +63,13 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>email:</td>
                   <td>
-                    <input type="text" name="uemail" value={user.email} size="60" />
+                    <input type="text" name="uemail" defaultValue={email} onChange={onEmailChange} size="60" />
                   </td>
                 </tr>
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>showdead:</td>
                   <td>
-                    <select value="no" name="showd">
+                    <select defaultValue="no" name="showd">
                       <option value="yes">yes</option>
                       <option value="no">no</option>
                     </select>
@@ -76,7 +78,7 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>noprocrast:</td>
                   <td>
-                    <select value="no" name="nopro">
+                    <select defaultValue="no" name="nopro">
                       <option value="yes">yes</option>
                       <option value="no">no</option>
                     </select>
@@ -85,19 +87,19 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>maxvisit:</td>
                   <td>
-                    <input type="text" name="maxv" value="20" size="16" />
+                    <input type="text" name="maxv" defaultValue="20" size="16" />
                   </td>
                 </tr>
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>minaway:</td>
                   <td>
-                    <input type="text" name="mina" value="180" size="16" />
+                    <input type="text" name="mina" defaultValue="180" size="16" />
                   </td>
                 </tr>
                 <tr>
                   <td style={{ verticalAlign: 'top' }}>delay:</td>
                   <td>
-                    <input type="text" name="delay" value="0" size="16" />
+                    <input type="text" name="delay" defaultValue="0" size="16" />
                   </td>
                 </tr>
                 <tr>

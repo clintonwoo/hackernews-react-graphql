@@ -18,7 +18,7 @@ describe('NewsTitle component', () => {
   // });
   it('renders news item properties passed in as props', () => {
     const wrapper = shallow((
-      <NewsTitle {...data.newsItems[0]} isRankVisible={true} />
+      <NewsTitle {...data.newsItems[0]} isRankVisible={true} rank={1} />
     ));
     expect(wrapper).toMatchSnapshot();
   });

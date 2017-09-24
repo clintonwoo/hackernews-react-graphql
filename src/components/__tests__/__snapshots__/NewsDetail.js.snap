@@ -8,117 +8,49 @@ ShallowWrapper {
     "findWhereUnwrapped": [Function],
   },
   "length": 1,
-  "node": <tr>
-    <td
-        colSpan="2"
-    />
-    <td
-        className="subtext"
-    >
-        <span
-            className="score"
-        >
-            171
-             points
-        </span>
-         by 
-        <Link
-            href="/user?id=hvo"
-            prefetch={true}
-        >
-            <a
-                className="hnuser"
-            >
-                hvo
-            </a>
-        </Link>
-         
-        <span
-            className="age"
-        >
-            <Link
-                href="/item?id=1224"
-                prefetch={true}
-            >
-                <a>
-                    14 days ago
-                </a>
-            </Link>
-        </span>
-         | 
-        <a
-            href="javascript:void(0)"
-            onClick={[Function]}
-        >
-            hide
-        </a>
-         | 
-        <Link
-            href="/item?id=1224"
-            prefetch={true}
-        >
-            <a>
-                44 comments
-            </a>
-        </Link>
-    </td>
-</tr>,
+  "node": <NewsDetail
+    commentCount={44}
+    comments={Array []}
+    creationTime={1504740146516}
+    hidden={false}
+    hiddenCount={0}
+    hideNewsItem={[Function]}
+    hides={Array []}
+    id={1224}
+    isFavoriteVisible={false}
+    isJobListing={false}
+    isPostScrutinyVisible={false}
+    submitterId="hvo"
+    text={null}
+    title="“Learning How to Learn,” the most popular course on Coursera"
+    unhideNewsItem={[Function]}
+    upvoteCount={171}
+    upvoted={false}
+    upvotes={Array []}
+    url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
   "nodes": Array [
-    <tr>
-      <td
-            colSpan="2"
-      />
-      <td
-            className="subtext"
-      >
-            <span
-                  className="score"
-            >
-                  171
-                   points
-            </span>
-             by 
-            <Link
-                  href="/user?id=hvo"
-                  prefetch={true}
-            >
-                  <a
-                        className="hnuser"
-                  >
-                        hvo
-                  </a>
-            </Link>
-             
-            <span
-                  className="age"
-            >
-                  <Link
-                        href="/item?id=1224"
-                        prefetch={true}
-                  >
-                        <a>
-                              14 days ago
-                        </a>
-                  </Link>
-            </span>
-             | 
-            <a
-                  href="javascript:void(0)"
-                  onClick={[Function]}
-            >
-                  hide
-            </a>
-             | 
-            <Link
-                  href="/item?id=1224"
-                  prefetch={true}
-            >
-                  <a>
-                        44 comments
-                  </a>
-            </Link>
-      </td>
-</tr>,
+    <NewsDetail
+      commentCount={44}
+      comments={Array []}
+      creationTime={1504740146516}
+      hidden={false}
+      hiddenCount={0}
+      hideNewsItem={[Function]}
+      hides={Array []}
+      id={1224}
+      isFavoriteVisible={false}
+      isJobListing={false}
+      isPostScrutinyVisible={false}
+      submitterId="hvo"
+      text={null}
+      title="“Learning How to Learn,” the most popular course on Coursera"
+      unhideNewsItem={[Function]}
+      upvoteCount={171}
+      upvoted={false}
+      upvotes={Array []}
+      url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -126,50 +58,77 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 0,
       "_context": Object {},
-      "_currentElement": <NewsDetail
+      "_currentElement": <Apollo(NewsDetail)
         commentCount={44}
         comments={Array []}
         creationTime={1504740146516}
-        hidden={Array []}
+        hidden={false}
         hiddenCount={0}
+        hides={Array []}
         id={1224}
         isFavoriteVisible={false}
-        isJobListing={false}
-        isPostScrutinyVisible={false}
-        points={171}
         submitterId="hvo"
         text={null}
         title="“Learning How to Learn,” the most popular course on Coursera"
-        upvoteCount={10}
+        upvoteCount={171}
+        upvoted={false}
         upvotes={Array []}
         url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
-      "_instance": NewsDetail {
+      "_instance": GraphQL {
         "_reactInternalInstance": [Circular],
-        "context": Object {},
+        "context": Object {
+          "client": undefined,
+          "getQueryRecycler": undefined,
+        },
+        "dataForChildViaMutation": [Function],
+        "previousData": Object {},
         "props": Object {
           "commentCount": 44,
           "comments": Array [],
           "creationTime": 1504740146516,
-          "hidden": Array [],
+          "hidden": false,
           "hiddenCount": 0,
+          "hides": Array [],
           "id": 1224,
           "isFavoriteVisible": false,
-          "isJobListing": false,
-          "isPostScrutinyVisible": false,
-          "points": 171,
           "submitterId": "hvo",
           "text": null,
           "title": "“Learning How to Learn,” the most popular course on Coursera",
-          "upvoteCount": 10,
+          "upvoteCount": 171,
+          "upvoted": false,
           "upvotes": Array [],
           "url": "https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well",
         },
         "refs": Object {},
+        "renderedElement": <NewsDetail
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hideNewsItem={[Function]}
+          hides={Array []}
+          id={1224}
+          isFavoriteVisible={false}
+          isJobListing={false}
+          isPostScrutinyVisible={false}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          unhideNewsItem={[Function]}
+          upvoteCount={171}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
+        "setWrappedInstance": [Function],
+        "shouldRerender": false,
         "state": null,
+        "type": 1,
         "updater": Object {
           "enqueueCallback": [Function],
           "enqueueCallbackInternal": [Function],
@@ -180,6 +139,7 @@ ShallowWrapper {
           "isMounted": [Function],
           "validateCallback": [Function],
         },
+        "version": 0,
       },
       "_mountOrder": 1,
       "_pendingCallbacks": null,
@@ -188,119 +148,51 @@ ShallowWrapper {
       "_pendingReplaceState": false,
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <tr>
-          <td
-                    colSpan="2"
-          />
-          <td
-                    className="subtext"
-          >
-                    <span
-                              className="score"
-                    >
-                              171
-                               points
-                    </span>
-                     by 
-                    <Link
-                              href="/user?id=hvo"
-                              prefetch={true}
-                    >
-                              <a
-                                        className="hnuser"
-                              >
-                                        hvo
-                              </a>
-                    </Link>
-                     
-                    <span
-                              className="age"
-                    >
-                              <Link
-                                        href="/item?id=1224"
-                                        prefetch={true}
-                              >
-                                        <a>
-                                                  14 days ago
-                                        </a>
-                              </Link>
-                    </span>
-                     | 
-                    <a
-                              href="javascript:void(0)"
-                              onClick={[Function]}
-                    >
-                              hide
-                    </a>
-                     | 
-                    <Link
-                              href="/item?id=1224"
-                              prefetch={true}
-                    >
-                              <a>
-                                        44 comments
-                              </a>
-                    </Link>
-          </td>
-</tr>,
+        "_currentElement": <NewsDetail
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hideNewsItem={[Function]}
+          hides={Array []}
+          id={1224}
+          isFavoriteVisible={false}
+          isJobListing={false}
+          isPostScrutinyVisible={false}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          unhideNewsItem={[Function]}
+          upvoteCount={171}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
         "_debugID": 2,
-        "_renderedOutput": <tr>
-          <td
-                    colSpan="2"
-          />
-          <td
-                    className="subtext"
-          >
-                    <span
-                              className="score"
-                    >
-                              171
-                               points
-                    </span>
-                     by 
-                    <Link
-                              href="/user?id=hvo"
-                              prefetch={true}
-                    >
-                              <a
-                                        className="hnuser"
-                              >
-                                        hvo
-                              </a>
-                    </Link>
-                     
-                    <span
-                              className="age"
-                    >
-                              <Link
-                                        href="/item?id=1224"
-                                        prefetch={true}
-                              >
-                                        <a>
-                                                  14 days ago
-                                        </a>
-                              </Link>
-                    </span>
-                     | 
-                    <a
-                              href="javascript:void(0)"
-                              onClick={[Function]}
-                    >
-                              hide
-                    </a>
-                     | 
-                    <Link
-                              href="/item?id=1224"
-                              prefetch={true}
-                    >
-                              <a>
-                                        44 comments
-                              </a>
-                    </Link>
-          </td>
-</tr>,
+        "_renderedOutput": <NewsDetail
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hideNewsItem={[Function]}
+          hides={Array []}
+          id={1224}
+          isFavoriteVisible={false}
+          isJobListing={false}
+          isPostScrutinyVisible={false}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          unhideNewsItem={[Function]}
+          upvoteCount={171}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
       },
-      "_renderedNodeType": 0,
+      "_renderedNodeType": 1,
       "_rootNodeID": 0,
       "_topLevelWrapper": null,
       "_updateBatchNumber": null,
@@ -310,21 +202,20 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <NewsDetail
+  "unrendered": <Apollo(NewsDetail)
     commentCount={44}
     comments={Array []}
     creationTime={1504740146516}
-    hidden={Array []}
+    hidden={false}
     hiddenCount={0}
+    hides={Array []}
     id={1224}
     isFavoriteVisible={false}
-    isJobListing={false}
-    isPostScrutinyVisible={false}
-    points={171}
     submitterId="hvo"
     text={null}
     title="“Learning How to Learn,” the most popular course on Coursera"
-    upvoteCount={10}
+    upvoteCount={171}
+    upvoted={false}
     upvotes={Array []}
     url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,

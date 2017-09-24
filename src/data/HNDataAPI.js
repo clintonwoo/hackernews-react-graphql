@@ -9,7 +9,10 @@ import {
 } from '../config';
 import {
   Feed,
-} from './models';
+  NewsItem,
+  User,
+  Comment,
+} from './Models';
 
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
@@ -31,16 +34,16 @@ export function fetchNewsItem(id) {
     .then((postSnapshot) => {
       const post = postSnapshot.val();
       if (post !== null) {
-        const newsItem = {
+        const newsItem = new NewsItem({
           id: post.id,
           creationTime: post.time * 1000,
           commentCount: post.descendants || 0,
           comments: post.kids || [],
-          points: post.score,
           submitterId: post.by,
           title: post.title,
+          upvoteCount: post.score,
           url: post.url,
-        };
+        });
         cache.setNewsItem(newsItem.id, newsItem);
         logger(`Created Post: ${post.id}`);
         return newsItem;
@@ -56,14 +59,14 @@ export function fetchComment(id) {
     .then((itemSnapshot) => {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
-        const comment = {
+        const comment = new Comment({
           id: item.id,
           creationTime: item.time * 1000,
           comments: item.kids || [],
           parent: item.parent,
           submitterId: item.by,
           text: item.text,
-        };
+        });
         cache.setComment(comment.id, comment);
         logger(`Created Comment: ${item.id}`);
         return comment;
@@ -79,19 +82,13 @@ export function fetchUser(id) {
     .then((itemSnapshot) => {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
-        const user = {
+        const user = new User({
           id: item.id,
           about: item.about,
           creationTime: item.created * 1000,
-          dateOfBirth: null,
-          email: null,
-          firstName: null,
-          hidden: [],
           karma: item.karma,
-          lastName: null,
-          likes: [],
           posts: item.submitted,
-        };
+        });
         cache.setUser(user.id, user);
         logger(`Created User: ${item.id}`, item);
         return user;

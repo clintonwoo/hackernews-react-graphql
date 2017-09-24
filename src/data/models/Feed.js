@@ -1,4 +1,6 @@
 import debug from 'debug';
+import * as HNDB from '../HNDataAPI';
+import cache from '../Cache';
 
 import sampleData from '../SampleData';
 
@@ -12,7 +14,10 @@ class Feed {
     switch (type) {
       case 'TOP':
         // In this app the HN data is reconstructed in-memory
-        return this.topNewsItems.slice(skip, first + skip);
+        return Promise.all(
+          this.top.slice(skip, first + skip)
+            .map(id => cache.getNewsItem(id) || HNDB.fetchNewsItem(id)));
+        // return this.topNewsItems.slice(skip, first + skip);
       case 'NEW':
         return this.newNewsItems.slice(skip, first + skip);
       case 'SHOW':

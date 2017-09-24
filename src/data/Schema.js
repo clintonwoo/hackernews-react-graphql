@@ -31,12 +31,16 @@ const typeDefs = `
 
     comments: [Comment]!
 
+    # The ID of the item to which the comment was made on
     parent: Int!
 
     # The ID of the user who submitted the comment
     submitterId: String!
 
     text: String
+
+    # Whether the currently logged in user has upvoted the comment
+    upvoted: Boolean!
 
     # The User who submitted the comment
     author: User
@@ -72,11 +76,13 @@ const typeDefs = `
 
     creationTime: Date!
 
-    hidden: [String]!
+    # List of user ids who have hidden this post
+    hides: [String]!
 
-    hiddenCount: Int!
+    # Whether the currently logged in user has hidden the post
+    hidden: Boolean!
 
-    points: Int!
+    #hiddenCount: Int!
 
     # The ID of the news item submitter
     submitterId: String!
@@ -85,6 +91,9 @@ const typeDefs = `
     title: String!
 
     text: String
+
+    # Whether the currently logged in user has upvoted the post
+    upvoted: Boolean!
 
     upvotes: [String]!
 
@@ -112,7 +121,7 @@ const typeDefs = `
 
     firstName: String
 
-    hidden: [Int]!
+    hides: [Int]!
 
     karma: Int!
 
@@ -152,7 +161,11 @@ const typeDefs = `
   # This schema allows the following mutations:
   type Mutation {
     upvoteNewsItem (
-      postId: Int!
+      id: Int!
+    ): NewsItem
+
+    hideNewsItem (
+      id: Int!
     ): NewsItem
 
     submitNewsItem (
@@ -213,9 +226,14 @@ export const resolvers = {
 
 
   Mutation: {
-    upvoteNewsItem: (_, { postId }, context) => {
+    upvoteNewsItem: (_, { id }, context) => {
       if (!context.userId) throw new Error('Must be logged in to vote.');
-      return context.NewsItem.upvoteNewsItem(postId);
+      return context.NewsItem.upvoteNewsItem(id, context.userId);
+    },
+
+    hideNewsItem: (_, { id }, context) => {
+      if (!context.userId) throw new Error('Must be logged in to hide post.');
+      return context.NewsItem.hideNewsItem(id, context.userId);
     },
 
     submitNewsItem: (_, args, context) => {
@@ -235,6 +253,7 @@ export const resolvers = {
   Comment: {
     author: (comment, _, context) => context.User.getUser(comment.submitterId),
     comments: (comment, _, context) => context.Comment.getComments(comment.comments),
+    upvoted: (comment, _, context) => comment.upvotes.includes(context.userId),
   },
 
   Date: new GraphQLScalarType({
@@ -265,6 +284,8 @@ export const resolvers = {
   NewsItem: {
     author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
     comments: (newsItem, _, context) => context.Comment.getComments(newsItem.comments),
+    hidden: (newsItem, _, context) => newsItem.hides.includes(context.userId),
+    upvoted: (newsItem, _, context) => newsItem.upvotes.includes(context.userId),
   },
 
   User: {
@@ -296,6 +317,5 @@ export default makeExecutableSchema({
 //     upvotes
 //     upvoteCount
 //     rank
-//     points
 //   }
 // }

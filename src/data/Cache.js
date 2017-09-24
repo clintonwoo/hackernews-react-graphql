@@ -8,7 +8,7 @@ import debug from 'debug';
 
 import {
   Feed,
-} from './models';
+} from './Models';
 
 const logger = debug('app:Cache');
 logger.log = console.log.bind(console);

@@ -27,7 +27,7 @@ import {
   Feed,
   NewsItem,
   User,
-} from './models';
+} from './Models';
 
 
 const logger = console;

@@ -12,25 +12,27 @@ const NewsFeed = (props) => {
   const rows = [];
   if (props.notice) rows.push(...props.notice);
   props.newsItems.forEach((newsItem, index) => {
-    rows.push(
-      <NewsTitle
-        key={`${newsItem.id.toString()}title`}
-        isRankVisible={props.isRankVisible}
-        isUpvoteVisible={props.isUpvoteVisible}
-        rank={props.skip + index + 1}
-        {...newsItem}
-      />,
-    );
-    rows.push(
-      <NewsDetail
-        key={`${newsItem.id.toString()}detail`}
-        isFavoriteVisible={false}
-        isPostScrutinyVisible={props.isPostScrutinyVisible}
-        isJobListing={props.isJobListing}
-        {...newsItem}
-      />,
-    );
-    rows.push(<tr className="spacer" key={`${newsItem.id.toString()}spacer`} style={{ height: 5 }} />);
+    if (!newsItem.hidden) {
+      rows.push(
+        <NewsTitle
+          key={`${newsItem.id.toString()}title`}
+          isRankVisible={props.isRankVisible}
+          isUpvoteVisible={props.isUpvoteVisible}
+          rank={props.skip + index + 1}
+          {...newsItem}
+        />,
+      );
+      rows.push(
+        <NewsDetail
+          key={`${newsItem.id.toString()}detail`}
+          isFavoriteVisible={false}
+          isPostScrutinyVisible={props.isPostScrutinyVisible}
+          isJobListing={props.isJobListing}
+          {...newsItem}
+        />,
+      );
+      rows.push(<tr className="spacer" key={`${newsItem.id.toString()}spacer`} style={{ height: 5 }} />);
+    }
   });
   rows.push(<tr key="morespace" className="morespace" style={{ height: '10px' }} />);
   rows.push(
@@ -66,13 +68,14 @@ NewsFeed.propTypes = {
   first: PropTypes.number.isRequired,
   newsItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
+    commentCount: PropTypes.number.isRequired,
     creationTime: PropTypes.number.isRequired,
+    hidden: PropTypes.bool.isRequired,
     submitterId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string,
     url: PropTypes.string,
-    commentCount: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
+    upvoteCount: PropTypes.number.isRequired,
   })).isRequired,
   notice: PropTypes.arrayOf(PropTypes.element),
   skip: PropTypes.number.isRequired,
@@ -84,7 +87,8 @@ NewsFeed.propTypes = {
 NewsFeed.fragments = {
   newsItem: gql`
     fragment NewsFeed on NewsItem {
-      id,
+      id
+      hidden
       ...NewsTitle
       ...NewsDetail
     }

@@ -20,7 +20,7 @@ import {
   Feed,
   NewsItem,
   User,
-} from './data/models';
+} from './data/Models';
 import {
   appPath,
   APP_PORT,

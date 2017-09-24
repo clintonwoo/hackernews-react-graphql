@@ -8,7 +8,7 @@ import Blank from '../layouts/Blank';
 import withData from '../helpers/withData';
 
 
-const Page = ({ registerUser }) => {
+const Page = ({ registerUser, url }) => {
   // const onClick = () => {
   //   props.mutate({
   //     variables: { id: id, password: password }
@@ -18,14 +18,24 @@ const Page = ({ registerUser }) => {
   // }
   // const registerUser = () => {
   //   registerUser(user, pass)
-    
   // }
+
+  let message;
+  switch (url && url.query.how) {
+    case 'up':
+      message = 'You have to be logged in to vote.';
+      break;
+    default:
+      message = undefined;
+  }
+
   let user = '';
   let pass = '';
   const onUserChange = (e) => { user = e.target.value; };
   const onPasswordChange = (e) => { pass = e.target.value; };
   return (
     <Blank>
+      {message && <div>{message}</div>}
       <b>Login</b>
       <br />
       <br />
@@ -97,17 +107,19 @@ const registerUser = gql`
 `;
 
 const PageWithData = graphql(registerUser, {
-  props: ({ ownProps, mutate }) => ({
+  props: ({ ownProps, mutate, url }) => ({
+    url,
     registerUser: (id, password) => {
       return mutate({
         variables: { id, password },
-      });
-        // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        // .catch(reason => console.error(reason));
+      })
+      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+        .catch(reason => console.error(reason));
     },
+   
   }),
 })(Page);
 
-export default withData(() => (
-  <PageWithData />
+export default withData(props => (
+  <PageWithData url={props.url} />
 ));

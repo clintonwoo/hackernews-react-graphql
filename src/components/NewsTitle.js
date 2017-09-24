@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
+import Router from 'next/router';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
-import { gql } from 'react-apollo';
+
 
 class NewsTitle extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string,
-    rank: PropTypes.number,
     isRankVisible: PropTypes.bool,
     isUpvoteVisible: PropTypes.bool,
+    rank: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string,
+    upvoted: PropTypes.bool.isRequired,
+    upvoteNewsItem: PropTypes.func.isRequired,
   }
   static defaultProps = {
-    // text: undefined,
-    url: undefined,
-    rank: undefined,
     isRankVisible: true,
     isUpvoteVisible: true,
+    rank: undefined,
+    url: undefined,
   }
   static fragments = {
     newsItem: gql`
       fragment NewsTitle on NewsItem {
-        id,
-        title,
+        id
+        title
         url
+        upvoted
+      }
+    `,
+    upvoteNewsItem: gql`
+      mutation UpvoteNewsItem($id: Int!) {
+        upvoteNewsItem(id: $id) {
+          id
+          upvoteCount
+          upvoted
+        }
       }
     `,
   };
-
-  upvote() {
-    console.log(this);
-  }
-  hidestory() {
-    console.log(this);
-  }
   render() {
     return (
       <tr className="athing" id={this.props.id}>
@@ -46,7 +52,7 @@ class NewsTitle extends Component {
           <center>
             {
               this.props.isUpvoteVisible &&
-              <a onClick={this.upvote} href="vote?id=15077519&amp;how=up&amp;auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d&amp; goto=news">
+              <a className={this.props.upvoted ? 'nosee' : ' '} onClick={() => this.props.upvoteNewsItem(this.props.id)} href="javascript:void(0)" >
                 <div className="votearrow" title="upvote" />
               </a>
             }
@@ -70,4 +76,15 @@ class NewsTitle extends Component {
   }
 }
 
-export default NewsTitle;
+export default graphql(NewsTitle.fragments.upvoteNewsItem, {
+  props: ({ ownProps, mutate }) => ({
+    upvoteNewsItem: id =>
+      mutate({
+        variables: { id },
+      })
+      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+        .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
+  }),
+})(NewsTitle);
+
+// export default NewsTitle;

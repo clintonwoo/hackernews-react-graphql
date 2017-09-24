@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
+import Router from 'next/router';
 import Link from 'next/link';
-import { gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 import url from 'url';
 
@@ -12,11 +13,13 @@ class NewsDetail extends Component {
     id: PropTypes.number.isRequired,
     commentCount: PropTypes.number.isRequired,
     creationTime: PropTypes.number.isRequired,
-    submitterId: PropTypes.string.isRequired,
-    points: PropTypes.number.isRequired,
+    hidden: PropTypes.bool.isRequired,
+    hideNewsItem: PropTypes.func.isRequired,
     isPostScrutinyVisible: PropTypes.bool,
     isFavoriteVisible: PropTypes.bool,
     isJobListing: PropTypes.bool,
+    submitterId: PropTypes.string.isRequired,
+    upvoteCount: PropTypes.number.isRequired,
   }
   static defaultProps = {
     isFavoriteVisible: true,
@@ -26,22 +29,23 @@ class NewsDetail extends Component {
   static fragments = {
     newsItem: gql`
       fragment NewsDetail on NewsItem {
-        id,
-        commentCount,
-        creationTime,
-        submitterId,
-        points
+        id
+        commentCount
+        creationTime
+        hidden
+        submitterId
+        upvoteCount
+      }
+    `,
+    hideNewsItem: gql`
+      mutation HideNewsItem($id: Int!) {
+        hideNewsItem(id: $id) {
+          id
+          hidden
+        }
       }
     `,
   };
-
-  upvote() {
-    console.log(this);
-  }
-  hidestory() {
-    console.log(this);
-    return "/hide?id=15077449&amp;goto=news&amp;auth=15140ad499d896ef90cc72930b3fb7706f6d6398";
-  }
   render() {
     return (
       this.props.isJobListing ?
@@ -61,7 +65,7 @@ class NewsDetail extends Component {
         <tr>
           <td colSpan="2" />
           <td className="subtext">
-            <span className="score">{this.props.points} points</span>
+            <span className="score">{this.props.upvoteCount} points</span>
             {' by '}
             <Link prefetch href={`/user?id=${this.props.submitterId}`}>
               <a className="hnuser">
@@ -77,18 +81,26 @@ class NewsDetail extends Component {
               </Link>
             </span>
             {' | '}
-            <a href="javascript:void(0)" onClick={this.hidestory}>
-            hide
-            </a>
+            {
+              this.props.hidden ?
+                <a href="javascript:void(0)" onClick={() => this.props.hideNewsItem(this.props.id)}>
+                  hide
+                </a>
+              :
+                <a href="javascript:void(0)" onClick={() => this.props.unhideNewsItem(this.props.id)}>
+                  hide
+                </a>
+            }
+           
             {
               this.props.isPostScrutinyVisible &&
               <span>
                 {' | '}
-                <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0" onClick={this.hidestory}>
+                <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
                 past
                 </a>
                 {' | '}
-                <a href="https://www.google.com/search?q=Sublime%20Text%203.0" onClick={this.hidestory}>
+                <a href="https://www.google.com/search?q=Sublime%20Text%203.0">
                 web
                 </a>
               </span>
@@ -112,4 +124,20 @@ class NewsDetail extends Component {
   }
 }
 
-export default NewsDetail;
+export default graphql(NewsDetail.fragments.hideNewsItem, {
+  props: ({ ownProps, mutate }) => ({
+    hideNewsItem: id =>
+      mutate({
+        variables: { id },
+      })
+      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+        .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
+    unhideNewsItem: id =>
+      mutate({
+        variables: { id },
+      })
+        .catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
+  }),
+})(NewsDetail);
+
+// export default NewsDetail;

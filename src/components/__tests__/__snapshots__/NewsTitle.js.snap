@@ -8,137 +8,47 @@ ShallowWrapper {
     "findWhereUnwrapped": [Function],
   },
   "length": 1,
-  "node": <tr
-    className="athing"
+  "node": <NewsTitle
+    commentCount={44}
+    comments={Array []}
+    creationTime={1504740146516}
+    hidden={false}
+    hiddenCount={0}
+    hides={Array []}
     id={1224}
->
-    <td
-        className="title"
-        style={
-            Object {
-                "textAlign": "right",
-                "verticalAlign": "top",
-              }
-        }
-    >
-        <span
-            className="rank"
-        >
-            undefined.
-        </span>
-    </td>
-    <td
-        className="votelinks"
-        style={
-            Object {
-                "verticalAlign": "top",
-              }
-        }
-    >
-        <center>
-            <a
-                href="vote?id=15077519&how=up&auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d& goto=news"
-                onClick={[Function]}
-            >
-                <div
-                    className="votearrow"
-                    title="upvote"
-                />
-            </a>
-        </center>
-    </td>
-    <td
-        className="title"
-    >
-        <a
-            className="storylink"
-            href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
-        >
-            “Learning How to Learn,” the most popular course on Coursera
-        </a>
-        <span
-            className="sitebit comhead"
-        >
-             (
-            <a
-                href="from?site=www.nytimes.com"
-            >
-                <span
-                    className="sitestr"
-                >
-                    www.nytimes.com
-                </span>
-            </a>
-            )
-        </span>
-    </td>
-</tr>,
+    isRankVisible={true}
+    isUpvoteVisible={true}
+    rank={1}
+    submitterId="hvo"
+    text={null}
+    title="“Learning How to Learn,” the most popular course on Coursera"
+    upvoteCount={171}
+    upvoteNewsItem={[Function]}
+    upvoted={false}
+    upvotes={Array []}
+    url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
   "nodes": Array [
-    <tr
-      className="athing"
+    <NewsTitle
+      commentCount={44}
+      comments={Array []}
+      creationTime={1504740146516}
+      hidden={false}
+      hiddenCount={0}
+      hides={Array []}
       id={1224}
->
-      <td
-            className="title"
-            style={
-                  Object {
-                        "textAlign": "right",
-                        "verticalAlign": "top",
-                      }
-            }
-      >
-            <span
-                  className="rank"
-            >
-                  undefined.
-            </span>
-      </td>
-      <td
-            className="votelinks"
-            style={
-                  Object {
-                        "verticalAlign": "top",
-                      }
-            }
-      >
-            <center>
-                  <a
-                        href="vote?id=15077519&how=up&auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d& goto=news"
-                        onClick={[Function]}
-                  >
-                        <div
-                              className="votearrow"
-                              title="upvote"
-                        />
-                  </a>
-            </center>
-      </td>
-      <td
-            className="title"
-      >
-            <a
-                  className="storylink"
-                  href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
-            >
-                  “Learning How to Learn,” the most popular course on Coursera
-            </a>
-            <span
-                  className="sitebit comhead"
-            >
-                   (
-                  <a
-                        href="from?site=www.nytimes.com"
-                  >
-                        <span
-                              className="sitestr"
-                        >
-                              www.nytimes.com
-                        </span>
-                  </a>
-                  )
-            </span>
-      </td>
-</tr>,
+      isRankVisible={true}
+      isUpvoteVisible={true}
+      rank={1}
+      submitterId="hvo"
+      text={null}
+      title="“Learning How to Learn,” the most popular course on Coursera"
+      upvoteCount={171}
+      upvoteNewsItem={[Function]}
+      upvoted={false}
+      upvotes={Array []}
+      url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -146,50 +56,78 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 0,
       "_context": Object {},
-      "_currentElement": <NewsTitle
+      "_currentElement": <Apollo(NewsTitle)
         commentCount={44}
         comments={Array []}
         creationTime={1504740146516}
-        hidden={Array []}
+        hidden={false}
         hiddenCount={0}
+        hides={Array []}
         id={1224}
         isRankVisible={true}
-        isUpvoteVisible={true}
-        points={171}
-        rank={undefined}
+        rank={1}
         submitterId="hvo"
         text={null}
         title="“Learning How to Learn,” the most popular course on Coursera"
-        upvoteCount={10}
+        upvoteCount={171}
+        upvoted={false}
         upvotes={Array []}
         url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
-      "_instance": NewsTitle {
+      "_instance": GraphQL {
         "_reactInternalInstance": [Circular],
-        "context": Object {},
+        "context": Object {
+          "client": undefined,
+          "getQueryRecycler": undefined,
+        },
+        "dataForChildViaMutation": [Function],
+        "previousData": Object {},
         "props": Object {
           "commentCount": 44,
           "comments": Array [],
           "creationTime": 1504740146516,
-          "hidden": Array [],
+          "hidden": false,
           "hiddenCount": 0,
+          "hides": Array [],
           "id": 1224,
           "isRankVisible": true,
-          "isUpvoteVisible": true,
-          "points": 171,
-          "rank": undefined,
+          "rank": 1,
           "submitterId": "hvo",
           "text": null,
           "title": "“Learning How to Learn,” the most popular course on Coursera",
-          "upvoteCount": 10,
+          "upvoteCount": 171,
+          "upvoted": false,
           "upvotes": Array [],
           "url": "https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well",
         },
         "refs": Object {},
+        "renderedElement": <NewsTitle
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hides={Array []}
+          id={1224}
+          isRankVisible={true}
+          isUpvoteVisible={true}
+          rank={1}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          upvoteCount={171}
+          upvoteNewsItem={[Function]}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
+        "setWrappedInstance": [Function],
+        "shouldRerender": false,
         "state": null,
+        "type": 1,
         "updater": Object {
           "enqueueCallback": [Function],
           "enqueueCallbackInternal": [Function],
@@ -200,6 +138,7 @@ ShallowWrapper {
           "isMounted": [Function],
           "validateCallback": [Function],
         },
+        "version": 0,
       },
       "_mountOrder": 1,
       "_pendingCallbacks": null,
@@ -208,139 +147,49 @@ ShallowWrapper {
       "_pendingReplaceState": false,
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <tr
-          className="athing"
+        "_currentElement": <NewsTitle
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hides={Array []}
           id={1224}
->
-          <td
-                    className="title"
-                    style={
-                              Object {
-                                        "textAlign": "right",
-                                        "verticalAlign": "top",
-                                      }
-                    }
-          >
-                    <span
-                              className="rank"
-                    >
-                              undefined.
-                    </span>
-          </td>
-          <td
-                    className="votelinks"
-                    style={
-                              Object {
-                                        "verticalAlign": "top",
-                                      }
-                    }
-          >
-                    <center>
-                              <a
-                                        href="vote?id=15077519&how=up&auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d& goto=news"
-                                        onClick={[Function]}
-                              >
-                                        <div
-                                                  className="votearrow"
-                                                  title="upvote"
-                                        />
-                              </a>
-                    </center>
-          </td>
-          <td
-                    className="title"
-          >
-                    <a
-                              className="storylink"
-                              href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
-                    >
-                              “Learning How to Learn,” the most popular course on Coursera
-                    </a>
-                    <span
-                              className="sitebit comhead"
-                    >
-                               (
-                              <a
-                                        href="from?site=www.nytimes.com"
-                              >
-                                        <span
-                                                  className="sitestr"
-                                        >
-                                                  www.nytimes.com
-                                        </span>
-                              </a>
-                              )
-                    </span>
-          </td>
-</tr>,
+          isRankVisible={true}
+          isUpvoteVisible={true}
+          rank={1}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          upvoteCount={171}
+          upvoteNewsItem={[Function]}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
         "_debugID": 2,
-        "_renderedOutput": <tr
-          className="athing"
+        "_renderedOutput": <NewsTitle
+          commentCount={44}
+          comments={Array []}
+          creationTime={1504740146516}
+          hidden={false}
+          hiddenCount={0}
+          hides={Array []}
           id={1224}
->
-          <td
-                    className="title"
-                    style={
-                              Object {
-                                        "textAlign": "right",
-                                        "verticalAlign": "top",
-                                      }
-                    }
-          >
-                    <span
-                              className="rank"
-                    >
-                              undefined.
-                    </span>
-          </td>
-          <td
-                    className="votelinks"
-                    style={
-                              Object {
-                                        "verticalAlign": "top",
-                                      }
-                    }
-          >
-                    <center>
-                              <a
-                                        href="vote?id=15077519&how=up&auth=b73e5ad6975f51978fed805f4c3c079e9516fe1d& goto=news"
-                                        onClick={[Function]}
-                              >
-                                        <div
-                                                  className="votearrow"
-                                                  title="upvote"
-                                        />
-                              </a>
-                    </center>
-          </td>
-          <td
-                    className="title"
-          >
-                    <a
-                              className="storylink"
-                              href="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
-                    >
-                              “Learning How to Learn,” the most popular course on Coursera
-                    </a>
-                    <span
-                              className="sitebit comhead"
-                    >
-                               (
-                              <a
-                                        href="from?site=www.nytimes.com"
-                              >
-                                        <span
-                                                  className="sitestr"
-                                        >
-                                                  www.nytimes.com
-                                        </span>
-                              </a>
-                              )
-                    </span>
-          </td>
-</tr>,
+          isRankVisible={true}
+          isUpvoteVisible={true}
+          rank={1}
+          submitterId="hvo"
+          text={null}
+          title="“Learning How to Learn,” the most popular course on Coursera"
+          upvoteCount={171}
+          upvoteNewsItem={[Function]}
+          upvoted={false}
+          upvotes={Array []}
+          url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
+/>,
       },
-      "_renderedNodeType": 0,
+      "_renderedNodeType": 1,
       "_rootNodeID": 0,
       "_topLevelWrapper": null,
       "_updateBatchNumber": null,
@@ -350,21 +199,21 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <NewsTitle
+  "unrendered": <Apollo(NewsTitle)
     commentCount={44}
     comments={Array []}
     creationTime={1504740146516}
-    hidden={Array []}
+    hidden={false}
     hiddenCount={0}
+    hides={Array []}
     id={1224}
     isRankVisible={true}
-    isUpvoteVisible={true}
-    points={171}
-    rank={undefined}
+    rank={1}
     submitterId="hvo"
     text={null}
     title="“Learning How to Learn,” the most popular course on Coursera"
-    upvoteCount={10}
+    upvoteCount={171}
+    upvoted={false}
     upvotes={Array []}
     url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
 />,

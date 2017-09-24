@@ -1,5 +1,10 @@
+import debug from 'debug';
+
 import data from './SampleData';
 import cache from './Cache';
+
+const logger = debug('app:Database');
+logger.log = console.log.bind(console);
 
 /*                  BEGIN NEWS ITEMS                      */
 
@@ -10,7 +15,7 @@ export function getNewsItem(id) {
 
 export function rankNewsItems() {
   // Would implement this somewhere in the real HN system
-  // A scheduled job to recalculate post rank and points
+  // A scheduled job to recalculate feed ranks
   // .sort((a, b) => (a.rank - b.rank))
 }
 
@@ -24,11 +29,21 @@ export function createNewsItem(newsItem) {
 
 export function upvoteNewsItem(id, userId) {
   // Upvote the News Item in the DB
-
-  const newsItem = cache.getNewsItem(id); //data.newsItems.find(newsItem => newsItem.id === id);
-  if (newsItem && !newsItem.upvotes.has(userId)) {
+  const newsItem = cache.getNewsItem(id);
+  if (newsItem && !newsItem.upvotes.includes(userId)) {
     newsItem.upvotes.add(userId);
     newsItem.upvoteCount += 1;
+    cache.setNewsItem(id, newsItem);
+  }
+  return newsItem;
+}
+
+export function unvoteNewsItem(id, userId) {
+  const newsItem = cache.getNewsItem(id);
+  if (newsItem && !newsItem.upvotes.includes(userId)) {
+    newsItem.upvotes.remove(userId);
+    newsItem.upvoteCount -= 1;
+    cache.setNewsItem(id, newsItem);
   }
   return newsItem;
 }
@@ -39,6 +54,26 @@ export function downvoteNewsItem(id, userId) {
   newsItemData.downvoteCount += 1;
 
   return newsItemData;
+}
+
+export function hideNewsItem(id, userId) {
+  logger(`Hiding News Item ${id} by ${userId}`);
+
+  const newsItem = cache.getNewsItem(id);
+  const user = cache.getUser(userId);
+
+  if (user && !user.hides.includes(id) && newsItem && !newsItem.hides.includes(userId)) {
+    user.hides.add(id);
+    cache.setUser(id, user);
+
+    newsItem.hides.add(userId);
+    newsItem.hiddenCount += 1;
+    cache.setNewsItem(id, newsItem);
+
+    logger(`Hid News Item ${id} by ${userId}`);
+  } else throw new Error(`Data error, user has already hidden ${id} by ${userId}`);
+
+  return newsItem;
 }
 
 export function submitNewsItem(id, newsItem) {
