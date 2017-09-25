@@ -82,8 +82,6 @@ const typeDefs = `
     # Whether the currently logged in user has hidden the post
     hidden: Boolean!
 
-    #hiddenCount: Int!
-
     # The ID of the news item submitter
     submitterId: String!
 

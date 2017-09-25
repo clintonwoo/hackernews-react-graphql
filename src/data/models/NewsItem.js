@@ -10,12 +10,17 @@ let newPostIdCounter = 100;
 
 export default class NewsItem {
   constructor(props) {
-    this.id = props.id;
+    if (!props.id) throw new Error('Instantiating News Item failed, id is required:', props.id);
+    if (!props.submitterId) throw new Error('Instantiating News Item failed, submitterId is required:', props.id);
+    if (!props.title) throw new Error('Instantiating News Item failed, title is required:', props.id);
+
+    this.id = props.id || (newPostIdCounter += 1);
     this.creationTime = props.creationTime || +new Date();
     this.commentCount = props.commentCount || 0;
     this.comments = props.comments || [];
     this.hides = props.hides || [];
     this.submitterId = props.submitterId;
+    this.text = props.text || null;
     this.title = props.title;
     this.upvotes = props.upvotes || [];
     this.upvoteCount = props.upvoteCount || 0;
@@ -34,17 +39,12 @@ export default class NewsItem {
 
   static hideNewsItem = (id, userId) => DB.hideNewsItem(id, userId);
 
-  static submitNewsItem = ({ submitterId, text, url }) => {
+  static submitNewsItem = ({ submitterId, title, text, url }) => {
     const newsItem = new NewsItem({
-      id: newPostIdCounter += 1,
-      comments: [],
-      commentCount: 0,
-      creationTime: new Date().valueOf(),
-      hides: [],
-      hiddenCount: 0,
       submitterId,
-      text: text || null,
-      url: url || null,
+      text,
+      title,
+      url,
       upvotes: [submitterId],
       upvoteCount: 1,
     });

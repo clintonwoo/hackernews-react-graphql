@@ -37,8 +37,8 @@ export function fetchNewsItem(id) {
         const newsItem = new NewsItem({
           id: post.id,
           creationTime: post.time * 1000,
-          commentCount: post.descendants || 0,
-          comments: post.kids || [],
+          commentCount: post.descendants,
+          comments: post.kids,
           submitterId: post.by,
           title: post.title,
           upvoteCount: post.score,
@@ -62,7 +62,7 @@ export function fetchComment(id) {
         const comment = new Comment({
           id: item.id,
           creationTime: item.time * 1000,
-          comments: item.kids || [],
+          comments: item.kids,
           parent: item.parent,
           submitterId: item.by,
           text: item.text,

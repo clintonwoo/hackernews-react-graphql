@@ -4,6 +4,8 @@ import cache from '../Cache';
 
 export default class User {
   constructor(props) {
+    if (!props.id) throw new Error('Error instantiating User, id invalid: ', props.id);
+
     this.id = props.id;
     this.about = props.about || '';
     this.creationTime = props.creationTime || +new Date();

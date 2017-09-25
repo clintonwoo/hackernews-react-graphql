@@ -7,6 +7,11 @@ const logger = debug('app:Comment');
 
 export default class Comment {
   constructor(props) {
+    if (!props.id) throw new Error('Error instantiating Comment, id invalid: ', props.id);
+    if (!props.parent) throw new Error('Error instantiating Comment, parent invalid: ', props.parent);
+    if (!props.submitterId) throw new Error('Error instantiating Comment, submitterId invalid: ', props.submitterId);
+    if (!props.text) throw new Error('Error instantiating Comment, text invalid: ', props.text);
+
     this.id = props.id;
     this.creationTime = props.creationTime || +new Date();
     this.comments = props.comments || [];
