@@ -224,22 +224,7 @@ ShallowWrapper {
                     commentCount={1}
                     comments={
                         Array [
-                            Object {
-                              "commenterId": "clintonwoo",
-                              "creationTime": 1504740146516,
-                              "hidden": false,
-                              "hiddenCount": 0,
-                              "hides": Array [],
-                              "id": 123331,
-                              "text": "I know this might come accross as bragging, but I just won the internet again.",
-                              "upvoteCount": 4,
-                              "upvotes": Array [
-                                1,
-                                2,
-                                3,
-                                4,
-                              ],
-                            },
+                            123331,
                           ]
                     }
                     creationTime={1504740146516}
@@ -261,22 +246,7 @@ ShallowWrapper {
                     commentCount={1}
                     comments={
                         Array [
-                            Object {
-                              "commenterId": "clintonwoo",
-                              "creationTime": 1504740146516,
-                              "hidden": false,
-                              "hiddenCount": 0,
-                              "hides": Array [],
-                              "id": 123331,
-                              "text": "I know this might come accross as bragging, but I just won the internet again.",
-                              "upvoteCount": 4,
-                              "upvotes": Array [
-                                1,
-                                2,
-                                3,
-                                4,
-                              ],
-                            },
+                            123331,
                           ]
                     }
                     creationTime={1504740146516}
@@ -1697,22 +1667,7 @@ ShallowWrapper {
                               commentCount={1}
                               comments={
                                     Array [
-                                          Object {
-                                            "commenterId": "clintonwoo",
-                                            "creationTime": 1504740146516,
-                                            "hidden": false,
-                                            "hiddenCount": 0,
-                                            "hides": Array [],
-                                            "id": 123331,
-                                            "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                            "upvoteCount": 4,
-                                            "upvotes": Array [
-                                              1,
-                                              2,
-                                              3,
-                                              4,
-                                            ],
-                                          },
+                                          123331,
                                         ]
                               }
                               creationTime={1504740146516}
@@ -1734,22 +1689,7 @@ ShallowWrapper {
                               commentCount={1}
                               comments={
                                     Array [
-                                          Object {
-                                            "commenterId": "clintonwoo",
-                                            "creationTime": 1504740146516,
-                                            "hidden": false,
-                                            "hiddenCount": 0,
-                                            "hides": Array [],
-                                            "id": 123331,
-                                            "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                            "upvoteCount": 4,
-                                            "upvotes": Array [
-                                              1,
-                                              2,
-                                              3,
-                                              4,
-                                            ],
-                                          },
+                                          123331,
                                         ]
                               }
                               creationTime={1504740146516}
@@ -3038,22 +2978,7 @@ ShallowWrapper {
                         Object {
                           "commentCount": 1,
                           "comments": Array [
-                            Object {
-                              "commenterId": "clintonwoo",
-                              "creationTime": 1504740146516,
-                              "hidden": false,
-                              "hiddenCount": 0,
-                              "hides": Array [],
-                              "id": 123331,
-                              "text": "I know this might come accross as bragging, but I just won the internet again.",
-                              "upvoteCount": 4,
-                              "upvotes": Array [
-                                1,
-                                2,
-                                3,
-                                4,
-                              ],
-                            },
+                            123331,
                           ],
                           "creationTime": 1504740146516,
                           "hidden": false,
@@ -3555,22 +3480,7 @@ ShallowWrapper {
             Object {
               "commentCount": 1,
               "comments": Array [
-                Object {
-                  "commenterId": "clintonwoo",
-                  "creationTime": 1504740146516,
-                  "hidden": false,
-                  "hiddenCount": 0,
-                  "hides": Array [],
-                  "id": 123331,
-                  "text": "I know this might come accross as bragging, but I just won the internet again.",
-                  "upvoteCount": 4,
-                  "upvotes": Array [
-                    1,
-                    2,
-                    3,
-                    4,
-                  ],
-                },
+                123331,
               ],
               "creationTime": 1504740146516,
               "hidden": false,
@@ -4224,22 +4134,7 @@ ShallowWrapper {
                                                   commentCount={1}
                                                   comments={
                                                             Array [
-                                                                      Object {
-                                                                        "commenterId": "clintonwoo",
-                                                                        "creationTime": 1504740146516,
-                                                                        "hidden": false,
-                                                                        "hiddenCount": 0,
-                                                                        "hides": Array [],
-                                                                        "id": 123331,
-                                                                        "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                                                        "upvoteCount": 4,
-                                                                        "upvotes": Array [
-                                                                          1,
-                                                                          2,
-                                                                          3,
-                                                                          4,
-                                                                        ],
-                                                                      },
+                                                                      123331,
                                                                     ]
                                                   }
                                                   creationTime={1504740146516}
@@ -4261,22 +4156,7 @@ ShallowWrapper {
                                                   commentCount={1}
                                                   comments={
                                                             Array [
-                                                                      Object {
-                                                                        "commenterId": "clintonwoo",
-                                                                        "creationTime": 1504740146516,
-                                                                        "hidden": false,
-                                                                        "hiddenCount": 0,
-                                                                        "hides": Array [],
-                                                                        "id": 123331,
-                                                                        "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                                                        "upvoteCount": 4,
-                                                                        "upvotes": Array [
-                                                                          1,
-                                                                          2,
-                                                                          3,
-                                                                          4,
-                                                                        ],
-                                                                      },
+                                                                      123331,
                                                                     ]
                                                   }
                                                   creationTime={1504740146516}
@@ -5697,22 +5577,7 @@ ShallowWrapper {
                                                   commentCount={1}
                                                   comments={
                                                             Array [
-                                                                      Object {
-                                                                        "commenterId": "clintonwoo",
-                                                                        "creationTime": 1504740146516,
-                                                                        "hidden": false,
-                                                                        "hiddenCount": 0,
-                                                                        "hides": Array [],
-                                                                        "id": 123331,
-                                                                        "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                                                        "upvoteCount": 4,
-                                                                        "upvotes": Array [
-                                                                          1,
-                                                                          2,
-                                                                          3,
-                                                                          4,
-                                                                        ],
-                                                                      },
+                                                                      123331,
                                                                     ]
                                                   }
                                                   creationTime={1504740146516}
@@ -5734,22 +5599,7 @@ ShallowWrapper {
                                                   commentCount={1}
                                                   comments={
                                                             Array [
-                                                                      Object {
-                                                                        "commenterId": "clintonwoo",
-                                                                        "creationTime": 1504740146516,
-                                                                        "hidden": false,
-                                                                        "hiddenCount": 0,
-                                                                        "hides": Array [],
-                                                                        "id": 123331,
-                                                                        "text": "I know this might come accross as bragging, but I just won the internet again.",
-                                                                        "upvoteCount": 4,
-                                                                        "upvotes": Array [
-                                                                          1,
-                                                                          2,
-                                                                          3,
-                                                                          4,
-                                                                        ],
-                                                                      },
+                                                                      123331,
                                                                     ]
                                                   }
                                                   creationTime={1504740146516}
@@ -7042,22 +6892,7 @@ ShallowWrapper {
             Object {
               "commentCount": 1,
               "comments": Array [
-                Object {
-                  "commenterId": "clintonwoo",
-                  "creationTime": 1504740146516,
-                  "hidden": false,
-                  "hiddenCount": 0,
-                  "hides": Array [],
-                  "id": 123331,
-                  "text": "I know this might come accross as bragging, but I just won the internet again.",
-                  "upvoteCount": 4,
-                  "upvotes": Array [
-                    1,
-                    2,
-                    3,
-                    4,
-                  ],
-                },
+                123331,
               ],
               "creationTime": 1504740146516,
               "hidden": false,

@@ -69,7 +69,7 @@ app.prepare()
     });
     passport.deserializeUser(async (id, cb) => {
       const user = await User.getUser(id);
-      cb(null, user);
+      cb(null, user || null);
     });
     server.use(cookieParser('mysecret'));
     server.use(session({

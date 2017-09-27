@@ -92,26 +92,14 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 2,
       "_context": Object {},
-      "_currentElement": <CommentBox
-        comments={Array []}
-        creationTime={1505863796000}
-        id={15289630}
-        submitterId="megous"
-        text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+      "_currentElement": <CommentBox />,
       "_debugID": 3,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": StatelessComponent {
         "_reactInternalInstance": [Circular],
         "context": Object {},
-        "props": Object {
-          "comments": Array [],
-          "creationTime": 1505863796000,
-          "id": 15289630,
-          "submitterId": "megous",
-          "text": "It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.",
-        },
+        "props": Object {},
         "refs": Object {},
         "state": null,
         "updater": Object {
@@ -220,13 +208,7 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <CommentBox
-    comments={Array []}
-    creationTime={1505863796000}
-    id={15289630}
-    submitterId="megous"
-    text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+  "unrendered": <CommentBox />,
 }
 `;
 
@@ -322,26 +304,14 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 2,
       "_context": Object {},
-      "_currentElement": <CommentBox
-        comments={Array []}
-        creationTime={1505863796000}
-        id={15289630}
-        submitterId="megous"
-        text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+      "_currentElement": <CommentBox />,
       "_debugID": 5,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": StatelessComponent {
         "_reactInternalInstance": [Circular],
         "context": Object {},
-        "props": Object {
-          "comments": Array [],
-          "creationTime": 1505863796000,
-          "id": 15289630,
-          "submitterId": "megous",
-          "text": "It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.",
-        },
+        "props": Object {},
         "refs": Object {},
         "state": null,
         "updater": Object {
@@ -450,13 +420,7 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <CommentBox
-    comments={Array []}
-    creationTime={1505863796000}
-    id={15289630}
-    submitterId="megous"
-    text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+  "unrendered": <CommentBox />,
 }
 `;
 
@@ -552,26 +516,14 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 2,
       "_context": Object {},
-      "_currentElement": <CommentBox
-        comments={Array []}
-        creationTime={1505863796000}
-        id={15289630}
-        submitterId="megous"
-        text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+      "_currentElement": <CommentBox />,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": StatelessComponent {
         "_reactInternalInstance": [Circular],
         "context": Object {},
-        "props": Object {
-          "comments": Array [],
-          "creationTime": 1505863796000,
-          "id": 15289630,
-          "submitterId": "megous",
-          "text": "It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.",
-        },
+        "props": Object {},
         "refs": Object {},
         "state": null,
         "updater": Object {
@@ -680,12 +632,6 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <CommentBox
-    comments={Array []}
-    creationTime={1505863796000}
-    id={15289630}
-    submitterId="megous"
-    text="It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through."
-/>,
+  "unrendered": <CommentBox />,
 }
 `;

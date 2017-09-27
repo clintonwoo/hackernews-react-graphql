@@ -1,13 +1,13 @@
 ### Directory Structure
 
 *src* - Source code
-- *\_\_tests__*: Used by Jest in each folder to colocate tests.
-- *.next*: Next compiles things here.
-- *components*: React reusable components with GraphQL fragments colocated in the file.
+- *\_\_tests__*: Jest tests colocated in each folder.
+- *.next*: Next build files containing code-split modules and assets.
+- *components*: React components with GraphQL fragments colocated in-file.
 - *data*: GraphQL Schema, HN Web APIs, cache, sample data.
-- - *models*: Data fetchers. Used to fetch data eg. in GraphQL schema resolvers.
-- *helpers*: Helpers for Apollo SSR and calculating 'time ago'.
-- *layouts*: Every page uses a layout. It's a React component that can have children put in it.
-- *pages*: Every .js file in here contains a React component that is served by Next with the name of the file as a route in the app.
+- - *models*: Data model. Used to create, fetch and set data eg. in GraphQL schema resolvers.
+- *helpers*: Helper functions and classes.
+- *layouts*: Every page uses a layout. It's a React component that can take children.
+- *pages*: React components served by Next as routes using file name in the app.
 - *static*: Static resources eg. favicon, css, gif.
-- *root* contains config files for app and Next. App entry point *server.js*.
+- The current folder contains config files and the app entry point *server.js*.

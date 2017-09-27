@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import Comment from '../Comment';
 import data from '../../../data/SampleData';
 
-const comment = data.topStoriesCache[0].comments[0];
+const comment = data.comments[0];
 // Snapshot will be out of date if we don't use consistent time ago for comment
 // comment.creationTime = new Date().valueOf();
 MockDate.set(1506022129802);

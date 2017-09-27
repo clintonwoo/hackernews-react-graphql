@@ -13,8 +13,8 @@ import withData from '../helpers/withData';
 import timeAgo from '../helpers/convertNumberToTimeAgo';
 
 const Page = ({ loading, error, user, me, options: { currentURL } }) => {
-  if (error) return <Blank><tr><td>Error loading news items.</td></tr></Blank>;
-  if (!user) return <Blank><tr><td>No such user.</td></tr></Blank>;
+  if (error) return <Blank>Error loading news items.</Blank>;
+  if (!user) return <Blank>No such user.</Blank>;
 
   let about = user.about || '';
   let email = user.email || '';

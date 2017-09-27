@@ -41,6 +41,7 @@ export default class NewsItem {
 
   static submitNewsItem = ({ submitterId, title, text, url }) => {
     const newsItem = new NewsItem({
+      id: (newPostIdCounter += 1),
       submitterId,
       text,
       title,

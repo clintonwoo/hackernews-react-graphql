@@ -18,9 +18,9 @@ describe('NewsItem Model', () => {
   });
   it('submits a new News Item', () => {
     const submitterId = 'clinton';
-    const text = 'wow.';
+    const title = 'wow.';
     const url = 'http://www.google.com';
-    const newsItem = NewsItem.submitNewsItem({ submitterId, text, url });
+    const newsItem = NewsItem.submitNewsItem({ submitterId, title, url });
     expect(newsItem);
   });
 });

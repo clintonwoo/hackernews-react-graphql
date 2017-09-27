@@ -31,20 +31,8 @@ export default {
       hidden: false,
       hiddenCount: 0,
       comments: [
-        {
-          id: 15289630,
-          creationTime: 1505863796000,
-          comments: [],
-          submitterId: 'megous',
-          text: 'It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.',
-        },
-        {
-          id: 15289567,
-          creationTime: 1505863042000,
-          comments: [15290063],
-          submitterId: 'NeutronBoy',
-          text: '&gt; Security through obscurity is not the solution, though<p>Security is about layers. Nothing is foolproof. It&#x27;s about implementing layers of controls to reduce your attack surface to an acceptable level, with the trade-off that many controls increase the complexity of your setup or compromises the convenience for your users.<p>For example, for SSH, this probably includes<p>* changing the default port<p>* enforcing SSH key authentication<p>* enforcing passwords on SSH keys<p>* implementing fail2ban<p>* installing jump hosts for internal machines<p>* implementing a VPN rather than external facing hosts (and with that comes all the additional layers for the VPN)<p>* etc...',
-        },
+        15289630,
+        15289567,
       ],
       commentCount: 44,
       upvoteCount: 171,
@@ -164,17 +152,7 @@ export default {
       hidden: false,
       hiddenCount: 0,
       comments: [
-        {
-          id: 123331,
-          creationTime: 1504740146516,
-          commenterId: 'clintonwoo',
-          text: 'I know this might come accross as bragging, but I just won the internet again.',
-          upvotes: new Set([1, 2, 3, 4]),
-          upvoteCount: 4,
-          hides: [],
-          hidden: false,
-          hiddenCount: 0,
-        },
+        123331,
       ],
       commentCount: 1,
       upvoteCount: 20,
@@ -660,6 +638,33 @@ export default {
 // 89 points by ingve 9 hours ago | hide | 11 comments
 // 30.   Tesorio is hiring engineers and a product designer to modernize finance teams (tesorio.com)
 // 3 hours ago | hide
+  ],
+  comments: [
+    {
+      id: 15289630,
+      creationTime: 1505863796000,
+      comments: [],
+      submitterId: 'megous',
+      text: 'It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.',
+    },
+    {
+      id: 15289567,
+      creationTime: 1505863042000,
+      comments: [15290063],
+      submitterId: 'NeutronBoy',
+      text: '&gt; Security through obscurity is not the solution, though<p>Security is about layers. Nothing is foolproof. It&#x27;s about implementing layers of controls to reduce your attack surface to an acceptable level, with the trade-off that many controls increase the complexity of your setup or compromises the convenience for your users.<p>For example, for SSH, this probably includes<p>* changing the default port<p>* enforcing SSH key authentication<p>* enforcing passwords on SSH keys<p>* implementing fail2ban<p>* installing jump hosts for internal machines<p>* implementing a VPN rather than external facing hosts (and with that comes all the additional layers for the VPN)<p>* etc...',
+    },
+    {
+      id: 123331,
+      creationTime: 1504740146516,
+      commenterId: 'clintonwoo',
+      text: 'I know this might come accross as bragging, but I just won the internet again.',
+      upvotes: new Set([1, 2, 3, 4]),
+      upvoteCount: 4,
+      hides: [],
+      hidden: false,
+      hiddenCount: 0,
+    },
   ],
   users: [
     {
