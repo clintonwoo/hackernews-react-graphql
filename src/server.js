@@ -84,8 +84,13 @@ app.prepare()
     server.use(passport.session());
 
     server.post('/login', (req, res, next) => {
-      if (req.body.creating) req.session.returnTo = `${req.body.goto}${req.body.username}`;
-      else req.session.returnTo = req.body.goto;
+      if (req.body.creating && !req.user) {
+        User.registerUser({
+          id: req.body.username,
+          password: req.body.password,
+        });
+        req.session.returnTo = `${req.body.goto}${req.body.username}`;
+      } else req.session.returnTo = req.body.goto;
       next();
     }, passport.authenticate(
       'local',

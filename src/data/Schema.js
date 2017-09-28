@@ -234,14 +234,14 @@ export const resolvers = {
       return context.NewsItem.hideNewsItem(id, context.userId);
     },
 
-    submitNewsItem: (_, args, context) => {
+    submitNewsItem: (_, newsItem, context) => {
       if (!context.userId) throw new Error('Must be logged in to submit a news item.');
-      return context.NewsItem.submitNewsItem({ ...args, submitterId: context.userId });
+      return context.NewsItem.submitNewsItem({ ...newsItem, submitterId: context.userId });
     },
 
-    registerUser: (_, args, context) => {
+    registerUser: (_, user, context) => {
       if (context.userId) throw new Error('Logged in user cannot register a user');
-      return context.User.registerUser(args);
+      return context.User.registerUser(user);
     },
   },
 

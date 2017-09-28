@@ -88,7 +88,7 @@ const Page = ({ registerUser, url }) => {
           </tbody>
         </table>
         <br />
-        <input type="submit" value="create account" onClick={() => registerUser(user, pass)} />
+        <input type="submit" value="create account" /* onClick={() => registerUser(user, pass)} */ />
       </form>
     </Blank>
   );
