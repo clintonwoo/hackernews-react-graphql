@@ -3,6 +3,7 @@ import debug from 'debug';
 import cache from '../Cache';
 import * as HNDB from '../HNDataAPI';
 import * as DB from '../Database';
+import isValidUrl from '../../helpers/isValidUrl';
 
 const logger = debug('app:NewsItem');
 
@@ -10,9 +11,10 @@ let newPostIdCounter = 100;
 
 export default class NewsItem {
   constructor(props) {
-    if (!props.id) throw new Error('Instantiating News Item failed, id is required:', props.id);
-    if (!props.submitterId) throw new Error('Instantiating News Item failed, submitterId is required:', props.id);
-    if (!props.title) throw new Error('Instantiating News Item failed, title is required:', props.id);
+    if (!props.id) throw new Error('Error instantiating News Item, id is required:', props.id);
+    if (!props.submitterId) throw new Error('Error instantiating News Item, submitterId is required:', props.id);
+    if (!props.title) throw new Error('Error instantiating News Item, title is required:', props.id);
+    if (props.url && !isValidUrl(props.url)) throw new Error(`Error instantiating News Item ${props.id}, invalid URL: ${props.url}`);
 
     this.id = props.id || (newPostIdCounter += 1);
     this.creationTime = props.creationTime || +new Date();
@@ -22,8 +24,8 @@ export default class NewsItem {
     this.submitterId = props.submitterId;
     this.text = props.text || null;
     this.title = props.title;
-    this.upvotes = props.upvotes || [];
-    this.upvoteCount = props.upvoteCount || 0;
+    this.upvotes = props.upvotes || [props.submitterId];
+    this.upvoteCount = props.upvoteCount || 1;
     this.url = props.url;
   }
 

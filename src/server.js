@@ -84,12 +84,14 @@ app.prepare()
     server.use(passport.session());
 
     server.post('/login', (req, res, next) => {
-      if (req.body.creating && !req.user) {
-        User.registerUser({
-          id: req.body.username,
-          password: req.body.password,
-        });
-        req.session.returnTo = `${req.body.goto}${req.body.username}`;
+      if (req.body.creating) {
+        if (!req.user) {
+          User.registerUser({
+            id: req.body.username,
+            password: req.body.password,
+          });
+          req.session.returnTo = `${req.body.goto}${req.body.username}`;
+        } else req.session.returnTo = '/login?how=user';
       } else req.session.returnTo = req.body.goto;
       next();
     }, passport.authenticate(

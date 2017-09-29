@@ -6,7 +6,6 @@ import NewsTitle from '../container/NewsTitleWithData';
 import NewsDetail from '../container/NewsDetailWithData';
 
 const NewsFeed = (props) => {
-  // props.newsItems.sort((a, b) => (a.rank - b.rank));
   const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
 
   const rows = [];

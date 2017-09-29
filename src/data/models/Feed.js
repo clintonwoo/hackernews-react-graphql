@@ -17,9 +17,10 @@ class Feed {
         return Promise.all(
           this.top.slice(skip, first + skip)
             .map(id => cache.getNewsItem(id) || HNDB.fetchNewsItem(id)));
-        // return this.topNewsItems.slice(skip, first + skip);
       case 'NEW':
-        return this.newNewsItems.slice(skip, first + skip);
+        return Promise.all(
+          this.new.slice(skip, first + skip)
+            .map(id => cache.getNewsItem(id) || HNDB.fetchNewsItem(id)));
       case 'SHOW':
         return this.showNewsItems.slice(skip, first + skip);
       case 'ASK':

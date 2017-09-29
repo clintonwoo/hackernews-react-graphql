@@ -1,5 +1,8 @@
 import debug from 'debug';
 
+import {
+  Feed,
+} from './Models';
 import data from './SampleData';
 import cache from './Cache';
 
@@ -78,7 +81,11 @@ export function hideNewsItem(id, userId) {
 
 export function submitNewsItem(id, newsItem) {
   // Submit the News Item in the DB
-  if (cache.setNewsItem(id, newsItem)) return newsItem;
+  if (cache.setNewsItem(id, newsItem)) {
+    Feed.new.unshift(id);
+    Feed.new.pop();
+    return newsItem;
+  }
   throw new Error('Unable to submit News Item.');
 }
 

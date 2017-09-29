@@ -168,12 +168,9 @@ const typeDefs = `
 
     submitNewsItem (
       title: String!
+      url: String
+      text: String
     ): NewsItem
-
-    registerUser (
-      id: String!
-      password: String!
-    ): User
   }
 
 `;
@@ -237,11 +234,6 @@ export const resolvers = {
     submitNewsItem: (_, newsItem, context) => {
       if (!context.userId) throw new Error('Must be logged in to submit a news item.');
       return context.NewsItem.submitNewsItem({ ...newsItem, submitterId: context.userId });
-    },
-
-    registerUser: (_, user, context) => {
-      if (context.userId) throw new Error('Logged in user cannot register a user');
-      return context.User.registerUser(user);
     },
   },
 

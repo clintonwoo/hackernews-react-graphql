@@ -1,41 +1,38 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { gql, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import Blank from '../layouts/Blank';
 import withData from '../helpers/withData';
 
 
-const Page = ({ registerUser, url }) => {
-  // const onClick = () => {
-  //   props.mutate({
-  //     variables: { id: id, password: password }
-  //   })
-  //     .then(data)
-  //     .catch(error)
-  // }
-  // const registerUser = () => {
-  //   registerUser(user, pass)
-  // }
-
+const Page = ({ url }) => {
   let message;
   switch (url && url.query.how) {
     case 'up':
       message = 'You have to be logged in to vote.';
       break;
+    case 'pw':
+      message = 'Incorrect password.';
+      break;
+    case 'id':
+      message = 'Username is taken.';
+      break;
+    case 'user':
+      message = 'Logged in user cannot register a new user.';
+      break;
     default:
       message = undefined;
+      break;
   }
 
   let user = '';
-  let pass = '';
   const onUserChange = (e) => { user = e.target.value; };
-  const onPasswordChange = (e) => { pass = e.target.value; };
+
   return (
     <Blank>
-      {message && <div>{message}</div>}
+      {message && <p>{message}</p>}
       <b>Login</b>
       <br />
       <br />
@@ -70,7 +67,7 @@ const Page = ({ registerUser, url }) => {
       <br />
       <form method="post" action="/login" /* onSubmit={e => e.preventDefault()} */ style={{ marginBottom: '1em' }}>
         <input type="hidden" name="goto" value={`user?id=${user}`} />
-        <input type="hidden" name="creating" value={true} />
+        <input type="hidden" name="creating" value />
         <table style={{ border: '0px' }} >
           <tbody>
             <tr>
@@ -82,44 +79,23 @@ const Page = ({ registerUser, url }) => {
             <tr>
               <td>password:</td>
               <td>
-                <input type="password" name="password" onChange={onPasswordChange} size="20" />
+                <input type="password" name="password" size="20" />
               </td>
             </tr>
           </tbody>
         </table>
         <br />
-        <input type="submit" value="create account" /* onClick={() => registerUser(user, pass)} */ />
+        <input type="submit" value="create account" />
       </form>
     </Blank>
   );
 };
 Page.propTypes = {
-  registerUser: PropTypes.func.isRequired,
+  url: PropTypes.shape({
+    query: PropTypes.shape(),
+  }).isRequired,
 };
 
-const registerUser = gql`
-  mutation RegisterUser($id: String!, $password: String!) {
-    registerUser(id: $id, password: $password) {
-      id
-      karma
-    }
-  }
-`;
-
-const PageWithData = graphql(registerUser, {
-  props: ({ ownProps, mutate, url }) => ({
-    url,
-    registerUser: (id, password) => {
-      return mutate({
-        variables: { id, password },
-      })
-      // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        .catch(reason => console.error(reason));
-    },
-   
-  }),
-})(Page);
-
 export default withData(props => (
-  <PageWithData url={props.url} />
+  <Page url={props.url} />
 ));
