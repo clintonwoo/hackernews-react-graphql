@@ -47,7 +47,7 @@ app.prepare()
     passport.use(new LocalStrategy(
       (username, password, done) => {
         const user = User.getUser(username);
-        // if (err) { return done(err); }
+        if (err) { return done(err); }
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
