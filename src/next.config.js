@@ -1,3 +1,4 @@
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 
 module.exports = {
   exportPathMap: function exportPathMap() {
@@ -33,23 +34,25 @@ module.exports = {
       //     '/p/481': { page: '/post', query: { id: '481' } },
     };
   },
-  // webpack: (config, { dev }) => {
-  //   // Perform customizations to webpack config
-  //   if (!dev) {
-  //     config.module.rules.push({
-  //       test: /\.(css|ico|gif)$/,
-  //       use: [
-  //         {
-  //           loader: 'file-loader',
-  //           options: {
-  //             outputPath: 'static/',
-  //           },
-  //         },
-  //       ],
-  //     });
-  //   }
+  webpack: (config, { dev }) => {
+    if (dev) {
+      return config;
+    }
 
-  //   // Important: return the modified config
-  //   return config;
-  // },
+    config.plugins.push(
+      new SWPrecacheWebpackPlugin({
+        minify: true,
+        verbose: true,
+        staticFileGlobsIgnorePatterns: [/\.next\//],
+        runtimeCaching: [
+          {
+            handler: 'networkFirst',
+            urlPattern: /^https?.*/
+          }
+        ]
+      })
+    );
+
+    return config;
+  }
 };
