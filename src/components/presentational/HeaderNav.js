@@ -43,6 +43,10 @@ const HeaderNav = props => (
       <Link prefetch href="/submit">
         <a className={props.currentURL === '/submit' ? 'topsel' : ''}>submit</a>
       </Link>
+      {' | '}
+      <Link prefetch href="/best">
+        <a className={props.currentURL === '/best' ? 'topsel' : ''}>best</a>
+      </Link>
     </span>
     :
     <span className="pagetop">
