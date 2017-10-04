@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-const HeaderNav = props => (console.log(props.currentUrl),
+const HeaderNav = props => (
   props.isNavVisible ?
     <span className="pagetop">
       <b className="hnname">
