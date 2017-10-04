@@ -51,7 +51,7 @@ app.prepare()
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
-        if (!User.validPassword(username, password)) {
+        if (!(await User.validPassword(username, password))) {
           return done(null, false, { message: 'Incorrect password.' });
         }
         return done(null, user);
