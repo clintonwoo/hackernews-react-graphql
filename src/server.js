@@ -45,8 +45,8 @@ app.prepare()
     /* BEGIN PASSPORT.JS AUTHENTICATION */
 
     passport.use(new LocalStrategy(
-      (username, password, done) => {
-        const user = User.getUser(username);
+      async (username, password, done) => {
+        const user = await User.getUser(username);
         // if (err) return done(err);
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
