@@ -6,6 +6,7 @@ import Main from '../layouts/Main';
 import NewsFeed from '../components/presentational/NewsFeed';
 import NewsFeedApolloHOC from '../components/container/NewsFeedWithApolloRenderer';
 import withData from '../helpers/withData';
+import registerServiceWorker from '../helpers/registerServiceWorker';
 
 const POSTS_PER_PAGE = 30;
 
@@ -45,7 +46,7 @@ const TopNewsFeed = graphql(query, {
   }),
 })(NewsFeedApolloHOC);
 
-export default withData((props) => {
+export default withData(registerServiceWorker((props) => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
   return (
     <Main currentURL={props.url.pathname}>
@@ -57,4 +58,4 @@ export default withData((props) => {
       />
     </Main>
   );
-});
+}));

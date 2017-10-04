@@ -1,3 +1,4 @@
+import path from 'path';
 import dotenv from 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -151,6 +152,11 @@ app.prepare()
       const actualPage = '/';
       app.render(req, res, actualPage);
     });
+
+    server.get('/service-worker.js', (req, res) => {
+      const swPath = path.join(__dirname, '.next', '/service-worker.js');
+      app.serveStatic(req, res, swPath);
+    })
 
     server.get('*', (req, res) => handle(req, res));
 
