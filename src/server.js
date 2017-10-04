@@ -47,7 +47,7 @@ app.prepare()
     passport.use(new LocalStrategy(
       (username, password, done) => {
         const user = User.getUser(username);
-        // if (err) { return done(err); }
+        // if (err) return done(err);
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
@@ -83,14 +83,18 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(passport.session());
 
-    server.post('/login', (req, res, next) => {
+    server.post('/login', async (req, res, next) => {
       if (req.body.creating) {
         if (!req.user) {
-          User.registerUser({
-            id: req.body.username,
-            password: req.body.password,
-          });
-          req.session.returnTo = `${req.body.goto}${req.body.username}`;
+          try {
+            await User.registerUser({
+              id: req.body.username,
+              password: req.body.password,
+            });
+            req.session.returnTo = `${req.body.goto}${req.body.username}`;
+          } catch (err) {
+            req.session.returnTo = '/login?how=user';
+          }
         } else req.session.returnTo = '/login?how=user';
       } else req.session.returnTo = req.body.goto;
       next();

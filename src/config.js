@@ -16,3 +16,9 @@ export const HOST = (process.browser && window.location.host) || `${HOST_NAME}:$
 export const APP_URI = `http://${HOST}`;
 export const GRAPHQL_URL = `${APP_URI}${graphQLPath}`;
 export const GRAPHIQL_URL = `${APP_URI}${graphiQLPath}`;
+
+/*
+  Cryptography
+  https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2_password_salt_iterations_keylen_digest_callback
+*/
+export const passwordIterations = 10000;
