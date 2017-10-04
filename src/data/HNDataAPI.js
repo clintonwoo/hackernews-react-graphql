@@ -129,7 +129,7 @@ export function seedCache(delay) {
   logger(`Waiting ${delay} ms before seeding the app with data.`);
   setTimeout(() => {
     logger('Seeding cache');
-    ['top', 'new', 'show', 'ask', 'job'].forEach((feedType) => {
+    ['top', 'new', 'best', 'show', 'ask', 'job'].forEach((feedType) => {
       rebuildFeed(feedType);
     });
   }, delay);

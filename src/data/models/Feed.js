@@ -21,6 +21,10 @@ class Feed {
         return Promise.all(
           this.new.slice(skip, first + skip)
             .map(id => cache.getNewsItem(id) || HNDB.fetchNewsItem(id)));
+      case 'BEST':
+        return Promise.all(
+          this.best.slice(skip, first + skip)
+            .map(id => cache.getNewsItem(id) || HNDB.fetchNewsItem(id)));
       case 'SHOW':
         return this.showNewsItems.slice(skip, first + skip);
       case 'ASK':
@@ -35,6 +39,7 @@ class Feed {
   /* Arrays of post ids in descending rank order */
   top = sampleData.top;
   new = sampleData.new;
+  best = [];
   show = [];
   ask = [];
   job = [];
@@ -42,6 +47,7 @@ class Feed {
   /* A pre constructed cache of news feeds */
   topNewsItems = sampleData.topStoriesCache;
   newNewsItems = sampleData.topStoriesCache;
+  bestNewsItems = sampleData.topStoriesCache;
   showNewsItems = sampleData.topStoriesCache;
   askNewsItems = sampleData.topStoriesCache;
   jobNewsItems = sampleData.topStoriesCache;
