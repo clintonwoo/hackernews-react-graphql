@@ -1,6 +1,6 @@
 {
   "name": "hackernews",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A hacker news clone built from the ground up to demonstrate React and GraphQL",
   "engines": {
     "node": ">=6.9.4"
@@ -21,14 +21,14 @@
     "build-static-website": "NODE_ENV=production rm -rf build/static && yarn install --dev && next build src && next export src -o build/static",
     "start": "NODE_ENV=production node build/app/server.js"
   },
+  "author": "Clinton D'Annolfo",
+  "license": "Apache-2.0",
   "keywords": [
     "hacker-news",
     "clone",
     "react",
     "graphql"
   ],
-  "author": "Clinton D'Annolfo",
-  "license": "Apache-2.0",
   "dependencies": {
     "apollo-server-express": "^1.1.2",
     "babel-runtime": "^6.26.0",
@@ -44,13 +44,13 @@
     "graphql-tools": "^1.2.1",
     "isomorphic-fetch": "^2.2.1",
     "lru-cache": "^4.1.1",
-    "next": "^3.0.6",
+    "next": "^4.0.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-apollo": "^1.4.15",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-render-html": "^0.5.1",
     "url": "^0.11.0"
@@ -64,17 +64,25 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
+    "enzyme-to-json": "^3.1.2",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.2.1",
-    "flow-bin": "^0.54.0",
-    "jest": "^20.0.4",
-    "jest-enzyme": "^3.8.0",
+    "flow-bin": "^0.56.0",
+    "jest": "^21.2.1",
+    "jest-enzyme": "^4.0.1",
     "mockdate": "^2.0.2",
     "nodemon": "^1.12.0",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^16.0.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
