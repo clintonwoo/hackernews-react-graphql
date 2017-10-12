@@ -1,7 +1,6 @@
 export default (number) => {
-  const date = new Date(number);
-  const now = new Date();
-  const timeAgo = now.valueOf() - date.valueOf();
+  const now = +new Date();
+  const timeAgo = now - number;
 
   const ONE_YEAR = 3.154e+10;
   const ONE_MONTH = 2.628e+9;
