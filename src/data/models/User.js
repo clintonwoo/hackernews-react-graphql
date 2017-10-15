@@ -8,10 +8,15 @@ import {
 import {
   passwordIterations,
 } from '../../config';
+import {
+  isValidUser,
+  isValidNewUser,
+} from '../validation/User';
 
 export default class User {
   constructor(props) {
     if (!props.id) throw new Error('Error instantiating User, id invalid: ', props.id);
+    isValidUser(props);
 
     this.id = props.id;
     this.about = props.about || '';
@@ -24,7 +29,7 @@ export default class User {
     this.lastName = props.lastName || null;
     this.likes = props.likes || [];
     this.posts = props.posts || [];
-    this.password = props.password || undefined;
+    this.hashedPassword = props.hashedPassword || undefined;
     this.passwordSalt = props.passwordSalt || undefined;
   }
 
@@ -35,25 +40,30 @@ export default class User {
 
   static validPassword = async (id, password) => {
     const user = cache.getUser(id);
-    if (user) return await createHash(password, user.passwordSalt, passwordIterations) === user.password;
+    if (user) return await createHash(password, user.passwordSalt, passwordIterations) === user.hashedPassword;
     return false;
   }
 
-  static registerUser = async ({ id, password }) => {
-    if (id.length < 3 || id.length > 32) throw new Error('User ID must be between 3 and 32 characters.');
-    if (password.length < 8 || password.length > 100) throw new Error('User password must be longer than 8 characters.');
-    if (cache.getUser(id)) throw new Error('Username is taken.');
+  static registerUser = async (user) => {
+    // Check if user is valid
+    isValidNewUser(user);
 
+    // Check if user already exists
+    if (cache.getUser(user.id)) throw new Error('Username is taken.');
+
+    // Go ahead and create the new user
     const passwordSalt = createSalt();
-    const hashedPassword = await createHash(password, passwordSalt, passwordIterations);
+    const hashedPassword = await createHash(user.password, passwordSalt, passwordIterations);
 
-    const user = new User({
-      id,
-      password: hashedPassword,
+    const newUser = new User({
+      id: user.id,
+      hashedPassword,
       passwordSalt,
     });
 
-    cache.setUser(user.id, user);
-    return user;
+    // Store the new user
+    cache.setUser(user.id, newUser);
+
+    return newUser;
   }
 }

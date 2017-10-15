@@ -32,7 +32,7 @@ import {
 } from './config';
 
 // Seed the in-memory data using the HN api
-const delay = dev ? 1000 * 60 * 0 /* 1 minute */ : 0;
+const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
 seedCache(delay);
 
 const app = nextApp({ dir: appPath, dev });
@@ -45,6 +45,9 @@ app.prepare()
     /* BEGIN PASSPORT.JS AUTHENTICATION */
 
     passport.use(new LocalStrategy(
+      {
+        usernameField: 'id',
+      },
       async (username, password, done) => {
         const user = await User.getUser(username);
         // if (err) return done(err);
@@ -83,26 +86,34 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(passport.session());
 
-    server.post('/login', async (req, res, next) => {
-      if (req.body.creating) {
-        if (!req.user) {
-          try {
-            await User.registerUser({
-              id: req.body.username,
-              password: req.body.password,
-            });
-            req.session.returnTo = `${req.body.goto}${req.body.username}`;
-          } catch (err) {
-            req.session.returnTo = '/login?how=user';
-          }
-        } else req.session.returnTo = '/login?how=user';
-      } else req.session.returnTo = req.body.goto;
+    server.post('/login', (req, res, next) => {
+      req.session.returnTo = req.body.goto;
       next();
     }, passport.authenticate(
       'local',
       {
         successReturnToOrRedirect: '/',
-        failureRedirect: '/login',
+        failureRedirect: '/login?how=unsuccessful',
+      },
+    ));
+    server.post('/register', async (req, res, next) => {
+      if (!req.user) {
+        try {
+          await User.registerUser({
+            id: req.body.id,
+            password: req.body.password,
+          });
+          req.session.returnTo = `/user?id=${req.body.id}`;
+        } catch (err) {
+          req.session.returnTo = `/login?how=${err.code}`;
+        }
+      } else req.session.returnTo = '/login?how=user';
+      next();
+    }, passport.authenticate(
+      'local',
+      {
+        successReturnToOrRedirect: '/',
+        failureRedirect: '/login?how=unsuccessful',
       },
     ));
     server.get('/logout', (req, res) => {

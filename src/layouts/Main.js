@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
   graphql,
-  gql,
 } from 'react-apollo';
 
 import Header from '../components/presentational/Header';
 import Footer from '../components/presentational/Footer';
+import meQuery from '../data/queries/meQuery';
 
 
 const Main = props => (
@@ -57,15 +57,6 @@ Main.propTypes = {
   }),
   currentURL: PropTypes.string.isRequired,
 };
-
-const meQuery = gql`
-  query User {
-    me {
-      id
-      karma
-    }
-  }
-`;
 
 export default graphql(meQuery, {
   options: {
