@@ -1,4 +1,7 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 import fetch from 'isomorphic-fetch';
 import debug from 'debug';
 
@@ -18,19 +21,17 @@ if (!process.browser) {
 
 function create(initialState, { getToken }) {
   return new ApolloClient({
-    initialState,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    networkInterface: createNetworkInterface({
-      uri: GRAPHQL_URL, // Server URL (must be absolute)
-      opts: {
-        // Additional fetch() options like `credentials` or `headers`
-        credentials: 'same-origin',
-        headers: {
-          // HTTP Header:  Cookie: <cookiename>=<cookievalue>
-          Cookie: `${'connect.sid'}=${getToken()['connect.sid']}`,
-        },
+    link: createHttpLink({
+      uri: GRAPHQL_URL,
+      credentials: 'same-origin',
+      headers: {
+        // HTTP Header:  Cookie: <cookiename>=<cookievalue>
+        Cookie: `${'connect.sid'}=${getToken()['connect.sid']}`,
       },
     }),
+    cache: new InMemoryCache().restore(initialState || {}),
+    connectToDevTools: process.browser,
   });
 }
 

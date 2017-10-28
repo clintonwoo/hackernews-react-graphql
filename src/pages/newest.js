@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  graphql,
-  gql,
-} from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Main from '../layouts/Main';
 import NewsFeed from '../components/presentational/NewsFeed';

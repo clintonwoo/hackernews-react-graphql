@@ -1,5 +1,6 @@
 import React from 'react';
-import { graphql, gql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Main from '../layouts/Main';

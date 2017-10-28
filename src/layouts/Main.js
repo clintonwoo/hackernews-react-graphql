@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import {
-  graphql,
-} from 'react-apollo';
+import { graphql } from 'react-apollo';
 
 import Header from '../components/presentational/Header';
 import Footer from '../components/presentational/Footer';
@@ -43,10 +41,7 @@ Main.defaultProps = {
   me: null,
 };
 Main.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   isNavVisible: PropTypes.bool,
   isUserVisible: PropTypes.bool,
   isFooterVisible: PropTypes.bool,

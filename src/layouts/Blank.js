@@ -14,11 +14,7 @@ const Blank = props => (
   </div>
 );
 Blank.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.string,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Blank;

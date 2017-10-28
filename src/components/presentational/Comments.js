@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Comment from './Comment';
 

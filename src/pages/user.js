@@ -1,9 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-  graphql,
-  gql,
-} from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import renderHTML from 'react-render-html';
 

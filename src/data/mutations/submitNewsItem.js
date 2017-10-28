@@ -1,4 +1,4 @@
-import { gql } from 'react-apollo';
+import gql from 'graphql-tag';
 import NewsFeed from '../../components/presentational/NewsFeed';
 
 export default gql`

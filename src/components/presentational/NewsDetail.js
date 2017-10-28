@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import url from 'url';
