@@ -27,7 +27,7 @@ function create(initialState, { getToken }) {
       credentials: 'same-origin',
       headers: {
         // HTTP Header:  Cookie: <cookiename>=<cookievalue>
-        Cookie: `${'connect.sid'}=${getToken()['connect.sid']}`,
+        Cookie: `connect.sid=${getToken()['connect.sid']}`,
       },
     }),
     cache: new InMemoryCache().restore(initialState || {}),
