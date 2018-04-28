@@ -2,10 +2,11 @@
 FROM node:8.7-alpine as devBuild
 WORKDIR /usr/src/app
 
+RUN yarn
 # Copy the source and build
 # Build script uses --dev flag to get the right dependencies
 COPY . .
-RUN yarn run build
+RUN yarn run build:prod
 
 # PROD BUILD STEP
 # Using latest LTS release of Node (comes with Yarn package manager by default)

@@ -36,8 +36,8 @@ const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
 seedCache(delay);
 
 const app = nextApp({ dir: appPath, dev });
-
 const handle = app.getRequestHandler();
+
 app.prepare()
   .then(() => {
     const server = express();
