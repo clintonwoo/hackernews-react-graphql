@@ -83,7 +83,7 @@ export default (ComposedComponent) => {
       // render within `getInitialProps()` above (since the entire prop tree
       // will be initialized there), meaning the below will only ever be
       // executed on the client.
-      this.apollo = initApollo(this.props.serverState.apollo.data, {
+      this.apollo = initApollo({}, {
         getToken: () => parseCookies(), // ['connect.sid'],
       });
     }
