@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es6", "es7", "dom", "esnext"],
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "es5",
+    "typeRoots": ["./node_modules/@types", "src/@types"]
+  },
+  "files": ["src/server.ts"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**", "**/*.spec.ts", "out", ".next"]
+}

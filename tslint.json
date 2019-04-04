@@ -1,0 +1,10 @@
+{
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "import-name": false,
+    "variable-name": false,
+    "align": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "indent": [true, "spaces", 2]
+  }
+}

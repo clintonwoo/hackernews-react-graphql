@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var link_1 = require("next/link");
+var Notice_1 = require("../layouts/Notice");
+exports.default = (function () { return (React.createElement(Notice_1.default, null,
+    React.createElement("b", null, "Welcome to Hacker News"),
+    React.createElement("br", null),
+    React.createElement("br", null),
+    React.createElement("p", null,
+        React.createElement(link_1.default, { prefetch: true, href: "/" },
+            React.createElement("a", null, "Hacker News")),
+        " is a bit different from other community sites, and we'd appreciate it if you'd take a minute to read the following as well as the ",
+        React.createElement(link_1.default, { prefetch: true, href: "/newsguidelines" },
+            React.createElement("a", null, "official     guidelines")),
+        "."),
+    React.createElement("p", null, "HN is an experiment.  As a rule, a community site that becomes popular will decline in quality.  Our hypothesis is that this is not inevitable\u2014that by making a conscious effort to resist decline, we can keep it from happening."),
+    React.createElement("p", null, "Essentially there are two rules here: don't post or upvote crap links, and don't be rude or dumb in comment threads."),
+    React.createElement("p", null, "A crap link is one that's only superficially interesting. Stories on HN don't have to be about hacking, because good hackers aren't only interested in hacking, but they do have to be deeply interesting."),
+    React.createElement("p", null, "What does \"deeply interesting\" mean?  It means stuff that teaches you about the world.  A story about a robbery, for example, would probably not be deeply interesting.  But if this robbery was a sign of some bigger, underlying trend, perhaps it could be."),
+    React.createElement("p", null,
+        "The worst thing to post or upvote is something that's intensely but shallowly interesting: gossip about famous people, funny or cute pictures or videos, partisan political articles, etc. If you let ",
+        React.createElement("a", { href: "http://en.wikipedia.org/wiki/Nile_perch" }, "that sort of thing onto a news site, it will push aside the deeply interesting stuff, which tends to be quieter.")),
+    React.createElement("p", null, "The most important principle on HN, though, is to make thoughtful comments.  Thoughtful in both senses: civil and substantial."),
+    React.createElement("p", null, "The test for substance is a lot like it is for links. Does your comment teach us anything?  There are two ways to do that: by pointing out some consideration that hadn't previously been mentioned, and by giving more information about the topic, perhaps from personal experience.  Whereas comments like \"LOL!\" or worse still, \"That's retarded!\" teach us nothing."),
+    React.createElement("p", null, "Empty comments can be ok if they're positive.  There's nothing wrong with submitting a comment saying just \"Thanks.\"  What we especially discourage are comments that are empty and negative\u2014comments that are mere name-calling."),
+    React.createElement("p", null,
+        "Which brings us to the most important principle on HN: civility.  Since long before the web, the anonymity of online conversation has lured people into being much ruder than they'd be in person.  So the principle here is: don't say anything you wouldn't say face to face.  This doesn't mean you can't disagree. But disagree without calling names. If you're right, your argument will be more convincing without them.",
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement("table", { width: "100%", style: { padding: '0px', backgroundColor: '#ff6600' } },
+            React.createElement("tbody", null,
+                React.createElement("tr", { style: { height: '0px' } },
+                    React.createElement("td", { style: { padding: '0px' } }))))),
+    React.createElement("p", null,
+        React.createElement("span", { className: "foot" },
+            React.createElement("br", null),
+            React.createElement("br", null))))); });
+//# sourceMappingURL=newswelcome.js.map

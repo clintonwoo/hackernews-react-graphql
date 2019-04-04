@@ -1,5 +1,5 @@
 # DEV BUILD STEP
-FROM node:8.7-alpine as devBuild
+FROM node:10.15.3-alpine as devBuild
 WORKDIR /usr/src/app
 
 RUN yarn
@@ -10,7 +10,7 @@ RUN yarn run build:prod
 
 # PROD BUILD STEP
 # Using latest LTS release of Node (comes with Yarn package manager by default)
-FROM node:8.7-alpine
+FROM node:10.15.3-alpine
 
 # Create an app directory on the container
 WORKDIR /usr/src/app
@@ -29,6 +29,6 @@ RUN apk add curl --no-cache
 EXPOSE 3000
 
 # Start the application
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "run start:production" ]
 
 HEALTHCHECK CMD curl --silent --fail http://localhost:3000/ || exit 1
