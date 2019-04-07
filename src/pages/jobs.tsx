@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { MainLayout } from '../layouts/main-layout';
-import { NewsFeed } from '../components/presentational/NewsFeed';
-import { NewsFeedWithApolloRenderer } from '../components/container/NewsFeedWithApolloRenderer';
+import { NewsFeedView } from '../components/news-feed';
+import { NewsFeedWithApolloRenderer } from '../components/container/news-feed-with-apollo-renderer';
 import { withData } from '../helpers/with-data';
 
 const POSTS_PER_PAGE = 30;
@@ -15,7 +15,7 @@ const query = gql`
       ...NewsFeed
     }
   }
-  ${NewsFeed.fragments.newsItem}
+  ${NewsFeedView.fragments.newsItem}
 `;
 
 const JobNewsFeed = graphql(query, {
@@ -46,7 +46,7 @@ const JobNewsFeed = graphql(query, {
     }),
 })(NewsFeedWithApolloRenderer);
 
-export default withData(props => {
+export const JobsPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
   const notice = [
     <tr key="noticetopspacer" style={{ height: '20px' }} />,
@@ -66,10 +66,10 @@ export default withData(props => {
     <tr key="noticebottomspacer" style={{ height: '20px' }} />,
   ];
   return (
-    <MainLayout currentURL={props.url.pathname}>
+    <MainLayout currentUrl={props.url.pathname}>
       <JobNewsFeed
         options={{
-          currentURL: props.url.pathname,
+          currentUrl: props.url.pathname,
           first: POSTS_PER_PAGE,
           isRankVisible: false,
           isUpvoteVisible: false,
@@ -81,3 +81,5 @@ export default withData(props => {
     </MainLayout>
   );
 });
+
+export default JobsPage;

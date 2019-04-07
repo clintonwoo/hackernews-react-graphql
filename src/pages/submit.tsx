@@ -7,8 +7,13 @@ import { MainLayout } from '../layouts/main-layout';
 import { withData } from '../helpers/with-data';
 import { submitNewsItem } from '../data/mutations/submit-news-item';
 
+interface ISubmitPageProps {
+  submitNewsItem: typeof submitNewsItem;
+  currentUrl: string;
+}
+
 // class Newest extends React.Component {
-const Page = ({ submitNewsItem, currentURL }) => {
+const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
   let title;
   const onTitleChange = e => {
     title = e.target.value;
@@ -23,7 +28,7 @@ const Page = ({ submitNewsItem, currentURL }) => {
   };
 
   return (
-    <MainLayout currentURL={currentURL} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
+    <MainLayout currentUrl={currentUrl} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
       <tr>
         <td>
           <form onSubmit={e => e.preventDefault()} /*  method="post" action="/r" */>
@@ -39,14 +44,14 @@ const Page = ({ submitNewsItem, currentURL }) => {
                 <tr>
                   <td>title</td>
                   <td>
-                    <input type="text" name="title" defaultValue="" size="50" onChange={onTitleChange} />
+                    <input type="text" name="title" defaultValue="" size={50} onChange={onTitleChange} />
                     <span style={{ marginLeft: '10px' }} />
                   </td>
                 </tr>
                 <tr>
                   <td>url</td>
                   <td>
-                    <input type="text" name="url" defaultValue="" size="50" onChange={onUrlChange} />
+                    <input type="text" name="url" defaultValue="" size={50} onChange={onUrlChange} />
                   </td>
                 </tr>
                 <tr>
@@ -58,7 +63,7 @@ const Page = ({ submitNewsItem, currentURL }) => {
                 <tr>
                   <td>text</td>
                   <td>
-                    <textarea name="text" rows="4" cols="49" onChange={onTextChange} />
+                    <textarea name="text" rows={4} cols={49} onChange={onTextChange} />
                   </td>
                 </tr>
                 <tr>
@@ -96,10 +101,6 @@ const Page = ({ submitNewsItem, currentURL }) => {
     </MainLayout>
   );
 };
-Page.propTypes = {
-  submitNewsItem: PropTypes.func.isRequired,
-  currentURL: PropTypes.string.isRequired,
-};
 
 const PageWithData = graphql(submitNewsItem, {
   props: ({ ownProps, mutate }) => ({
@@ -112,4 +113,6 @@ const PageWithData = graphql(submitNewsItem, {
   }),
 })(Page);
 
-export default withData(props => <PageWithData currentURL={props.url.pathname} />);
+export const SubmitPage = withData(props => <PageWithData currentUrl={props.url.pathname} />);
+
+export default SubmitPage;

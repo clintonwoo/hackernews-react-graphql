@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { NewsFeed } from '../../components/presentational/NewsFeed';
+import { NewsFeedView } from '../../components/news-feed';
 
 export const submitNewsItem = gql`
   mutation SubmitNewsItem($title: String!, $url: String) {
@@ -8,5 +8,5 @@ export const submitNewsItem = gql`
       ...NewsFeed
     }
   }
-  ${NewsFeed.fragments.newsItem}
+  ${NewsFeedView.fragments.newsItem}
 `;

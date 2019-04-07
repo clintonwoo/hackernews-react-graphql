@@ -1,24 +1,23 @@
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import * as React from 'react';
+import { graphql } from 'react-apollo';
 import { parse } from 'url';
 
-export class NewsTitle extends React.Component {
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-    isRankVisible: PropTypes.bool,
-    isUpvoteVisible: PropTypes.bool,
-    rank: PropTypes.number,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string,
-    upvoted: PropTypes.bool.isRequired,
-    upvoteNewsItem: PropTypes.func.isRequired,
-  };
-  static defaultProps = {
-    isRankVisible: true,
-    isUpvoteVisible: true,
-    rank: undefined,
-    url: undefined,
-  };
+import { upvoteNewsItem } from '../data/mutations/upvote-news-item';
+
+export interface INewsTitleProps {
+  id: number;
+  isRankVisible?: boolean;
+  isUpvoteVisible?: boolean;
+  rank?: number;
+  title: string;
+  url?: string;
+  upvoted: boolean;
+  upvoteNewsItem: (id: number) => void;
+}
+
+export class NewsTitleView extends React.Component<INewsTitleProps> {
   static fragments = {
     newsItem: gql`
       fragment NewsTitle on NewsItem {
@@ -29,9 +28,17 @@ export class NewsTitle extends React.Component {
       }
     `,
   };
+
+  static defaultProps = {
+    isRankVisible: true,
+    isUpvoteVisible: true,
+    rank: undefined,
+    url: undefined,
+  };
+
   render(): JSX.Element {
     return (
-      <tr className="athing" id={this.props.id}>
+      <tr className="athing">
         <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
           <span className="rank">{this.props.isRankVisible && `${this.props.rank}.`}</span>
         </td>
@@ -67,3 +74,14 @@ export class NewsTitle extends React.Component {
     );
   }
 }
+
+export const NewsTitle = graphql(upvoteNewsItem, {
+  props: ({ ownProps, mutate }) => ({
+    upvoteNewsItem: id =>
+      mutate({
+        variables: { id },
+      })
+        // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+        .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
+  }),
+})(NewsTitleView);

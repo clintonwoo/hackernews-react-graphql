@@ -17,7 +17,7 @@ const paragraphStyle2 = {
 };
 const bSpanStyle = { fontSize: '13.5pt', fontFamily: 'Helvetica', color: '#444444' };
 
-export default props => (
+export const DMCAPage = props => (
   <Blank>
     <Head>
       <link rel="stylesheet" type="text/css" href="/static/dmca.css" />
@@ -61,7 +61,7 @@ export default props => (
       </span>
     </p>
 
-    <ol style={{ marginTop: '0in' }} start="1" type="1">
+    <ol style={{ marginTop: '0in' }} start={1} type="1">
       <li className="MsoNormal" style={liStyle}>
         <span style={liSpanStyle}>
           Identification of the work or material being infringed. <i>&nbsp;</i>
@@ -122,7 +122,7 @@ export default props => (
       </span>
     </p>
 
-    <ul style={{ marginTop: '0in' }} type="disc">
+    <ul style={{ listStyleType: 'disc', marginTop: '0in' }}>
       <li className="MsoNormal" style={liStyle}>
         <span style={liSpanStyle}>
           The specific URLs of material that Y Combinator has removed or to which Y Combinator has disabled access.
@@ -182,3 +182,5 @@ export default props => (
     <p className="MsoNormal">&nbsp;</p>
   </Blank>
 );
+
+export default DMCAPage;

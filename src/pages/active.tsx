@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { NewsFeed } from '../components/presentational/NewsFeed';
+import { NewsFeedView } from '../components/news-feed';
 import { sampleData } from '../data/sample-data';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 export const ActivePage = withData(props => (
-  <MainLayout currentURL={props.url.pathname}>
-    <NewsFeed newsItems={sampleData.newsItems} />
+  <MainLayout currentUrl={props.url.pathname}>
+    <NewsFeedView newsItems={sampleData.newsItems} />
   </MainLayout>
 ));
 

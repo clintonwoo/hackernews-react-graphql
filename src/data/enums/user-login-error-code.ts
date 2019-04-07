@@ -1,12 +1,13 @@
-const UserLoginErrorCode = {
-  INCORRECT_PASSWORD: 'pw',
-  INVALID_ID: 'invalid_id',
-  LOGGED_IN: 'loggedin',
-  LOGIN_UNSUCCESSFUL: 'unsuccessful',
-  LOGIN_UPVOTE: 'up',
-  USERNAME_TAKEN: 'id',
-};
-UserLoginErrorCode.messages = {
+export enum UserLoginErrorCode {
+  INCORRECT_PASSWORD = 'pw',
+  INVALID_ID = 'invalid_id',
+  LOGGED_IN = 'loggedin',
+  LOGIN_UNSUCCESSFUL = 'unsuccessful',
+  LOGIN_UPVOTE = 'up',
+  USERNAME_TAKEN = 'id',
+}
+
+const _userLoginErrorCodeMessages = {
   [UserLoginErrorCode.INCORRECT_PASSWORD]: 'Incorrect password.',
   [UserLoginErrorCode.INVALID_ID]: 'User ID must be between 3 and 32 characters.',
   [UserLoginErrorCode.LOGGED_IN]: 'Logged in user must logout before logging in again.',
@@ -15,4 +16,6 @@ UserLoginErrorCode.messages = {
   [UserLoginErrorCode.USERNAME_TAKEN]: 'Username is taken.',
 };
 
-export default UserLoginErrorCode;
+export function getUserLoginErrorCodeMessage(code: UserLoginErrorCode): string {
+  return _userLoginErrorCodeMessages[code];
+}

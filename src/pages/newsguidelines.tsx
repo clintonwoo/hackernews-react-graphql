@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Notice } from '../layouts/notice';
 
-export default () => (
+export const NewsGuidelinesPage = () => (
   <Notice>
     <b>Hacker News Guidelines</b>
     <br />
@@ -90,7 +90,7 @@ export default () => (
       <br />
       <br />
       <br />
-      <table width="100%" style={{ padding: '0px', backgroundColor: '#ff6600' }}>
+      <table style={{ padding: '0px', backgroundColor: '#ff6600', width: '100%' }}>
         <tbody>
           <tr style={{ height: '0px' }}>
             <td style={{ padding: '0px' }} />
@@ -106,3 +106,5 @@ export default () => (
     </p>
   </Notice>
 );
+
+export default NewsGuidelinesPage;

@@ -2,8 +2,8 @@ import Head from 'next/head';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { Footer } from '../components/presentational/Footer';
-import { Header } from '../components/presentational/Header';
+import { Footer } from '../components/footer';
+import { Header } from '../components/header';
 import { meQuery } from '../data/queries/me-query';
 
 interface IMainLayoutProps extends IMainLayoutOwnProps {
@@ -15,7 +15,7 @@ interface IMainLayoutProps extends IMainLayoutOwnProps {
 
 interface IMainLayoutOwnProps {
   children: React.ReactChild;
-  currentURL: string;
+  currentUrl: string;
   isNavVisible?: boolean;
   isUserVisible?: boolean;
   isFooterVisible?: boolean;
@@ -43,13 +43,7 @@ const MainLayoutView: React.SFC<IMainLayoutProps> = props => (
       }}
     >
       <tbody>
-        <Header
-          title={props.title}
-          isNavVisible={props.isNavVisible}
-          isUserVisible={props.isUserVisible}
-          me={props.me}
-          currentURL={props.currentURL}
-        />
+        <Header currentUrl={props.currentUrl} isNavVisible={props.isNavVisible} me={props.me} title={props.title} />
         <tr style={{ height: '10px' }} />
         {props.children}
         {props.isFooterVisible && <Footer />}
@@ -65,7 +59,7 @@ MainLayoutView.defaultProps = {
   me: null,
 };
 
-export const MainLayout = graphql(meQuery, {
+export const MainLayout = graphql<IMainLayoutOwnProps, IMainLayoutProps, {}, {}>(meQuery, {
   options: {
     // fetchPolicy: 'cache-and-network',
     // ssr: false,

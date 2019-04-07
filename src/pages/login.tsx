@@ -7,34 +7,48 @@ import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
 import { meQuery } from '../data/queries/me-query';
 import { isValidNewUser } from '../data/validation/user';
-import { UserLoginErrorCode } from '../data/enums/user-login-error-code';
+import { UserLoginErrorCode, getUserLoginErrorCodeMessage } from '../data/enums/user-login-error-code';
 
-class Page extends React.Component {
-  static propTypes = {
-    url: PropTypes.shape({
-      query: PropTypes.shape(),
-    }).isRequired,
-    me: PropTypes.shape({
-      id: PropTypes.string,
-    }),
+interface ILoginPageProps {
+  url?: {
+    query: {
+      how: UserLoginErrorCode;
+      goto: string;
+    };
   };
+  me: {
+    id: string;
+  };
+}
+
+interface ILoginPageState {
+  login: {
+    id: string;
+    password: string;
+  };
+  register: {
+    id: string;
+    password: string;
+  };
+  validationMessage: string;
+}
+
+class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   static defaultProps = {
     me: null,
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      login: {
-        id: '',
-        password: '',
-      },
-      register: {
-        id: '',
-        password: '',
-      },
-      validationMessage: '',
-    };
-  }
+
+  state: ILoginPageState = {
+    login: {
+      id: '',
+      password: '',
+    },
+    register: {
+      id: '',
+      password: '',
+    },
+    validationMessage: '',
+  };
 
   /* Login User */
   onLoginIDChange = e => {
@@ -45,6 +59,7 @@ class Page extends React.Component {
       },
     });
   };
+
   onLoginPasswordChange = e => {
     this.setState({
       login: {
@@ -63,6 +78,7 @@ class Page extends React.Component {
       },
     });
   };
+
   onRegisterPasswordChange = e => {
     this.setState({
       register: {
@@ -85,6 +101,7 @@ class Page extends React.Component {
       }
     }
   };
+
   validateRegister = e => {
     if (this.props.me) {
       e.preventDefault();
@@ -99,9 +116,9 @@ class Page extends React.Component {
     }
   };
 
-  render() {
+  render(): JSX.Element {
     let message = '';
-    if (this.props.url && this.props.url.query.how) message = UserLoginErrorCode.messages[this.props.url.query.how];
+    if (this.props.url && this.props.url.query.how) message = getUserLoginErrorCodeMessage(this.props.url.query.how);
 
     return (
       <Blank>
@@ -121,18 +138,18 @@ class Page extends React.Component {
                     type="text"
                     name="id"
                     onChange={this.onLoginIDChange}
-                    size="20"
+                    size={20}
                     autoCorrect="off"
-                    spellCheck="false"
+                    spellCheck={false}
                     autoCapitalize="off"
-                    autoFocus="true"
+                    autoFocus={true}
                   />
                 </td>
               </tr>
               <tr>
                 <td>password:</td>
                 <td>
-                  <input type="password" name="password" onChange={this.onLoginPasswordChange} size="20" />
+                  <input type="password" name="password" onChange={this.onLoginPasswordChange} size={20} />
                 </td>
               </tr>
             </tbody>
@@ -158,9 +175,9 @@ class Page extends React.Component {
                     type="text"
                     name="id"
                     onChange={this.onRegisterIDChange}
-                    size="20"
+                    size={20}
                     autoCorrect="off"
-                    spellCheck="false"
+                    spellCheck={false}
                     autoCapitalize="off"
                   />
                 </td>
@@ -168,7 +185,7 @@ class Page extends React.Component {
               <tr>
                 <td>password:</td>
                 <td>
-                  <input type="password" name="password" onChange={this.onRegisterPasswordChange} size="20" />
+                  <input type="password" name="password" onChange={this.onRegisterPasswordChange} size={20} />
                 </td>
               </tr>
             </tbody>
@@ -181,11 +198,13 @@ class Page extends React.Component {
   }
 }
 
-const LoginPage = graphql(meQuery, {
+const PageWithQuery = graphql(meQuery, {
   options: {},
   props: ({ data: { me } }) => ({
     me,
   }),
 })(Page);
 
-export default withData(props => <LoginPage url={props.url} />);
+export const LoginPage = withData(props => <PageWithQuery url={props.url} />);
+
+export default LoginPage;

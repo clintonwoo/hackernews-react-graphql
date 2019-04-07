@@ -1,13 +1,15 @@
 import * as React from 'react';
 
 import { MainLayout } from '../layouts/main-layout';
-import { NewsFeed } from '../components/presentational/NewsFeed';
+import { NewsFeedView } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 
 import { sampleData } from '../data/sample-data';
 
-export default withData(props => (
-  <MainLayout currentURL={props.url.pathname}>
-    <NewsFeed newsItems={sampleData.newsItems} first={30} skip={0} currentURL={props.url.pathname} />
+export const NewCommentsPage = withData(props => (
+  <MainLayout currentUrl={props.url.pathname}>
+    <NewsFeedView newsItems={sampleData.newsItems} first={30} skip={0} currentUrl={props.url.pathname} />
   </MainLayout>
 ));
+
+export default NewCommentsPage;

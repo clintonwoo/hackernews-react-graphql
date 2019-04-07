@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Notice } from '../layouts/notice';
 
-export default () => (
+export const SecurityPage = () => (
   <Notice>
     <b>Hacker News Security</b>
     <p>
@@ -203,3 +203,5 @@ export default () => (
     </p>
   </Notice>
 );
+
+export default SecurityPage;

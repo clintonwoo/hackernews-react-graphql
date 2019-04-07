@@ -1,13 +1,11 @@
 import * as React from 'react';
 import MockDate from 'mockdate';
-// import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import NewsFeed from '../NewsFeed';
-import data from '../../../data/sample-data';
+import { NewsFeed } from './news-feed';
+import { sampleData } from '../data/sample-data';
 
 MockDate.set(1506022129802);
-
 
 describe('NewsFeed component', () => {
   // it('shallow renders', () => {
@@ -16,12 +14,12 @@ describe('NewsFeed component', () => {
   //   );
   //   expect(wrapper).toMatchSnapshot();
   // });
+
   it('renders news items passed in as props', () => {
-    const wrapper = shallow((
-      <NewsFeed newsItems={data.newsItems} currentURL="/" first={30} skip={0} />
-    ));
+    const wrapper = shallow(<NewsFeed newsItems={sampleData.newsItems} currentUrl="/" first={30} skip={0} />);
     expect(wrapper).toMatchSnapshot();
   });
+
   // it('renders news items passed in as props', () => {
   //   const wrapper = shallow((
   //     <NewsFeed newsItems={data.newsItems} />

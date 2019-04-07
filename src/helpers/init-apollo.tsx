@@ -11,6 +11,8 @@ logger.log = console.log.bind(console);
 
 let apolloClient = null;
 
+declare let global;
+
 // Polyfill fetch() on the server (used by apollo-client)
 if (!process.browser) {
   global.fetch = fetch;

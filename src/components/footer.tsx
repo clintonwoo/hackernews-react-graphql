@@ -49,9 +49,9 @@ export const Footer: React.SFC = props => (
             type="text"
             name="q"
             value=""
-            size="17"
+            size={17}
             autoCorrect="off"
-            spellCheck="false"
+            spellCheck={false}
             autoCapitalize="off"
             autoComplete="false"
           />

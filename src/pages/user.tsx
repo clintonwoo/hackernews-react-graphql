@@ -9,12 +9,13 @@ import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
-const Page = ({ loading, error, user, me, options: { currentURL } }) => {
+const Page = ({ loading, error, user, me, options: { currentUrl } }) => {
   if (error) return <Blank>Error loading news items.</Blank>;
   if (!user) return <Blank>No such user.</Blank>;
 
   let about = user.about || '';
   let email = user.email || '';
+
   const onAboutChange = e => {
     about = e.target.value;
   };
@@ -24,7 +25,7 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
 
   if (me && user.id === me.id)
     return (
-      <MainLayout currentURL={currentURL} isFooterVisible={false}>
+      <MainLayout currentUrl={currentUrl} isFooterVisible={false}>
         <tr>
           <td>
             <form className="profileform" method="post" action="/xuser">
@@ -36,8 +37,8 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                     <td style={{ verticalAlign: 'top' }}>user:</td>
                     <td>
                       <Link prefetch href="/user?id=clintonwoo">
-                        <a className="hnuser">
-                          <font color="#3c963c">{user.id}</font>
+                        <a className="hnuser" style={{ color: '#3c963c' }}>
+                          {user.id}
                         </a>
                       </Link>
                     </td>
@@ -54,26 +55,25 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                     <td style={{ verticalAlign: 'top' }}>about:</td>
                     <td>
                       <textarea
+                        cols={60}
                         defaultValue={renderHTML(about)}
-                        onChange={onAboutChange}
-                        cols="60"
-                        rows="5"
-                        wrap="virtual"
                         name="about"
+                        onChange={onAboutChange}
+                        rows={5}
+                        style={{ fontSize: '-2' }}
+                        wrap="virtual"
                       />
-                      <font size="-2">
-                        <Link prefetch href="/formatdoc">
-                          <a tabIndex="-1">
-                            <font color="#afafaf">help</font>
-                          </a>
-                        </Link>
-                      </font>
+                      <Link prefetch href="/formatdoc">
+                        <a tabIndex={-1} style={{ color: '#afafaf' }}>
+                          help
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>email:</td>
                     <td>
-                      <input type="text" name="uemail" defaultValue={email} onChange={onEmailChange} size="60" />
+                      <input type="text" name="uemail" defaultValue={email} onChange={onEmailChange} size={60} />
                     </td>
                   </tr>
                   <tr>
@@ -97,19 +97,19 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>maxvisit:</td>
                     <td>
-                      <input type="text" name="maxv" defaultValue="20" size="16" />
+                      <input type="text" name="maxv" defaultValue="20" size={16} />
                     </td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>minaway:</td>
                     <td>
-                      <input type="text" name="mina" defaultValue="180" size="16" />
+                      <input type="text" name="mina" defaultValue="180" size={16} />
                     </td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>delay:</td>
                     <td>
-                      <input type="text" name="delay" defaultValue="0" size="16" />
+                      <input type="text" name="delay" defaultValue="0" size={16} />
                     </td>
                   </tr>
                   <tr>
@@ -200,7 +200,7 @@ const Page = ({ loading, error, user, me, options: { currentURL } }) => {
       </MainLayout>
     );
   return (
-    <MainLayout currentURL={currentURL} isFooterVisible={false}>
+    <MainLayout currentUrl={currentUrl} isFooterVisible={false}>
       <tr>
         <td>
           <table style={{ border: '0' }}>
@@ -294,15 +294,17 @@ const UserPageWithData = graphql(query, {
   }),
 })(Page);
 
-export default withData(props => {
+export const UserPage = withData(props => {
   const userId = (props.url.query && props.url.query.id) || '';
   return (
     <UserPageWithData
       options={{
         id: userId,
-        currentURL: props.url.pathname,
+        currentUrl: props.url.pathname,
         // isFooterVisible: false,
       }}
     />
   );
 });
+
+export default UserPage;

@@ -2,12 +2,21 @@ import * as React from 'react';
 import Link from 'next/link';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 
 import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
+import { UserLoginErrorCode } from '../data/enums/user-login-error-code';
 
-const Page = ({ registerUser, url }) => {
+interface IForgotPageProps {
+  registerUser: (id, password) => void;
+  url: {
+    query: {
+      how: UserLoginErrorCode;
+    };
+  };
+}
+
+const Page: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
   // const onClick = () => {
   //   props.mutate({
   //     variables: { id: id, password: password }
@@ -52,18 +61,18 @@ const Page = ({ registerUser, url }) => {
                 <input
                   type="text"
                   name="username"
-                  size="20"
+                  size={20}
                   autoCorrect="off"
-                  spellCheck="false"
+                  spellCheck={false}
                   autoCapitalize="off"
-                  autoFocus="true"
+                  autoFocus={true}
                 />
               </td>
             </tr>
             <tr>
               <td>password:</td>
               <td>
-                <input type="password" name="password" size="20" />
+                <input type="password" name="password" size={20} />
               </td>
             </tr>
           </tbody>
@@ -81,7 +90,7 @@ const Page = ({ registerUser, url }) => {
       <br />
       <form method="post" action="/login" /* onSubmit={e => e.preventDefault()} */ style={{ marginBottom: '1em' }}>
         <input type="hidden" name="goto" value={`user?id=${user}`} />
-        <input type="hidden" name="creating" value={true} />
+        <input type="hidden" name="creating" value={'true'} />
         <table style={{ border: '0px' }}>
           <tbody>
             <tr>
@@ -91,9 +100,9 @@ const Page = ({ registerUser, url }) => {
                   type="text"
                   name="username"
                   onChange={onUserChange}
-                  size="20"
+                  size={20}
                   autoCorrect="off"
-                  spellCheck="false"
+                  spellCheck={false}
                   autoCapitalize="off"
                 />
               </td>
@@ -101,7 +110,7 @@ const Page = ({ registerUser, url }) => {
             <tr>
               <td>password:</td>
               <td>
-                <input type="password" name="password" onChange={onPasswordChange} size="20" />
+                <input type="password" name="password" onChange={onPasswordChange} size={20} />
               </td>
             </tr>
           </tbody>
@@ -111,9 +120,6 @@ const Page = ({ registerUser, url }) => {
       </form>
     </Blank>
   );
-};
-Page.propTypes = {
-  registerUser: PropTypes.func.isRequired,
 };
 
 const registerUser = gql`
@@ -140,4 +146,6 @@ const PageWithData = graphql(registerUser, {
   }),
 })(Page);
 
-export default withData(props => <PageWithData url={props.url} />);
+export const ForgotPage = withData(props => <PageWithData url={props.url} />);
+
+export default ForgotPage;

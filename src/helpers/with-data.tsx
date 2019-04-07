@@ -13,16 +13,29 @@ function parseCookies(ctx = {}, options = {}) {
     ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : '', // document.cookie,
     options
   );
+
   logger('Parsing cookie: ', mycookie);
   return mycookie;
 }
 
-export const withData = ComposedComponent => {
-  return class WithData extends React.Component {
-    static displayName = `WithData(${ComposedComponent.displayName})`;
-    static propTypes = {
-      serverState: PropTypes.object.isRequired,
+// interface IComposedComponent extends React.ComponentElement {
+//   getInitialProps: () => void;
+//   url: string;
+// }
+
+export interface IWithDataProps {
+  serverState: {
+    apollo: {
+      data;
     };
+  };
+}
+
+export const withData = (ComposedComponent: any) => {
+  return class WithData extends React.Component<IWithDataProps> {
+    private apollo;
+
+    static displayName = `WithData(${ComposedComponent.displayName})`;
 
     static async getInitialProps(context) {
       let serverState = { apollo: {} };
@@ -43,12 +56,10 @@ export const withData = ComposedComponent => {
         composedInitialProps = await ComposedComponent.getInitialProps(context, apollo);
       }
 
-      // Run all GraphQL queries in the component tree
-      // and extract the resulting data
+      // Run all GraphQL queries in the component tree and extract the resulting data
       if (!process.browser) {
         if (context.res && context.res.finished) {
-          // When redirecting, the response is finished.
-          // No point in continuing to render
+          // When redirecting, the response is finished. No point in continuing to render
           return;
         }
 
@@ -89,7 +100,7 @@ export const withData = ComposedComponent => {
       });
     }
 
-    render() {
+    render(): JSX.Element {
       return (
         <ApolloProvider client={this.apollo}>
           <ComposedComponent {...this.props} />

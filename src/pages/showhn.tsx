@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Notice } from '../layouts/notice';
 
-export default () => (
+export const ShowHNRulesPage = () => (
   <Notice>
     <b>Show HN</b>
     <br />
@@ -53,7 +53,7 @@ export default () => (
     <p>
       <br />
       <br />
-      <table width="100%" style={{ padding: '0px', backgroundColor: '#ff6600' }}>
+      <table style={{ padding: '0px', backgroundColor: '#ff6600', width: '100%' }}>
         <tbody>
           <tr style={{ height: '0px' }}>
             <td style={{ padding: '0px' }} />
@@ -69,3 +69,5 @@ export default () => (
     </p>
   </Notice>
 );
+
+export default ShowHNRulesPage;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Notice } from '../layouts/notice';
 
-export default props => (
+export const BookmarkletPage = props => (
   <Notice>
     <b>Bookmarklet</b>
     <br />
@@ -29,14 +29,14 @@ export default props => (
       </div>
       <br />
       <br />
-      <table width="100%" style={{ padding: '0px', backgroundColor: '#ff6600' }}>
+      <table style={{ padding: '0px', backgroundColor: '#ff6600', width: '100%' }}>
         <tbody>
           <tr style={{ height: '0px' }}>
             <td style={{ padding: '0px' }} />
           </tr>
         </tbody>
       </table>
-      <p style={{ align: 'center' }}>
+      <p style={{ textAlign: 'center' }}>
         <span className="foot">
           <br />
           <br />
@@ -45,3 +45,5 @@ export default props => (
     </div>
   </Notice>
 );
+
+export default BookmarkletPage;

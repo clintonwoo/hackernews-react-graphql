@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { MainLayout } from '../layouts/main-layout';
-import { Comment } from '../components/presentational/Comment';
+import { Comment } from '../components/comment';
 import { withData } from '../helpers/with-data';
 
 const query = gql`
@@ -87,13 +87,13 @@ const page = ({ data: { loading, error, comment }, data, options }) => {
             </tr>
             <tr style={{ height: '10px' }} />
             <tr>
-              <td colSpan="2" />
+              <td colSpan={2} />
               <td>
                 <form method="post" action="comment">
                   <input type="hidden" name="parent" value="15260438" />
                   <input type="hidden" name="goto" value="item?id=15260384#15260438" />
                   <input type="hidden" name="hmac" value="d4cda96b7000a0e0cd578dde21feb6c9070cda8a" />
-                  <textarea name="text" rows="6" cols="60" />
+                  <textarea name="text" rows={6} cols={60} />
                   <br />
                   <br />
                   <input type="submit" value="reply" />
@@ -116,11 +116,13 @@ const ReplyToComment = graphql(query, {
   }),
 })(page);
 
-export default withData(props => {
+export const ReplyToCommentPage = withData(props => {
   variables.id = (props.url.query && +props.url.query.id) || 0;
   return (
-    <MainLayout title="Add Comment" currentURL={props.url.pathname} isNavVisible={false}>
+    <MainLayout title="Add Comment" currentUrl={props.url.pathname} isNavVisible={false}>
       <ReplyToComment />
     </MainLayout>
   );
 });
+
+export default ReplyToCommentPage;

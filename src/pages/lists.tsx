@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { MainLayout } from '../layouts/main-layout';
 import { withData } from '../helpers/with-data';
 
-export default withData(props => (
-  <MainLayout currentURL={props.url.pathname}>
+export const ListsPage = withData(props => (
+  <MainLayout currentUrl={props.url.pathname}>
     <tr>
       <td>
         <table style={{ borderSpacing: '7px 0px' }}>
@@ -16,9 +16,7 @@ export default withData(props => (
                   <a>leaders</a>
                 </Link>
               </td>
-              <td>
-                Users with most karma.
-              </td>
+              <td>Users with most karma.</td>
             </tr>
             <tr>
               <td>
@@ -27,7 +25,8 @@ export default withData(props => (
                 </Link>
               </td>
               <td>
-                Front page submissions for a given day (e.g. <a href="/front?day=2016-06-20">2016-06-20</a>), ordered by time spent there.
+                Front page submissions for a given day (e.g. <a href="/front?day=2016-06-20">2016-06-20</a>), ordered by
+                time spent there.
               </td>
             </tr>
             <tr>
@@ -36,9 +35,7 @@ export default withData(props => (
                   <a>best</a>
                 </Link>
               </td>
-              <td>
-                Highest-voted recent links.
-              </td>
+              <td>Highest-voted recent links.</td>
             </tr>
             <tr>
               <td>
@@ -46,9 +43,7 @@ export default withData(props => (
                   <a>active</a>
                 </Link>
               </td>
-              <td>
-                Most active current discussions.
-              </td>
+              <td>Most active current discussions.</td>
             </tr>
             <tr>
               <td>
@@ -56,9 +51,7 @@ export default withData(props => (
                   <a>bestcomments</a>
                 </Link>
               </td>
-              <td>
-                Highest-voted recent comments.
-              </td>
+              <td>Highest-voted recent comments.</td>
             </tr>
             <tr>
               <td>
@@ -66,9 +59,7 @@ export default withData(props => (
                   <a>noobstories</a>
                 </Link>
               </td>
-              <td>
-                Submissions from new accounts.
-              </td>
+              <td>Submissions from new accounts.</td>
             </tr>
             <tr>
               <td>
@@ -76,9 +67,7 @@ export default withData(props => (
                   <a>noobcomments</a>
                 </Link>
               </td>
-              <td>
-                Comments from new accounts.
-              </td>
+              <td>Comments from new accounts.</td>
             </tr>
           </tbody>
         </table>
@@ -86,3 +75,5 @@ export default withData(props => (
     </tr>
   </MainLayout>
 ));
+
+export default ListsPage;

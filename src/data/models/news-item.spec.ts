@@ -1,4 +1,4 @@
-import { NewsItem } from './NewsItem';
+import { NewsItem } from './news-item';
 
 describe('NewsItem Model', () => {
   it('gets a single News Item', () => {

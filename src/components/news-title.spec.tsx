@@ -3,11 +3,10 @@ import MockDate from 'mockdate';
 // import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import NewsTitle from '../NewsTitle';
-import data from '../../../data/sample-data';
+import { NewsTitle } from './news-title';
+import { sampleData } from '../data/sample-data';
 
 MockDate.set(1506022129802);
-
 
 describe('NewsTitle component', () => {
   // it('shallow renders', () => {
@@ -18,14 +17,9 @@ describe('NewsTitle component', () => {
   // });
   it('renders news item properties passed in as props', () => {
     const upvoteNewsItem = () => console.log('upvoteNewsItem');
-    const wrapper = shallow((
-      <NewsTitle
-        {...data.newsItems[0]}
-        upvoteNewsItem={upvoteNewsItem}
-        isRankVisible={true}
-        rank={1}
-      />
-    ));
+    const wrapper = shallow(
+      <NewsTitle {...sampleData.newsItems[0]} upvoteNewsItem={upvoteNewsItem} isRankVisible={true} rank={1} />
+    );
     expect(wrapper).toMatchSnapshot();
   });
   // it('renders news items passed in as props', () => {

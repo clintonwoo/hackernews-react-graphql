@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { MainLayout } from '../layouts/main-layout';
-import { NewsFeed } from '../components/presentational/NewsFeed';
-import { NewsFeedWithApolloRenderer } from '../components/container/NewsFeedWithApolloRenderer';
+import { NewsFeedView } from '../components/news-feed';
+import { NewsFeedWithApolloRenderer } from '../components/container/news-feed-with-apollo-renderer';
 import { withData } from '../helpers/with-data';
 
 const POSTS_PER_PAGE = 30;
@@ -15,7 +15,7 @@ const query = gql`
       ...NewsFeed
     }
   }
-  ${NewsFeed.fragments.newsItem}
+  ${NewsFeedView.fragments.newsItem}
 `;
 
 const NewestNewsFeed = graphql(query, {
@@ -31,13 +31,13 @@ const NewestNewsFeed = graphql(query, {
   }),
 })(NewsFeedWithApolloRenderer);
 
-export default withData(props => {
+export const FavoritesPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
   return (
-    <MainLayout currentURL={props.url.pathname}>
+    <MainLayout currentUrl={props.url.pathname}>
       <NewestNewsFeed
         options={{
-          currentURL: props.url.pathname,
+          currentUrl: props.url.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}
@@ -45,3 +45,5 @@ export default withData(props => {
     </MainLayout>
   );
 });
+
+export default FavoritesPage;

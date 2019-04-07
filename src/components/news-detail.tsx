@@ -1,27 +1,33 @@
 import * as React from 'react';
 import gql from 'graphql-tag';
 import Link from 'next/link';
+import Router from 'next/router';
+import { graphql } from 'react-apollo';
 
-import { convertNumberToTimeAgo } from '../../helpers/convert-number-to-time-ago';
+import { hideNewsItem } from '../data/mutations/hide-news-item';
+import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
-export class NewsDetail extends React.Component {
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-    commentCount: PropTypes.number.isRequired,
-    creationTime: PropTypes.number.isRequired,
-    hidden: PropTypes.bool.isRequired,
-    hideNewsItem: PropTypes.func.isRequired,
-    isPostScrutinyVisible: PropTypes.bool,
-    isFavoriteVisible: PropTypes.bool,
-    isJobListing: PropTypes.bool,
-    submitterId: PropTypes.string.isRequired,
-    upvoteCount: PropTypes.number.isRequired,
-  };
+interface INewsDetailProps {
+  id: number;
+  commentCount: number;
+  creationTime: number;
+  hidden: boolean;
+  hideNewsItem: (id: number) => void;
+  unhideNewsItem: (id: number) => void;
+  isPostScrutinyVisible?: boolean;
+  isFavoriteVisible?: boolean;
+  isJobListing?: boolean;
+  submitterId: string;
+  upvoteCount: number;
+}
+
+export class NewsDetailView extends React.Component<INewsDetailProps> {
   static defaultProps = {
     isFavoriteVisible: true,
     isPostScrutinyVisible: false,
     isJobListing: false,
   };
+
   static fragments = {
     newsItem: gql`
       fragment NewsDetail on NewsItem {
@@ -34,10 +40,11 @@ export class NewsDetail extends React.Component {
       }
     `,
   };
+
   render(): JSX.Element {
     return this.props.isJobListing ? (
       <tr>
-        <td colSpan="2" />
+        <td colSpan={2} />
         <td className="subtext">
           <span className="age">
             <Link prefetch href={`/item?id=${this.props.id}`}>
@@ -48,7 +55,7 @@ export class NewsDetail extends React.Component {
       </tr>
     ) : (
       <tr>
-        <td colSpan="2" />
+        <td colSpan={2} />
         <td className="subtext">
           <span className="score">{this.props.upvoteCount} points</span>
           {' by '}
@@ -101,3 +108,18 @@ export class NewsDetail extends React.Component {
     );
   }
 }
+
+export const NewsDetail = graphql(hideNewsItem, {
+  props: ({ ownProps, mutate }) => ({
+    hideNewsItem: id =>
+      mutate({
+        variables: { id },
+      })
+        // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+        .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
+    unhideNewsItem: id =>
+      mutate({
+        variables: { id },
+      }).catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
+  }),
+})(NewsDetailView);
