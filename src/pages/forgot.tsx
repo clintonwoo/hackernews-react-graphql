@@ -7,8 +7,11 @@ import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
 import { UserLoginErrorCode } from '../helpers/user-login-error-code';
 
-interface IForgotPageProps {
+interface IForgotPageProps extends IForgotPageOwnProps {
   registerUser: (id, password) => void;
+}
+
+interface IForgotPageOwnProps {
   url: {
     query: {
       how: UserLoginErrorCode;
@@ -131,9 +134,9 @@ const registerUser = gql`
   }
 `;
 
-const ForgotPageWithData = graphql(registerUser, {
-  props: ({ ownProps, mutate, url }) => ({
-    url,
+const ForgotPageWithData = graphql<IForgotPageOwnProps, IForgotPageProps, {}, {}>(registerUser, {
+  props: ({ ownProps, mutate }) => ({
+    url: ownProps.url,
     registerUser: (id, password) => {
       return (
         mutate({

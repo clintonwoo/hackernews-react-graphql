@@ -6,15 +6,18 @@ import { parse } from 'url';
 
 import { upvoteNewsItem } from '../data/mutations/upvote-news-item';
 
-export interface INewsTitleProps {
+export interface INewsTitleProps extends INewsItemOwnProps {
+  upvoteNewsItem: (id: number) => void;
+}
+
+export interface INewsItemOwnProps {
   id: number;
   isRankVisible?: boolean;
   isUpvoteVisible?: boolean;
   rank?: number;
   title: string;
   url?: string;
-  upvoted: boolean;
-  upvoteNewsItem: (id: number) => void;
+  upvoted?: boolean;
 }
 
 export class NewsTitleView extends React.Component<INewsTitleProps> {
@@ -37,17 +40,19 @@ export class NewsTitleView extends React.Component<INewsTitleProps> {
   };
 
   render(): JSX.Element {
+    const props = this.props;
+
     return (
       <tr className="athing">
         <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
-          <span className="rank">{this.props.isRankVisible && `${this.props.rank}.`}</span>
+          <span className="rank">{props.isRankVisible && `${props.rank}.`}</span>
         </td>
         <td style={{ verticalAlign: 'top' }} className="votelinks">
           <div style={{ textAlign: 'center' }}>
-            {this.props.isUpvoteVisible && (
+            {props.isUpvoteVisible && (
               <a
-                className={this.props.upvoted ? 'nosee' : ' '}
-                onClick={() => this.props.upvoteNewsItem(this.props.id)}
+                className={props.upvoted ? 'nosee' : ' '}
+                onClick={() => props.upvoteNewsItem(props.id)}
                 href="javascript:void(0)"
               >
                 <div className="votearrow" title="upvote" />
@@ -56,15 +61,15 @@ export class NewsTitleView extends React.Component<INewsTitleProps> {
           </div>
         </td>
         <td className="title">
-          <a className="storylink" href={this.props.url ? this.props.url : `item?id=${this.props.id}`}>
-            {this.props.title}
+          <a className="storylink" href={props.url ? props.url : `item?id=${props.id}`}>
+            {props.title}
           </a>
-          {this.props.url && (
+          {props.url && (
             <span className="sitebit comhead">
               {' '}
               (
-              <a href={`from?site=${parse(this.props.url).hostname}`}>
-                <span className="sitestr">{parse(this.props.url).hostname}</span>
+              <a href={`from?site=${parse(props.url).hostname}`}>
+                <span className="sitestr">{parse(props.url).hostname}</span>
               </a>
               )
             </span>
@@ -75,7 +80,7 @@ export class NewsTitleView extends React.Component<INewsTitleProps> {
   }
 }
 
-export const NewsTitle = graphql(upvoteNewsItem, {
+export const NewsTitle = graphql<INewsItemOwnProps, INewsTitleProps, {}, {}>(upvoteNewsItem, {
   props: ({ ownProps, mutate }) => ({
     upvoteNewsItem: id =>
       mutate({

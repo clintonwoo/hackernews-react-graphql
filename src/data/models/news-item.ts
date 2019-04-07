@@ -10,17 +10,19 @@ const logger = debug('app:NewsItem');
 let newPostIdCounter = 100;
 
 export class NewsItem {
-  public readonly id;
+  public readonly id: number;
   public readonly commentCount: number;
   public readonly comments;
   public readonly creationTime;
   public readonly hides;
   public readonly submitterId;
-  public readonly text;
-  public readonly title;
+  public readonly text: string;
+  public readonly title: string;
   public upvoteCount;
   public readonly upvotes;
   public readonly url;
+
+  public readonly hidden?: boolean; // TODO: exists?
 
   constructor(props) {
     if (!props.id) {
@@ -70,6 +72,7 @@ export class NewsItem {
       upvotes: [submitterId],
       upvoteCount: 1,
     });
+
     return DB.submitNewsItem(newsItem.id, newsItem);
   };
 }

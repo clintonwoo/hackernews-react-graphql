@@ -8,20 +8,20 @@ import { hideNewsItem } from '../data/mutations/hide-news-item';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
 interface INewsDetailProps extends INewsDetailOwnProps {
+  hideNewsItem: (id: number) => void;
+  unhideNewsItem: (id: number) => void;
+}
+
+interface INewsDetailOwnProps {
   id: number;
   commentCount: number;
   creationTime: number;
-  hidden: boolean;
+  hidden?: boolean;
   isFavoriteVisible?: boolean;
   isJobListing?: boolean;
   isPostScrutinyVisible?: boolean;
   submitterId: string;
   upvoteCount: number;
-}
-
-interface INewsDetailOwnProps {
-  hideNewsItem: (id: number) => void;
-  unhideNewsItem: (id: number) => void;
 }
 
 export class NewsDetailView extends React.Component<INewsDetailProps> {
@@ -114,7 +114,7 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
   }
 }
 
-export const NewsDetail = graphql<INewsDetailProps, INewsDetailOwnProps, {}, {}>(hideNewsItem, {
+export const NewsDetail = graphql<INewsDetailOwnProps, INewsDetailProps, {}, {}>(hideNewsItem, {
   props: ({ ownProps, mutate }) => ({
     hideNewsItem: (id: number) =>
       mutate({

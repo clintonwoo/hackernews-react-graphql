@@ -21,6 +21,7 @@ export function rankNewsItems() {
 
 export function createNewsItem(newsItem) {
   sampleData.newsItems.push(newsItem);
+
   return newsItem;
 }
 
@@ -29,21 +30,25 @@ export function createNewsItem(newsItem) {
 export function upvoteNewsItem(id, userId) {
   // Upvote the News Item in the DB
   const newsItem = cache.getNewsItem(id);
+
   if (newsItem && !newsItem.upvotes.includes(userId)) {
     newsItem.upvotes.push(userId);
     newsItem.upvoteCount += 1;
     cache.setNewsItem(id, newsItem);
   }
+
   return newsItem;
 }
 
 export function unvoteNewsItem(id, userId) {
   const newsItem = cache.getNewsItem(id);
+
   if (newsItem && !newsItem.upvotes.includes(userId)) {
     newsItem.upvotes.splice(newsItem.upvotes.indexOf(userId), 1);
     newsItem.upvoteCount -= 1;
     cache.setNewsItem(id, newsItem);
   }
+
   return newsItem;
 }
 
@@ -55,7 +60,7 @@ export function unvoteNewsItem(id, userId) {
 //   return newsItemData;
 // }
 
-export function hideNewsItem(id, userId) {
+export function hideNewsItem(id: number, userId) {
   logger(`Hiding News Item ${id} by ${userId}`);
 
   const newsItem = cache.getNewsItem(id);
@@ -82,6 +87,7 @@ export function submitNewsItem(id, newsItem) {
     FeedSingleton.new.pop();
     return newsItem;
   }
+
   throw new Error('Unable to submit News Item.');
 }
 
@@ -122,6 +128,7 @@ export function getUsers() {
 
 export function createUser(user) {
   sampleData.users.push(user);
+
   return user;
 }
 

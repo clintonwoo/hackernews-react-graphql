@@ -1,5 +1,5 @@
 import { debug } from 'debug';
-import * as LRU from 'lru-cache';
+import LRU from 'lru-cache';
 
 import { FeedSingleton, NewsItem } from './models';
 import { User } from './models/user';

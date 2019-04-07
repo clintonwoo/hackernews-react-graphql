@@ -6,19 +6,19 @@ import { passwordIterations } from '../../config';
 import { isValidUser, isValidNewUser } from '../validation/user';
 
 export class User {
-  public readonly id;
-  public readonly about;
+  public readonly id: string;
+  public readonly about: string;
   public readonly creationTime;
   public readonly dateOfBirth;
-  public readonly email;
-  public readonly firstName;
+  public readonly email: string;
+  public readonly firstName: string;
   public readonly hides;
-  public readonly karma;
-  public readonly lastName;
+  public readonly karma: number;
+  public readonly lastName: string;
   public readonly likes;
   public readonly posts;
-  public readonly hashedPassword;
-  public readonly passwordSalt;
+  public readonly hashedPassword: string;
+  public readonly passwordSalt: string;
 
   constructor(props) {
     if (!props.id) throw new Error(`Error instantiating User, id invalid: ${props.id}`);

@@ -1,3 +1,4 @@
+import { gql } from 'apollo-server-express';
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
@@ -16,7 +17,7 @@ logger.log = console.log.bind(console);
 
   Comments are provided when property is not obvious
 */
-export const typeDefs = `
+export const typeDefs = gql(`
   type Comment {
     id: Int!
 
@@ -169,7 +170,7 @@ export const typeDefs = `
     ): NewsItem
   }
 
-`;
+`);
 
 export const resolvers = {
   /*
@@ -274,10 +275,10 @@ export const resolvers = {
   },
 };
 
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+// export const schema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers,
+// });
 
 // Example query
 // query {

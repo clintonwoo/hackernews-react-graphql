@@ -8,7 +8,7 @@ import { withData } from '../helpers/with-data';
 import { submitNewsItem, ISubmitNewsItemGraphQL } from '../data/mutations/submit-news-item';
 
 interface ISubmitPageProps extends ISubmitPageOwnProps {
-  submitNewsItem: typeof submitNewsItem;
+  submitNewsItem: (title: string, url: string, text: string) => void;
 }
 
 interface ISubmitPageOwnProps {
@@ -109,7 +109,7 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
 
 const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(submitNewsItem, {
   props: ({ ownProps, mutate }) => ({
-    submitNewsItem: (title, url, text) =>
+    submitNewsItem: (title: string, url: string, text: string) =>
       mutate({
         variables: { title, url, text },
       })

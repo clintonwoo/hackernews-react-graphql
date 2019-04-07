@@ -3,13 +3,18 @@ import { graphql } from 'react-apollo';
 import { gql } from 'apollo-server-express';
 
 import { MainLayout } from '../layouts/main-layout';
-import { NewsItemWithComments } from '../components/news-item-with-comments';
+import { NewsItemWithComments, INewsItemWithCommentsProps } from '../components/news-item-with-comments';
 import { NewsTitleView } from '../components/news-title';
 import { NewsDetailView } from '../components/news-detail';
 import { Comments } from '../components/comments';
 import { withData } from '../helpers/with-data';
+import { NewsItem } from '../data/models';
 
-const query = gql`
+export interface INewsItemWithCommentsQuery {
+  newsItem: NewsItem;
+}
+
+const newsItemWithCommentsQuery = gql`
   query NewsItemWithComments($id: Int!) {
     newsItem(id: $id) {
       id
@@ -25,18 +30,25 @@ const query = gql`
   ${Comments.fragments.comment}
 `;
 
-export interface INewsItemWithCommentsWithGraphQLProps {
+export interface INewsItemWithCommentsWithGraphQLOwnProps {
   id: number;
 }
 
-const NewsItemWithCommentsWithGraphQL = graphql<INewsItemWithCommentsWithGraphQLProps>(query, {
+const NewsItemWithCommentsWithGraphQL = graphql<
+  INewsItemWithCommentsWithGraphQLOwnProps,
+  INewsItemWithCommentsQuery,
+  {},
+  INewsItemWithCommentsProps
+>(newsItemWithCommentsQuery, {
   options: ({ id }) => ({
     variables: {
       id,
     },
   }),
   props: ({ data }) => ({
-    data,
+    loading: data.loading,
+    error: data.error,
+    newsItem: data.newsItem,
   }),
   // loadMorePosts: data =>
   //   data.fetchMore({

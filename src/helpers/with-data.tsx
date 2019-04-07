@@ -8,7 +8,7 @@ import { initApollo } from './init-apollo';
 const logger = debug('app:withData');
 logger.log = console.log.bind(console);
 
-function parseCookies(ctx = {}, options = {}) {
+function parseCookies(ctx: any = {}, options = {}) {
   const mycookie = cookie.parse(
     ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : '', // document.cookie,
     options

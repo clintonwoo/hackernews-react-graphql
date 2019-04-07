@@ -18,7 +18,14 @@ const query = gql`
   ${NewsFeedView.fragments.newsItem}
 `;
 
-const NewestNewsFeed = graphql(query, {
+export interface INewestNewsFeedOwnProps {
+  options: {
+    first: number;
+    skip: number;
+  };
+}
+
+const NewestNewsFeed = graphql<INewestNewsFeedOwnProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
       type: 'NEW',

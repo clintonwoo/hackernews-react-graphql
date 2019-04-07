@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "preserve",
     "lib": ["es6", "es7", "dom", "esnext"],
     "module": "commonjs",

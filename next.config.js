@@ -1,8 +1,9 @@
 const withTypescript = require('@zeit/next-typescript');
-const withCSS = require('@zeit/next-css');
+// const withCSS = require('@zeit/next-css');
 
 module.exports = withTypescript(
-  withCSS({
+  // withCSS(
+  {
     async exportPathMap() {
       return {
         '/': { page: '/' },
@@ -50,13 +51,10 @@ module.exports = withTypescript(
           ],
         });
       }
-      // if (!defaultLoaders.babel.options.plugins) {
-      //   defaultLoaders.babel.options.plugins = [];
-      // }
-      // defaultLoaders.babel.options.plugins.push('@babel/plugin-proposal-export-default-from');
-
+      config.node = { fs: 'empty' };
       return config;
     },
     cssModules: true,
-  })
+  }
+  // );
 );

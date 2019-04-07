@@ -1,20 +1,26 @@
-import * as express from 'express';
-import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
-import * as nextApp from 'next';
-import * as passport from 'passport';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import nextApp from 'next';
+import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import * as bodyParser from 'body-parser';
 import { ApolloServer } from 'apollo-server-express';
-// import {
-//   graphqlExpress,
-//   graphiqlExpress,
-// } from 'apollo-server-express';
 
-import { schema } from './data/schema';
+import { resolvers, typeDefs } from './data/schema';
 import { seedCache } from './data/hn-data-api';
 import { Comment, FeedSingleton, NewsItem, User } from './data/models';
-import { appPath, APP_PORT, APP_URI, graphQLPath, graphiQLPath, GRAPHQL_URL, dev } from './config';
+import {
+  appPath,
+  APP_PORT,
+  APP_URI,
+  graphQLPath,
+  graphiQLPath,
+  GRAPHQL_URL,
+  dev,
+  GRAPHIQL_URL,
+  useGraphqlPlayground,
+} from './config';
 
 // Seed the in-memory data using the HN api
 const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
@@ -118,16 +124,19 @@ app
     /* BEGIN GRAPHQL */
 
     const apolloServer = new ApolloServer({
-      schema,
-      context: {
+      context: ({ req }) => ({
         Feed: FeedSingleton,
         NewsItem,
         Comment,
         User,
-        userId,
-      },
+        userId: req.user && req.user.id,
+      }),
+      typeDefs,
+      resolvers,
+      introspection: true,
+      playground: useGraphqlPlayground,
     });
-    apolloServer.applyMiddleware({ app: expressServer });
+    apolloServer.applyMiddleware({ app: expressServer, path: graphQLPath });
 
     // server.use(
     //   graphQLPath,
@@ -180,11 +189,12 @@ app
       if (err) throw err;
       console.log(`> App ready on ${APP_URI}`);
       console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
+      console.log(`> GraphQL Playground is${useGraphqlPlayground ? ' ' : ' not '}enabled`);
       console.log(`Dev: ${dev}`);
     });
   })
-  .catch(ex => {
-    console.error(ex.stack);
+  .catch(err => {
+    console.error(err.stack);
     process.exit(1);
   });
 
