@@ -6,9 +6,7 @@ import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 export const ActivePage = withData(props => (
-  <MainLayout currentUrl={props.url.pathname}>
-    <NewsFeedView newsItems={sampleData.newsItems} />
-  </MainLayout>
+  <MainLayout currentUrl={props.url.pathname}>{/* <NewsFeedView newsItems={sampleData.newsItems} /> */}</MainLayout>
 ));
 
 export default ActivePage;

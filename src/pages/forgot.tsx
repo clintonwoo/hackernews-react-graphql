@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
-import { UserLoginErrorCode } from '../data/enums/user-login-error-code';
+import { UserLoginErrorCode } from '../helpers/user-login-error-code';
 
 interface IForgotPageProps {
   registerUser: (id, password) => void;
@@ -16,7 +16,7 @@ interface IForgotPageProps {
   };
 }
 
-const Page: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
+const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
   // const onClick = () => {
   //   props.mutate({
   //     variables: { id: id, password: password }
@@ -131,7 +131,7 @@ const registerUser = gql`
   }
 `;
 
-const PageWithData = graphql(registerUser, {
+const ForgotPageWithData = graphql(registerUser, {
   props: ({ ownProps, mutate, url }) => ({
     url,
     registerUser: (id, password) => {
@@ -144,8 +144,8 @@ const PageWithData = graphql(registerUser, {
       );
     },
   }),
-})(Page);
+})(ForgotPageView);
 
-export const ForgotPage = withData(props => <PageWithData url={props.url} />);
+export const ForgotPage = withData(props => <ForgotPageWithData url={props.url} />);
 
 export default ForgotPage;

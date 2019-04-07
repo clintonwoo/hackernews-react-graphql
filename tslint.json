@@ -1,5 +1,6 @@
 {
   "extends": "tslint-config-airbnb",
+  "defaultSeverity": "warning",
   "rules": {
     "import-name": false,
     "variable-name": false,

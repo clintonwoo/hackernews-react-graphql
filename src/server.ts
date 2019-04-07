@@ -26,7 +26,7 @@ const handle = app.getRequestHandler();
 app
   .prepare()
   .then(() => {
-    const server = express();
+    const expressServer = express();
 
     /* BEGIN PASSPORT.JS AUTHENTICATION */
 
@@ -62,8 +62,8 @@ app
       const user = await User.getUser(id);
       cb(null, user || null);
     });
-    server.use(cookieParser('mysecret'));
-    server.use(
+    expressServer.use(cookieParser('mysecret'));
+    expressServer.use(
       session({
         secret: 'mysecret',
         resave: false,
@@ -72,11 +72,11 @@ app
         cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, // Requires https: secure: false
       })
     );
-    server.use(passport.initialize());
-    server.use(bodyParser.urlencoded({ extended: false }));
-    server.use(passport.session());
+    expressServer.use(passport.initialize());
+    expressServer.use(bodyParser.urlencoded({ extended: false }));
+    expressServer.use(passport.session());
 
-    server.post(
+    expressServer.post(
       '/login',
       (req, res, next) => {
         req.session.returnTo = req.body.goto;
@@ -87,7 +87,7 @@ app
         failureRedirect: '/login?how=unsuccessful',
       })
     );
-    server.post(
+    expressServer.post(
       '/register',
       async (req, res, next) => {
         if (!req.user) {
@@ -108,7 +108,7 @@ app
         failureRedirect: '/login?how=unsuccessful',
       })
     );
-    server.get('/logout', (req, res) => {
+    expressServer.get('/logout', (req, res) => {
       req.logout();
       res.redirect('/');
     });
@@ -117,17 +117,28 @@ app
 
     /* BEGIN GRAPHQL */
 
-    const apolloServer = new ApolloServer({ schema });
-    apolloServer.applyMiddleware({ app: server });
+    const apolloServer = new ApolloServer({
+      schema,
+      context: {
+        Feed: FeedSingleton,
+        NewsItem,
+        Comment,
+        User,
+        userId,
+      },
+    });
+    apolloServer.applyMiddleware({ app: expressServer });
 
-    // server.use(graphQLPath, bodyParser.json(), graphqlExpress(
-    //   (req) => {
+    // server.use(
+    //   graphQLPath,
+    //   bodyParser.json(),
+    //   graphqlExpress(req => {
     //     const userId = req.user && req.user.id;
     //     return {
     //       schema: Schema,
     //       rootValue: { req },
     //       context: {
-    //         Feed,
+    //         Feed: FeedSingleton,
     //         NewsItem,
     //         Comment,
     //         User,
@@ -135,12 +146,15 @@ app
     //       },
     //       debug: dev,
     //     };
-    //   },
-    // ));
+    //   })
+    // );
 
-    // server.use(graphiQLPath, graphiqlExpress({
-    //   endpointURL: graphQLPath,
-    // }));
+    // server.use(
+    //   graphiQLPath,
+    //   graphiqlExpress({
+    //     endpointURL: graphQLPath,
+    //   })
+    // );
 
     /* END GRAPHQL */
 
@@ -153,16 +167,16 @@ app
     //   app.render(req, res, actualPage, queryParams);
     // });
 
-    server.get('/news', (req, res) => {
+    expressServer.get('/news', (req, res) => {
       const actualPage = '/';
       app.render(req, res, actualPage);
     });
 
-    server.get('*', (req, res) => handle(req, res));
+    expressServer.get('*', (req, res) => handle(req, res));
 
     /* END EXPRESS ROUTES */
 
-    server.listen(APP_PORT, err => {
+    expressServer.listen(APP_PORT, err => {
       if (err) throw err;
       console.log(`> App ready on ${APP_URI}`);
       console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);

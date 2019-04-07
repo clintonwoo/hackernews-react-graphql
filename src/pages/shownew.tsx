@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 import { MainLayout } from '../layouts/main-layout';
 import { NewsFeedView } from '../components/news-feed';
-import { NewsFeedWithApolloRenderer } from '../components/container/news-feed-with-apollo-renderer';
+import { NewsFeed } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 
 const POSTS_PER_PAGE = 30;
@@ -19,7 +19,14 @@ const query = gql`
   ${NewsFeedView.fragments.newsItem}
 `;
 
-const ShowHNNewsFeed = graphql(query, {
+export interface IShowHNNewsFeedProps {
+  options: {
+    first: number;
+    skip: number;
+  };
+}
+
+const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
       type: 'SHOW',
@@ -30,29 +37,29 @@ const ShowHNNewsFeed = graphql(query, {
   props: ({ data }) => ({
     data,
   }),
-  loadMorePosts: data =>
-    data.fetchMore({
-      variables: {
-        skip: data.allNewsItems.length,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return previousResult;
-        }
-        return Object.assign({}, previousResult, {
-          // Append the new posts results to the old one
-          allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-        });
-      },
-    }),
-})(NewsFeedWithApolloRenderer);
+  // loadMorePosts: data =>
+  //   data.fetchMore({
+  //     variables: {
+  //       skip: data.allNewsItems.length,
+  //     },
+  //     updateQuery: (previousResult, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult) {
+  //         return previousResult;
+  //       }
+  //       return Object.assign({}, previousResult, {
+  //         // Append the new posts results to the old one
+  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
+  //       });
+  //     },
+  //   }),
+})(NewsFeed);
 
 export const ShowNewPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
 
   const notice = (
     <>
-      <tr key="noticetopspacer" style={{ height: '5px' }} />,
+      <tr key="noticetopspacer" style={{ height: '5px' }} />
       <tr key="notice">
         <td colSpan={2} />
         <td>
@@ -71,8 +78,7 @@ export const ShowNewPage = withData(props => {
           Show HNs.
         </td>
       </tr>
-      ,
-      <tr key="noticebottomspacer" style={{ height: '10px' }} />,
+      <tr key="noticebottomspacer" style={{ height: '10px' }} />
     </>
   );
 

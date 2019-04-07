@@ -7,9 +7,7 @@ import { withData } from '../helpers/with-data';
 import { sampleData } from '../data/sample-data';
 
 export const NoobStoriesPage = withData(props => (
-  <MainLayout currentUrl={props.url.pathname}>
-    <NewsFeedView newsItems={sampleData.newsItems} />
-  </MainLayout>
+  <MainLayout currentUrl={props.url.pathname}>{/* <NewsFeedView newsItems={sampleData.newsItems} /> */}</MainLayout>
 ));
 
 export default NoobStoriesPage;

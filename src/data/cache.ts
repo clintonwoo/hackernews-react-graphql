@@ -3,6 +3,7 @@ import * as LRU from 'lru-cache';
 
 import { FeedSingleton, NewsItem } from './models';
 import { User } from './models/user';
+import { FeedType } from './models/feed';
 
 // Interface: Commentable (Object can be commented on) comments, commentCount, commenter
 // Interface: Voteable (Object can be voted on) upvotes, upvoteCount, hidden, hiddenCount,
@@ -16,8 +17,8 @@ logger.log = console.log.bind(console);
 
 export function warmCache(): void {
   // Fetch the front pages
-  FeedSingleton.getForType('TOP', 30, 0);
-  FeedSingleton.getForType('NEW', 30, 0);
+  FeedSingleton.getForType(FeedType.TOP, 30, 0);
+  FeedSingleton.getForType(FeedType.NEW, 30, 0);
 
   // Run every 15 mins
   setTimeout(warmCache, 1000 * 60 * 15);

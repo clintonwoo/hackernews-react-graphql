@@ -7,9 +7,19 @@ import { sampleData } from '../sample-data';
 const logger = debug('app:Feed');
 logger.log = console.log.bind(console);
 
+export enum FeedType {
+  TOP = 'TOP',
+  NEW = 'NEW',
+  BEST = 'BEST',
+  SHOW = 'SHOW',
+  ASK = 'ASK',
+  JOB = 'JOB',
+}
+
 class Feed {
-  getForType(type, first, skip) {
+  public getForType(type: FeedType, first: number, skip: number) {
     logger(`Get first ${first} ${type} stories skip ${skip}.`);
+
     switch (type) {
       case 'TOP':
         // In this app the HN data is reconstructed in-memory

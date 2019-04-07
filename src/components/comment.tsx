@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import * as React from 'react';
 import renderHTML from 'react-render-html';
@@ -31,7 +31,7 @@ export class Comment extends React.Component<ICommentProps> {
     `,
   };
 
-  render() {
+  render(): JSX.Element {
     const props = this.props;
 
     const vote = () => {

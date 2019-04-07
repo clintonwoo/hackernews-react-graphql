@@ -1,11 +1,11 @@
+import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 
-import { MainLayout } from '../layouts/main-layout';
 import { NewsFeedView } from '../components/news-feed';
-import { NewsFeedWithApolloRenderer } from '../components/container/news-feed-with-apollo-renderer';
+import { NewsFeed } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
+import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
 
@@ -18,7 +18,14 @@ const query = gql`
   ${NewsFeedView.fragments.newsItem}
 `;
 
-const TopNewsFeed = graphql(query, {
+export interface ITopNewsFeedProps {
+  options: {
+    first: number;
+    skip: number;
+  };
+}
+
+const TopNewsFeed = graphql<ITopNewsFeedProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
       type: 'TOP',
@@ -29,22 +36,22 @@ const TopNewsFeed = graphql(query, {
   props: ({ data }) => ({
     data,
   }),
-  loadMorePosts: data =>
-    data.fetchMore({
-      variables: {
-        skip: data.allNewsItems.length,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return previousResult;
-        }
-        return Object.assign({}, previousResult, {
-          // Append the new posts results to the old one
-          allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-        });
-      },
-    }),
-})(NewsFeedWithApolloRenderer);
+  // loadMorePosts: data =>
+  //   data.fetchMore({
+  //     variables: {
+  //       skip: data.allNewsItems.length,
+  //     },
+  //     updateQuery: (previousResult, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult) {
+  //         return previousResult;
+  //       }
+  //       return Object.assign({}, previousResult, {
+  //         // Append the new posts results to the old one
+  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
+  //       });
+  //     },
+  //   }),
+})(NewsFeed);
 
 export const IndexPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;

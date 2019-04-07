@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 import { MainLayout } from '../layouts/main-layout';
-import { NewsItemWithApolloRenderer } from '../components/container/news-item-with-apollo-renderer';
+import { NewsItemWithComments } from '../components/news-item-with-comments';
 import { NewsTitleView } from '../components/news-title';
 import { NewsDetailView } from '../components/news-detail';
 import { Comments } from '../components/comments';
@@ -25,7 +25,11 @@ const query = gql`
   ${Comments.fragments.comment}
 `;
 
-const NewsItemWithComments = graphql(query, {
+export interface INewsItemWithCommentsWithGraphQLProps {
+  id: number;
+}
+
+const NewsItemWithCommentsWithGraphQL = graphql<INewsItemWithCommentsWithGraphQLProps>(query, {
   options: ({ id }) => ({
     variables: {
       id,
@@ -34,26 +38,26 @@ const NewsItemWithComments = graphql(query, {
   props: ({ data }) => ({
     data,
   }),
-  loadMorePosts: data =>
-    data.fetchMore({
-      variables: {
-        skip: data.allNewsItems.length,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return previousResult;
-        }
-        return Object.assign({}, previousResult, {
-          // Append the new posts results to the old one
-          allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-        });
-      },
-    }),
-})(NewsItemWithApolloRenderer);
+  // loadMorePosts: data =>
+  //   data.fetchMore({
+  //     variables: {
+  //       skip: data.allNewsItems.length,
+  //     },
+  //     updateQuery: (previousResult, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult) {
+  //         return previousResult;
+  //       }
+  //       return Object.assign({}, previousResult, {
+  //         // Append the new posts results to the old one
+  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
+  //       });
+  //     },
+  //   }),
+})(NewsItemWithComments);
 
 export const ItemPage = withData(props => (
   <MainLayout currentUrl={props.url.pathname}>
-    <NewsItemWithComments id={(props.url.query && +props.url.query.id) || 0} />
+    <NewsItemWithCommentsWithGraphQL id={(props.url.query && +props.url.query.id) || 0} />
   </MainLayout>
 ));
 

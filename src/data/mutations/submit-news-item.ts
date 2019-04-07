@@ -1,5 +1,9 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 import { NewsFeedView } from '../../components/news-feed';
+
+export interface ISubmitNewsItemGraphQL {
+  submitNewsItem: { id }; // Return type of submitNewsItem mutation
+}
 
 export const submitNewsItem = gql`
   mutation SubmitNewsItem($title: String!, $url: String) {

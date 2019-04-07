@@ -1,12 +1,11 @@
 import * as React from 'react';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
-import { NewsTitleWithData } from '../container/news-title-with-data';
-import { NewsTitleView } from './news-title';
-import { NewsDetail } from '../presentational/news-detail';
-import { NewsDetailView } from '../presentational/news-detail';
+import { NewsTitle, NewsTitleView } from './news-title';
+import { NewsDetail } from './news-detail';
+import { NewsDetailView } from './news-detail';
 import { NewsItem } from '../data/models';
-import { LoadingSpinner } from '../presentational/loading-spinner';
+import { LoadingSpinner } from './loading-spinner';
 
 export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
@@ -42,7 +41,7 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
     notice: null,
   };
 
-  render() {
+  render(): JSX.Element {
     const props = this.props;
 
     const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
@@ -52,7 +51,7 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
     props.newsItems.forEach((newsItem, index) => {
       if (!newsItem.hidden) {
         rows.push(
-          <NewsTitleWithData
+          <NewsTitle
             key={`${newsItem.id.toString()}title`}
             isRankVisible={props.isRankVisible}
             isUpvoteVisible={props.isUpvoteVisible}

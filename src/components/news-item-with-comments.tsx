@@ -1,13 +1,18 @@
 import * as React from 'react';
 
-import { NewsTitleWithData } from '../container/news-title-with-data';
-import { NewsDetail } from '../presentational/news-detail';
-import { LoadingSpinner } from '../presentational/loading-spinner';
+import { NewsTitle } from './news-title';
+import { NewsDetail } from './news-detail';
+import { LoadingSpinner } from './loading-spinner';
 
 import { CommentBox } from './comment-box';
 import { Comments } from './comments';
+import { NewsItem } from '../data/models';
 
-export const NewsItemWithComments: React.SFC = ({ newsItem }) => (
+export interface INewsItemWithcommentsProps {
+  newsItem: NewsItem;
+}
+
+export const NewsItemWithCommentsView: React.SFC<INewsItemWithcommentsProps> = ({ newsItem }) => (
   <tr>
     <td style={{ padding: '0px' }}>
       <table
@@ -15,7 +20,7 @@ export const NewsItemWithComments: React.SFC = ({ newsItem }) => (
         className="itemlist"
       >
         <tbody>
-          <NewsTitleWithData isRankVisible={false} {...newsItem} />
+          <NewsTitle isRankVisible={false} {...newsItem} />
           <NewsDetail isPostScrutinyVisible {...newsItem} />
           <tr key="morespace" className="morespace" style={{ height: '10px' }} />
           <CommentBox />
@@ -32,13 +37,18 @@ export const NewsItemWithComments: React.SFC = ({ newsItem }) => (
 
 /** Acts as the component for a page of a news item with all it's comments */
 
-export const NewsItem = ({ data: { loading, error, newsItem }, data }) => {
-  if (error)
+export const NewsItemWithComments = ({ data: { loading, error, newsItem }, data }) => {
+  if (error) {
     return (
       <tr>
         <td>Error loading news items.</td>
       </tr>
     );
-  if (newsItem && newsItem.comments) return <NewsItemWithComments newsItem={newsItem} />;
+  }
+
+  if (newsItem && newsItem.comments) {
+    return <NewsItemWithCommentsView newsItem={newsItem} />;
+  }
+
   return <LoadingSpinner />;
 };

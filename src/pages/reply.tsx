@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 import { MainLayout } from '../layouts/main-layout';
 import { Comment } from '../components/comment';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import Router from 'next/router';
 import { graphql } from 'react-apollo';
@@ -7,25 +7,28 @@ import { graphql } from 'react-apollo';
 import { hideNewsItem } from '../data/mutations/hide-news-item';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
-interface INewsDetailProps {
+interface INewsDetailProps extends INewsDetailOwnProps {
   id: number;
   commentCount: number;
   creationTime: number;
   hidden: boolean;
-  hideNewsItem: (id: number) => void;
-  unhideNewsItem: (id: number) => void;
-  isPostScrutinyVisible?: boolean;
   isFavoriteVisible?: boolean;
   isJobListing?: boolean;
+  isPostScrutinyVisible?: boolean;
   submitterId: string;
   upvoteCount: number;
+}
+
+interface INewsDetailOwnProps {
+  hideNewsItem: (id: number) => void;
+  unhideNewsItem: (id: number) => void;
 }
 
 export class NewsDetailView extends React.Component<INewsDetailProps> {
   static defaultProps = {
     isFavoriteVisible: true,
-    isPostScrutinyVisible: false,
     isJobListing: false,
+    isPostScrutinyVisible: false,
   };
 
   static fragments = {
@@ -42,13 +45,15 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
   };
 
   render(): JSX.Element {
-    return this.props.isJobListing ? (
+    const props = this.props;
+
+    return props.isJobListing ? (
       <tr>
         <td colSpan={2} />
         <td className="subtext">
           <span className="age">
-            <Link prefetch href={`/item?id=${this.props.id}`}>
-              <a>{convertNumberToTimeAgo(this.props.creationTime)}</a>
+            <Link prefetch href={`/item?id=${props.id}`}>
+              <a>{convertNumberToTimeAgo(props.creationTime)}</a>
             </Link>
           </span>
         </td>
@@ -57,27 +62,27 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
       <tr>
         <td colSpan={2} />
         <td className="subtext">
-          <span className="score">{this.props.upvoteCount} points</span>
+          <span className="score">{props.upvoteCount} points</span>
           {' by '}
-          <Link prefetch href={`/user?id=${this.props.submitterId}`}>
-            <a className="hnuser">{this.props.submitterId}</a>
+          <Link prefetch href={`/user?id=${props.submitterId}`}>
+            <a className="hnuser">{props.submitterId}</a>
           </Link>{' '}
           <span className="age">
-            <Link prefetch href={`/item?id=${this.props.id}`}>
-              <a>{convertNumberToTimeAgo(this.props.creationTime)}</a>
+            <Link prefetch href={`/item?id=${props.id}`}>
+              <a>{convertNumberToTimeAgo(props.creationTime)}</a>
             </Link>
           </span>
           {' | '}
-          {this.props.hidden ? (
-            <a href="javascript:void(0)" onClick={() => this.props.hideNewsItem(this.props.id)}>
+          {props.hidden ? (
+            <a href="javascript:void(0)" onClick={() => props.hideNewsItem(props.id)}>
               hide
             </a>
           ) : (
-            <a href="javascript:void(0)" onClick={() => this.props.unhideNewsItem(this.props.id)}>
+            <a href="javascript:void(0)" onClick={() => props.unhideNewsItem(props.id)}>
               hide
             </a>
           )}
-          {this.props.isPostScrutinyVisible && (
+          {props.isPostScrutinyVisible && (
             <span>
               {' | '}
               <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
@@ -88,30 +93,30 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
             </span>
           )}
           {' | '}
-          <Link prefetch href={`/item?id=${this.props.id}`}>
+          <Link prefetch href={`/item?id=${props.id}`}>
             <a>
               {(() => {
-                switch (this.props.commentCount) {
+                switch (props.commentCount) {
                   case 0:
                     return 'discuss';
                   case 1:
                     return '1 comment';
                   default:
-                    return `${this.props.commentCount} comments`;
+                    return `${props.commentCount} comments`;
                 }
               })()}
             </a>
           </Link>
-          {this.props.isFavoriteVisible && ' | favorite'}
+          {props.isFavoriteVisible && ' | favorite'}
         </td>
       </tr>
     );
   }
 }
 
-export const NewsDetail = graphql(hideNewsItem, {
+export const NewsDetail = graphql<INewsDetailProps, INewsDetailOwnProps, {}, {}>(hideNewsItem, {
   props: ({ ownProps, mutate }) => ({
-    hideNewsItem: id =>
+    hideNewsItem: (id: number) =>
       mutate({
         variables: { id },
       })

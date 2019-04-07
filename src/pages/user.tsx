@@ -1,15 +1,30 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 import renderHTML from 'react-render-html';
 
 import { MainLayout } from '../layouts/main-layout';
 import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
+import { User } from '../data/models';
 
-const Page = ({ loading, error, user, me, options: { currentUrl } }) => {
+export interface IUserPageProps extends IUserPageOwnProps {
+  loading: boolean;
+  error;
+  user: User;
+  me;
+}
+
+interface IUserPageOwnProps {
+  options: {
+    currentUrl: string;
+    id: number;
+  };
+}
+
+const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, options: { currentUrl } }) => {
   if (error) return <Blank>Error loading news items.</Blank>;
   if (!user) return <Blank>No such user.</Blank>;
 
@@ -280,7 +295,7 @@ const query = gql`
   }
 `;
 
-const UserPageWithData = graphql(query, {
+const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageProps, {}, {}>(query, {
   options: ({ options: { id } }) => ({
     variables: {
       id,
@@ -292,12 +307,13 @@ const UserPageWithData = graphql(query, {
     user,
     me,
   }),
-})(Page);
+})(UserPageView);
 
 export const UserPage = withData(props => {
   const userId = (props.url.query && props.url.query.id) || '';
+
   return (
-    <UserPageWithData
+    <UserPageWithGraphQL
       options={{
         id: userId,
         currentUrl: props.url.pathname,

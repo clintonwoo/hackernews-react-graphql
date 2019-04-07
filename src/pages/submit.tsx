@@ -5,10 +5,13 @@ import Router from 'next/router';
 
 import { MainLayout } from '../layouts/main-layout';
 import { withData } from '../helpers/with-data';
-import { submitNewsItem } from '../data/mutations/submit-news-item';
+import { submitNewsItem, ISubmitNewsItemGraphQL } from '../data/mutations/submit-news-item';
 
-interface ISubmitPageProps {
+interface ISubmitPageProps extends ISubmitPageOwnProps {
   submitNewsItem: typeof submitNewsItem;
+}
+
+interface ISubmitPageOwnProps {
   currentUrl: string;
 }
 
@@ -18,10 +21,12 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
   const onTitleChange = e => {
     title = e.target.value;
   };
+
   let url;
   const onUrlChange = e => {
     url = e.target.value;
   };
+
   let text;
   const onTextChange = e => {
     text = e.target.value;
@@ -102,13 +107,17 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
   );
 };
 
-const PageWithData = graphql(submitNewsItem, {
+const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(submitNewsItem, {
   props: ({ ownProps, mutate }) => ({
     submitNewsItem: (title, url, text) =>
       mutate({
         variables: { title, url, text },
       })
-        .then(({ data }) => Router.push(`/item?id=${data.submitNewsItem.id}`))
+        .then(res => {
+          if (res) {
+            Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+          }
+        })
         .catch(reason => console.error(reason)),
   }),
 })(Page);

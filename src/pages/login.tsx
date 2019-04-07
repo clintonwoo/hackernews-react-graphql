@@ -5,19 +5,18 @@ import { graphql } from 'react-apollo';
 
 import { Blank } from '../layouts/blank';
 import { withData } from '../helpers/with-data';
-import { meQuery } from '../data/queries/me-query';
+import { meQuery, IMeQuery } from '../data/queries/me-query';
 import { isValidNewUser } from '../data/validation/user';
-import { UserLoginErrorCode, getUserLoginErrorCodeMessage } from '../data/enums/user-login-error-code';
+import { UserLoginErrorCode, getUserLoginErrorCodeMessage } from '../helpers/user-login-error-code';
 
-interface ILoginPageProps {
+interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
+
+export interface ILoginPageOwnProps {
   url?: {
     query: {
       how: UserLoginErrorCode;
       goto: string;
     };
-  };
-  me: {
-    id: string;
   };
 }
 
@@ -198,7 +197,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   }
 }
 
-const PageWithQuery = graphql(meQuery, {
+const PageWithQuery = graphql<ILoginPageProps, IMeQuery, {}, {}>(meQuery, {
   options: {},
   props: ({ data: { me } }) => ({
     me,

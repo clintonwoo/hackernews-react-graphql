@@ -1,5 +1,5 @@
 import * as React from 'react';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 import { Comment } from './comment';
 import { NewsItem } from '../data/models/news-item';

@@ -4,7 +4,7 @@
     "checkJs": true,
     "jsx": "preserve",
     "lib": ["es6", "es7", "dom", "esnext"],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./dist/",
@@ -13,7 +13,6 @@
     "target": "esnext",
     "typeRoots": ["./node_modules/@types", "src/@types"]
   },
-  "files": ["src/server.ts"],
-  "include": ["src/**/*"],
-  "exclude": ["node_modules/**", "**/*.spec.ts*", "out", ".next"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.spec.ts*", "out", ".next"]
 }

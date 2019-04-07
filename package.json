@@ -6,7 +6,7 @@
     "node": ">=10.15.3"
   },
   "scripts": {
-    "clean": "rm -rf build/app",
+    "clean": "rm -rf build/app && rimraf dist",
     "build:old": "npm run build-clean && npm install --only=dev && babel src -d build/app --ignore '**/*__tests__','**/*__mocks__' && cp -R src/static build/app/static && next build build/app",
     "build:docker": "docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
     "build:next": "npm install --only=dev && next build src",
@@ -19,9 +19,11 @@
     "start:dev": "ts-node src/server.ts",
     "start:production": "NODE_ENV=production node build/app/server.js",
     "test": "jest",
-    "tsc": "tsc --noEmit",
-    "build": "next build src",
-    "start": "next start"
+    "tsc": "tsc",
+    "tsc:noemit": "tsc --noEmit",
+    "build": "npm run clean && tsc",
+    "build:newnext": "next build src",
+    "start": "next start src"
   },
   "author": "Clinton D'Annolfo",
   "license": "Apache-2.0",
@@ -37,7 +39,6 @@
     "apollo-fetch": "0.7.0",
     "apollo-link-http": "1.5.14",
     "apollo-server-express": "2.4.8",
-    "babel-runtime": "6.26.0",
     "body-parser": "1.18.3",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.4",
@@ -61,7 +62,6 @@
     "url": "0.11.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.4.3",
     "@types/async": "^2.4.1",
     "@types/body-parser": "1.17.0",
     "@types/cookie": "0.3.2",
@@ -82,13 +82,8 @@
     "@types/zeit__next-typescript": "0.1.2",
     "@zeit/next-css": "1.0.1",
     "@zeit/next-typescript": "1.1.1",
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-jest": "24.5.0",
-    "babel-loader": "8.0.5",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-stage-0": "6.24.1",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-transform-define": "^1.3.0",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
     "enzyme-to-json": "3.3.5",
