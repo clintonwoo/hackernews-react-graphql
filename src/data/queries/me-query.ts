@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export interface IMeQuery {
   me: {
-    id: number;
+    id: string;
     karma: number;
   };
 }

@@ -15,6 +15,7 @@ const query = gql`
   }
   ${Comment.fragments.comment}
 `;
+
 const variables = {
   id: 100,
 };
@@ -26,6 +27,7 @@ const page = ({ data: { loading, error, comment }, data, options }) => {
   const toggle = () => {
     console.log('toggle');
   };
+
   return (
     <tr>
       <td>

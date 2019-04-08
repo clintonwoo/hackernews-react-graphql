@@ -68,9 +68,9 @@ export class NewsItem {
       submitterId,
       text,
       title,
-      url,
-      upvotes: [submitterId],
       upvoteCount: 1,
+      upvotes: [submitterId],
+      url,
     });
 
     return DB.submitNewsItem(newsItem.id, newsItem);

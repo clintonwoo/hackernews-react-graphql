@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { MainLayout } from '../layouts/main-layout';
 import { NewsFeedView } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
+import { MainLayout } from '../layouts/main-layout';
 
 import { sampleData } from '../data/sample-data';
 

@@ -24,32 +24,34 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 
 - React - (UI Framework)
 - GraphQL - (Web Data API)
-- Apollo - (GraphQL Client)
+- Apollo - (GraphQL Client/Server)
 - Next - (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
-- Redux - (State Management)
+- Webpack - (Module Bundler)
 - TypeScript - (Static Types)
+- PostCSS - (CSS Processing)
 - Node.js - (Web Server)
 - Express - (Web App Server)
 - Passport - (Authentication)
 - Babel - (JS Transpiling)
 - TSLint - (JS Best Practices/Code Highlighting)
 - Jest - (Tests)
-- Yarn Package Manager - (Better Dependencies)
 - Docker - (Container Deployment)
+
+- Optional - Yarn or Pnpm Package Manager - (Better Dependencies)
 
 ### Benefits
 
 **Front End**
 
 - Declarative UI - (react)
-- Flux State Management - (redux)
+- Static Typing (typescript)
 - GraphQL Fragment Colocation - (react-apollo)
 - Prefetch Page Assets - (next)
 
 **Server**
 
 - Universal JS - (node & express)
-- Declarative GraphQL Schema - (react-tools)
+- Declarative GraphQL Schema - (apollo-server)
 - GraphQL Query Batching - (apollo-server-express)
 - GraphQL Stored Queries - (apollo-server-express)
 - Easy GraphiQL Include - (apollo-server-express)
@@ -63,8 +65,9 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 
 - Hot Module Reloading - (next)
 - Snapshot Testing - (jest)
+- GraphQL Playground
 - Faster Package Install - (yarn)
-- JS Best Practices - (eslint)
+- JS Best Practices - (tslint)
 
 ### Architecture Overview
 

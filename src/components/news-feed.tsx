@@ -11,7 +11,7 @@ export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
   first: number;
   newsItems: NewsItem[];
-  notice: JSX.Element[];
+  notice: JSX.Element;
   skip: number;
   isJobListing?: boolean;
   isRankVisible?: boolean;
@@ -47,12 +47,12 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
     const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
 
     const rows = [];
-    if (props.notice) rows.push(...props.notice);
+    // if (props.notice) rows.push(props.notice);
     props.newsItems.forEach((newsItem, index) => {
       if (!newsItem.hidden) {
         rows.push(
           <NewsTitle
-            key={`${newsItem.id.toString()}title`}
+            key={`${newsItem.id}title`}
             isRankVisible={props.isRankVisible}
             isUpvoteVisible={props.isUpvoteVisible}
             rank={props.skip + index + 1}
@@ -61,14 +61,14 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
         );
         rows.push(
           <NewsDetail
-            key={`${newsItem.id.toString()}detail`}
+            key={`${newsItem.id}detail`}
             isFavoriteVisible={false}
             isPostScrutinyVisible={props.isPostScrutinyVisible}
             isJobListing={props.isJobListing}
             {...newsItem}
           />
         );
-        rows.push(<tr className="spacer" key={`${newsItem.id.toString()}spacer`} style={{ height: 5 }} />);
+        rows.push(<tr className="spacer" key={`${newsItem.id}spacer`} style={{ height: 5 }} />);
       }
     });
     rows.push(<tr key="morespace" className="morespace" style={{ height: '10px' }} />);
@@ -90,7 +90,10 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
             style={{ border: '0px', padding: '0px', borderCollapse: 'collapse', borderSpacing: '0px' }}
             className="itemlist"
           >
-            <tbody>{rows}</tbody>
+            <tbody>
+              {props.notice && props.notice}
+              {rows}
+            </tbody>
           </table>
         </td>
       </tr>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 
 export const Notice: React.SFC = props => (
-  <div style={{ textAlign: 'center' }}>
+  <div>
     <Head>
       <title>Hacker News Clone</title>
       <meta name="referrer" content="origin" />
@@ -12,7 +12,7 @@ export const Notice: React.SFC = props => (
     </Head>
     <br />
     <br />
-    <table style={{ padding: '0px', width: '500px' }}>
+    <table style={{ marginLeft: 'auto', marginRight: 'auto', padding: '0px', width: '500px' }}>
       <tbody>
         <tr>
           <td style={{ backgroundColor: '#fafaf0' }}>

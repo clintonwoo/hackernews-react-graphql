@@ -4,14 +4,9 @@ import { graphql } from 'react-apollo';
 
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
-import { meQuery } from '../data/queries/me-query';
+import { meQuery, IMeQuery } from '../data/queries/me-query';
 
-interface IMainLayoutProps extends IMainLayoutOwnProps {
-  me: {
-    id: string;
-    karma: number;
-  };
-}
+interface IMainLayoutProps extends IMeQuery, IMainLayoutOwnProps {}
 
 interface IMainLayoutOwnProps {
   children: React.ReactChild;
@@ -23,7 +18,7 @@ interface IMainLayoutOwnProps {
 }
 
 const MainLayoutView: React.SFC<IMainLayoutProps> = props => (
-  <div style={{ textAlign: 'center' }}>
+  <div>
     <Head>
       <title>Hacker News Clone</title>
       <meta name="referrer" content="origin" />
@@ -34,12 +29,14 @@ const MainLayoutView: React.SFC<IMainLayoutProps> = props => (
     <table
       id="hnmain"
       style={{
-        border: '0px',
-        padding: '0px',
-        borderSpacing: '0px',
-        borderCollapse: 'collapse',
-        width: '85%',
         backgroundColor: '#f6f6ef',
+        border: '0px',
+        borderCollapse: 'collapse',
+        borderSpacing: '0px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        padding: '0px',
+        width: '85%',
       }}
     >
       <tbody>
@@ -59,11 +56,7 @@ MainLayoutView.defaultProps = {
   me: null,
 };
 
-export const MainLayout = graphql<IMainLayoutOwnProps, IMainLayoutProps, {}, {}>(meQuery, {
-  options: {
-    // fetchPolicy: 'cache-and-network',
-    // ssr: false,
-  },
+export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(meQuery, {
   props: ({ data: { me } }) => ({
     me,
   }),

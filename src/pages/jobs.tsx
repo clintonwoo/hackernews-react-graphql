@@ -58,23 +58,25 @@ const JobNewsFeed = graphql<IJobsPageOwnProps>(query, {
 export const JobsPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
 
-  const notice = [
-    <tr key="noticetopspacer" style={{ height: '20px' }} />,
-    <tr key="notice">
-      <td />
-      <td>
-        <img alt="" src="/static/s.gif" height="1" width="14" />
-      </td>
-      <td>
-        These are jobs at startups that were funded by Y Combinator. You can also get a job at a YC startup through{' '}
-        <a href="https://triplebyte.com/?ref=yc_jobs">
-          <u>Triplebyte</u>
-        </a>
-        .
-      </td>
-    </tr>,
-    <tr key="noticebottomspacer" style={{ height: '20px' }} />,
-  ];
+  const notice = (
+    <>
+      <tr key="noticetopspacer" style={{ height: '20px' }} />
+      <tr key="notice">
+        <td />
+        <td>
+          <img alt="" src="/static/s.gif" height="1" width="14" />
+        </td>
+        <td>
+          These are jobs at startups that were funded by Y Combinator. You can also get a job at a YC startup through{' '}
+          <a href="https://triplebyte.com/?ref=yc_jobs">
+            <u>Triplebyte</u>
+          </a>
+          .
+        </td>
+      </tr>
+      <tr key="noticebottomspacer" style={{ height: '20px' }} />
+    </>
+  );
 
   return (
     <MainLayout currentUrl={props.url.pathname}>

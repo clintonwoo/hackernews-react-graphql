@@ -2,8 +2,7 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeedView } from '../components/news-feed';
-import { NewsFeed } from '../components/news-feed';
+import { NewsFeed, NewsFeedView } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 

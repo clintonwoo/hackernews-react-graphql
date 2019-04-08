@@ -6,6 +6,7 @@ import { MainLayout } from '../layouts/main-layout';
 import { NewsFeedView } from '../components/news-feed';
 import { NewsFeed } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
+import { FeedType } from '../data/models/feed';
 
 const POSTS_PER_PAGE = 30;
 
@@ -28,7 +29,7 @@ export interface IAskPageProps {
 const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
-      type: 'ASK',
+      type: FeedType.ASK,
       first,
       skip,
     },

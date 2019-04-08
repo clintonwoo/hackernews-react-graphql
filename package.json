@@ -6,21 +6,17 @@
     "node": ">=10.15.3"
   },
   "scripts": {
-    "clean": "rm -rf build/app && rimraf dist",
-    "build": "npm run clean && tsc && next build dist",
-    "build:old": "npm run build-clean && npm install --only=dev && babel src -d build/app --ignore '**/*__tests__','**/*__mocks__' && cp -R src/static build/app/static && next build build/app",
-    "build:docker": "docker build -t clintonwoo/hackernews-react-graphql . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
-    "build:next": "next build dist",
+    "clean": "rm -rf build/app && rm -rf dist",
+    "build": "npm run clean && tsc && next build dist && cp -R src/static dist/static ",
+    "build:docker": "docker build --tag 'clintonwoo/hackernews-react-graphql:latest' --rm . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
     "build:static-website": "NODE_ENV=production rm -rf build/static && npm install --only=dev && next build src && next export src -o build/static",
-    "debug": "DEBUG=app:* npm run dev",
+    "debug": "DEBUG=app:* npm start",
+    "debug:inspect": "DEBUG=app* ts-node --inspect src/server.js",
     "debug:all": "DEBUG=* npm start",
-    "debug:mode": "babel-node --inspect src/server.js",
-    "graphiql": "babel-node ./src/data/graphiql",
-    "nodemon": "nodemon src/server.js --exec babel-node",
-    "prettier:check": "prettier check",
-    "prettier:format": "prettier format",
-    "start:dev": "ts-node src/server.ts",
-    "test": "jest",
+    "nodemon": "nodemon src/server.ts --exec ts-node",
+    "prettier:check": "prettier --check",
+    "prettier:format": "prettier --write",
+    "test": "jest --config jest.config.js",
     "tsc:check": "tsc --noEmit",
     "start": "ts-node src/server.ts",
     "start:production": "NODE_ENV=production node dist/server.js"
@@ -90,19 +86,18 @@
     "jest": "24.5.0",
     "jest-enzyme": "7.0.2",
     "mockdate": "2.0.2",
-    "nodemon": "1.18.0",
+    "nodemon": "1.18.10",
     "postcss": "7.0.14",
     "postcss-preset-env": "6.6.0",
     "prettier": "1.16.4",
     "react-test-renderer": "16.8.5",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "ts-node": "8.0.3",
+    "tslint": "^5.15.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "3.4.1"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
   },
   "nodemonConfig": {
     "ignore": [

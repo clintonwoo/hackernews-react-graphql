@@ -14,7 +14,7 @@ interface IHeaderProps {
 }
 
 export class Header extends React.Component<IHeaderProps> {
-  defaultProps = {
+  static defaultProps = {
     me: null,
   };
 

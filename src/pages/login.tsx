@@ -1,13 +1,13 @@
-import * as React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
+import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { Blank } from '../layouts/blank';
-import { withData } from '../helpers/with-data';
-import { meQuery, IMeQuery } from '../data/queries/me-query';
+import { IMeQuery, meQuery } from '../data/queries/me-query';
 import { isValidNewUser } from '../data/validation/user';
-import { UserLoginErrorCode, getUserLoginErrorCodeMessage } from '../helpers/user-login-error-code';
+import { getUserLoginErrorCodeMessage, UserLoginErrorCode } from '../helpers/user-login-error-code';
+import { withData } from '../helpers/with-data';
+import { Blank } from '../layouts/blank';
 
 interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
 
@@ -33,11 +33,11 @@ interface ILoginPageState {
 }
 
 class Page extends React.Component<ILoginPageProps, ILoginPageState> {
-  static defaultProps = {
+  public static defaultProps = {
     me: null,
   };
 
-  state: ILoginPageState = {
+  public state: ILoginPageState = {
     login: {
       id: '',
       password: '',
@@ -50,7 +50,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   /* Login User */
-  onLoginIDChange = e => {
+  private onLoginIDChange = e => {
     this.setState({
       login: {
         id: e.target.value,
@@ -59,7 +59,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  onLoginPasswordChange = e => {
+  private onLoginPasswordChange = e => {
     this.setState({
       login: {
         id: this.state.login.id,
@@ -69,7 +69,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   /* Register New User */
-  onRegisterIDChange = e => {
+  private onRegisterIDChange = e => {
     this.setState({
       register: {
         id: e.target.value,
@@ -78,7 +78,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  onRegisterPasswordChange = e => {
+  private onRegisterPasswordChange = e => {
     this.setState({
       register: {
         id: this.state.register.id,
@@ -87,7 +87,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  validateLogin = e => {
+  private validateLogin = e => {
     if (this.props.me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
@@ -101,7 +101,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
     }
   };
 
-  validateRegister = e => {
+  private validateRegister = e => {
     if (this.props.me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
@@ -115,9 +115,11 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
     }
   };
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     let message = '';
-    if (this.props.url && this.props.url.query.how) message = getUserLoginErrorCodeMessage(this.props.url.query.how);
+    if (this.props.url && this.props.url.query.how) {
+      message = getUserLoginErrorCodeMessage(this.props.url.query.how);
+    }
 
     return (
       <Blank>

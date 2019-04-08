@@ -71,11 +71,11 @@ app
     expressServer.use(cookieParser('mysecret'));
     expressServer.use(
       session({
-        secret: 'mysecret',
+        cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, // Requires https: secure: false
         resave: false,
         rolling: true,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, // Requires https: secure: false
+        secret: 'mysecret',
       })
     );
     expressServer.use(passport.initialize());
@@ -89,8 +89,8 @@ app
         next();
       },
       passport.authenticate('local', {
-        successReturnToOrRedirect: '/',
         failureRedirect: '/login?how=unsuccessful',
+        successReturnToOrRedirect: '/',
       })
     );
     expressServer.post(
@@ -106,12 +106,14 @@ app
           } catch (err) {
             req.session.returnTo = `/login?how=${err.code}`;
           }
-        } else req.session.returnTo = '/login?how=user';
+        } else {
+          req.session.returnTo = '/login?how=user';
+        }
         next();
       },
       passport.authenticate('local', {
-        successReturnToOrRedirect: '/',
         failureRedirect: '/login?how=unsuccessful',
+        successReturnToOrRedirect: '/',
       })
     );
     expressServer.get('/logout', (req, res) => {
@@ -158,13 +160,6 @@ app
     //   })
     // );
 
-    // server.use(
-    //   graphiQLPath,
-    //   graphiqlExpress({
-    //     endpointURL: graphQLPath,
-    //   })
-    // );
-
     /* END GRAPHQL */
 
     /* BEGIN EXPRESS ROUTES */
@@ -188,7 +183,7 @@ app
     expressServer.listen(APP_PORT, err => {
       if (err) throw err;
       console.log(`> App ready on ${APP_URI}`);
-      console.log(`> GraphQL Ready on ${GRAPHQL_URL}`);
+      console.log(`> GraphQL ready on ${GRAPHQL_URL}`);
       console.log(`> GraphQL Playground is${useGraphqlPlayground ? ' ' : ' not '}enabled`);
       console.log(`Dev: ${dev}`);
     });

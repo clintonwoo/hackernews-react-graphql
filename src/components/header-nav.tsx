@@ -9,7 +9,7 @@ interface IHeaderNavProps {
 }
 
 export class HeaderNav extends React.Component<IHeaderNavProps> {
-  defaultProps = {
+  static defaultProps = {
     userId: null,
   };
 
