@@ -9,7 +9,7 @@
     "clean": "rm -rf build/app && rm -rf dist && rm -rf src/.next",
     "build": "npm run clean && tsc --project tsconfig.server.json && next build",
     "build:docker": "docker build --tag 'clintonwoo/hackernews-react-graphql:latest' --rm . && docker run -p 80:3000 --name hackernews-react-graphql clintonwoo/hackernews-react-graphql",
-    "build:static-website": "NODE_ENV=production rm -rf build/static && npm install --only=dev && next build src && next export src -o build/static",
+    "build:static-website": "NODE_ENV=production rm -rf build/static && npm install --only=dev && next build && next export -o build/static",
     "debug": "DEBUG=app:* npm start",
     "debug:inspect": "node --inspect -r ts-node/register src/server.ts",
     "debug:inspect-production": "NODE_ENV=production node --inspect dist/server.js",
