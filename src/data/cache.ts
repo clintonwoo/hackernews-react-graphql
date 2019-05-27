@@ -2,8 +2,8 @@ import { debug } from 'debug';
 import LRU from 'lru-cache';
 
 import { FeedSingleton, NewsItem } from './models';
-import { User } from './models/user';
 import { FeedType } from './models/feed';
+import { User } from './models/user';
 
 // Interface: Commentable (Object can be commented on) comments, commentCount, commenter
 // Interface: Voteable (Object can be voted on) upvotes, upvoteCount, hidden, hiddenCount,

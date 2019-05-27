@@ -1,8 +1,8 @@
 const withTypescript = require('@zeit/next-typescript');
-// const withCSS = require('@zeit/next-css');
+const withCSS = require('@zeit/next-css');
 
 module.exports = withTypescript(
-  // withCSS(
+  withCSS(
   {
     async exportPathMap() {
       return {
@@ -54,7 +54,7 @@ module.exports = withTypescript(
       config.node = { fs: 'empty' };
       return config;
     },
-    cssModules: true,
+    cssModules: false,
   }
-  // );
+  )
 );

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NewsItem } from '../data/models/news-item';
 import { Comment, commentFragment } from './comment';
 
-interface ICommentsProps {
+export interface ICommentsProps {
   newsItem: NewsItem;
 }
 

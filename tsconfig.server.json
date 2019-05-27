@@ -1,20 +1,8 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "lib": ["es6", "es7", "dom", "esnext"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "outDir": "./dist/",
-    "removeComments": true,
-    "sourceMap": true,
-    "target": "es2017",
-    "typeRoots": ["./node_modules/@types", "src/@types"]
+    "noEmit": false
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__mocks__*", "**/*.spec.ts*", "out", ".next"]
+  "exclude": ["node_modules", "**/__mocks__*", "**/*.spec.**", "out", ".next"]
 }

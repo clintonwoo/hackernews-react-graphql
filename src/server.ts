@@ -11,13 +11,13 @@ import { seedCache } from './data/hn-data-api';
 import { Comment, FeedSingleton, NewsItem, User } from './data/models';
 import { resolvers, typeDefs } from './data/schema';
 
-import { APP_PORT, APP_URI, appPath, dev, GRAPHQL_URL, graphQLPath, useGraphqlPlayground } from './config';
+import { APP_PORT, APP_URI, dev, GRAPHQL_URL, graphQLPath, useGraphqlPlayground } from './config';
 
 // Seed the in-memory data using the HN api
 const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
 seedCache(delay);
 
-const app = nextApp({ dir: appPath, dev });
+const app = nextApp({ dev });
 const handle = app.getRequestHandler();
 
 app
