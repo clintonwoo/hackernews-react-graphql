@@ -4,9 +4,12 @@ logs
 coverage
 
 .next
+dist
 build/static
 build/app
 .env
+.cache
 
 .DS_Store
 .vscode
+.log

@@ -8,6 +8,7 @@
 </p>
 
 This project is a clone of hacker news rewritten with universal JavaScript, using React and GraphQL. It is intended to be an example or boilerplate to help you structure your projects using production-ready technologies.
+
 <p align="center" margin-bottom="0">
   <a href="http://www.hnclone.win" target="_blank">
     <img alt="Hacker News Clone Demo" width="auto" height="auto" src="docs/HN-Demo.jpg">
@@ -20,32 +21,36 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 ## Overview
 
 ### Featuring
+
 - React - (UI Framework)
 - GraphQL - (Web Data API)
-- Apollo - (GraphQL Client)
+- Apollo - (GraphQL Client/Server)
 - Next - (Routing, SSR, Hot Module Reloading, Code Splitting, Build tool uses Webpack)
-- Redux - (State Management)
+- TypeScript - (Static Types)
+- Webpack - (Module Bundler)
+- PostCSS - (CSS Processing)
 - Node.js - (Web Server)
 - Express - (Web App Server)
 - Passport - (Authentication)
-- Babel - (JS Transpiling)
-- Flow - (Static Types)
-- ESLint - (JS Best Practices/Code Highlighting)
+- TSLint - (JS Best Practices/Code Highlighting)
 - Jest - (Tests)
-- Yarn Package Manager - (Better Dependencies)
 - Docker - (Container Deployment)
+
+- Optional - Yarn or Pnpm Package Manager - (Better Dependencies)
 
 ### Benefits
 
 **Front End**
+
 - Declarative UI - (react)
-- Flux State Management - (redux)
+- Static Typing (typescript)
 - GraphQL Fragment Colocation - (react-apollo)
 - Prefetch Page Assets - (next)
 
 **Server**
+
 - Universal JS - (node & express)
-- Declarative GraphQL Schema - (react-tools)
+- Declarative GraphQL Schema - (apollo-server)
 - GraphQL Query Batching - (apollo-server-express)
 - GraphQL Stored Queries - (apollo-server-express)
 - Easy GraphiQL Include - (apollo-server-express)
@@ -56,11 +61,12 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 - Container Based Runtime - (docker)
 
 **Dev/Test**
+
 - Hot Module Reloading - (next)
 - Snapshot Testing - (jest)
+- GraphQL Playground
 - Faster Package Install - (yarn)
-- JS Best Practices - (eslint)
-
+- JS Best Practices - (tslint)
 
 ### Architecture Overview
 
@@ -68,14 +74,14 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
   <img alt="Hacker News Clone Architecture Overview" width="auto" height="400px" src="docs/HN-Clone-Architecture-overview.png">
 </p>
 
-*Server.js* is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using ```getInitialProps()``` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
+_Server.js_ is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using `getInitialProps()` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
 
-When the client receives the page it preloads next page JS designated with ```<Link prefetch href="/">```. When the client navigates to the linked page it only needs to make a GraphQL query to render. *Great!*
+When the client receives the page it preloads next page JS designated with `<Link prefetch href="/">`. When the client navigates to the linked page it only needs to make a GraphQL query to render. _Great!_
 
 See more: <a href="https://github.com/zeit/next.js/">Next.js</a>,
 <a href="http://dev.apollodata.com/react/">Apollo GraphQL Client</a>
 
-GraphQL: <a href="http://dev.apollodata.com/tools/graphql-tools/index.html">GraphQL-Tools by Apollo</a> 
+GraphQL: <a href="http://dev.apollodata.com/tools/graphql-tools/index.html">GraphQL-Tools by Apollo</a>
 or
 <a href="http://graphql.org/graphql-js/">GraphQL docs</a>
 
@@ -83,7 +89,7 @@ or
 
 Each directory contains a README.
 
-*root* - Only contains config files such as  Babel, ESLint, Docker, Flow, NPM, Yarn, Git.
+_root_ - Only contains config files such as Babel, ESLint, Docker, Flow, NPM, Yarn, Git.
 
 ## How To Start
 
@@ -95,7 +101,7 @@ You can download and run the repo with one command to rule them all:
 
 ### Setup
 
-Running the app in dev mode is fully featured including *hot module reloading*:
+Running the app in dev mode is fully featured including _hot module reloading_:
 
 `npm install`
 
@@ -107,7 +113,7 @@ To run in production mode:
 
 ### Configuration
 
-The project runs out of the box with default settings (*/src/config.js*). You can include a .env file in your project root to configure settings (this is the '*dotenv*' npm package). The *.env* file is included in *.gitignore*.
+The project runs out of the box with default settings (_/src/config.js_). You can include a .env file in your project root to configure settings (this is the '_dotenv_' npm package). The _.env_ file is included in _.gitignore_.
 
 ## How To Test
 
@@ -119,23 +125,23 @@ This project uses Jest and can do snapshot testing of React components. Whenever
 
 ## How To Build For Deployment
 
-`npm run build`: NextJS app with entry point *server.js* that uses Node.js/Express. Uses Babel compiler to transpile project src to build.
+`npm run build`: NextJS app with entry point _server.js_ that uses Node.js/Express. Uses Babel compiler to transpile project src to build.
 
 OR
 
 `npm run build-docker`
 Docker Container: Builds a docker container using Dockerfile.
 
-
 #### Static Website (Optional)
 
 NextJS lets us make a powerful static website but you need to consider if you need server side rendering.
 
-`npm run build-static-website`: Builds static website to */build/static*. Use a static web server *eg.* NGINX/Github Pages.
-
+`npm run build-static-website`: Builds static website to _/build/static_. Use a static web server _eg._ NGINX/Github Pages.
 
 ## Contributing
+
 Pull requests are welcome. File an issue for ideas, conversation or feedback.
 
 ### Community
+
 After you ★Star this project, follow [@ClintonDAnnolfo](https://twitter.com/clintondannolfo) on Twitter.

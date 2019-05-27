@@ -1,0 +1,13 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "defaultSeverity": "warning",
+  "rules": {
+    "align": false,
+    "import-name": false,
+    "indent": [true, "spaces", 2],
+    "member-ordering": false,
+    "no-submodule-imports": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "variable-name": false
+  }
+}
