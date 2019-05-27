@@ -1,4 +1,3 @@
-import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import * as React from 'react';
 import renderHTML from 'react-render-html';
@@ -13,24 +12,22 @@ export interface ICommentProps {
   text: string;
 }
 
-export class Comment extends React.Component<ICommentProps> {
-  static fragments = {
-    comment: gql`
-      fragment Comment on Comment {
-        id
-        creationTime
-        comments {
-          id
-          creationTime
-          submitterId
-          text
-        }
-        submitterId
-        text
-      }
-    `,
-  };
+export const commentFragment = `
+  fragment Comment on Comment {
+    id
+    creationTime
+    comments {
+      id
+      creationTime
+      submitterId
+      text
+    }
+    submitterId
+    text
+  }
+`;
 
+export class Comment extends React.Component<ICommentProps> {
   render(): JSX.Element {
     const props = this.props;
 

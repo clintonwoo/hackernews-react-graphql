@@ -1,8 +1,8 @@
-import * as React from 'react';
 import Link from 'next/link';
+import * as React from 'react';
 
-import { MainLayout } from '../layouts/main-layout';
 import { withData } from '../helpers/with-data';
+import { MainLayout } from '../layouts/main-layout';
 
 export const ListsPage = withData(props => (
   <MainLayout currentUrl={props.url.pathname}>

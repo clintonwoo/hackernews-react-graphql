@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import Router from 'next/router';
+import * as React from 'react';
+import { graphql } from 'react-apollo';
 
-import { MainLayout } from '../layouts/main-layout';
+import { ISubmitNewsItemGraphQL, submitNewsItem } from '../data/mutations/submit-news-item';
 import { withData } from '../helpers/with-data';
-import { submitNewsItem, ISubmitNewsItemGraphQL } from '../data/mutations/submit-news-item';
+import { MainLayout } from '../layouts/main-layout';
 
 interface ISubmitPageProps extends ISubmitPageOwnProps {
   submitNewsItem: (title: string, url: string, text: string) => void;
@@ -107,7 +108,7 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
   );
 };
 
-const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(submitNewsItem, {
+const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(gql(submitNewsItem), {
   props: ({ ownProps, mutate }) => ({
     submitNewsItem: (title: string, url: string, text: string) =>
       mutate({

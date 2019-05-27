@@ -1,40 +1,37 @@
 import * as React from 'react';
-import { gql } from 'apollo-server-express';
 
-import { Comment } from './comment';
 import { NewsItem } from '../data/models/news-item';
+import { Comment, commentFragment } from './comment';
 
 interface ICommentsProps {
   newsItem: NewsItem;
 }
 
-export class Comments extends React.Component<ICommentsProps> {
-  static fragments = {
-    comment: gql`
-      fragment Comments on Comment {
+export const commentsFragment = `
+  fragment Comments on Comment {
+    id
+    comments {
+      id
+      comments {
         id
         comments {
           id
           comments {
             id
-            comments {
-              id
-              comments {
-                id
-                ...Comment
-              }
-              ...Comment
-            }
             ...Comment
           }
           ...Comment
         }
         ...Comment
       }
-      ${Comment.fragments.comment}
-    `,
-  };
+      ...Comment
+    }
+    ...Comment
+  }
+  ${commentFragment}
+`;
 
+export class Comments extends React.Component<ICommentsProps> {
   renderComment = (comment, indent): JSX.Element => {
     return <Comment key={comment.id} parentId={comment.parent} indentationLevel={indent} {...comment} />;
   };

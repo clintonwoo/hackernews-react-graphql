@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Head from 'next/head';
+import * as React from 'react';
 
 export const Blank: React.SFC = props => (
   <div className="WordSection1">

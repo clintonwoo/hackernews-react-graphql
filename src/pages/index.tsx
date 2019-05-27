@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, NewsFeedView } from '../components/news-feed';
+import { NewsFeed, newsFeedNewsItemFragment } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -14,7 +14,7 @@ const query = gql`
       ...NewsFeed
     }
   }
-  ${NewsFeedView.fragments.newsItem}
+  ${newsFeedNewsItemFragment}
 `;
 
 export interface ITopNewsFeedProps {
@@ -24,12 +24,13 @@ export interface ITopNewsFeedProps {
   };
 }
 
+console.log('clintoniusmaximus', query);
 const TopNewsFeed = graphql<ITopNewsFeedProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
-      type: 'TOP',
       first,
       skip,
+      type: 'TOP',
     },
   }),
   props: ({ data }) => ({

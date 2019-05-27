@@ -1,6 +1,6 @@
-import { gql } from 'apollo-server-express';
+// import { gql } from 'apollo-server-express';
 
-export const hideNewsItem = gql`
+export const hideNewsItem = `
   mutation HideNewsItem($id: Int!) {
     hideNewsItem(id: $id) {
       id
@@ -8,3 +8,4 @@ export const hideNewsItem = gql`
     }
   }
 `;
+console.log('hide', hideNewsItem);

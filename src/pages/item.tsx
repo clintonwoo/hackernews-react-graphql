@@ -1,14 +1,14 @@
+import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import { gql } from 'apollo-server-express';
 
-import { MainLayout } from '../layouts/main-layout';
-import { NewsItemWithComments, INewsItemWithCommentsProps } from '../components/news-item-with-comments';
-import { NewsTitleView } from '../components/news-title';
-import { NewsDetailView } from '../components/news-detail';
-import { Comments } from '../components/comments';
-import { withData } from '../helpers/with-data';
+import { commentsFragment } from '../components/comments';
+import { newsDetailNewsItemFragment } from '../components/news-detail';
+import { INewsItemWithCommentsProps, NewsItemWithComments } from '../components/news-item-with-comments';
+import { newsTitleFragment } from '../components/news-title';
 import { NewsItem } from '../data/models';
+import { withData } from '../helpers/with-data';
+import { MainLayout } from '../layouts/main-layout';
 
 export interface INewsItemWithCommentsQuery {
   newsItem: NewsItem;
@@ -25,9 +25,9 @@ const newsItemWithCommentsQuery = gql`
       ...NewsDetail
     }
   }
-  ${NewsTitleView.fragments.newsItem}
-  ${NewsDetailView.fragments.newsItem}
-  ${Comments.fragments.comment}
+  ${newsTitleFragment}
+  ${newsDetailNewsItemFragment}
+  ${commentsFragment}
 `;
 
 export interface INewsItemWithCommentsWithGraphQLOwnProps {

@@ -20,18 +20,16 @@ export interface INewsItemOwnProps {
   upvoted?: boolean;
 }
 
-export class NewsTitleView extends React.Component<INewsTitleProps> {
-  static fragments = {
-    newsItem: gql`
-      fragment NewsTitle on NewsItem {
-        id
-        title
-        url
-        upvoted
-      }
-    `,
-  };
+export const newsTitleFragment = `
+  fragment NewsTitle on NewsItem {
+    id
+    title
+    url
+    upvoted
+  }
+`;
 
+export class NewsTitleView extends React.Component<INewsTitleProps> {
   static defaultProps = {
     isRankVisible: true,
     isUpvoteVisible: true,
@@ -80,7 +78,7 @@ export class NewsTitleView extends React.Component<INewsTitleProps> {
   }
 }
 
-export const NewsTitle = graphql<INewsItemOwnProps, INewsTitleProps, {}, {}>(upvoteNewsItem, {
+export const NewsTitle = graphql<INewsItemOwnProps, INewsTitleProps, {}, {}>(gql(upvoteNewsItem), {
   props: ({ ownProps, mutate }) => ({
     upvoteNewsItem: id =>
       mutate({

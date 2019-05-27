@@ -1,26 +1,17 @@
-import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import * as bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import express from 'express';
 import session from 'express-session';
 import nextApp from 'next';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import * as bodyParser from 'body-parser';
-import { ApolloServer } from 'apollo-server-express';
 
-import { resolvers, typeDefs } from './data/schema';
 import { seedCache } from './data/hn-data-api';
 import { Comment, FeedSingleton, NewsItem, User } from './data/models';
-import {
-  appPath,
-  APP_PORT,
-  APP_URI,
-  graphQLPath,
-  graphiQLPath,
-  GRAPHQL_URL,
-  dev,
-  GRAPHIQL_URL,
-  useGraphqlPlayground,
-} from './config';
+import { resolvers, typeDefs } from './data/schema';
+
+import { APP_PORT, APP_URI, appPath, dev, GRAPHQL_URL, graphQLPath, useGraphqlPlayground } from './config';
 
 // Seed the in-memory data using the HN api
 const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
@@ -127,38 +118,18 @@ app
 
     const apolloServer = new ApolloServer({
       context: ({ req }) => ({
+        Comment,
         Feed: FeedSingleton,
         NewsItem,
-        Comment,
         User,
         userId: req.user && req.user.id,
       }),
-      typeDefs,
-      resolvers,
       introspection: true,
       playground: useGraphqlPlayground,
+      resolvers,
+      typeDefs,
     });
     apolloServer.applyMiddleware({ app: expressServer, path: graphQLPath });
-
-    // server.use(
-    //   graphQLPath,
-    //   bodyParser.json(),
-    //   graphqlExpress(req => {
-    //     const userId = req.user && req.user.id;
-    //     return {
-    //       schema: Schema,
-    //       rootValue: { req },
-    //       context: {
-    //         Feed: FeedSingleton,
-    //         NewsItem,
-    //         Comment,
-    //         User,
-    //         userId,
-    //       },
-    //       debug: dev,
-    //     };
-    //   })
-    // );
 
     /* END GRAPHQL */
 
@@ -180,8 +151,7 @@ app
 
     /* END EXPRESS ROUTES */
 
-    expressServer.listen(APP_PORT, err => {
-      if (err) throw err;
+    expressServer.listen(APP_PORT, () => {
       console.log(`> App ready on ${APP_URI}`);
       console.log(`> GraphQL ready on ${GRAPHQL_URL}`);
       console.log(`> GraphQL Playground is${useGraphqlPlayground ? ' ' : ' not '}enabled`);

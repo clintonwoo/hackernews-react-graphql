@@ -8,9 +8,10 @@ import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../config';
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
 
-Firebase.initializeApp({
-  databaseURL: HN_DB_URI,
-});
+if (!Firebase.apps.length) {
+  Firebase.initializeApp({ databaseURL: HN_DB_URI });
+}
+
 const api = Firebase.database().ref(HN_API_VERSION);
 
 // https://github.com/HackerNews/API

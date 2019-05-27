@@ -1,11 +1,11 @@
-import * as React from 'react';
-import Link from 'next/link';
-import { graphql } from 'react-apollo';
 import { gql } from 'apollo-server-express';
+import Link from 'next/link';
+import * as React from 'react';
+import { graphql } from 'react-apollo';
 
-import { Blank } from '../layouts/blank';
-import { withData } from '../helpers/with-data';
 import { UserLoginErrorCode } from '../helpers/user-login-error-code';
+import { withData } from '../helpers/with-data';
+import { Blank } from '../layouts/blank';
 
 interface IForgotPageProps extends IForgotPageOwnProps {
   registerUser: (id, password) => void;
@@ -136,7 +136,6 @@ const registerUser = gql`
 
 const ForgotPageWithData = graphql<IForgotPageOwnProps, IForgotPageProps, {}, {}>(registerUser, {
   props: ({ ownProps, mutate }) => ({
-    url: ownProps.url,
     registerUser: (id, password) => {
       return (
         mutate({
@@ -146,6 +145,7 @@ const ForgotPageWithData = graphql<IForgotPageOwnProps, IForgotPageProps, {}, {}
           .catch(reason => console.error(reason))
       );
     },
+    url: ownProps.url,
   }),
 })(ForgotPageView);
 

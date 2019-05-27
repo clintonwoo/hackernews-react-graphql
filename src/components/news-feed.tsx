@@ -1,17 +1,16 @@
-import * as React from 'react';
 import { gql } from 'apollo-server-express';
+import * as React from 'react';
 
-import { NewsTitle, NewsTitleView } from './news-title';
-import { NewsDetail } from './news-detail';
-import { NewsDetailView } from './news-detail';
 import { NewsItem } from '../data/models';
 import { LoadingSpinner } from './loading-spinner';
+import { NewsDetail, newsDetailNewsItemFragment } from './news-detail';
+import { NewsTitle, newsTitleFragment } from './news-title';
 
 export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
   first: number;
   newsItems: NewsItem[];
-  notice: JSX.Element;
+  notice?: JSX.Element;
   skip: number;
   isJobListing?: boolean;
   isRankVisible?: boolean;
@@ -19,20 +18,18 @@ export interface INewsFeedProps {
   currentUrl: string;
 }
 
-export class NewsFeedView extends React.Component<INewsFeedProps> {
-  static fragments = {
-    newsItem: gql`
-      fragment NewsFeed on NewsItem {
-        id
-        hidden
-        ...NewsTitle
-        ...NewsDetail
-      }
-      ${NewsTitleView.fragments.newsItem}
-      ${NewsDetailView.fragments.newsItem}
-    `,
-  };
+export const newsFeedNewsItemFragment = `
+  fragment NewsFeed on NewsItem {
+    id
+    hidden
+    ...NewsTitle
+    ...NewsDetail
+  }
+  ${newsTitleFragment}
+  ${newsDetailNewsItemFragment}
+`;
 
+export class NewsFeedView extends React.Component<INewsFeedProps> {
   static defaultProps = {
     isPostScrutinyVisible: false,
     isJobListing: false,
@@ -47,7 +44,6 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
     const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
 
     const rows = [];
-    // if (props.notice) rows.push(props.notice);
     props.newsItems.forEach((newsItem, index) => {
       if (!newsItem.hidden) {
         rows.push(
@@ -102,12 +98,17 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
 }
 
 export const NewsFeed = ({ data: { loading, error, feed }, data, options }) => {
-  if (error)
+  if (error) {
     return (
       <tr>
         <td>Error loading news items.</td>
       </tr>
     );
-  if (feed && feed.length) return <NewsFeedView newsItems={feed} {...options} />;
+  }
+
+  if (feed && feed.length) {
+    return <NewsFeedView newsItems={feed} {...options} />;
+  }
+
   return <LoadingSpinner />;
 };

@@ -1,3 +1,4 @@
+import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';
@@ -199,7 +200,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   }
 }
 
-const PageWithQuery = graphql<ILoginPageProps, IMeQuery, {}, {}>(meQuery, {
+const PageWithQuery = graphql<ILoginPageProps, IMeQuery, {}, {}>(gql(meQuery), {
   options: {},
   props: ({ data: { me } }) => ({
     me,

@@ -12,3 +12,4 @@ build/app
 
 .DS_Store
 .vscode
+.log

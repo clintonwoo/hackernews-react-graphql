@@ -8,7 +8,6 @@
     "lib": ["es6", "es7", "dom", "esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": true,
     "noImplicitAny": false,
     "outDir": "./dist/",
     "removeComments": true,

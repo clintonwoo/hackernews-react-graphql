@@ -29,9 +29,16 @@ export interface IWithDataProps {
       data;
     };
   };
+  url: { query: any; pathname: string };
 }
 
-export const withData = (ComposedComponent: any) => {
+export type ComponentWithGetInitialProps<Props> = React.ComponentType<Props> & {
+  getInitialProps?: (context, apollo) => any;
+};
+
+export const withData = <Props extends IWithDataProps>(
+  ComposedComponent: ComponentWithGetInitialProps<Props & any>
+) => {
   return class WithData extends React.Component<IWithDataProps> {
     private apollo;
 

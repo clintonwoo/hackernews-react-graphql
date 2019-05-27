@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { gql } from 'apollo-server-express';
 import Link from 'next/link';
 import Router from 'next/router';
-import { graphql } from 'react-apollo';
+import * as React from 'react';
+import { graphql, Mutation } from 'react-apollo';
 
 import { hideNewsItem } from '../data/mutations/hide-news-item';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
@@ -24,24 +24,22 @@ interface INewsDetailOwnProps {
   upvoteCount: number;
 }
 
+export const newsDetailNewsItemFragment = `
+  fragment NewsDetail on NewsItem {
+    id
+    commentCount
+    creationTime
+    hidden
+    submitterId
+    upvoteCount
+  }
+`;
+
 export class NewsDetailView extends React.Component<INewsDetailProps> {
   static defaultProps = {
     isFavoriteVisible: true,
     isJobListing: false,
     isPostScrutinyVisible: false,
-  };
-
-  static fragments = {
-    newsItem: gql`
-      fragment NewsDetail on NewsItem {
-        id
-        commentCount
-        creationTime
-        hidden
-        submitterId
-        upvoteCount
-      }
-    `,
   };
 
   render(): JSX.Element {
@@ -114,7 +112,13 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
   }
 }
 
-export const NewsDetail = graphql<INewsDetailOwnProps, INewsDetailProps, {}, {}>(hideNewsItem, {
+// export const NewsDetail = () => {
+//   return (
+//     <Mutation  query={hideNewsItem}></Query>
+//   )
+// }
+console.log('newsDetail hideNewsItem', hideNewsItem);
+export const NewsDetail = graphql<INewsDetailOwnProps, INewsDetailProps, {}, {}>(gql(hideNewsItem), {
   props: ({ ownProps, mutate }) => ({
     hideNewsItem: (id: number) =>
       mutate({

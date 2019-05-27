@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Link from 'next/link';
-import { graphql } from 'react-apollo';
 import { gql } from 'apollo-server-express';
+import Link from 'next/link';
+import * as React from 'react';
+import { graphql } from 'react-apollo';
 import renderHTML from 'react-render-html';
 
-import { MainLayout } from '../layouts/main-layout';
-import { Blank } from '../layouts/blank';
-import { withData } from '../helpers/with-data';
-import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 import { User } from '../data/models';
+import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
+import { withData } from '../helpers/with-data';
+import { Blank } from '../layouts/blank';
+import { MainLayout } from '../layouts/main-layout';
 
 export interface IUserPageProps extends IUserPageOwnProps {
   loading: boolean;
@@ -280,7 +280,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
 //   }).isRequired,
 // }
 
-const query = gql`
+const query = `
   query User($id: String!) {
     user(id: $id) {
       id
@@ -295,7 +295,7 @@ const query = gql`
   }
 `;
 
-const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageProps, {}, {}>(query, {
+const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageProps, {}, {}>(gql(query), {
   options: ({ options: { id } }) => ({
     variables: {
       id,

@@ -1,10 +1,10 @@
+import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import { gql } from 'apollo-server-express';
 
-import { MainLayout } from '../layouts/main-layout';
-import { Comment } from '../components/comment';
+import { commentFragment } from '../components/comment';
 import { withData } from '../helpers/with-data';
+import { MainLayout } from '../layouts/main-layout';
 
 const query = gql`
   query Comment($id: Int!) {
@@ -13,7 +13,7 @@ const query = gql`
       ...Comment
     }
   }
-  ${Comment.fragments.comment}
+  ${commentFragment}
 `;
 
 const variables = {
@@ -120,6 +120,7 @@ const ReplyToComment = graphql(query, {
 
 export const ReplyToCommentPage = withData(props => {
   variables.id = (props.url.query && +props.url.query.id) || 0;
+
   return (
     <MainLayout title="Add Comment" currentUrl={props.url.pathname} isNavVisible={false}>
       <ReplyToComment />

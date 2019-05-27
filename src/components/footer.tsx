@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Link from 'next/link';
+import * as React from 'react';
 
 export const Footer: React.SFC = props => (
   <tr>

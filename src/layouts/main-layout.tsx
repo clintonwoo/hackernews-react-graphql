@@ -1,10 +1,11 @@
+import { gql } from 'apollo-server-express';
 import Head from 'next/head';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
-import { meQuery, IMeQuery } from '../data/queries/me-query';
+import { IMeQuery, meQuery } from '../data/queries/me-query';
 
 interface IMainLayoutProps extends IMeQuery, IMainLayoutOwnProps {}
 
@@ -56,8 +57,9 @@ MainLayoutView.defaultProps = {
   me: null,
 };
 
-export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(meQuery, {
+export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(gql(meQuery), {
   props: ({ data: { me } }) => ({
     me,
   }),
 })(MainLayoutView);
+// props => <div>{props.children}</div>;

@@ -33,11 +33,11 @@ export class Header extends React.Component<IHeaderProps> {
                       <img
                         src="/static/y18.gif"
                         style={{
-                          width: '18px',
-                          height: '18px',
                           border: '1px',
                           borderColor: 'white',
                           borderStyle: 'solid',
+                          height: '18px',
+                          width: '18px',
                         }}
                       />
                     </a>

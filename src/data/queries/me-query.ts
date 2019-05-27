@@ -1,5 +1,3 @@
-import { gql } from 'apollo-server-express';
-
 export interface IMeQuery {
   me: {
     id: string;
@@ -7,7 +5,7 @@ export interface IMeQuery {
   };
 }
 
-export const meQuery = gql`
+export const meQuery = `
   query User {
     me {
       id
