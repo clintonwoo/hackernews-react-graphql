@@ -1,8 +1,6 @@
 import { sampleData } from './sample-data';
 import { resolvers } from './Schema';
 
-// const comment = data.topStoriesCache[0].comments[0];
-
 describe('GraphQL', () => {
   describe('Resolvers', () => {
     describe('Queries', () => {

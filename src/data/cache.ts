@@ -5,11 +5,6 @@ import { FeedSingleton, NewsItem } from './models';
 import { FeedType } from './models/feed';
 import { User } from './models/user';
 
-// Interface: Commentable (Object can be commented on) comments, commentCount, commenter
-// Interface: Voteable (Object can be voted on) upvotes, upvoteCount, hidden, hiddenCount,
-// Data Type: Comment, can be on a news item or another comment
-// Every time an upvote/downvote/comment is made, update the count
-
 const logger = debug('app:Cache');
 logger.log = console.log.bind(console);
 
@@ -30,7 +25,6 @@ class Cache {
   /*                  BEGIN NEWS ITEMS                      */
 
   getNewsItem(id) {
-    // return this.newsItems.find(newsItem => newsItem.id === id);
     return this.newsItemsCache.get(id);
   }
   setNewsItem(id, newsItem) {

@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-express';
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
-import { makeExecutableSchema } from 'graphql-tools';
 import { Kind } from 'graphql/language';
 
 // Read the complete docs for graphql-tools here:
@@ -274,11 +273,6 @@ export const resolvers = {
     posts: (user, _, context) => context.User.getPostsForUser(user.id),
   },
 };
-
-// export const schema = makeExecutableSchema({
-//   typeDefs,
-//   resolvers,
-// });
 
 // Example query
 // query {

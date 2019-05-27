@@ -1,10 +1,9 @@
-import * as React from 'react';
-import MockDate from 'mockdate';
-// import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
+import MockDate from 'mockdate';
+import * as React from 'react';
 
-import { NewsDetail } from './news-detail';
 import { sampleData } from '../data/sample-data';
+import { NewsDetail } from './news-detail';
 
 const newsItem = sampleData.newsItems[0];
 // Snapshot will be out of date if we don't use consistent time agoy

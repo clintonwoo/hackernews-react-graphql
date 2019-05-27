@@ -25,8 +25,12 @@ interface IUserPageOwnProps {
 }
 
 const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, options: { currentUrl } }) => {
-  if (error) return <Blank>Error loading news items.</Blank>;
-  if (!user) return <Blank>No such user.</Blank>;
+  if (error) {
+    return <Blank>Error loading news items.</Blank>;
+  }
+  if (!user) {
+    return <Blank>No such user.</Blank>;
+  }
 
   let about = user.about || '';
   let email = user.email || '';
@@ -273,12 +277,6 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
     </MainLayout>
   );
 };
-// Page.propTypes = {
-//   user: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     creationTime: PropTypes.string.isRequired,
-//   }).isRequired,
-// }
 
 const query = `
   query User($id: String!) {
@@ -315,9 +313,8 @@ export const UserPage = withData(props => {
   return (
     <UserPageWithGraphQL
       options={{
-        id: userId,
         currentUrl: props.url.pathname,
-        // isFooterVisible: false,
+        id: userId,
       }}
     />
   );

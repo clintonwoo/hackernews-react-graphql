@@ -46,25 +46,10 @@ const NewsItemWithCommentsWithGraphQL = graphql<
     },
   }),
   props: ({ data }) => ({
-    loading: data.loading,
     error: data.error,
+    loading: data.loading,
     newsItem: data.newsItem,
   }),
-  // loadMorePosts: data =>
-  //   data.fetchMore({
-  //     variables: {
-  //       skip: data.allNewsItems.length,
-  //     },
-  //     updateQuery: (previousResult, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) {
-  //         return previousResult;
-  //       }
-  //       return Object.assign({}, previousResult, {
-  //         // Append the new posts results to the old one
-  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-  //       });
-  //     },
-  //   }),
 })(NewsItemWithComments);
 
 export const ItemPage = withData(props => (

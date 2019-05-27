@@ -1,10 +1,9 @@
-import * as React from 'react';
-import MockDate from 'mockdate';
-// import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
+import MockDate from 'mockdate';
+import * as React from 'react';
 
-import { Comment } from './comment';
 import { sampleData } from '../data/sample-data';
+import { Comment } from './comment';
 
 const comment = sampleData.comments[0];
 // Snapshot will be out of date if we don't use consistent time ago for comment

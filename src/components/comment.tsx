@@ -32,13 +32,11 @@ export class Comment extends React.Component<ICommentProps> {
     const props = this.props;
 
     const vote = () => {
-      console.log(this);
-      // return "vote(event, this, &quot;up&quot;)";
+      return undefined;
     };
 
     const toggle = () => {
-      console.log(this);
-      // return "toggle(event, 15238246)";
+      return undefined;
     };
 
     return (

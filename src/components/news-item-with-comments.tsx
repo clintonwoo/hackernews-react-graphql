@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-import { NewsTitle } from './news-title';
-import { NewsDetail } from './news-detail';
-import { LoadingSpinner } from './loading-spinner';
-
+import { NewsItem } from '../data/models';
 import { CommentBox } from './comment-box';
 import { Comments } from './comments';
-import { NewsItem } from '../data/models';
+import { LoadingSpinner } from './loading-spinner';
+import { NewsDetail } from './news-detail';
+import { NewsTitle } from './news-title';
 
 export interface INewsItemWithCommentsProps {
   error: Error;
@@ -51,19 +50,3 @@ export const NewsItemWithComments: React.SFC<INewsItemWithCommentsProps> = ({ lo
     </tr>
   );
 };
-
-// export const NewsItemWithComments: React.SFC = ({ data: { loading, error, newsItem }, data }) => {
-//   if (error) {
-//     return (
-//       <tr>
-//         <td>Error loading news items.</td>
-//       </tr>
-//     );
-//   }
-
-//   if (newsItem && newsItem.comments) {
-//     return <NewsItemWithCommentsView newsItem={newsItem} />;
-//   }
-
-//   return <LoadingSpinner />;
-// };

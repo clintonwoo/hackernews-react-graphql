@@ -29,29 +29,14 @@ export interface IJobsPageOwnProps {
 const JobNewsFeed = graphql<IJobsPageOwnProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
-      type: 'JOB',
       first,
       skip,
+      type: 'JOB',
     },
   }),
   props: ({ data }) => ({
     data,
   }),
-  // loadMorePosts: data =>
-  //   data.fetchMore({
-  //     variables: {
-  //       skip: data.allNewsItems.length,
-  //     },
-  //     updateQuery: (previousResult, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) {
-  //         return previousResult;
-  //       }
-  //       return Object.assign({}, previousResult, {
-  //         // Append the new posts results to the old one
-  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-  //       });
-  //     },
-  //   }),
 })(NewsFeed);
 
 export const JobsPage = withData(props => {
@@ -83,11 +68,11 @@ export const JobsPage = withData(props => {
         options={{
           currentUrl: props.url.pathname,
           first: POSTS_PER_PAGE,
+          isJobListing: true,
           isRankVisible: false,
           isUpvoteVisible: false,
-          isJobListing: true,
-          skip: POSTS_PER_PAGE * pageNumber,
           notice,
+          skip: POSTS_PER_PAGE * pageNumber,
         }}
       />
     </MainLayout>

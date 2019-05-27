@@ -34,7 +34,6 @@ app
         },
         async (username, password, done) => {
           const user = await User.getUser(username);
-          // if (err) return done(err);
           if (!user) {
             return done(null, false, { message: 'Incorrect username.' });
           }

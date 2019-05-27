@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 import { CommentBox } from './comment-box';

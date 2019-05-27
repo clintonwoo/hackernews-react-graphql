@@ -18,11 +18,6 @@ function parseCookies(ctx: any = {}, options = {}) {
   return mycookie;
 }
 
-// interface IComposedComponent extends React.ComponentElement {
-//   getInitialProps: () => void;
-//   url: string;
-// }
-
 export interface IWithDataProps {
   serverState: {
     apollo: {
@@ -32,13 +27,11 @@ export interface IWithDataProps {
   url: { query: any; pathname: string };
 }
 
-export type ComponentWithGetInitialProps<Props> = React.ComponentType<Props> & {
+export type TComposedComponent<Props> = React.ComponentType<Props> & {
   getInitialProps?: (context, apollo) => any;
 };
 
-export const withData = <Props extends IWithDataProps>(
-  ComposedComponent: ComponentWithGetInitialProps<Props & any>
-) => {
+export const withData = <Props extends IWithDataProps>(ComposedComponent: TComposedComponent<Props & any>) => {
   return class WithData extends React.Component<IWithDataProps> {
     private apollo;
 
@@ -53,7 +46,7 @@ export const withData = <Props extends IWithDataProps>(
       const apollo = initApollo(
         {},
         {
-          getToken: () => parseCookies(context), // ['connect.sid'], // .token,
+          getToken: () => parseCookies(context),
         }
       );
 
@@ -103,7 +96,7 @@ export const withData = <Props extends IWithDataProps>(
       // will be initialized there), meaning the below will only ever be
       // executed on the client.
       this.apollo = initApollo(this.props.serverState.apollo.data, {
-        getToken: () => parseCookies(), // ['connect.sid'],
+        getToken: () => parseCookies(),
       });
     }
 

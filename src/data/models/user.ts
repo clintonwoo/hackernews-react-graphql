@@ -1,9 +1,9 @@
+import { passwordIterations } from '../../config';
+import { createHash, createSalt } from '../../helpers/hash-password';
+import { cache } from '../cache';
 import * as DB from '../database';
 import * as HNDB from '../hn-data-api';
-import { cache } from '../cache';
-import { createHash, createSalt } from '../../helpers/hash-password';
-import { passwordIterations } from '../../config';
-import { isValidUser, isValidNewUser } from '../validation/user';
+import { isValidNewUser, isValidUser } from '../validation/user';
 
 export class User {
   public readonly id: string;
@@ -21,7 +21,9 @@ export class User {
   public readonly passwordSalt: string;
 
   constructor(props) {
-    if (!props.id) throw new Error(`Error instantiating User, id invalid: ${props.id}`);
+    if (!props.id) {
+      throw new Error(`Error instantiating User, id invalid: ${props.id}`);
+    }
     isValidUser(props);
 
     this.id = props.id;
@@ -45,7 +47,10 @@ export class User {
 
   static validPassword = async (id, password) => {
     const user = cache.getUser(id);
-    if (user) return (await createHash(password, user.passwordSalt, passwordIterations)) === user.hashedPassword;
+    if (user) {
+      return (await createHash(password, user.passwordSalt, passwordIterations)) === user.hashedPassword;
+    }
+
     return false;
   };
 
@@ -54,15 +59,17 @@ export class User {
     isValidNewUser(user);
 
     // Check if user already exists
-    if (cache.getUser(user.id)) throw new Error('Username is taken.');
+    if (cache.getUser(user.id)) {
+      throw new Error('Username is taken.');
+    }
 
     // Go ahead and create the new user
     const passwordSalt = createSalt();
     const hashedPassword = await createHash(user.password, passwordSalt, passwordIterations);
 
     const newUser = new User({
-      id: user.id,
       hashedPassword,
+      id: user.id,
       passwordSalt,
     });
 

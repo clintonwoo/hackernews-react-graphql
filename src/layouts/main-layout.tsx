@@ -53,8 +53,8 @@ MainLayoutView.defaultProps = {
   isFooterVisible: true,
   isNavVisible: true,
   isUserVisible: true,
-  title: 'Hacker News',
   me: null,
+  title: 'Hacker News',
 };
 
 export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(gql(meQuery), {
@@ -62,4 +62,3 @@ export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(gql(meQ
     me,
   }),
 })(MainLayoutView);
-// props => <div>{props.children}</div>;

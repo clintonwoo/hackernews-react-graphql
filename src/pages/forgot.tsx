@@ -20,17 +20,6 @@ interface IForgotPageOwnProps {
 }
 
 const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
-  // const onClick = () => {
-  //   props.mutate({
-  //     variables: { id: id, password: password }
-  //   })
-  //     .then(data)
-  //     .catch(error)
-  // }
-  // const registerUser = () => {
-  //   registerUser(user, pass)
-  // }
-
   let message;
   switch (url && url.query.how) {
     case 'up':

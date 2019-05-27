@@ -28,29 +28,14 @@ export interface IAskPageProps {
 const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
-      type: FeedType.ASK,
       first,
       skip,
+      type: FeedType.ASK,
     },
   }),
   props: ({ data }) => ({
     data,
   }),
-  // loadMorePosts: data =>
-  //   data.fetchMore({
-  //     variables: {
-  //       skip: data.allNewsItems.length,
-  //     },
-  //     updateQuery: (previousResult, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) {
-  //         return previousResult;
-  //       }
-  //       return Object.assign({}, previousResult, {
-  //         // Append the new posts results to the old one
-  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-  //       });
-  //     },
-  //   }),
 })(NewsFeed);
 
 export const AskPage = withData(props => {

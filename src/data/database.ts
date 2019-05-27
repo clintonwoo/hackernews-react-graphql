@@ -13,12 +13,6 @@ export function getNewsItem(id) {
   return sampleData.newsItems.find(newsItem => newsItem.id === id);
 }
 
-export function rankNewsItems() {
-  // Would implement this somewhere in the real HN system
-  // A scheduled job to recalculate feed ranks
-  // .sort((a, b) => (a.rank - b.rank))
-}
-
 export function createNewsItem(newsItem) {
   sampleData.newsItems.push(newsItem);
 
@@ -52,14 +46,6 @@ export function unvoteNewsItem(id, userId) {
   return newsItem;
 }
 
-// export function downvoteNewsItem(id, userId) {
-//   const newsItemData = data.newsItems.find(newsItem => newsItem.id === id);
-//   newsItemData.downvotes.push(userId);
-//   newsItemData.downvoteCount += 1;
-
-//   return newsItemData;
-// }
-
 export function hideNewsItem(id: number, userId) {
   logger(`Hiding News Item ${id} by ${userId}`);
 
@@ -71,11 +57,12 @@ export function hideNewsItem(id: number, userId) {
     cache.setUser(id, user);
 
     newsItem.hides.push(userId);
-    // newsItem.hiddenCount += 1;
     cache.setNewsItem(id, newsItem);
 
     logger(`Hid News Item ${id} by ${userId}`);
-  } else throw new Error(`Data error, user has already hidden ${id} by ${userId}`);
+  } else {
+    throw new Error(`Data error, user has already hidden ${id} by ${userId}`);
+  }
 
   return newsItem;
 }

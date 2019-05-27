@@ -24,7 +24,6 @@ export interface ITopNewsFeedProps {
   };
 }
 
-console.log('clintoniusmaximus', query);
 const TopNewsFeed = graphql<ITopNewsFeedProps>(query, {
   options: ({ options: { first, skip } }) => ({
     variables: {
@@ -36,21 +35,6 @@ const TopNewsFeed = graphql<ITopNewsFeedProps>(query, {
   props: ({ data }) => ({
     data,
   }),
-  // loadMorePosts: data =>
-  //   data.fetchMore({
-  //     variables: {
-  //       skip: data.allNewsItems.length,
-  //     },
-  //     updateQuery: (previousResult, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) {
-  //         return previousResult;
-  //       }
-  //       return Object.assign({}, previousResult, {
-  //         // Append the new posts results to the old one
-  //         allNewsItems: [...previousResult.allNewsItems, ...fetchMoreResult.allNewsItems],
-  //       });
-  //     },
-  //   }),
 })(NewsFeed);
 
 export const IndexPage = withData(props => {

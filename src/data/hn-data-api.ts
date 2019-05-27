@@ -1,9 +1,9 @@
 import { debug } from 'debug';
 import * as Firebase from 'firebase';
 
+import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../config';
 import { cache } from './cache';
 import { Comment, FeedSingleton, NewsItem, User } from './models';
-import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../config';
 
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
@@ -56,9 +56,9 @@ export function fetchComment(id) {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
         const comment = new Comment({
-          id: item.id,
-          creationTime: item.time * 1000,
           comments: item.kids,
+          creationTime: item.time * 1000,
+          id: item.id,
           parent: item.parent,
           submitterId: item.by,
           text: item.text,
@@ -83,9 +83,9 @@ export function fetchUser(id) {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
         const user = new User({
-          id: item.id,
           about: item.about,
           creationTime: item.created * 1000,
+          id: item.id,
           karma: item.karma,
           posts: item.submitted,
         });

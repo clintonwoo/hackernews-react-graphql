@@ -9,11 +9,3 @@ describe('Home Page', () => {
     expect(app).toBeDefined();
   });
 });
-
-// describe('With Snapshot Testing', () => {
-//   it('App shows "Hello world!"', () => {
-//     const component = renderer.create(<HomePage />);
-//     const tree = component.toJSON();
-//     expect(tree).toMatchSnapshot();
-//   });
-// });

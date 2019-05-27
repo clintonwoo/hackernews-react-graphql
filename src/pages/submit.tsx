@@ -16,8 +16,7 @@ interface ISubmitPageOwnProps {
   currentUrl: string;
 }
 
-// class Newest extends React.Component {
-const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
+const Page: React.FC<ISubmitPageProps> = props => {
   let title;
   const onTitleChange = e => {
     title = e.target.value;
@@ -34,7 +33,7 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
   };
 
   return (
-    <MainLayout currentUrl={currentUrl} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
+    <MainLayout currentUrl={props.currentUrl} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
       <tr>
         <td>
           <form onSubmit={e => e.preventDefault()} /*  method="post" action="/r" */>
@@ -79,7 +78,7 @@ const Page: React.SFC<ISubmitPageProps> = ({ submitNewsItem, currentUrl }) => {
                 <tr>
                   <td />
                   <td>
-                    <input type="submit" value="submit" onClick={() => submitNewsItem(title, url, text)} />
+                    <input type="submit" value="submit" onClick={() => props.submitNewsItem(title, url, text)} />
                   </td>
                 </tr>
                 <tr style={{ height: '20px' }} />

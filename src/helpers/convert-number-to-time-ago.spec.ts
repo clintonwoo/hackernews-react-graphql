@@ -1,4 +1,4 @@
-import { convertNumberToTimeAgo } from './convertNumberToTimeAgo';
+import { convertNumberToTimeAgo } from './convert-number-to-time-ago';
 
 const ONE_YEAR = 3.154e10;
 const ONE_MONTH = 2.628e9;

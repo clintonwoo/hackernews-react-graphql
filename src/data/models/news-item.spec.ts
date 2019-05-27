@@ -24,34 +24,3 @@ describe('NewsItem Model', () => {
     expect(newsItem);
   });
 });
-
-// NewsItem.getNewsItem(id) {
-//     return cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
-//   }
-//   NewsItem.getNewsItems(ids) {
-//     return Promise.all(ids.map(id => NewsItem.getNewsItem(id)))
-//       .then(newsItems => newsItems.filter(newsItem => newsItem !== undefined))
-//       .catch(reason => logger(`Rejected News Items: ${reason}`));
-//   }
-
-//   NewsItem.upvoteNewsItem(id) {
-//     return DB.upvoteNewsItem(id);
-//   }
-
-//   NewsItem.submitNewsItem({ submitterId, text, url }) {
-//     const newsItem = {
-//       id: newPostIdCounter += 1,
-//       comments: [],
-//       commentCount: 0,
-//       creationTime: new Date().valueOf(),
-//       hides: [],
-//       hiddenCount: 0,
-//       submitterId,
-//       text: text || null,
-//       url: url || null,
-//       upvotes: [submitterId],
-//       upvoteCount: 1,
-//     };
-//     return DB.submitNewsItem(newsItem.id, newsItem);
-//   }
-// }
