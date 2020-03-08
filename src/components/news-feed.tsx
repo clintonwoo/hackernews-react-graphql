@@ -1,4 +1,3 @@
-import { gql } from 'apollo-server-express';
 import * as React from 'react';
 
 import { NewsItem } from '../data/models';

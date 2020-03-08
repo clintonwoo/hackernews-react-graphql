@@ -20,22 +20,19 @@ const query = gql`
 
 export interface IBestNewsFeedProps {
   options: {
+    currentUrl: string;
     first: number;
     skip: number;
   };
 }
 
 const BestNewsFeed = graphql<IBestNewsFeedProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      type: FeedType.BEST,
-      first,
-      skip,
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return { variables: { type: FeedType.BEST, first, skip } };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const BestPage = withData(props => {

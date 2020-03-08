@@ -14,13 +14,13 @@ let apolloClient = null;
 declare let global;
 
 // Polyfill fetch() on the server (used by apollo-client)
-if (!process.browser) {
+if (!(process as any).browser) {
   global.fetch = fetch;
 }
 
 function create(initialState, { getToken }) {
   return new ApolloClient({
-    ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
+    ssrMode: !(process as any).browser, // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
       uri: GRAPHQL_URL,
       credentials: 'same-origin',
@@ -30,14 +30,14 @@ function create(initialState, { getToken }) {
       },
     }),
     cache: new InMemoryCache().restore(initialState || {}),
-    connectToDevTools: process.browser,
+    connectToDevTools: (process as any).browser,
   });
 }
 
 export function initApollo(initialState, options) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
-  if (!process.browser) {
+  if (!(process as any).browser) {
     return create(initialState, options);
   }
 

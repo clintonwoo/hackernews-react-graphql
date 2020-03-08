@@ -57,7 +57,7 @@ export const withData = <Props extends IWithDataProps>(ComposedComponent: TCompo
       }
 
       // Run all GraphQL queries in the component tree and extract the resulting data
-      if (!process.browser) {
+      if (!(process as any).browser) {
         if (context.res && context.res.finished) {
           // When redirecting, the response is finished. No point in continuing to render
           return;

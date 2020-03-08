@@ -20,22 +20,22 @@ const query = gql`
 
 export interface IShowHNNewsFeedProps {
   options: {
+    currentUrl: string;
     first: number;
+    notice: JSX.Element;
     skip: number;
   };
 }
 
 const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      type: 'SHOW',
-      first,
-      skip,
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return {
+      variables: { type: 'SHOW', first, skip },
+    };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const ShowHNPage = withData(props => {

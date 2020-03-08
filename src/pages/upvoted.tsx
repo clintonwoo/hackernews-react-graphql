@@ -19,22 +19,21 @@ const query = gql`
 
 export interface IUpvotedPageProps {
   options: {
+    currentUrl: string;
     first: number;
     skip: number;
   };
 }
 
 const NewestNewsFeed = graphql<IUpvotedPageProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      type: 'NEW',
-      first,
-      skip,
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return {
+      variables: { type: 'NEW', first, skip },
+    };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const UpvotedPage = withData(props => {

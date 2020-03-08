@@ -19,26 +19,24 @@ const query = gql`
 
 export interface ITopNewsFeedProps {
   options: {
+    currentUrl: string;
     first: number;
     skip: number;
   };
 }
 
 const TopNewsFeed = graphql<ITopNewsFeedProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      first,
-      skip,
-      type: 'TOP',
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return { variables: { first, skip, type: 'TOP' } };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const IndexPage = withData(props => {
   const pageNumber = (props.url.query && +props.url.query.p) || 0;
+
   return (
     <MainLayout currentUrl={props.url.pathname}>
       <TopNewsFeed

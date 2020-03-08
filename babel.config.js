@@ -3,7 +3,7 @@ module.exports = api => {
   api.cache(true);
 
   return {
-    presets: ['next/babel', '@zeit/next-typescript/babel'],
+    presets: ['next/babel'],
     plugins: [
       // '@babel/plugin-syntax-dynamic-import',
       // '@babel/plugin-proposal-export-default-from',

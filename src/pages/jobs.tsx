@@ -17,26 +17,25 @@ const query = gql`
   ${newsFeedNewsItemFragment}
 `;
 
-export interface IJobsPageProps extends IJobsPageOwnProps {}
-
 export interface IJobsPageOwnProps {
   options: {
+    currentUrl: string;
     first: number;
+    isJobListing: boolean;
+    isRankVisible: boolean;
+    isUpvoteVisible: boolean;
+    notice: JSX.Element;
     skip: number;
   };
 }
 
 const JobNewsFeed = graphql<IJobsPageOwnProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      first,
-      skip,
-      type: 'JOB',
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return { variables: { first, skip, type: 'JOB' } };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const JobsPage = withData(props => {

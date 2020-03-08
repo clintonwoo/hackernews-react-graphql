@@ -113,9 +113,9 @@ const ReplyToComment = graphql(query, {
   options: {
     variables,
   },
-  props: ({ data }) => ({
-    data,
-  }),
+  props({ data }) {
+    return { data };
+  },
 })(page);
 
 export const ReplyToCommentPage = withData(props => {

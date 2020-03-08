@@ -20,22 +20,19 @@ const query = gql`
 
 export interface IAskPageProps {
   options: {
+    currentUrl: string;
     first: number;
     skip: number;
   };
 }
 
 const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps>(query, {
-  options: ({ options: { first, skip } }) => ({
-    variables: {
-      first,
-      skip,
-      type: FeedType.ASK,
-    },
-  }),
-  props: ({ data }) => ({
-    data,
-  }),
+  options({ options: { first, skip } }) {
+    return { variables: { first, skip, type: FeedType.ASK } };
+  },
+  props({ data }) {
+    return { data };
+  },
 })(NewsFeed);
 
 export const AskPage = withData(props => {
