@@ -1,5 +1,5 @@
 import { sampleData } from './sample-data';
-import { resolvers } from './Schema';
+import { resolvers } from './schema';
 
 describe('GraphQL', () => {
   describe('Resolvers', () => {

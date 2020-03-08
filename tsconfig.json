@@ -4,9 +4,14 @@
     "checkJs": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "jsx": "react",
-    "lib": ["es6", "es7", "dom", "esnext"],
-    "module": "commonjs",
+    "jsx": "preserve",
+    "lib": [
+      "es6",
+      "es7",
+      "dom",
+      "esnext"
+    ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
@@ -14,8 +19,24 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "es2017",
-    "typeRoots": ["./node_modules/@types", "src/@types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "src/@types"
+    ],
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__mocks__*", "**/*.spec.**", "out", ".next"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__mocks__*",
+    "**/*.spec.**",
+    "out",
+    ".next"
+  ]
 }

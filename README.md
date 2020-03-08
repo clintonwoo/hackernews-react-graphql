@@ -97,7 +97,7 @@ _root_ - Only contains config files such as Babel, ESLint, Docker, Flow, NPM, Ya
 
 You can download and run the repo with one command to rule them all:
 
-`git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm run dev`
+`git clone https://github.com/clintonwoo/hackernews-react-graphql.git && cd hackernews-react-graphql && npm install && npm start`
 
 ### Setup
 
@@ -105,7 +105,7 @@ Running the app in dev mode is fully featured including _hot module reloading_:
 
 `npm install`
 
-`npm run dev`
+`npm start`
 
 To run in production mode:
 

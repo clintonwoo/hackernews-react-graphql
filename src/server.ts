@@ -5,7 +5,7 @@ import express from 'express';
 import session from 'express-session';
 import nextApp from 'next';
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy } from 'passport-local';
 
 import { seedCache } from './data/hn-data-api';
 import { Comment, FeedSingleton, NewsItem, User } from './data/models';
@@ -28,7 +28,7 @@ app
     /* BEGIN PASSPORT.JS AUTHENTICATION */
 
     passport.use(
-      new LocalStrategy(
+      new Strategy(
         {
           usernameField: 'id',
         },
@@ -51,7 +51,7 @@ app
       subsequent requests are received, this ID is used to find the user,
       which will be restored to req.user.
     */
-    passport.serializeUser((user: any /* TODO: TYPE */, cb) => {
+    passport.serializeUser((user: User, cb) => {
       cb(null, user.id);
     });
     passport.deserializeUser(async (id, cb) => {
@@ -121,7 +121,7 @@ app
         Feed: FeedSingleton,
         NewsItem,
         User,
-        userId: req.user && req.user.id,
+        userId: (req.user as User)?.id,
       }),
       introspection: true,
       playground: useGraphqlPlayground,
