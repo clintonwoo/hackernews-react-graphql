@@ -16,7 +16,7 @@ interface ISubmitPageOwnProps {
   currentUrl: string;
 }
 
-const Page: React.FC<ISubmitPageProps> = props => {
+const SubmitPageView: React.FC<ISubmitPageProps> = props => {
   let title;
   const onTitleChange = e => {
     title = e.target.value;
@@ -107,21 +107,21 @@ const Page: React.FC<ISubmitPageProps> = props => {
   );
 };
 
-const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(gql(submitNewsItem), {
+const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, ISubmitPageProps>(gql(submitNewsItem), {
   props: ({ ownProps, mutate }) => ({
     ...ownProps,
     submitNewsItem: (title: string, url: string, text: string) =>
-      mutate({
+      mutate!({
         variables: { title, url, text },
       })
         .then(res => {
           if (res) {
-            Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+            Router.push(`/item?id=${res.data!.submitNewsItem.id}`);
           }
         })
         .catch(reason => console.error(reason)),
   }),
-})(Page);
+})(SubmitPageView);
 
 export const SubmitPage = withData(props => <PageWithData currentUrl={props.url.pathname} />);
 

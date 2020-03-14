@@ -123,12 +123,12 @@ const registerUser = gql`
   }
 `;
 
-const ForgotPageWithData = graphql<IForgotPageOwnProps, IForgotPageProps, {}, {}>(registerUser, {
+const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUser, {
   props: ({ ownProps, mutate }) => ({
     ...ownProps,
     registerUser: (id, password) => {
       return (
-        mutate({
+        mutate!({
           variables: { id, password },
         })
           // .then(() => Router.push(`/login?id=${id}&password=${password}`))

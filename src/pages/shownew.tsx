@@ -3,7 +3,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, newsFeedNewsItemFragment } from '../components/news-feed';
+import { NewsFeed, newsFeedNewsItemFragment, INewsFeedData, INewsFeedContainerProps } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -27,7 +27,7 @@ export interface IShowHNNewsFeedProps {
   };
 }
 
-const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps>(query, {
+const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps, INewsFeedData, {}, INewsFeedContainerProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { type: 'SHOW', first, skip } };
   },

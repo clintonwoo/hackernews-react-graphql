@@ -4,8 +4,18 @@
 // Every time an upvote/downvote/comment is made, update the count
 
 import { NewsItem } from './models/news-item';
+import { Comment } from './models/comment';
+import { User } from './models/user';
 
-export const sampleData: { newsItems: NewsItem[] } = {
+export const sampleData: {
+  comments: Comment[];
+  top: number[];
+  new: number[];
+  topStoriesCache: NewsItem[];
+  newStoriesCache: NewsItem[];
+  newsItems: NewsItem[];
+  users: User[];
+} = {
   /* A ranking of the hottest posts */
   top: [
     1224,
@@ -81,14 +91,12 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
       comments: [15289630, 15289567],
       commentCount: 44,
       upvoteCount: 171,
-      rank: 1,
     },
     {
       id: 1225,
@@ -98,14 +106,12 @@ export const sampleData: { newsItems: NewsItem[] } = {
       text: null,
       url: 'https://kate.io/blog/2017/08/22/weird-python-integers/',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
       comments: [],
       commentCount: 38,
       upvoteCount: 125,
-      rank: 2,
     },
   ],
   newStoriesCache: [
@@ -117,7 +123,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       text: null,
       url: 'https://www.graphql.org',
       upvotes: [],
-      upvoted: false,
       // upvoteCount: 1,
       hides: [],
       hidden: false,
@@ -137,7 +142,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -153,7 +157,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       text: null,
       url: 'https://kate.io/blog/2017/08/22/weird-python-integers/',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -170,7 +173,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -218,7 +220,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -235,7 +236,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -252,7 +252,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -269,7 +268,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -286,7 +284,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -303,7 +300,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -320,7 +316,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -337,7 +332,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -354,7 +348,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -371,7 +364,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -388,7 +380,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -405,7 +396,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -422,7 +412,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -439,7 +428,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -456,7 +444,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -473,7 +460,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -490,7 +476,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -507,7 +492,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -524,7 +508,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -541,7 +524,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -558,7 +540,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -575,7 +556,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -592,7 +572,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -609,7 +588,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -626,7 +604,6 @@ export const sampleData: { newsItems: NewsItem[] } = {
       url:
         'https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well',
       upvotes: [],
-      upvoted: false,
       hides: [],
       hidden: false,
       hiddenCount: 0,
@@ -724,25 +701,27 @@ export const sampleData: { newsItems: NewsItem[] } = {
       submitterId: 'megous',
       text:
         'It is part of it in this case. You&#x27;ve just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.<p>This might help in forensic investigation afterwards. Less crap to wade through.',
+      parent: 1,
+      upvotes: [],
     },
     {
       id: 15289567,
       creationTime: 1505863042000,
       comments: [15290063],
       submitterId: 'NeutronBoy',
+      parent: 1,
+      upvotes: [],
       text:
         '&gt; Security through obscurity is not the solution, though<p>Security is about layers. Nothing is foolproof. It&#x27;s about implementing layers of controls to reduce your attack surface to an acceptable level, with the trade-off that many controls increase the complexity of your setup or compromises the convenience for your users.<p>For example, for SSH, this probably includes<p>* changing the default port<p>* enforcing SSH key authentication<p>* enforcing passwords on SSH keys<p>* implementing fail2ban<p>* installing jump hosts for internal machines<p>* implementing a VPN rather than external facing hosts (and with that comes all the additional layers for the VPN)<p>* etc...',
     },
     {
-      id: 123331,
+      comments: [],
       creationTime: 1504740146516,
-      commenterId: 'clintonwoo',
+      id: 123331,
+      parent: 1,
+      submitterId: 'clintonwoo',
       text: 'I know this might come accross as bragging, but I just won the internet again.',
       upvotes: ['clintonwoo', 'john'],
-      upvoteCount: 2,
-      hides: [],
-      hidden: false,
-      hiddenCount: 0,
     },
   ],
   users: [
@@ -754,9 +733,12 @@ export const sampleData: { newsItems: NewsItem[] } = {
       dateOfBirth: 723618000000,
       email: 'clinton@hotmail.com',
       firstName: 'Clinton',
+      hashedPassword: 'abc123',
+      passwordSalt: '123',
       hides: [],
       karma: 3,
       lastName: "D'Annolfo",
+      likes: [],
       posts: [1222],
     },
     {
@@ -766,9 +748,12 @@ export const sampleData: { newsItems: NewsItem[] } = {
       dateOfBirth: 554875200000,
       email: 'john@doe.com',
       firstName: 'John',
+      hashedPassword: '123',
+      passwordSalt: 'abc',
       hides: [],
       karma: 1,
       lastName: 'Doe',
+      likes: [],
       posts: [1223],
     },
   ],

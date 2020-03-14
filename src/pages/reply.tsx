@@ -20,7 +20,7 @@ const variables = {
   id: 100,
 };
 
-const page = ({ data: { loading, error, comment }, data, options }) => {
+const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => {
   const vote = () => {
     console.log('onclick');
   };
@@ -116,7 +116,7 @@ const ReplyToComment = graphql(query, {
   props({ ownProps, data }) {
     return { ...ownProps, data: data! };
   },
-})(page);
+})(ReplyPageView);
 
 export const ReplyToCommentPage = withData(props => {
   variables.id = (props.url.query && +props.url.query.id) || 0;

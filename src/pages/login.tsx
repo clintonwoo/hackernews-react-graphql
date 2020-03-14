@@ -33,11 +33,7 @@ interface ILoginPageState {
   validationMessage: string;
 }
 
-class Page extends React.Component<ILoginPageProps, ILoginPageState> {
-  public static defaultProps = {
-    me: null,
-  };
-
+class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   public state: ILoginPageState = {
     login: {
       id: '',
@@ -200,13 +196,13 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
   }
 }
 
-const PageWithQuery = graphql<ILoginPageProps, IMeQuery, {}, {}>(gql(meQuery), {
+const PageWithQuery = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(gql(meQuery), {
   options: {},
-  props: ({ ownProps, data: { me } }) => ({
+  props: ({ ownProps, data }) => ({
     ...ownProps,
-    me,
+    me: data?.me,
   }),
-})(Page);
+})(LoginPageView);
 
 export const LoginPage = withData(props => <PageWithQuery url={props.url} />);
 

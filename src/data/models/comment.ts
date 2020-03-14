@@ -6,25 +6,27 @@ import * as HNDB from '../hn-data-api';
 const logger = debug('app:Comment');
 
 export class Comment {
-  public readonly id;
-  public readonly creationTime;
-  public readonly comments;
-  public readonly parent;
-  public readonly submitterId;
-  public readonly text;
+  public readonly id: number;
+  public readonly creationTime: number;
+  public readonly comments: number[];
+  public readonly parent: number;
+  public readonly submitterId: string;
+  public readonly upvotes: string[];
+  public readonly text: string;
 
-  constructor(props) {
-    if (!props.id) throw new Error(`Error instantiating Comment, id invalid: ${props.id}`);
-    if (!props.parent) throw new Error(`Error instantiating Comment, parent invalid: ${props.parent}`);
-    if (!props.submitterId) throw new Error(`Error instantiating Comment, submitterId invalid: ${props.submitterId}`);
-    if (!props.text) throw new Error(`Error instantiating Comment, text invalid: ${props.text}`);
+  constructor(fields) {
+    if (!fields.id) throw new Error(`Error instantiating Comment, id invalid: ${fields.id}`);
+    if (!fields.parent) throw new Error(`Error instantiating Comment, parent invalid: ${fields.parent}`);
+    if (!fields.submitterId) throw new Error(`Error instantiating Comment, submitterId invalid: ${fields.submitterId}`);
+    if (!fields.text) throw new Error(`Error instantiating Comment, text invalid: ${fields.text}`);
 
-    this.id = props.id;
-    this.creationTime = props.creationTime || +new Date();
-    this.comments = props.comments || [];
-    this.parent = props.parent;
-    this.submitterId = props.submitterId;
-    this.text = props.text;
+    this.id = fields.id;
+    this.creationTime = fields.creationTime || +new Date();
+    this.comments = fields.comments || [];
+    this.parent = fields.parent;
+    this.submitterId = fields.submitterId;
+    this.text = fields.text;
+    this.upvotes = fields.upvotes || [];
   }
   static getComment = id =>
     cache.getComment(id) || HNDB.fetchComment(id).catch(reason => logger(`Rejected comment: ${reason}`));

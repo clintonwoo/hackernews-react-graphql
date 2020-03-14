@@ -180,7 +180,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                         </a>
                       </Link>
                       {' / '}
-                      <Link href="/upvoted?id=clintonwoo&amp;comments=t">
+                      <Link href="/upvoted?id=clintonwoo&comments=t">
                         <a>
                           <u>comments</u>
                         </a>
@@ -278,6 +278,13 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
   );
 };
 
+export interface IUserPageQuery {
+  loading;
+  error;
+  user;
+  me;
+}
+
 const query = `
   query User($id: String!) {
     user(id: $id) {
@@ -293,18 +300,18 @@ const query = `
   }
 `;
 
-const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageProps, {}, {}>(gql(query), {
+const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUserPageProps>(gql(query), {
   options: ({ options: { id } }) => ({
     variables: {
       id,
     },
   }),
-  props: ({ ownProps, data: { loading, error, user, me } }) => ({
+  props: ({ ownProps, data }) => ({
     ...ownProps,
-    loading,
-    error,
-    user,
-    me,
+    loading: data?.loading!,
+    error: data?.error!,
+    user: data?.user!,
+    me: data?.me!,
   }),
 })(UserPageView);
 

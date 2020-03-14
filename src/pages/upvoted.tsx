@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, newsFeedNewsItemFragment } from '../components/news-feed';
+import { NewsFeed, newsFeedNewsItemFragment, INewsFeedData, INewsFeedContainerProps } from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -25,14 +25,14 @@ export interface IUpvotedPageProps {
   };
 }
 
-const NewestNewsFeed = graphql<IUpvotedPageProps>(query, {
+const NewestNewsFeed = graphql<IUpvotedPageProps, INewsFeedData, {}, INewsFeedContainerProps>(query, {
   options({ options: { first, skip } }) {
     return {
       variables: { type: 'NEW', first, skip },
     };
   },
   props({ ownProps, data }) {
-    return { ...ownProps, data };
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 
