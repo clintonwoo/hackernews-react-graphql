@@ -31,8 +31,8 @@ const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { type: 'SHOW', first, skip } };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 
@@ -46,13 +46,13 @@ export const ShowNewPage = withData(props => {
         <td colSpan={2} />
         <td>
           Please read the{' '}
-          <Link prefetch href="/showhn">
+          <Link href="/showhn">
             <a>
               <u>rules</u>
             </a>
           </Link>
           . You can also browse the{' '}
-          <Link prefetch href="/shownew">
+          <Link href="/shownew">
             <a>
               <u>newest</u>
             </a>

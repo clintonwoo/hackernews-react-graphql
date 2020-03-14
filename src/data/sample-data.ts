@@ -3,7 +3,9 @@
 // Data Type: Comment, can be on a news item or another comment
 // Every time an upvote/downvote/comment is made, update the count
 
-export const sampleData = {
+import { NewsItem } from './models/news-item';
+
+export const sampleData: { newsItems: NewsItem[] } = {
   /* A ranking of the hottest posts */
   top: [
     1224,

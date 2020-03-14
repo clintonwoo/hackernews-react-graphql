@@ -29,8 +29,8 @@ const NewestNewsFeed = graphql<INewestNewsFeedOwnProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { type: 'NEW', first, skip } };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 

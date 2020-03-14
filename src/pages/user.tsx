@@ -55,7 +55,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr className="athing">
                     <td style={{ verticalAlign: 'top' }}>user:</td>
                     <td>
-                      <Link prefetch href="/user?id=clintonwoo">
+                      <Link href="/user?id=clintonwoo">
                         <a className="hnuser" style={{ color: '#3c963c' }}>
                           {user.id}
                         </a>
@@ -82,7 +82,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                         style={{ fontSize: '-2' }}
                         wrap="virtual"
                       />
-                      <Link prefetch href="/formatdoc">
+                      <Link href="/formatdoc">
                         <a tabIndex={-1} style={{ color: '#afafaf' }}>
                           help
                         </a>
@@ -134,7 +134,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/changepw">
+                      <Link href="/changepw">
                         <a>
                           <u>change password</u>
                         </a>
@@ -144,7 +144,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/submitted?id=clintonwoo">
+                      <Link href="/submitted?id=clintonwoo">
                         <a>
                           <u>submissions</u>
                         </a>
@@ -154,7 +154,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/threads?id=clintonwoo">
+                      <Link href="/threads?id=clintonwoo">
                         <a>
                           <u>comments</u>
                         </a>
@@ -164,7 +164,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/hidden">
+                      <Link href="/hidden">
                         <a>
                           <u>hidden</u>
                         </a>
@@ -174,13 +174,13 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/upvoted?id=clintonwoo">
+                      <Link href="/upvoted?id=clintonwoo">
                         <a>
                           <u>upvoted submissions</u>
                         </a>
                       </Link>
                       {' / '}
-                      <Link prefetch href="/upvoted?id=clintonwoo&amp;comments=t">
+                      <Link href="/upvoted?id=clintonwoo&amp;comments=t">
                         <a>
                           <u>comments</u>
                         </a>
@@ -192,13 +192,13 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
                   <tr>
                     <td />
                     <td>
-                      <Link prefetch href="/favorites?id=clintonwoo">
+                      <Link href="/favorites?id=clintonwoo">
                         <a>
                           <u>favorite submissions</u>
                         </a>
                       </Link>
                       {' / '}
-                      <Link prefetch href="/favorites?id=clintonwoo&amp;comments=t">
+                      <Link href="/favorites?id=clintonwoo&amp;comments=t">
                         <a>
                           <u>comments</u>
                         </a>
@@ -299,7 +299,8 @@ const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageProps, {}, {}>(g
       id,
     },
   }),
-  props: ({ data: { loading, error, user, me } }) => ({
+  props: ({ ownProps, data: { loading, error, user, me } }) => ({
+    ...ownProps,
     loading,
     error,
     user,

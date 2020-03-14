@@ -75,7 +75,7 @@ app
     expressServer.post(
       '/login',
       (req, res, next) => {
-        req.session.returnTo = req.body.goto;
+        req.session!.returnTo = req.body.goto;
         next();
       },
       passport.authenticate('local', {
@@ -92,12 +92,12 @@ app
               id: req.body.id,
               password: req.body.password,
             });
-            req.session.returnTo = `/user?id=${req.body.id}`;
+            req.session!.returnTo = `/user?id=${req.body.id}`;
           } catch (err) {
-            req.session.returnTo = `/login?how=${err.code}`;
+            req.session!.returnTo = `/login?how=${err.code}`;
           }
         } else {
-          req.session.returnTo = '/login?how=user';
+          req.session!.returnTo = '/login?how=user';
         }
         next();
       },

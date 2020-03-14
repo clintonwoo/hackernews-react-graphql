@@ -78,13 +78,16 @@ export class NewsTitleView extends React.Component<INewsTitleProps> {
   }
 }
 
-export const NewsTitle = graphql<INewsItemOwnProps, INewsTitleProps, {}, {}>(gql(upvoteNewsItem), {
-  props: ({ ownProps, mutate }) => ({
-    upvoteNewsItem: id =>
-      mutate({
-        variables: { id },
-      })
-        // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
-  }),
+export const NewsTitle = graphql<INewsItemOwnProps, {}, {}, INewsTitleProps>(gql(upvoteNewsItem), {
+  props({ ownProps, mutate }) {
+    return {
+      ...ownProps,
+      upvoteNewsItem: id =>
+        mutate!({
+          variables: { id },
+        })
+          // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+          .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
+    };
+  },
 })(NewsTitleView);

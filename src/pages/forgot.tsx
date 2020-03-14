@@ -72,7 +72,7 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
         <br />
         <input type="submit" value="login" />
       </form>
-      <Link prefetch href="/forgot">
+      <Link href="/forgot">
         <a>Forgot your password?</a>
       </Link>
       <br />
@@ -125,6 +125,7 @@ const registerUser = gql`
 
 const ForgotPageWithData = graphql<IForgotPageOwnProps, IForgotPageProps, {}, {}>(registerUser, {
   props: ({ ownProps, mutate }) => ({
+    ...ownProps,
     registerUser: (id, password) => {
       return (
         mutate({

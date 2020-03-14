@@ -45,7 +45,8 @@ const NewsItemWithCommentsWithGraphQL = graphql<
       id,
     },
   }),
-  props: ({ data }) => ({
+  props: ({ ownProps, data }) => ({
+    ...ownProps,
     error: data.error,
     loading: data.loading,
     newsItem: data.newsItem,

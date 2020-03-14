@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, newsFeedNewsItemFragment } from '../components/news-feed';
+import { NewsFeed, newsFeedNewsItemFragment, INewsFeedContainerProps, INewsFeedData } from '../components/news-feed';
 import { FeedType } from '../data/models/feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
@@ -26,12 +26,12 @@ export interface IAskPageProps {
   };
 }
 
-const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps>(query, {
+const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps, INewsFeedData, {}, INewsFeedContainerProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { first, skip, type: FeedType.ASK } };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 

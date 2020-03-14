@@ -11,15 +11,15 @@ export const ShowHNRulesPage = () => (
     <p>Show HN is a way to share something that you've made on Hacker News.</p>
     <p>
       The current Show HNs can be found via{' '}
-      <Link prefetch href="/show">
+      <Link href="/show">
         <a>show</a>
       </Link>{' '}
       in the top bar, and the newest are{' '}
-      <Link prefetch href="/shownew">
+      <Link href="/shownew">
         <a>here</a>
       </Link>
       . To post one, simply{' '}
-      <Link prefetch href="/submit">
+      <Link href="/submit">
         <a>submit</a>
       </Link>{' '}
       a story whose title begins with "Show HN".

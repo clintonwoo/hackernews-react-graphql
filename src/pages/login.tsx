@@ -159,7 +159,7 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
           <br />
           <input type="submit" value="login" />
         </form>
-        <Link prefetch href="/forgot">
+        <Link href="/forgot">
           <a>Forgot your password?</a>
         </Link>
         <br />
@@ -202,7 +202,8 @@ class Page extends React.Component<ILoginPageProps, ILoginPageState> {
 
 const PageWithQuery = graphql<ILoginPageProps, IMeQuery, {}, {}>(gql(meQuery), {
   options: {},
-  props: ({ data: { me } }) => ({
+  props: ({ ownProps, data: { me } }) => ({
+    ...ownProps,
     me,
   }),
 })(Page);

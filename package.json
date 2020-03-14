@@ -21,7 +21,7 @@
     "prettier:format": "prettier --write",
     "test": "jest --config jest.config.js",
     "tsc:check": "tsc --noEmit",
-    "start": "ts-node src/server.ts",
+    "start": "ts-node --compiler-options '{\"module\":\"commonjs\"}' src/server.ts",
     "start:prod": "NODE_ENV=production node dist/server.js"
   },
   "author": "Clinton D'Annolfo",
@@ -101,7 +101,7 @@
     "ts-jest": "25.2.1",
     "ts-node": "8.6.2",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.7.5"
+    "typescript": "3.8.3"
   },
   "nodemonConfig": {
     "ignore": [

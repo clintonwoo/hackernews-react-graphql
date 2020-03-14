@@ -67,12 +67,12 @@ export class Comment extends React.Component<ICommentProps> {
                 <td className="default">
                   <div style={{ marginTop: '2px', marginBottom: '-10px' }}>
                     <span className="comhead">
-                      <Link prefetch href="/user?id=mstade">
+                      <Link href="/user?id=mstade">
                         <a className="hnuser">{props.submitterId}</a>
                       </Link>
                       <span className="age">
                         {' '}
-                        <Link prefetch href={`/item?id=${props.id}`}>
+                        <Link href={`/item?id=${props.id}`}>
                           <a>{convertNumberToTimeAgo(props.creationTime)}</a>
                         </Link>
                       </span>{' '}
@@ -91,7 +91,7 @@ export class Comment extends React.Component<ICommentProps> {
                       <div className="reply">
                         <p style={{ fontSize: '1' }}>
                           <u>
-                            <Link prefetch href={`/reply?id=${props.id}&goto=item%3Fid%3D${props.id}`}>
+                            <Link href={`/reply?id=${props.id}&goto=item%3Fid%3D${props.id}`}>
                               <a>reply</a>
                             </Link>
                           </u>

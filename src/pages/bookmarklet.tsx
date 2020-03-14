@@ -11,7 +11,7 @@ export const BookmarkletPage = props => (
     <div id="main">
       <p id="first">
         Thanks to Phil Kast for writing this bookmarklet for submitting links to{' '}
-        <Link prefetch href="/">
+        <Link href="/">
           <a>Hacker News</a>
         </Link>
         . When you click on the bookmarklet, it will submit the page you&#39;re on. To install, drag this link to your

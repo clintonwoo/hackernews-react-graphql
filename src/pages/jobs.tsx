@@ -33,8 +33,8 @@ const JobNewsFeed = graphql<IJobsPageOwnProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { first, skip, type: 'JOB' } };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 

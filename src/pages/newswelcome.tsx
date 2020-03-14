@@ -9,12 +9,12 @@ export const NewsWelcomePage = () => (
     <br />
     <br />
     <p>
-      <Link prefetch href="/">
+      <Link href="/">
         <a>Hacker News</a>
       </Link>{' '}
       is a bit different from other community sites, and we&#39;d appreciate it if you&#39;d take a minute to read the
       following as well as the{' '}
-      <Link prefetch href="/newsguidelines">
+      <Link href="/newsguidelines">
         <a>official guidelines</a>
       </Link>
       .
@@ -74,7 +74,7 @@ export const NewsWelcomePage = () => (
         </tbody>
       </table>
     </p>
-    <p /*align="center"*/>
+    <p>
       <span className="foot">
         <br />
         <br />

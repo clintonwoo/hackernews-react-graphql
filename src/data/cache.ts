@@ -35,7 +35,7 @@ class Cache {
 
   /*                   BEGIN USERS                        */
 
-  getUser(id): User {
+  getUser(id): User | undefined {
     return this.userCache.get(id);
   }
 

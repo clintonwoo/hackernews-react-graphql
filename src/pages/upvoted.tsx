@@ -31,8 +31,8 @@ const NewestNewsFeed = graphql<IUpvotedPageProps>(query, {
       variables: { type: 'NEW', first, skip },
     };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data };
   },
 })(NewsFeed);
 

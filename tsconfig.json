@@ -13,14 +13,14 @@
     "outDir": "./dist/",
     "removeComments": true,
     "sourceMap": true,
-    "target": "es2017",
+    "target": "ES5",
     "typeRoots": ["./node_modules/@types", "src/@types"],
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src"],
+  "include": ["src", "src/server.ts"],
   "exclude": ["node_modules", "**/__mocks__*", "**/*.spec.**", "out", ".next"]
 }

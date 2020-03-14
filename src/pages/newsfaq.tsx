@@ -10,7 +10,7 @@ export const NewsFAQPage = () => (
     <br />
     <b>Are there rules about submissions and comments?</b>
     <p>
-      <Link prefetch href="/newsguidelines">
+      <Link href="/newsguidelines">
         <a>https://news.ycombinator.com/newsguidelines</a>
       </Link>
     </p>
@@ -43,7 +43,7 @@ export const NewsFAQPage = () => (
       <b>What kind of formatting can you use in comments?</b>
     </p>
     <p>
-      <Link prefetch href="/formatdoc">
+      <Link href="/formatdoc">
         <a>http://news.ycombinator.com/formatdoc</a>
       </Link>
     </p>
@@ -103,7 +103,7 @@ export const NewsFAQPage = () => (
     <p>
       A regular &quot;Who Is Hiring?&quot; thread appears on the first weekday of each month. Most job ads are welcome
       there. (But only an account called{' '}
-      <Link prefetch href="/submitted?id=whoishiring">
+      <Link href="/submitted?id=whoishiring">
         <a>whoishiring</a>
       </Link>{' '}
       is allowed to submit the thread itself. This prevents a race to post it first.)
@@ -147,7 +147,7 @@ export const NewsFAQPage = () => (
       <b>How do I submit a poll?</b>
     </p>
     <p>
-      <Link prefetch href="/newpoll">
+      <Link href="/newpoll">
         <a>http://news.ycombinator.com/newpoll</a>
       </Link>
     </p>
@@ -156,7 +156,7 @@ export const NewsFAQPage = () => (
     </p>
     <p>
       If you have an email address in your profile, you can request a password reset{' '}
-      <Link prefetch href="/forgot?id=">
+      <Link href="/forgot?id=">
         <a>here</a>
       </Link>
       . If you haven&#39;t, you can create a new account or email hn@ycombinator.com for help.
@@ -166,7 +166,7 @@ export const NewsFAQPage = () => (
     </p>
     <p>
       If you request many pages too quickly, your IP address might get banned. The{' '}
-      <Link prefetch href="/item?id=4761102">
+      <Link href="/item?id=4761102">
         <a>self-serve unbanning procedure</a>
       </Link>{' '}
       works most of the time.

@@ -12,7 +12,7 @@ export const ListsPage = withData(props => (
           <tbody>
             <tr>
               <td>
-                <Link prefetch href="/leaders">
+                <Link href="/leaders">
                   <a>leaders</a>
                 </Link>
               </td>
@@ -20,7 +20,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/front">
+                <Link href="/front">
                   <a>front</a>
                 </Link>
               </td>
@@ -31,7 +31,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/best">
+                <Link href="/best">
                   <a>best</a>
                 </Link>
               </td>
@@ -39,7 +39,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/active">
+                <Link href="/active">
                   <a>active</a>
                 </Link>
               </td>
@@ -47,7 +47,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/bestcomments">
+                <Link href="/bestcomments">
                   <a>bestcomments</a>
                 </Link>
               </td>
@@ -55,7 +55,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/noobstories">
+                <Link href="/noobstories">
                   <a>noobstories</a>
                 </Link>
               </td>
@@ -63,7 +63,7 @@ export const ListsPage = withData(props => (
             </tr>
             <tr>
               <td>
-                <Link prefetch href="/noobcomments">
+                <Link href="/noobcomments">
                   <a>noobcomments</a>
                 </Link>
               </td>

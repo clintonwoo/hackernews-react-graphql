@@ -4,10 +4,7 @@ import * as React from 'react';
 import { HeaderNav } from './header-nav';
 
 interface IHeaderProps {
-  me: {
-    id?: string;
-    karma?: number;
-  };
+  me: { id: string; karma: number } | undefined;
   currentUrl: string;
   isNavVisible: boolean;
   title: string;
@@ -15,7 +12,7 @@ interface IHeaderProps {
 
 export class Header extends React.Component<IHeaderProps> {
   static defaultProps = {
-    me: null,
+    me: undefined,
   };
 
   render(): JSX.Element {
@@ -28,7 +25,7 @@ export class Header extends React.Component<IHeaderProps> {
             <tbody>
               <tr>
                 <td style={{ width: '18px', padding: '0px', paddingRight: '4px' }}>
-                  <Link prefetch href="/">
+                  <Link href="/">
                     <a>
                       <img
                         src="/static/y18.gif"
@@ -49,7 +46,7 @@ export class Header extends React.Component<IHeaderProps> {
                 <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
                   {props.me ? (
                     <span className="pagetop">
-                      <Link prefetch href={`/user?id=${props.me.id}`}>
+                      <Link href={`/user?id=${props.me.id}`}>
                         <a>{props.me.id}</a>
                       </Link>
                       {` (${props.me.karma}) | `}
@@ -59,7 +56,7 @@ export class Header extends React.Component<IHeaderProps> {
                     </span>
                   ) : (
                     <span className="pagetop">
-                      <Link prefetch href={`/login?goto=${props.currentUrl}`}>
+                      <Link href={`/login?goto=${props.currentUrl}`}>
                         <a>login</a>
                       </Link>
                     </span>

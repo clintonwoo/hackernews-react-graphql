@@ -48,13 +48,13 @@ export const ShowHNPage = withData(props => {
         <td colSpan={2} />
         <td>
           Please read the{' '}
-          <Link prefetch href="/showhn">
+          <Link href="/showhn">
             <a>
               <u>rules</u>
             </a>
           </Link>
           . You can also browse the{' '}
-          <Link prefetch href="/shownew">
+          <Link href="/shownew">
             <a>
               <u>newest</u>
             </a>

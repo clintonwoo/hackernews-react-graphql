@@ -1,4 +1,4 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { debug } from 'debug';
@@ -9,7 +9,7 @@ import { GRAPHQL_URL } from '../config';
 const logger = debug('app:initApollo');
 logger.log = console.log.bind(console);
 
-let apolloClient = null;
+let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 declare let global;
 

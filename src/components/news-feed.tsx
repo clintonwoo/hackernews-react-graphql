@@ -4,6 +4,7 @@ import { NewsItem } from '../data/models';
 import { LoadingSpinner } from './loading-spinner';
 import { NewsDetail, newsDetailNewsItemFragment } from './news-detail';
 import { NewsTitle, newsTitleFragment } from './news-title';
+import { DataValue } from 'react-apollo';
 
 export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
@@ -42,7 +43,7 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
 
     const nextPage = Math.ceil((props.skip || 1) / props.first) + 1;
 
-    const rows = [];
+    const rows: JSX.Element[] = [];
     props.newsItems.forEach((newsItem, index) => {
       if (!newsItem.hidden) {
         rows.push(
@@ -96,7 +97,17 @@ export class NewsFeedView extends React.Component<INewsFeedProps> {
   }
 }
 
-export const NewsFeed = ({ data: { loading, error, feed }, data, options }) => {
+export interface INewsFeedData {
+  loading;
+  error;
+  feed;
+}
+export interface INewsFeedContainerProps {
+  data: DataValue<INewsFeedData, {}>;
+  options;
+}
+
+export const NewsFeed: React.SFC<INewsFeedContainerProps> = ({ data: { loading, error, feed }, options }) => {
   if (error) {
     return (
       <tr>

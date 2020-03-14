@@ -74,7 +74,7 @@ export const NewsGuidelinesPage = () => (
     <p>
       Please don&#39;t complain that a submission is inappropriate. If a story is spam or off-topic, flag it. Don&#39;t
       feed egregious comments by replying;{' '}
-      <Link prefetch href="/newsfaq#cflag">
+      <Link href="/newsfaq#cflag">
         <a>flag</a>
       </Link>{' '}
       them instead. When you flag something, please don&#39;t also comment that you did.

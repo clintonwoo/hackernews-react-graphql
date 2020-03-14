@@ -50,7 +50,7 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
         <td colSpan={2} />
         <td className="subtext">
           <span className="age">
-            <Link prefetch href={`/item?id=${props.id}`}>
+            <Link href={`/item?id=${props.id}`}>
               <a>{convertNumberToTimeAgo(props.creationTime)}</a>
             </Link>
           </span>
@@ -62,11 +62,11 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
         <td className="subtext">
           <span className="score">{props.upvoteCount} points</span>
           {' by '}
-          <Link prefetch href={`/user?id=${props.submitterId}`}>
+          <Link href={`/user?id=${props.submitterId}`}>
             <a className="hnuser">{props.submitterId}</a>
           </Link>{' '}
           <span className="age">
-            <Link prefetch href={`/item?id=${props.id}`}>
+            <Link href={`/item?id=${props.id}`}>
               <a>{convertNumberToTimeAgo(props.creationTime)}</a>
             </Link>
           </span>
@@ -91,7 +91,7 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
             </span>
           )}
           {' | '}
-          <Link prefetch href={`/item?id=${props.id}`}>
+          <Link href={`/item?id=${props.id}`}>
             <a>
               {(() => {
                 switch (props.commentCount) {
@@ -112,17 +112,20 @@ export class NewsDetailView extends React.Component<INewsDetailProps> {
   }
 }
 
-export const NewsDetail = graphql<INewsDetailOwnProps, INewsDetailProps, {}, {}>(gql(hideNewsItem), {
-  props: ({ ownProps, mutate }) => ({
-    hideNewsItem: (id: number) =>
-      mutate({
-        variables: { id },
-      })
-        // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-        .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
-    unhideNewsItem: id =>
-      mutate({
-        variables: { id },
-      }).catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
-  }),
+export const NewsDetail = graphql<INewsDetailOwnProps, {}, {}, INewsDetailProps>(gql(hideNewsItem), {
+  props({ ownProps, mutate }) {
+    return {
+      ...ownProps,
+      hideNewsItem: (id: number) =>
+        mutate!({
+          variables: { id },
+        })
+          // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+          .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
+      unhideNewsItem: id =>
+        mutate!({
+          variables: { id },
+        }).catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
+    };
+  },
 })(NewsDetailView);

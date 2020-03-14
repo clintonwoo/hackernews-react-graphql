@@ -7,7 +7,7 @@ import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { IMeQuery, meQuery } from '../data/queries/me-query';
 
-interface IMainLayoutProps extends IMeQuery, IMainLayoutOwnProps {}
+interface IMainLayoutProps extends Partial<IMeQuery>, IMainLayoutOwnProps {}
 
 interface IMainLayoutOwnProps {
   children: React.ReactChild;
@@ -41,7 +41,7 @@ const MainLayoutView: React.SFC<IMainLayoutProps> = props => (
       }}
     >
       <tbody>
-        <Header currentUrl={props.currentUrl} isNavVisible={props.isNavVisible} me={props.me} title={props.title} />
+        <Header currentUrl={props.currentUrl} isNavVisible={!!props.isNavVisible} me={props.me} title={props.title!} />
         <tr style={{ height: '10px' }} />
         {props.children}
         {props.isFooterVisible && <Footer />}
@@ -53,12 +53,13 @@ MainLayoutView.defaultProps = {
   isFooterVisible: true,
   isNavVisible: true,
   isUserVisible: true,
-  me: null,
+  me: undefined,
   title: 'Hacker News',
 };
 
-export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, {}>(gql(meQuery), {
-  props: ({ data: { me } }) => ({
-    me,
+export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, IMainLayoutProps>(gql(meQuery), {
+  props: ({ ownProps, data }) => ({
+    ...ownProps,
+    me: data?.me,
   }),
 })(MainLayoutView);

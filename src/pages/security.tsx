@@ -190,7 +190,7 @@ export const SecurityPage = () => (
     </ul>
     <p>
       See{' '}
-      <Link prefetch href="/item?id=639976">
+      <Link href="/item?id=639976">
         <a>https://news.ycombinator.com/item?id=639976</a>
       </Link>{' '}
       for details.

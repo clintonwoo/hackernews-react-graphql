@@ -30,8 +30,8 @@ const BestNewsFeed = graphql<IBestNewsFeedProps>(query, {
   options({ options: { first, skip } }) {
     return { variables: { type: FeedType.BEST, first, skip } };
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(NewsFeed);
 

@@ -48,7 +48,7 @@ module.exports = withCSS({
         ],
       });
     }
-    config.node = { fs: 'empty' };
+    config.node = { fs: 'empty', net: 'empty' };
     return config;
   },
   cssModules: false,

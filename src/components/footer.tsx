@@ -17,25 +17,25 @@ export const Footer: React.SFC = props => (
         <span className="yclinks">
           <a href="/newsguidelines">Guidelines</a>
           &nbsp;|{' '}
-          <Link prefetch href="/newsfaq">
+          <Link href="/newsfaq">
             <a>FAQ</a>
           </Link>
           &nbsp;| <a href="mailto:hn@ycombinator.com">Support</a>
           &nbsp;| <a href="https://github.com/HackerNews/API">API</a>
           &nbsp;|{' '}
-          <Link prefetch href="/security">
+          <Link href="/security">
             <a>Security</a>
           </Link>
           &nbsp;|{' '}
-          <Link prefetch href="/lists">
+          <Link href="/lists">
             <a>Lists</a>
           </Link>
           &nbsp;|{' '}
-          <Link prefetch href="/bookmarklet">
+          <Link href="/bookmarklet">
             <a>Bookmarklet</a>
           </Link>
           &nbsp;|{' '}
-          <Link prefetch href="/dmca">
+          <Link href="/dmca">
             <a>DMCA</a>
           </Link>
           &nbsp;| <a href="http://www.ycombinator.com/apply/">Apply to YC</a>
@@ -48,7 +48,6 @@ export const Footer: React.SFC = props => (
           <input
             type="text"
             name="q"
-            value=""
             size={17}
             autoCorrect="off"
             spellCheck={false}

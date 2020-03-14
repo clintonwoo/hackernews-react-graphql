@@ -113,8 +113,8 @@ const ReplyToComment = graphql(query, {
   options: {
     variables,
   },
-  props({ data }) {
-    return { data };
+  props({ ownProps, data }) {
+    return { ...ownProps, data: data! };
   },
 })(page);
 

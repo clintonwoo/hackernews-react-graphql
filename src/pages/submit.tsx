@@ -90,7 +90,7 @@ const Page: React.FC<ISubmitPageProps> = props => {
                     <br />
                     <br />
                     You can also submit via{' '}
-                    <Link prefetch href="/bookmarklet">
+                    <Link href="/bookmarklet">
                       <a rel="nofollow">
                         <u>bookmarklet</u>
                       </a>
@@ -109,6 +109,7 @@ const Page: React.FC<ISubmitPageProps> = props => {
 
 const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, {}>(gql(submitNewsItem), {
   props: ({ ownProps, mutate }) => ({
+    ...ownProps,
     submitNewsItem: (title: string, url: string, text: string) =>
       mutate({
         variables: { title, url, text },
