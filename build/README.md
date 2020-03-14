@@ -4,6 +4,7 @@ WARNING: Do not write code in this directory because it will be deleted during b
 
 ### Directory Structure
 
-*build*:
-- *app*: App is compiled here using ```npm build```.
-- static: Static version of the site is compiled here using ```npm run build-static-website```.
+_build_:
+
+- _app_: App is built here using `npm build`.
+- static: Static version of the site is built here using `npm run build-static-website`.

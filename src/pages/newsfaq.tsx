@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Notice } from '../layouts/notice';
 
-export const NewsFAQPage = () => (
+export const NewsFAQPage: React.FC = () => (
   <Notice>
     <b>Hacker News FAQ</b>
     <br />
@@ -183,7 +183,7 @@ export const NewsFAQPage = () => (
         </tbody>
       </table>
     </p>
-    <p /* align="center" */>
+    <p>
       <span className="foot">
         <br />
         <br />

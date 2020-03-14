@@ -35,94 +35,102 @@ export const newsDetailNewsItemFragment = `
   }
 `;
 
-export class NewsDetailView extends React.Component<INewsDetailProps> {
-  static defaultProps = {
-    isFavoriteVisible: true,
-    isJobListing: false,
-    isPostScrutinyVisible: false,
-  };
+export function NewsDetailView(props: INewsDetailProps): JSX.Element {
+  const {
+    id,
+    commentCount,
+    creationTime,
+    hidden,
+    isFavoriteVisible,
+    isJobListing,
+    isPostScrutinyVisible,
+    submitterId,
+    upvoteCount,
+  } = props;
 
-  render(): JSX.Element {
-    const props = this.props;
-
-    return props.isJobListing ? (
-      <tr>
-        <td colSpan={2} />
-        <td className="subtext">
-          <span className="age">
-            <Link href={`/item?id=${props.id}`}>
-              <a>{convertNumberToTimeAgo(props.creationTime)}</a>
-            </Link>
-          </span>
-        </td>
-      </tr>
-    ) : (
-      <tr>
-        <td colSpan={2} />
-        <td className="subtext">
-          <span className="score">{props.upvoteCount} points</span>
-          {' by '}
-          <Link href={`/user?id=${props.submitterId}`}>
-            <a className="hnuser">{props.submitterId}</a>
-          </Link>{' '}
-          <span className="age">
-            <Link href={`/item?id=${props.id}`}>
-              <a>{convertNumberToTimeAgo(props.creationTime)}</a>
-            </Link>
-          </span>
-          {' | '}
-          {props.hidden ? (
-            <a href="javascript:void(0)" onClick={() => props.hideNewsItem(props.id)}>
-              hide
-            </a>
-          ) : (
-            <a href="javascript:void(0)" onClick={() => props.unhideNewsItem(props.id)}>
-              hide
-            </a>
-          )}
-          {props.isPostScrutinyVisible && (
-            <span>
-              {' | '}
-              <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
-                past
-              </a>
-              {' | '}
-              <a href="https://www.google.com/search?q=Sublime%20Text%203.0">web</a>
-            </span>
-          )}
-          {' | '}
-          <Link href={`/item?id=${props.id}`}>
-            <a>
-              {(() => {
-                switch (props.commentCount) {
-                  case 0:
-                    return 'discuss';
-                  case 1:
-                    return '1 comment';
-                  default:
-                    return `${props.commentCount} comments`;
-                }
-              })()}
-            </a>
+  return isJobListing ? (
+    <tr>
+      <td colSpan={2} />
+      <td className="subtext">
+        <span className="age">
+          <Link href={`/item?id=${id}`}>
+            <a>{convertNumberToTimeAgo(creationTime)}</a>
           </Link>
-          {props.isFavoriteVisible && ' | favorite'}
-        </td>
-      </tr>
-    );
-  }
+        </span>
+      </td>
+    </tr>
+  ) : (
+    <tr>
+      <td colSpan={2} />
+      <td className="subtext">
+        <span className="score">{upvoteCount} points</span>
+        {' by '}
+        <Link href={`/user?id=${submitterId}`}>
+          <a className="hnuser">{submitterId}</a>
+        </Link>{' '}
+        <span className="age">
+          <Link href={`/item?id=${id}`}>
+            <a>{convertNumberToTimeAgo(creationTime)}</a>
+          </Link>
+        </span>
+        {' | '}
+        {hidden ? (
+          <a href="javascript:void(0)" onClick={() => hideNewsItem(id)}>
+            hide
+          </a>
+        ) : (
+          <a href="javascript:void(0)" onClick={() => unhideNewsItem(id)}>
+            hide
+          </a>
+        )}
+        {isPostScrutinyVisible && (
+          <span>
+            {' | '}
+            <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
+              past
+            </a>
+            {' | '}
+            <a href="https://www.google.com/search?q=Sublime%20Text%203.0">web</a>
+          </span>
+        )}
+        {' | '}
+        <Link href={`/item?id=${id}`}>
+          <a>
+            {(() => {
+              switch (commentCount) {
+                case 0:
+                  return 'discuss';
+                case 1:
+                  return '1 comment';
+                default:
+                  return `${commentCount} comments`;
+              }
+            })()}
+          </a>
+        </Link>
+        {isFavoriteVisible && ' | favorite'}
+      </td>
+    </tr>
+  );
 }
+
+NewsDetailView.defaultProps = {
+  isFavoriteVisible: true,
+  isJobListing: false,
+  isPostScrutinyVisible: false,
+};
 
 export const NewsDetail = graphql<INewsDetailOwnProps, {}, {}, INewsDetailProps>(gql(hideNewsItem), {
   props({ ownProps, mutate }) {
     return {
       ...ownProps,
-      hideNewsItem: (id: number) =>
+      hideNewsItem: (id: number): Promise<void> | void =>
         mutate!({
           variables: { id },
         })
           // .then(() => Router.push(`/login?id=${id}&password=${password}`))
           .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
-      unhideNewsItem: id =>
+      unhideNewsItem: (id: number): Promise<void> | void =>
         mutate!({
           variables: { id },
         }).catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),

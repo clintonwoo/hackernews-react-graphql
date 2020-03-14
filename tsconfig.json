@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
-    "outDir": "./dist/",
+    "outDir": "./build/app/",
     "removeComments": true,
     "sourceMap": true,
     "target": "ES5",
@@ -22,5 +22,5 @@
     "isolatedModules": true
   },
   "include": ["src", "src/server.ts"],
-  "exclude": ["node_modules", "**/__mocks__*", "**/*.spec.**", "out", ".next"]
+  "exclude": ["node_modules", "**/__mocks__*", "**/__tests__*", "**/*.spec.*", "out", ".next"]
 }

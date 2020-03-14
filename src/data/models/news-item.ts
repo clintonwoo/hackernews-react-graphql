@@ -12,24 +12,35 @@ let newPostIdCounter = 100;
 export class NewsItem {
   /** ID of submitter */
   public readonly id: number;
+
   /** Count of comments on the post */
   public readonly commentCount: number;
+
   /** List of comments */
   public readonly comments;
+
   /** Post creation time, number of ms since 1970 */
   public readonly creationTime: number;
+
   /** IDs of users who hid the post */
   public readonly hides: string[];
+
   public readonly hiddenCount: number;
+
   /** ID of user who submitted */
   public readonly submitterId: string;
+
   /** Body text */
   public readonly text: string | null;
+
   /** Post title */
   public readonly title: string;
+
   /** Number of upvotes */
   public upvoteCount: number;
+
   public readonly upvotes;
+
   public readonly url;
 
   public readonly hidden?: boolean; // TODO: exists?

@@ -8,7 +8,7 @@ import { withData } from '../helpers/with-data';
 import { Blank } from '../layouts/blank';
 
 interface IForgotPageProps extends IForgotPageOwnProps {
-  registerUser: (id, password) => void;
+  registerUser: (id: string, password: string) => void;
 }
 
 interface IForgotPageOwnProps {
@@ -20,7 +20,7 @@ interface IForgotPageOwnProps {
 }
 
 const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
-  let message;
+  let message: string | undefined;
   switch (url && url.query.how) {
     case 'up':
       message = 'You have to be logged in to vote.';
@@ -57,7 +57,7 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
                   autoCorrect="off"
                   spellCheck={false}
                   autoCapitalize="off"
-                  autoFocus={true}
+                  autoFocus
                 />
               </td>
             </tr>
@@ -82,7 +82,7 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
       <br />
       <form method="post" action="/login" /* onSubmit={e => e.preventDefault()} */ style={{ marginBottom: '1em' }}>
         <input type="hidden" name="goto" value={`user?id=${user}`} />
-        <input type="hidden" name="creating" value={'true'} />
+        <input type="hidden" name="creating" value="true" />
         <table style={{ border: '0px' }}>
           <tbody>
             <tr>
@@ -108,13 +108,13 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
           </tbody>
         </table>
         <br />
-        <input type="submit" value="create account" onClick={() => registerUser(user, pass)} />
+        <input type="submit" value="create account" onClick={(): void => registerUser(user, pass)} />
       </form>
     </Blank>
   );
 };
 
-const registerUser = gql`
+const registerUserMutation = gql`
   mutation RegisterUser($id: String!, $password: String!) {
     registerUser(id: $id, password: $password) {
       id
@@ -123,10 +123,10 @@ const registerUser = gql`
   }
 `;
 
-const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUser, {
+const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUserMutation, {
   props: ({ ownProps, mutate }) => ({
     ...ownProps,
-    registerUser: (id, password) => {
+    registerUser: (id: string, password: string): Promise<void> => {
       return (
         mutate!({
           variables: { id, password },

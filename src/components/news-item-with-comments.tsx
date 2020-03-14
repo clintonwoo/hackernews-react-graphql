@@ -14,7 +14,9 @@ export interface INewsItemWithCommentsProps {
 }
 
 /** Acts as the component for a page of a news item with all it's comments */
-export const NewsItemWithComments: React.SFC<INewsItemWithCommentsProps> = ({ loading, error, newsItem }) => {
+export function NewsItemWithComments(props: INewsItemWithCommentsProps): JSX.Element {
+  const { loading, error, newsItem } = props;
+
   if (error) {
     return (
       <tr>
@@ -49,4 +51,4 @@ export const NewsItemWithComments: React.SFC<INewsItemWithCommentsProps> = ({ lo
       </td>
     </tr>
   );
-};
+}

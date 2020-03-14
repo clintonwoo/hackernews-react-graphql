@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Notice } from '../layouts/notice';
 
-export const NewsWelcomePage = () => (
+export const NewsWelcomePage: React.FC = () => (
   <Notice>
     <b>Welcome to Hacker News</b>
     <br />

@@ -4,7 +4,7 @@ import Router from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { ISubmitNewsItemGraphQL, submitNewsItem } from '../data/mutations/submit-news-item';
+import { ISubmitNewsItemGraphQL, submitNewsItemMutation } from '../data/mutations/submit-news-item';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -16,27 +16,29 @@ interface ISubmitPageOwnProps {
   currentUrl: string;
 }
 
-const SubmitPageView: React.FC<ISubmitPageProps> = props => {
-  let title;
-  const onTitleChange = e => {
+function SubmitPageView(props: ISubmitPageProps): JSX.Element {
+  const { currentUrl, submitNewsItem } = props;
+
+  let title: string | undefined;
+  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     title = e.target.value;
   };
 
-  let url;
-  const onUrlChange = e => {
+  let url: string | undefined;
+  const onUrlChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     url = e.target.value;
   };
 
-  let text;
-  const onTextChange = e => {
+  let text: string | undefined;
+  const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     text = e.target.value;
   };
 
   return (
-    <MainLayout currentUrl={props.currentUrl} title={'Submit'} isNavVisible={false} isFooterVisible={false}>
+    <MainLayout currentUrl={currentUrl} title="Submit" isNavVisible={false} isFooterVisible={false}>
       <tr>
         <td>
-          <form onSubmit={e => e.preventDefault()} /*  method="post" action="/r" */>
+          <form onSubmit={(e): void => e.preventDefault()}>
             <input type="hidden" name="fnid" value="GvyHFpy11L26dCAIgGQ9rv" />
             <input type="hidden" name="fnop" value="submit-page" />
             <script type="text/javascript">
@@ -78,7 +80,7 @@ const SubmitPageView: React.FC<ISubmitPageProps> = props => {
                 <tr>
                   <td />
                   <td>
-                    <input type="submit" value="submit" onClick={() => props.submitNewsItem(title, url, text)} />
+                    <input type="submit" value="submit" onClick={(): void => submitNewsItem(title, url, text)} />
                   </td>
                 </tr>
                 <tr style={{ height: '20px' }} />
@@ -105,23 +107,26 @@ const SubmitPageView: React.FC<ISubmitPageProps> = props => {
       </tr>
     </MainLayout>
   );
-};
+}
 
-const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, ISubmitPageProps>(gql(submitNewsItem), {
-  props: ({ ownProps, mutate }) => ({
-    ...ownProps,
-    submitNewsItem: (title: string, url: string, text: string) =>
-      mutate!({
-        variables: { title, url, text },
-      })
-        .then(res => {
-          if (res) {
-            Router.push(`/item?id=${res.data!.submitNewsItem.id}`);
-          }
+const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, ISubmitPageProps>(
+  gql(submitNewsItemMutation),
+  {
+    props: ({ ownProps, mutate }) => ({
+      ...ownProps,
+      submitNewsItem: (title: string, url: string, text: string): Promise<void> =>
+        mutate!({
+          variables: { title, url, text },
         })
-        .catch(reason => console.error(reason)),
-  }),
-})(SubmitPageView);
+          .then(res => {
+            if (res && res.data) {
+              Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+            }
+          })
+          .catch(reason => console.error(reason)),
+    }),
+  }
+)(SubmitPageView);
 
 export const SubmitPage = withData(props => <PageWithData currentUrl={props.url.pathname} />);
 

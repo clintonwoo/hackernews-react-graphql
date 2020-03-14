@@ -29,13 +29,13 @@ export const commentFragment = `
 
 export class Comment extends React.Component<ICommentProps> {
   render(): JSX.Element {
-    const props = this.props;
+    const { id, creationTime, indentationLevel, submitterId, text } = this.props;
 
-    const vote = () => {
+    const vote = (): void => {
       return undefined;
     };
 
-    const toggle = () => {
+    const toggle = (): void => {
       return undefined;
     };
 
@@ -50,7 +50,7 @@ export class Comment extends React.Component<ICommentProps> {
                     alt=""
                     src="/static/s.gif"
                     height="1"
-                    width={`${props.indentationLevel * 40}px`} /* Width varies depending on comment level*/
+                    width={`${indentationLevel * 40}px`} /* Width varies depending on comment level */
                   />
                 </td>
                 <td style={{ verticalAlign: 'top' }} className="votelinks">
@@ -68,12 +68,12 @@ export class Comment extends React.Component<ICommentProps> {
                   <div style={{ marginTop: '2px', marginBottom: '-10px' }}>
                     <span className="comhead">
                       <Link href="/user?id=mstade">
-                        <a className="hnuser">{props.submitterId}</a>
+                        <a className="hnuser">{submitterId}</a>
                       </Link>
                       <span className="age">
                         {' '}
-                        <Link href={`/item?id=${props.id}`}>
-                          <a>{convertNumberToTimeAgo(props.creationTime)}</a>
+                        <Link href={`/item?id=${id}`}>
+                          <a>{convertNumberToTimeAgo(creationTime)}</a>
                         </Link>
                       </span>{' '}
                       <span id="unv_15238246" />
@@ -87,11 +87,11 @@ export class Comment extends React.Component<ICommentProps> {
                   <br />
                   <div className="comment">
                     <span className="c00">
-                      <span>{renderHTML(props.text)}</span>
+                      <span>{renderHTML(text)}</span>
                       <div className="reply">
                         <p style={{ fontSize: '1' }}>
                           <u>
-                            <Link href={`/reply?id=${props.id}&goto=item%3Fid%3D${props.id}`}>
+                            <Link href={`/reply?id=${id}&goto=item%3Fid%3D${id}`}>
                               <a>reply</a>
                             </Link>
                           </u>

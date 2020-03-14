@@ -24,7 +24,7 @@ interface IUserPageOwnProps {
   };
 }
 
-const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, options: { currentUrl } }) => {
+const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { currentUrl } }) => {
   if (error) {
     return <Blank>Error loading news items.</Blank>;
   }
@@ -35,10 +35,10 @@ const UserPageView: React.SFC<IUserPageProps> = ({ loading, error, user, me, opt
   let about = user.about || '';
   let email = user.email || '';
 
-  const onAboutChange = e => {
+  const onAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     about = e.target.value;
   };
-  const onEmailChange = e => {
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     email = e.target.value;
   };
 

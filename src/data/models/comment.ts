@@ -7,11 +7,17 @@ const logger = debug('app:Comment');
 
 export class Comment {
   public readonly id: number;
+
   public readonly creationTime: number;
+
   public readonly comments: number[];
+
   public readonly parent: number;
+
   public readonly submitterId: string;
+
   public readonly upvotes: string[];
+
   public readonly text: string;
 
   constructor(fields) {
@@ -28,11 +34,12 @@ export class Comment {
     this.text = fields.text;
     this.upvotes = fields.upvotes || [];
   }
-  static getComment = id =>
+
+  static getComment = (id: number): Comment | Promise<Comment | void> =>
     cache.getComment(id) || HNDB.fetchComment(id).catch(reason => logger(`Rejected comment: ${reason}`));
 
-  static getComments = ids =>
+  static getComments = (ids: number[]): Array<Promise<Comment>> =>
     Promise.all(ids.map(commentId => Comment.getComment(commentId)))
-      .then(comments => comments.filter(comment => comment !== undefined))
+      .then((comments): Comment[] => comments.filter(comment => comment !== undefined))
       .catch(reason => logger(`Rejected comments: ${reason}`));
 }

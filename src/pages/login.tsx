@@ -10,7 +10,7 @@ import { getUserLoginErrorCodeMessage, UserLoginErrorCode } from '../helpers/use
 import { withData } from '../helpers/with-data';
 import { Blank } from '../layouts/blank';
 
-interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
+export interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
 
 export interface ILoginPageOwnProps {
   url?: {
@@ -21,7 +21,7 @@ export interface ILoginPageOwnProps {
   };
 }
 
-interface ILoginPageState {
+export interface ILoginPageState {
   login: {
     id: string;
     password: string;
@@ -48,18 +48,22 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
 
   /* Login User */
   private onLoginIDChange = e => {
+    const { login } = this.state;
+
     this.setState({
       login: {
         id: e.target.value,
-        password: this.state.login.password,
+        password: login.password,
       },
     });
   };
 
   private onLoginPasswordChange = e => {
+    const { login } = this.state;
+
     this.setState({
       login: {
-        id: this.state.login.id,
+        id: login.id,
         password: e.target.value,
       },
     });
@@ -67,10 +71,12 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
 
   /* Register New User */
   private onRegisterIDChange = e => {
+    const { register } = this.state;
+
     this.setState({
       register: {
         id: e.target.value,
-        password: this.state.register.password,
+        password: register.password,
       },
     });
   };
@@ -85,12 +91,15 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   private validateLogin = e => {
-    if (this.props.me) {
+    const { me } = this.props;
+    const { login } = this.state;
+
+    if (me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser(this.state.login);
+        isValidNewUser(login);
       } catch (err) {
         e.preventDefault();
         this.setState({ validationMessage: err.message });
@@ -99,12 +108,15 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   private validateRegister = e => {
-    if (this.props.me) {
+    const { me } = this.props;
+    const { register } = this.state;
+
+    if (me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser(this.state.register);
+        isValidNewUser(register);
       } catch (err) {
         e.preventDefault();
         this.setState({ validationMessage: err.message });
@@ -113,20 +125,23 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   public render(): JSX.Element {
+    const { url } = this.props;
+    const { validationMessage } = this.state;
+
     let message = '';
-    if (this.props.url && this.props.url.query.how) {
-      message = getUserLoginErrorCodeMessage(this.props.url.query.how);
+    if (url && url.query.how) {
+      message = getUserLoginErrorCodeMessage(url.query.how);
     }
 
     return (
       <Blank>
         {message && <p>{message}</p>}
-        {this.state.validationMessage && <p>{this.state.validationMessage}</p>}
+        {validationMessage && <p>{validationMessage}</p>}
         <b>Login</b>
         <br />
         <br />
         <form method="post" action="/login" onSubmit={e => this.validateLogin(e)} style={{ marginBottom: '1em' }}>
-          <input type="hidden" name="goto" value={(this.props.url && this.props.url.query.goto) || 'news'} />
+          <input type="hidden" name="goto" value={(url && url.query.goto) || 'news'} />
           <table style={{ border: '0px' }}>
             <tbody>
               <tr>
@@ -140,7 +155,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
                     autoCorrect="off"
                     spellCheck={false}
                     autoCapitalize="off"
-                    autoFocus={true}
+                    autoFocus
                   />
                 </td>
               </tr>

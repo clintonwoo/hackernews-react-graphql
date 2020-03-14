@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Notice } from '../layouts/notice';
 
-export const ShowHNRulesPage = () => (
+export const ShowHNRulesPage: React.FC = () => (
   <Notice>
     <b>Show HN</b>
     <br />

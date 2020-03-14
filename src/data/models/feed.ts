@@ -47,18 +47,28 @@ class Feed {
 
   /* Arrays of post ids in descending rank order */
   top = sampleData.top;
+
   new = sampleData.new;
+
   best = [];
+
   show = [];
+
   ask = [];
+
   job = [];
 
   /* A pre constructed cache of news feeds */
   topNewsItems = sampleData.topStoriesCache;
+
   newNewsItems = sampleData.topStoriesCache;
+
   bestNewsItems = sampleData.topStoriesCache;
+
   showNewsItems = sampleData.topStoriesCache;
+
   askNewsItems = sampleData.topStoriesCache;
+
   jobNewsItems = sampleData.topStoriesCache;
 }
 

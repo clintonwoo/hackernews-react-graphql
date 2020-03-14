@@ -37,10 +37,11 @@ export class Comments extends React.Component<ICommentsProps> {
   };
 
   render(): JSX.Element {
-    const props = this.props;
-    const rows = [];
+    const { newsItem } = this.props;
 
-    props.newsItem.comments.forEach(rootComment => {
+    const rows: JSX.Element[] = [];
+
+    newsItem.comments.forEach(rootComment => {
       rows.push(this.renderComment(rootComment, 0));
 
       rootComment.comments.forEach(commentOne => {

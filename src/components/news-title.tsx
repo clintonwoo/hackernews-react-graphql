@@ -29,60 +29,52 @@ export const newsTitleFragment = `
   }
 `;
 
-export class NewsTitleView extends React.Component<INewsTitleProps> {
-  static defaultProps = {
-    isRankVisible: true,
-    isUpvoteVisible: true,
-    rank: undefined,
-    url: undefined,
-  };
+export function NewsTitleView(props: INewsTitleProps): JSX.Element {
+  const { id, isRankVisible, isUpvoteVisible, rank, title, upvoted, url } = props;
 
-  render(): JSX.Element {
-    const props = this.props;
-
-    return (
-      <tr className="athing">
-        <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
-          <span className="rank">{props.isRankVisible && `${props.rank}.`}</span>
-        </td>
-        <td style={{ verticalAlign: 'top' }} className="votelinks">
-          <div style={{ textAlign: 'center' }}>
-            {props.isUpvoteVisible && (
-              <a
-                className={props.upvoted ? 'nosee' : ' '}
-                onClick={() => props.upvoteNewsItem(props.id)}
-                href="javascript:void(0)"
-              >
-                <div className="votearrow" title="upvote" />
-              </a>
-            )}
-          </div>
-        </td>
-        <td className="title">
-          <a className="storylink" href={props.url ? props.url : `item?id=${props.id}`}>
-            {props.title}
-          </a>
-          {props.url && (
-            <span className="sitebit comhead">
-              {' '}
-              (
-              <a href={`from?site=${parse(props.url).hostname}`}>
-                <span className="sitestr">{parse(props.url).hostname}</span>
-              </a>
-              )
-            </span>
+  return (
+    <tr className="athing">
+      <td style={{ textAlign: 'right', verticalAlign: 'top' }} className="title">
+        <span className="rank">{isRankVisible && `${rank}.`}</span>
+      </td>
+      <td style={{ verticalAlign: 'top' }} className="votelinks">
+        <div style={{ textAlign: 'center' }}>
+          {isUpvoteVisible && (
+            <a className={upvoted ? 'nosee' : ' '} onClick={() => props.upvoteNewsItem(id)} href="javascript:void(0)">
+              <div className="votearrow" title="upvote" />
+            </a>
           )}
-        </td>
-      </tr>
-    );
-  }
+        </div>
+      </td>
+      <td className="title">
+        <a className="storylink" href={url || `item?id=${id}`}>
+          {title}
+        </a>
+        {url && (
+          <span className="sitebit comhead">
+            {' '}
+            (
+            <a href={`from?site=${parse(url).hostname}`}>
+              <span className="sitestr">{parse(url).hostname}</span>
+            </a>
+            )
+          </span>
+        )}
+      </td>
+    </tr>
+  );
 }
+
+NewsTitleView.defaultProps = {
+  isRankVisible: true,
+  isUpvoteVisible: true,
+};
 
 export const NewsTitle = graphql<INewsItemOwnProps, {}, {}, INewsTitleProps>(gql(upvoteNewsItem), {
   props({ ownProps, mutate }) {
     return {
       ...ownProps,
-      upvoteNewsItem: id =>
+      upvoteNewsItem: (id: number) =>
         mutate!({
           variables: { id },
         })
