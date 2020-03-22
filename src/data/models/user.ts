@@ -55,7 +55,7 @@ export class User {
 
   static getUser = (id: string) => cache.getUser(id) || HNDB.fetchUser(id);
 
-  static getPostsForUser = (id: string) => DB.getNewsItems().filter(newsItem => newsItem.submitterId === id);
+  static getPostsForUser = (id: string) => DB.getNewsItems().filter((newsItem) => newsItem.submitterId === id);
 
   static validPassword = async (id: string, password: string) => {
     const user = cache.getUser(id);

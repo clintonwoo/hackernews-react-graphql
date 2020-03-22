@@ -11,7 +11,7 @@ logger.log = console.log.bind(console);
 /*                  BEGIN NEWS ITEMS                      */
 
 export function getNewsItem(id: number): NewsItem | undefined {
-  return sampleData.newsItems.find(newsItem => newsItem.id === id);
+  return sampleData.newsItems.find((newsItem) => newsItem.id === id);
 }
 
 export function createNewsItem(newsItem: NewsItem): NewsItem {
@@ -107,7 +107,7 @@ export function getNewsItems(): NewsItem[] {
 /*                   BEGIN USERS                        */
 
 export function getUser(id: string) {
-  return sampleData.users.find(user => user.id === id);
+  return sampleData.users.find((user) => user.id === id);
 }
 
 export function getUsers() {

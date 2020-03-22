@@ -41,22 +41,22 @@ export class Comments extends React.Component<ICommentsProps> {
 
     const rows: JSX.Element[] = [];
 
-    newsItem.comments.forEach(rootComment => {
+    newsItem.comments.forEach((rootComment) => {
       rows.push(this.renderComment(rootComment, 0));
 
-      rootComment.comments.forEach(commentOne => {
+      rootComment.comments.forEach((commentOne) => {
         rows.push(this.renderComment(commentOne, 1));
 
-        commentOne.comments.forEach(commentTwo => {
+        commentOne.comments.forEach((commentTwo) => {
           rows.push(this.renderComment(commentTwo, 2));
 
-          commentTwo.comments.forEach(commentThree => {
+          commentTwo.comments.forEach((commentThree) => {
             rows.push(this.renderComment(commentThree, 3));
 
-            commentThree.comments.forEach(commentFour => {
+            commentThree.comments.forEach((commentFour) => {
               rows.push(this.renderComment(commentFour, 4));
 
-              commentFour.comments.forEach(commentFive => {
+              commentFour.comments.forEach((commentFive) => {
                 rows.push(this.renderComment(commentFive, 5));
               });
             });

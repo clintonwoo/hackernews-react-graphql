@@ -24,7 +24,7 @@ export function fetchNewsItem(id) {
   return api
     .child(`item/${id}`)
     .once('value')
-    .then(postSnapshot => {
+    .then((postSnapshot) => {
       const post = postSnapshot.val();
       if (post !== null) {
         const newsItem = new NewsItem({
@@ -43,7 +43,7 @@ export function fetchNewsItem(id) {
       }
       throw post;
     })
-    .catch(reason => logger(`Fetching post failed: ${reason}`));
+    .catch((reason) => logger(`Fetching post failed: ${reason}`));
 }
 
 export function fetchComment(id) {
@@ -52,7 +52,7 @@ export function fetchComment(id) {
   return api
     .child(`item/${id}`)
     .once('value')
-    .then(itemSnapshot => {
+    .then((itemSnapshot) => {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
         const comment = new Comment({
@@ -70,7 +70,7 @@ export function fetchComment(id) {
       }
       throw item;
     })
-    .catch(reason => logger(`Fetching comment failed: ${reason}`));
+    .catch((reason) => logger(`Fetching comment failed: ${reason}`));
 }
 
 export function fetchUser(id) {
@@ -79,7 +79,7 @@ export function fetchUser(id) {
   return api
     .child(`user/${id}`)
     .once('value')
-    .then(itemSnapshot => {
+    .then((itemSnapshot) => {
       const item = itemSnapshot.val();
       if (item !== null && !item.deleted && !item.dead) {
         const user = new User({
@@ -96,7 +96,7 @@ export function fetchUser(id) {
       }
       throw item;
     })
-    .catch(reason => logger(`Fetching user failed: ${reason}`));
+    .catch((reason) => logger(`Fetching user failed: ${reason}`));
 }
 
 export function getFeed(feedType) {
@@ -105,28 +105,28 @@ export function getFeed(feedType) {
   return api
     .child(`${feedType}stories`)
     .once('value')
-    .then(feedSnapshot => feedSnapshot.val())
-    .then(feed => feed.filter(newsItem => newsItem !== undefined && newsItem !== null))
-    .catch(reason => logger(`Fetching news feed failed: ${reason}`));
+    .then((feedSnapshot) => feedSnapshot.val())
+    .then((feed) => feed.filter((newsItem) => newsItem !== undefined && newsItem !== null))
+    .catch((reason) => logger(`Fetching news feed failed: ${reason}`));
 }
 
-const rebuildFeed = feedType => {
+const rebuildFeed = (feedType) => {
   setTimeout(rebuildFeed, 1000 * 60 * 15, feedType);
 
   getFeed(feedType)
-    .then(feed =>
-      Promise.all(feed.map(id => fetchNewsItem(id))).then(newsItems => {
+    .then((feed) =>
+      Promise.all(feed.map((id) => fetchNewsItem(id))).then((newsItems) => {
         logger(newsItems);
 
         FeedSingleton[`${feedType}NewsItems`] = newsItems.filter(
-          newsItem => newsItem !== undefined && newsItem !== null
+          (newsItem) => newsItem !== undefined && newsItem !== null
         );
 
         FeedSingleton[feedType] = feed;
         logger(`Updated ${feedType} ids`);
       })
     )
-    .catch(reason => logger(`Error building feed: ${reason}`));
+    .catch((reason) => logger(`Error building feed: ${reason}`));
 };
 
 /* END NEWS ITEMS */
@@ -139,7 +139,7 @@ export function seedCache(delay) {
   // Delay seeding the cache so we don't spam in dev
   setTimeout(() => {
     logger('Seeding cache');
-    ['top', 'new', 'best', 'show', 'ask', 'job'].forEach(feedType => {
+    ['top', 'new', 'best', 'show', 'ask', 'job'].forEach((feedType) => {
       rebuildFeed(feedType);
     });
   }, delay);

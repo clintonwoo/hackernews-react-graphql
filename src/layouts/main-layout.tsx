@@ -18,7 +18,7 @@ interface IMainLayoutOwnProps {
   title?: string;
 }
 
-const MainLayoutView: React.SFC<IMainLayoutProps> = props => (
+const MainLayoutView: React.SFC<IMainLayoutProps> = (props) => (
   <div>
     <Head>
       <title>Hacker News Clone</title>

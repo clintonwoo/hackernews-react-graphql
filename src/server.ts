@@ -159,7 +159,7 @@ app
       console.log(`Dev: ${dev}`);
     });
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err.stack);
     process.exit(1);
   });

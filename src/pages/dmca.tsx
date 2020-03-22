@@ -17,7 +17,7 @@ const paragraphStyle2 = {
 };
 const bSpanStyle = { fontSize: '13.5pt', fontFamily: 'Helvetica', color: '#444444' };
 
-export const DMCAPage = props => (
+export const DMCAPage = (props) => (
   <Blank>
     <Head>
       <link rel="stylesheet" type="text/css" href="/static/dmca.css" />

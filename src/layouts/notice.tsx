@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-export const Notice: React.SFC = props => (
+export const Notice: React.SFC = (props) => (
   <div>
     <Head>
       <title>Hacker News Clone</title>

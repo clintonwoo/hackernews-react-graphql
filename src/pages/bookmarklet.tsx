@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Notice } from '../layouts/notice';
 
-export const BookmarkletPage = props => (
+export const BookmarkletPage = (props) => (
   <Notice>
     <b>Bookmarklet</b>
     <br />

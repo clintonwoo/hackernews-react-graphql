@@ -73,12 +73,12 @@ export class NewsItem {
     this.url = fields.url;
   }
 
-  static getNewsItem = id => cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
+  static getNewsItem = (id) => cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
 
-  static getNewsItems = ids =>
-    Promise.all(ids.map(id => NewsItem.getNewsItem(id)))
-      .then(newsItems => newsItems.filter(newsItem => newsItem !== undefined))
-      .catch(reason => logger(`Rejected News Items: ${reason}`));
+  static getNewsItems = (ids) =>
+    Promise.all(ids.map((id) => NewsItem.getNewsItem(id)))
+      .then((newsItems) => newsItems.filter((newsItem) => newsItem !== undefined))
+      .catch((reason) => logger(`Rejected News Items: ${reason}`));
 
   static upvoteNewsItem = (id, userId) => DB.upvoteNewsItem(id, userId);
 
