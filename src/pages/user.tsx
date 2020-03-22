@@ -6,7 +6,7 @@ import renderHTML from 'react-render-html';
 
 import { UserModel } from '../data/models';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { BlankLayout } from '../layouts/blank-layout';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -324,13 +324,13 @@ const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUser
   }
 )(UserPageView);
 
-export const UserPage = withData((props) => {
-  const userId = (props.dataContext.query && props.dataContext.query.id) || '';
+export const UserPage = withDataAndRouter(props => {
+  const userId = (props.router.query && props.router.query.id) || '';
 
   return (
     <UserPageWithGraphQL
       options={{
-        currentUrl: props.dataContext.pathname,
+        currentUrl: props.router.pathname,
         id: userId,
       }}
     />

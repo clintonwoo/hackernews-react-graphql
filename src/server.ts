@@ -6,6 +6,7 @@ import session from 'express-session';
 import nextApp from 'next';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
+import { parse } from 'url';
 
 import { seedCache } from './data/hn-data-api';
 import { UserModel, FeedType } from './data/models';
@@ -161,7 +162,13 @@ app
       app.render(req, res, actualPage);
     });
 
-    expressServer.get('*', (req, res) => handle(req, res));
+    expressServer.get('*', (req, res) => {
+      // Be sure to pass `true` as the second argument to `url.parse`.
+      // This tells it to parse the query portion of the URL.
+      const parsedUrl = parse(req.url, true);
+      const { pathname, query } = parsedUrl;
+      handle(req, res, parsedUrl);
+    });
 
     /* END EXPRESS ROUTES */
 
@@ -172,7 +179,7 @@ app
       console.log(`Dev: ${dev}`);
     });
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err.stack);
     process.exit(1);
   });

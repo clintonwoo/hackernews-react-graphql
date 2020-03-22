@@ -8,7 +8,7 @@ import {
   INewsFeedData,
   INewsFeedContainerProps,
 } from '../components/news-feed';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -42,14 +42,14 @@ const NewestNewsFeed = graphql<INewestNewsFeedOwnProps, INewsFeedData, {}, INews
   }
 )(NewsFeed);
 
-export const FavoritesPage = withData((props) => {
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const FavoritesPage = withDataAndRouter(props => {
+  const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
   return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
+    <MainLayout currentUrl={props.router.pathname}>
       <NewestNewsFeed
         options={{
-          currentUrl: props.dataContext.pathname,
+          currentUrl: props.router.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}

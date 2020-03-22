@@ -1,10 +1,11 @@
 import { gql } from 'apollo-server-express';
 import Link from 'next/link';
+import { withRouter, NextRouter } from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
 import { UserLoginErrorCode } from '../helpers/user-login-error-code';
-import { withData, IWithDataContext } from '../helpers/with-data';
+import { withDataAndRouter, IWithDataContext } from '../helpers/with-data';
 import { BlankLayout } from '../layouts/blank-layout';
 
 interface IForgotPageProps extends IForgotPageOwnProps {
@@ -12,12 +13,12 @@ interface IForgotPageProps extends IForgotPageOwnProps {
 }
 
 interface IForgotPageOwnProps {
-  dataContext: IWithDataContext<{ how: UserLoginErrorCode }>;
+  router: NextRouter; // { how: UserLoginErrorCode }
 }
 
-const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext: url }) => {
+const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, router }) => {
   let message: string | undefined;
-  switch (url && url.query.how) {
+  switch (router && router.query.how) {
     case 'up':
       message = 'You have to be logged in to vote.';
       break;
@@ -33,6 +34,7 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext
   const onPasswordChange = (e) => {
     pass = e.target.value;
   };
+
   return (
     <BlankLayout>
       {message && <div>{message}</div>}
@@ -132,7 +134,7 @@ const ForgotPageWithGraphql = graphql<IForgotPageOwnProps, {}, {}, IForgotPagePr
   {
     props: ({ ownProps, mutate }) => ({
       ...ownProps,
-      registerUser: (id: string, password: string): Promise<void> => {
+      registerUser: (id: string, password: string): Promise<any> => {
         return (
           mutate!({
             variables: { id, password },
@@ -141,13 +143,13 @@ const ForgotPageWithGraphql = graphql<IForgotPageOwnProps, {}, {}, IForgotPagePr
             .catch((reason) => console.error(reason))
         );
       },
-      dataContext: ownProps.dataContext,
+      router: ownProps.router,
     }),
   }
 )(ForgotPageView);
 
-export const ForgotPage = withData((props) => (
-  <ForgotPageWithGraphql dataContext={props.dataContext} />
-));
+export const ForgotPage = withDataAndRouter(
+  withRouter((props) => <ForgotPageWithGraphql router={props.router} />)
+);
 
 export default ForgotPage;

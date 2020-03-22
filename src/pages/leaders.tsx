@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
-export const LeadersPage = withData((props) => (
-  <MainLayout currentUrl={props.dataContext.pathname}>
+export const LeadersPage = withDataAndRouter(props => (
+  <MainLayout currentUrl={props.router.pathname}>
     <span>total</span>
   </MainLayout>
 ));

@@ -9,7 +9,7 @@ import {
   INewsFeedData,
 } from '../components/news-feed';
 import { FeedType } from '../data/models';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -45,14 +45,14 @@ const AskPageNewsFeedWithGraphQL = graphql<
   },
 })(NewsFeed);
 
-export const AskPage = withData((props) => {
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const AskPage = withDataAndRouter(props => {
+  const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
   return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
+    <MainLayout currentUrl={props.router.pathname}>
       <AskPageNewsFeedWithGraphQL
         options={{
-          currentUrl: props.dataContext.pathname,
+          currentUrl: props.router.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}

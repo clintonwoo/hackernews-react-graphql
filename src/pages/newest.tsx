@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-express';
+import { withRouter } from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
@@ -8,7 +9,7 @@ import {
   INewsFeedData,
   INewsFeedContainerProps,
 } from '../components/news-feed';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -42,21 +43,22 @@ const NewestNewsFeed = graphql<INewestNewsFeedProps, INewsFeedData, {}, INewsFee
   }
 )(NewsFeed);
 
-export const NewestPage = withData((props) => {
-  console.log(props);
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const NewestPage = withDataAndRouter(
+  withRouter(props => {
+    const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
-  return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
-      <NewestNewsFeed
-        options={{
-          currentUrl: props.dataContext.pathname,
-          first: POSTS_PER_PAGE,
-          skip: POSTS_PER_PAGE * pageNumber,
-        }}
-      />
-    </MainLayout>
-  );
-});
+    return (
+      <MainLayout currentUrl={props.router.pathname}>
+        <NewestNewsFeed
+          options={{
+            currentUrl: props.router.pathname,
+            first: POSTS_PER_PAGE,
+            skip: POSTS_PER_PAGE * pageNumber,
+          }}
+        />
+      </MainLayout>
+    );
+  })
+);
 
 export default NewestPage;

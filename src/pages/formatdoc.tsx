@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import { MainLayout } from '../layouts/main-layout';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 
-export const FormatDocPage = withData((props) => (
+export const FormatDocPage = withDataAndRouter(props => (
   <MainLayout
     isFooterVisible={false}
     isNavVisible={false}
-    currentUrl={props.dataContext.pathname}
+    currentUrl={props.router.pathname}
     title="Formatting Options"
   >
     <tr>

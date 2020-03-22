@@ -9,7 +9,7 @@ import {
   INewsFeedData,
   INewsFeedContainerProps,
 } from '../components/news-feed';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -46,8 +46,8 @@ const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps, INewsFeedData, {}, INewsFee
   }
 )(NewsFeed);
 
-export const ShowHNPage = withData((props) => {
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const ShowHNPage = withDataAndRouter(props => {
+  const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
   const notice = (
     <>
@@ -75,10 +75,10 @@ export const ShowHNPage = withData((props) => {
   );
 
   return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
+    <MainLayout currentUrl={props.router.pathname}>
       <ShowHNNewsFeed
         options={{
-          currentUrl: props.dataContext.pathname,
+          currentUrl: props.router.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
           notice,

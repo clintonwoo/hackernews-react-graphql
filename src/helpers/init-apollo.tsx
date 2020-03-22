@@ -18,7 +18,7 @@ if (!(process as any).browser) {
   global.fetch = fetch;
 }
 
-function create(initialState, { getToken }) {
+function create(initialState, { getToken }): ApolloClient<NormalizedCacheObject> {
   return new ApolloClient({
     ssrMode: !(process as any).browser, // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
@@ -34,7 +34,7 @@ function create(initialState, { getToken }) {
   });
 }
 
-export function initApollo(initialState, options) {
+export function initApollo(initialState, options): ApolloClient<NormalizedCacheObject> {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!(process as any).browser) {

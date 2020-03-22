@@ -9,7 +9,7 @@ import {
   INewsFeedContainerProps,
 } from '../components/news-feed';
 import { FeedType } from '../data/models';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -43,14 +43,14 @@ const BestNewsFeed = graphql<IBestNewsFeedProps, INewsFeedData, {}, INewsFeedCon
   }
 )(NewsFeed);
 
-export const BestPage = withData((props) => {
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const BestPage = withDataAndRouter(props => {
+  const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
   return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
+    <MainLayout currentUrl={props.router.pathname}>
       <BestNewsFeed
         options={{
-          currentUrl: props.dataContext.pathname,
+          currentUrl: props.router.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}

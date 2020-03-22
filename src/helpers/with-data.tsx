@@ -3,6 +3,7 @@ import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory/lib/types';
 import * as cookie from 'cookie';
 import { debug } from 'debug';
+import { withRouter } from 'next/router';
 import * as React from 'react';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 
@@ -79,17 +80,19 @@ export function withData<TProps extends IWithDataProps>(
           return undefined;
         }
 
-        // Provide the dataContext prop in case a GraphQL query uses it
-        const dataContext: IWithDataContext = { query: context.query, pathname: context.pathname };
+        // Provide the router prop in case a page needs it to render
+        const router: IWithDataContext = { query: context.query, pathname: context.pathname };
 
         // Run all GraphQL queries
         const app = (
           <ApolloProvider client={apollo}>
-            <ComposedComponent dataContext={dataContext} {...childInitialProps} />
+            <ComposedComponent router={router} {...childInitialProps} />
           </ApolloProvider>
         );
 
-        await getDataFromTree(app);
+        await getDataFromTree(app, {
+          router: { query: context.query, pathname: context.pathname, asPath: context.asPath },
+        });
 
         serverState = {
           apollo: {
@@ -114,3 +117,6 @@ export function withData<TProps extends IWithDataProps>(
     }
   };
 }
+
+const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
+export const withDataAndRouter = compose(withRouter, withData);

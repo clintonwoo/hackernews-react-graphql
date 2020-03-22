@@ -8,7 +8,7 @@ import {
   INewsFeedData,
   INewsFeedContainerProps,
 } from '../components/news-feed';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const POSTS_PER_PAGE = 30;
@@ -43,8 +43,8 @@ const JobNewsFeed = graphql<IJobsPageOwnProps, INewsFeedData, {}, INewsFeedConta
   },
 })(NewsFeed);
 
-export const JobsPage = withData((props) => {
-  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
+export const JobsPage = withDataAndRouter(props => {
+  const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
   const notice = (
     <>
@@ -68,10 +68,10 @@ export const JobsPage = withData((props) => {
   );
 
   return (
-    <MainLayout currentUrl={props.dataContext.pathname}>
+    <MainLayout currentUrl={props.router.pathname}>
       <JobNewsFeed
         options={{
-          currentUrl: props.dataContext.pathname,
+          currentUrl: props.router.pathname,
           first: POSTS_PER_PAGE,
           isJobListing: true,
           isRankVisible: false,

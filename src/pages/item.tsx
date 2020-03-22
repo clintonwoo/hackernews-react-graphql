@@ -1,5 +1,4 @@
 import { gql } from 'apollo-server-express';
-import { useRouter } from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
@@ -11,7 +10,7 @@ import {
 } from '../components/news-item-with-comments';
 import { newsTitleFragment } from '../components/news-title';
 import { NewsItemModel } from '../data/models';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 export interface INewsItemWithCommentsQuery {
@@ -57,14 +56,16 @@ const NewsItemWithCommentsWithGraphQL = graphql<
   }),
 })(NewsItemWithComments);
 
-export const ItemPage = withData(() => {
-  const router = useRouter();
+export const ItemPage = withDataAndRouter(
+  (props): JSX.Element => {
+    const { router } = props;
 
-  return (
-    <MainLayout currentUrl={router.pathname}>
-      <NewsItemWithCommentsWithGraphQL id={(router.query && +router.query.id) || 0} />
-    </MainLayout>
-  );
-});
+    return (
+      <MainLayout currentUrl={router.pathname}>
+        <NewsItemWithCommentsWithGraphQL id={(router.query && +router.query.id) || 0} />
+      </MainLayout>
+    );
+  }
+);
 
 export default ItemPage;

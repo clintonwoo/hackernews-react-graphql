@@ -3,7 +3,7 @@ import * as React from 'react';
 import { graphql } from 'react-apollo';
 
 import { commentFragment } from '../components/comment';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 const query = gql`
@@ -20,7 +20,7 @@ const variables = {
   id: 100,
 };
 
-const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => {
+const ReplyPageView: React.FC = (props) => {
   const vote = () => {
     console.log('onclick');
   };
@@ -127,11 +127,11 @@ const ReplyToComment = graphql(query, {
   },
 })(ReplyPageView);
 
-export const ReplyToCommentPage = withData((props) => {
-  variables.id = (props.dataContext.query && +props.dataContext.query.id) || 0;
+export const ReplyToCommentPage = withDataAndRouter((props) => {
+  variables.id = (props.router.query && +props.router.query.id) || 0;
 
   return (
-    <MainLayout title="Add Comment" currentUrl={props.dataContext.pathname} isNavVisible={false}>
+    <MainLayout title="Add Comment" currentUrl={props.router.pathname} isNavVisible={false}>
       <ReplyToComment />
     </MainLayout>
   );

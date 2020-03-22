@@ -8,7 +8,7 @@ import {
   ISubmitNewsItemGraphQL,
   submitNewsItemMutation,
 } from '../data/mutations/submit-news-item-mutation';
-import { withData } from '../helpers/with-data';
+import { withDataAndRouter } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 interface ISubmitPageProps extends ISubmitPageOwnProps {
@@ -22,17 +22,17 @@ interface ISubmitPageOwnProps {
 function SubmitPageView(props: ISubmitPageProps): JSX.Element {
   const { currentUrl, submitNewsItem } = props;
 
-  let title: string | undefined;
+  let title = '';
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     title = e.target.value;
   };
 
-  let url: string | undefined;
+  let url = '';
   const onUrlChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     url = e.target.value;
   };
 
-  let text: string | undefined;
+  let text = '';
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     text = e.target.value;
   };
@@ -137,18 +137,18 @@ const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, IS
         mutate!({
           variables: { title, url, text },
         })
-          .then((res) => {
+          .then(res => {
             if (res && res.data) {
               Router.push(`/item?id=${res.data.submitNewsItem.id}`);
             }
           })
-          .catch((reason) => console.error(reason)),
+          .catch(reason => console.error(reason)),
     }),
   }
 )(SubmitPageView);
 
-export const SubmitPage = withData((props) => (
-  <PageWithData currentUrl={props.dataContext.pathname} />
+export const SubmitPage = withDataAndRouter(props => (
+  <PageWithData currentUrl={props.router.pathname} />
 ));
 
 export default SubmitPage;
