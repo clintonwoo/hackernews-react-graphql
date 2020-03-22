@@ -3,17 +3,18 @@ import { debug } from 'debug';
 import { cache } from './cache';
 import { FeedSingleton } from './models';
 import { sampleData } from './sample-data';
+import { NewsItem } from './models/news-item';
 
 const logger = debug('app:Database');
 logger.log = console.log.bind(console);
 
 /*                  BEGIN NEWS ITEMS                      */
 
-export function getNewsItem(id) {
+export function getNewsItem(id: number): NewsItem | undefined {
   return sampleData.newsItems.find(newsItem => newsItem.id === id);
 }
 
-export function createNewsItem(newsItem) {
+export function createNewsItem(newsItem: NewsItem): NewsItem {
   sampleData.newsItems.push(newsItem);
 
   return newsItem;
@@ -21,7 +22,7 @@ export function createNewsItem(newsItem) {
 
 //                  NEWS ITEM MUTATIONS
 
-export function upvoteNewsItem(id, userId) {
+export function upvoteNewsItem(id: number, userId: string): NewsItem | undefined {
   // Upvote the News Item in the DB
   const newsItem = cache.getNewsItem(id);
 
@@ -34,7 +35,7 @@ export function upvoteNewsItem(id, userId) {
   return newsItem;
 }
 
-export function unvoteNewsItem(id, userId) {
+export function unvoteNewsItem(id: number, userId: string): NewsItem | undefined {
   const newsItem = cache.getNewsItem(id);
 
   if (newsItem && !newsItem.upvotes.includes(userId)) {
@@ -46,7 +47,7 @@ export function unvoteNewsItem(id, userId) {
   return newsItem;
 }
 
-export function hideNewsItem(id: number, userId) {
+export function hideNewsItem(id: number, userId: string): NewsItem {
   logger(`Hiding News Item ${id} by ${userId}`);
 
   const newsItem = cache.getNewsItem(id);
@@ -67,7 +68,7 @@ export function hideNewsItem(id: number, userId) {
   return newsItem;
 }
 
-export function submitNewsItem(id, newsItem) {
+export function submitNewsItem(id: number, newsItem: NewsItem) {
   // Submit the News Item in the DB
   if (cache.setNewsItem(id, newsItem)) {
     FeedSingleton.new.unshift(id);
@@ -82,22 +83,22 @@ export function submitNewsItem(id, newsItem) {
 
 /*                     BEGIN FEED                         */
 
-export function getNewNewsItems(first, skip) {
+export function getNewNewsItems(first: number, skip: number) {
   return sampleData.new.slice(skip, skip + first).map((postId, index) => ({
     ...getNewsItem(postId),
     rank: skip + index + 1,
   }));
 }
 
-export function getTopNewsItems(first, skip) {
+export function getTopNewsItems(first: number, skip: number) {
   return sampleData.newsItems.slice(skip, skip + first);
 }
 
-export function getHotNews() {
+export function getHotNews(): NewsItem[] {
   return sampleData.newsItems;
 }
 
-export function getNewsItems() {
+export function getNewsItems(): NewsItem[] {
   return sampleData.newsItems;
 }
 
@@ -105,7 +106,7 @@ export function getNewsItems() {
 
 /*                   BEGIN USERS                        */
 
-export function getUser(id) {
+export function getUser(id: string) {
   return sampleData.users.find(user => user.id === id);
 }
 
@@ -113,7 +114,7 @@ export function getUsers() {
   return sampleData.users;
 }
 
-export function createUser(user) {
+export function createUser(user: User) {
   sampleData.users.push(user);
 
   return user;

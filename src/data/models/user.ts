@@ -7,17 +7,29 @@ import { isValidNewUser, isValidUser } from '../validation/user';
 
 export class User {
   public readonly id: string;
+
   public readonly about: string;
+
   public readonly creationTime;
+
   public readonly dateOfBirth;
+
   public readonly email: string;
+
   public readonly firstName: string;
+
   public readonly hides;
+
   public readonly karma: number;
+
   public readonly lastName: string;
+
   public readonly likes;
+
   public readonly posts;
+
   public readonly hashedPassword: string;
+
   public readonly passwordSalt: string;
 
   constructor(props) {
@@ -41,11 +53,11 @@ export class User {
     this.passwordSalt = props.passwordSalt || undefined;
   }
 
-  static getUser = id => cache.getUser(id) || HNDB.fetchUser(id);
+  static getUser = (id: string) => cache.getUser(id) || HNDB.fetchUser(id);
 
-  static getPostsForUser = id => DB.getNewsItems().filter(newsItem => newsItem.submitterId === id);
+  static getPostsForUser = (id: string) => DB.getNewsItems().filter(newsItem => newsItem.submitterId === id);
 
-  static validPassword = async (id, password) => {
+  static validPassword = async (id: string, password: string) => {
     const user = cache.getUser(id);
     if (user) {
       return (await createHash(password, user.passwordSalt, passwordIterations)) === user.hashedPassword;
@@ -54,7 +66,7 @@ export class User {
     return false;
   };
 
-  static registerUser = async user => {
+  static registerUser = async (user: { id: string; password: string }) => {
     // Check if user is valid
     isValidNewUser(user);
 

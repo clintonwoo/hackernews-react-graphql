@@ -726,7 +726,6 @@ export const sampleData: {
   ],
   users: [
     {
-      // id: 1, // username is Primary Key
       id: 'clintonwoo', // Aka. username
       about: 'I am a software engineer who lives in New York.',
       creationTime: 1506024614000,
