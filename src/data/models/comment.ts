@@ -38,8 +38,8 @@ export class Comment {
   static getComment = (id: number): Comment | Promise<Comment | void> =>
     cache.getComment(id) || HNDB.fetchComment(id).catch(reason => logger(`Rejected comment: ${reason}`));
 
-  static getComments = (ids: number[]): Array<Promise<Comment>> =>
+  static getComments = (ids: number[]): Promise<Array<Comment> | void> =>
     Promise.all(ids.map(commentId => Comment.getComment(commentId)))
-      .then((comments): Comment[] => comments.filter(comment => comment !== undefined))
+      .then((comments): Comment[] => comments.filter((comment): comment is Comment => comment !== undefined))
       .catch(reason => logger(`Rejected comments: ${reason}`));
 }

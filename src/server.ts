@@ -37,9 +37,11 @@ app
           if (!user) {
             return done(null, false, { message: 'Incorrect username.' });
           }
+
           if (!(await User.validPassword(username, password))) {
             return done(null, false, { message: 'Incorrect password.' });
           }
+
           return done(null, user);
         }
       )
@@ -54,7 +56,7 @@ app
     passport.serializeUser((user: User, cb) => {
       cb(null, user.id);
     });
-    passport.deserializeUser(async (id, cb) => {
+    passport.deserializeUser(async (id: string, cb) => {
       const user = await User.getUser(id);
       cb(null, user || null);
     });

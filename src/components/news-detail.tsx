@@ -4,7 +4,7 @@ import Router from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { hideNewsItem } from '../data/mutations/hide-news-item';
+import { hideNewsItemMutation } from '../data/mutations/hide-news-item';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
 interface INewsDetailProps extends INewsDetailOwnProps {
@@ -41,10 +41,12 @@ export function NewsDetailView(props: INewsDetailProps): JSX.Element {
     commentCount,
     creationTime,
     hidden,
+    hideNewsItem,
     isFavoriteVisible,
     isJobListing,
     isPostScrutinyVisible,
     submitterId,
+    unhideNewsItem,
     upvoteCount,
   } = props;
 
@@ -74,15 +76,7 @@ export function NewsDetailView(props: INewsDetailProps): JSX.Element {
           </Link>
         </span>
         {' | '}
-        {hidden ? (
-          <a href="javascript:void(0)" onClick={() => hideNewsItem(id)}>
-            hide
-          </a>
-        ) : (
-          <a href="javascript:void(0)" onClick={() => unhideNewsItem(id)}>
-            hide
-          </a>
-        )}
+        {hidden ? <a onClick={() => hideNewsItem(id)}>hide</a> : <a onClick={() => unhideNewsItem(id)}>hide</a>}
         {isPostScrutinyVisible && (
           <span>
             {' | '}
@@ -95,18 +89,7 @@ export function NewsDetailView(props: INewsDetailProps): JSX.Element {
         )}
         {' | '}
         <Link href={`/item?id=${id}`}>
-          <a>
-            {(() => {
-              switch (commentCount) {
-                case 0:
-                  return 'discuss';
-                case 1:
-                  return '1 comment';
-                default:
-                  return `${commentCount} comments`;
-              }
-            })()}
-          </a>
+          <a>{commentCount === 0 ? 'discuss' : commentCount === 1 ? '1 comment' : `${commentCount} comments`}</a>
         </Link>
         {isFavoriteVisible && ' | favorite'}
       </td>
@@ -120,20 +103,18 @@ NewsDetailView.defaultProps = {
   isPostScrutinyVisible: false,
 };
 
-export const NewsDetail = graphql<INewsDetailOwnProps, {}, {}, INewsDetailProps>(gql(hideNewsItem), {
+export const NewsDetail = graphql<INewsDetailOwnProps, {}, {}, INewsDetailProps>(gql(hideNewsItemMutation), {
   props({ ownProps, mutate }) {
     return {
       ...ownProps,
-      hideNewsItem: (id: number): Promise<void> | void =>
-        mutate!({
-          variables: { id },
-        })
-          // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-          .catch(() => Router.push('/login', `/hide?id=${id}&how=up&goto=news`)),
-      unhideNewsItem: (id: number): Promise<void> | void =>
-        mutate!({
-          variables: { id },
-        }).catch(() => Router.push('/login', `/unhide?id=${id}&how=up&goto=news`)),
+      hideNewsItem: (id: number): Promise<any> =>
+        mutate!({ variables: { id } }).catch(() => {
+          Router.push('/login', `/hide?id=${id}&how=up&goto=news`);
+        }),
+      unhideNewsItem: (id: number): Promise<any> =>
+        mutate!({ variables: { id } }).catch(() => {
+          Router.push('/login', `/unhide?id=${id}&how=up&goto=news`);
+        }),
     };
   },
 })(NewsDetailView);

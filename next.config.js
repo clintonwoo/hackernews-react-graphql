@@ -1,6 +1,4 @@
-const withCSS = require('@zeit/next-css');
-
-module.exports = withCSS({
+module.exports = {
   async exportPathMap() {
     return {
       '/': { page: '/' },
@@ -48,8 +46,8 @@ module.exports = withCSS({
         ],
       });
     }
-    config.node = { net: {} };
+    config.node = { fs:'empty', net: 'empty' };
     return config;
   },
   cssModules: false,
-});
+};

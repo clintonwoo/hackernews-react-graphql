@@ -78,7 +78,7 @@ export class Comment extends React.Component<ICommentProps> {
                       </span>{' '}
                       <span id="unv_15238246" />
                       <span className="par" />{' '}
-                      <a className="togg" id="24" href="javascript:void(0)" onClick={toggle}>
+                      <a className="togg" id="24" onClick={toggle}>
                         [-]
                       </a>
                       <span className="storyon" />

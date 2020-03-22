@@ -40,7 +40,7 @@ export function NewsTitleView(props: INewsTitleProps): JSX.Element {
       <td style={{ verticalAlign: 'top' }} className="votelinks">
         <div style={{ textAlign: 'center' }}>
           {isUpvoteVisible && (
-            <a className={upvoted ? 'nosee' : ' '} onClick={() => props.upvoteNewsItem(id)} href="javascript:void(0)">
+            <a className={upvoted ? 'nosee' : ' '} onClick={() => props.upvoteNewsItem(id)}>
               <div className="votearrow" title="upvote" />
             </a>
           )}

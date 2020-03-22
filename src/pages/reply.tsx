@@ -60,7 +60,7 @@ const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => 
                       {' '}
                       | <a href="item?id=15260384">parent</a>
                     </span>
-                    <a className="togg" href="javascript:void(0)" onClick={toggle} />
+                    <a className="togg" onClick={toggle} />
                     <span className="storyon">
                       {' '}
                       | on: <a href="item?id=15260384">Electric dump truck stores as much energy as 8 Mod...</a>
@@ -118,7 +118,7 @@ const ReplyToComment = graphql(query, {
   },
 })(ReplyPageView);
 
-export const ReplyToCommentPage = withData(props => {
+export const ReplyToCommentPage = withData((props) => {
   variables.id = (props.url.query && +props.url.query.id) || 0;
 
   return (

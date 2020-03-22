@@ -1,7 +1,7 @@
 import { debug } from 'debug';
 
 import { cache } from './cache';
-import { FeedSingleton } from './models';
+import { FeedSingleton, User } from './models';
 import { sampleData } from './sample-data';
 import { NewsItem } from './models/news-item';
 
@@ -55,7 +55,7 @@ export function hideNewsItem(id: number, userId: string): NewsItem {
 
   if (user && !user.hides.includes(id) && newsItem && !newsItem.hides.includes(userId)) {
     user.hides.push(id);
-    cache.setUser(id, user);
+    cache.setUser(userId, user);
 
     newsItem.hides.push(userId);
     cache.setNewsItem(id, newsItem);

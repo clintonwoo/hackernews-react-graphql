@@ -201,7 +201,7 @@ export const sampleData: {
       submitterId: 'john',
       title: 'Clinton wins yet another time',
       text: "It's unbelievable.",
-      url: null,
+      url: undefined,
       upvotes: [],
       // upvoteCount: 0,
       hides: [],

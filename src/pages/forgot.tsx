@@ -31,10 +31,10 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
 
   let user = '';
   let pass = '';
-  const onUserChange = e => {
+  const onUserChange = (e) => {
     user = e.target.value;
   };
-  const onPasswordChange = e => {
+  const onPasswordChange = (e) => {
     pass = e.target.value;
   };
   return (
@@ -132,13 +132,13 @@ const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps
           variables: { id, password },
         })
           // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-          .catch(reason => console.error(reason))
+          .catch((reason) => console.error(reason))
       );
     },
     url: ownProps.url,
   }),
 })(ForgotPageView);
 
-export const ForgotPage = withData(props => <ForgotPageWithData url={props.url} />);
+export const ForgotPage = withData((props) => <ForgotPageWithData url={props.url} />);
 
 export default ForgotPage;

@@ -41,7 +41,7 @@ export class NewsItem {
 
   public readonly upvotes;
 
-  public readonly url: string;
+  public readonly url?: string;
 
   public readonly hidden?: boolean; // TODO: exists?
 
