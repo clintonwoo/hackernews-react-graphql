@@ -36,14 +36,14 @@ const NewestNewsFeed = graphql<IUpvotedPageProps, INewsFeedData, {}, INewsFeedCo
   },
 })(NewsFeed);
 
-export const UpvotedPage = withData(props => {
-  const pageNumber = (props.url.query && +props.url.query.p) || 0;
+export const UpvotedPage = withData((props) => {
+  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
 
   return (
-    <MainLayout currentUrl={props.url.pathname}>
+    <MainLayout currentUrl={props.dataContext.pathname}>
       <NewestNewsFeed
         options={{
-          currentUrl: props.url.pathname,
+          currentUrl: props.dataContext.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}

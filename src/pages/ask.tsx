@@ -35,14 +35,14 @@ const AskPageNewsFeedWithGraphQL = graphql<IAskPageProps, INewsFeedData, {}, INe
   },
 })(NewsFeed);
 
-export const AskPage = withData(props => {
-  const pageNumber = (props.url.query && +props.url.query.p) || 0;
+export const AskPage = withData((props) => {
+  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
 
   return (
-    <MainLayout currentUrl={props.url.pathname}>
+    <MainLayout currentUrl={props.dataContext.pathname}>
       <AskPageNewsFeedWithGraphQL
         options={{
-          currentUrl: props.url.pathname,
+          currentUrl: props.dataContext.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
         }}

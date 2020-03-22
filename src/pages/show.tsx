@@ -38,8 +38,8 @@ const ShowHNNewsFeed = graphql<IShowHNNewsFeedProps, INewsFeedData, {}, INewsFee
   },
 })(NewsFeed);
 
-export const ShowHNPage = withData(props => {
-  const pageNumber = (props.url.query && +props.url.query.p) || 0;
+export const ShowHNPage = withData((props) => {
+  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
 
   const notice = (
     <>
@@ -67,10 +67,10 @@ export const ShowHNPage = withData(props => {
   );
 
   return (
-    <MainLayout currentUrl={props.url.pathname}>
+    <MainLayout currentUrl={props.dataContext.pathname}>
       <ShowHNNewsFeed
         options={{
-          currentUrl: props.url.pathname,
+          currentUrl: props.dataContext.pathname,
           first: POSTS_PER_PAGE,
           skip: POSTS_PER_PAGE * pageNumber,
           notice,

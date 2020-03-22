@@ -38,8 +38,8 @@ const JobNewsFeed = graphql<IJobsPageOwnProps, INewsFeedData, {}, INewsFeedConta
   },
 })(NewsFeed);
 
-export const JobsPage = withData(props => {
-  const pageNumber = (props.url.query && +props.url.query.p) || 0;
+export const JobsPage = withData((props) => {
+  const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;
 
   const notice = (
     <>
@@ -62,10 +62,10 @@ export const JobsPage = withData(props => {
   );
 
   return (
-    <MainLayout currentUrl={props.url.pathname}>
+    <MainLayout currentUrl={props.dataContext.pathname}>
       <JobNewsFeed
         options={{
-          currentUrl: props.url.pathname,
+          currentUrl: props.dataContext.pathname,
           first: POSTS_PER_PAGE,
           isJobListing: true,
           isRankVisible: false,

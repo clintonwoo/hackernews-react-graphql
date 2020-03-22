@@ -53,9 +53,9 @@ const NewsItemWithCommentsWithGraphQL = graphql<
   }),
 })(NewsItemWithComments);
 
-export const ItemPage = withData(props => (
-  <MainLayout currentUrl={props.url.pathname}>
-    <NewsItemWithCommentsWithGraphQL id={(props.url.query && +props.url.query.id) || 0} />
+export const ItemPage = withData((props) => (
+  <MainLayout currentUrl={props.dataContext.pathname}>
+    <NewsItemWithCommentsWithGraphQL id={(props.dataContext.query && +props.dataContext.query.id) || 0} />
   </MainLayout>
 ));
 

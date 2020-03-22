@@ -119,10 +119,10 @@ const ReplyToComment = graphql(query, {
 })(ReplyPageView);
 
 export const ReplyToCommentPage = withData((props) => {
-  variables.id = (props.url.query && +props.url.query.id) || 0;
+  variables.id = (props.dataContext.query && +props.dataContext.query.id) || 0;
 
   return (
-    <MainLayout title="Add Comment" currentUrl={props.url.pathname} isNavVisible={false}>
+    <MainLayout title="Add Comment" currentUrl={props.dataContext.pathname} isNavVisible={false}>
       <ReplyToComment />
     </MainLayout>
   );

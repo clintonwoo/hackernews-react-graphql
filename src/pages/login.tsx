@@ -7,18 +7,13 @@ import { graphql } from 'react-apollo';
 import { IMeQuery, meQuery } from '../data/queries/me-query';
 import { isValidNewUser } from '../data/validation/user';
 import { getUserLoginErrorCodeMessage, UserLoginErrorCode } from '../helpers/user-login-error-code';
-import { withData } from '../helpers/with-data';
+import { withData, IWithDataContext } from '../helpers/with-data';
 import { Blank } from '../layouts/blank';
 
 export interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
 
 export interface ILoginPageOwnProps {
-  url?: {
-    query: {
-      how: UserLoginErrorCode;
-      goto: string;
-    };
-  };
+  dataContext?: IWithDataContext<{ how: UserLoginErrorCode; goto: string }>;
 }
 
 export interface ILoginPageState {
@@ -47,7 +42,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   /* Login User */
-  private onLoginIDChange = e => {
+  private onLoginIDChange = (e) => {
     const { login } = this.state;
 
     this.setState({
@@ -58,7 +53,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  private onLoginPasswordChange = e => {
+  private onLoginPasswordChange = (e) => {
     const { login } = this.state;
 
     this.setState({
@@ -70,7 +65,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   /* Register New User */
-  private onRegisterIDChange = e => {
+  private onRegisterIDChange = (e) => {
     const { register } = this.state;
 
     this.setState({
@@ -81,7 +76,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  private onRegisterPasswordChange = e => {
+  private onRegisterPasswordChange = (e) => {
     this.setState({
       register: {
         id: this.state.register.id,
@@ -90,7 +85,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  private validateLogin = e => {
+  private validateLogin = (e) => {
     const { me } = this.props;
     const { login } = this.state;
 
@@ -107,7 +102,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     }
   };
 
-  private validateRegister = e => {
+  private validateRegister = (e) => {
     const { me } = this.props;
     const { register } = this.state;
 
@@ -125,7 +120,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   };
 
   public render(): JSX.Element {
-    const { url } = this.props;
+    const { dataContext: url } = this.props;
     const { validationMessage } = this.state;
 
     let message = '';
@@ -140,7 +135,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
         <b>Login</b>
         <br />
         <br />
-        <form method="post" action="/login" onSubmit={e => this.validateLogin(e)} style={{ marginBottom: '1em' }}>
+        <form method="post" action="/login" onSubmit={(e) => this.validateLogin(e)} style={{ marginBottom: '1em' }}>
           <input type="hidden" name="goto" value={(url && url.query.goto) || 'news'} />
           <table style={{ border: '0px' }}>
             <tbody>
@@ -178,7 +173,12 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
         <b>Create Account</b>
         <br />
         <br />
-        <form method="post" action="/register" onSubmit={e => this.validateRegister(e)} style={{ marginBottom: '1em' }}>
+        <form
+          method="post"
+          action="/register"
+          onSubmit={(e) => this.validateRegister(e)}
+          style={{ marginBottom: '1em' }}
+        >
           <table style={{ border: '0px' }}>
             <tbody>
               <tr>
@@ -211,7 +211,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
   }
 }
 
-const PageWithQuery = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(gql(meQuery), {
+const LoginPageWithGraphql = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(gql(meQuery), {
   options: {},
   props: ({ ownProps, data }) => ({
     ...ownProps,
@@ -219,6 +219,6 @@ const PageWithQuery = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>
   }),
 })(LoginPageView);
 
-export const LoginPage = withData(props => <PageWithQuery url={props.url} />);
+export const LoginPage = withData((props) => <LoginPageWithGraphql dataContext={props.dataContext} />);
 
 export default LoginPage;

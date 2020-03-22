@@ -3,8 +3,13 @@ import * as React from 'react';
 import { MainLayout } from '../layouts/main-layout';
 import { withData } from '../helpers/with-data';
 
-export const FormatDocPage = withData(props => (
-  <MainLayout isFooterVisible={false} isNavVisible={false} currentUrl={props.url.pathname} title="Formatting Options">
+export const FormatDocPage = withData((props) => (
+  <MainLayout
+    isFooterVisible={false}
+    isNavVisible={false}
+    currentUrl={props.dataContext.pathname}
+    title="Formatting Options"
+  >
     <tr>
       <td>
         <span className="admin">

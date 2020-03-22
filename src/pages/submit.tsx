@@ -118,16 +118,16 @@ const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, IS
         mutate!({
           variables: { title, url, text },
         })
-          .then(res => {
+          .then((res) => {
             if (res && res.data) {
               Router.push(`/item?id=${res.data.submitNewsItem.id}`);
             }
           })
-          .catch(reason => console.error(reason)),
+          .catch((reason) => console.error(reason)),
     }),
   }
 )(SubmitPageView);
 
-export const SubmitPage = withData(props => <PageWithData currentUrl={props.url.pathname} />);
+export const SubmitPage = withData((props) => <PageWithData currentUrl={props.dataContext.pathname} />);
 
 export default SubmitPage;

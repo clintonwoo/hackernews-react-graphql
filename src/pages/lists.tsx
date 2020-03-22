@@ -4,8 +4,8 @@ import * as React from 'react';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
-export const ListsPage = withData(props => (
-  <MainLayout currentUrl={props.url.pathname}>
+export const ListsPage = withData((props) => (
+  <MainLayout currentUrl={props.dataContext.pathname}>
     <tr>
       <td>
         <table style={{ borderSpacing: '7px 0px' }}>

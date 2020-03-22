@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql } from 'react-apollo';
 
 import { UserLoginErrorCode } from '../helpers/user-login-error-code';
-import { withData } from '../helpers/with-data';
+import { withData, IWithDataContext } from '../helpers/with-data';
 import { Blank } from '../layouts/blank';
 
 interface IForgotPageProps extends IForgotPageOwnProps {
@@ -12,14 +12,10 @@ interface IForgotPageProps extends IForgotPageOwnProps {
 }
 
 interface IForgotPageOwnProps {
-  url: {
-    query: {
-      how: UserLoginErrorCode;
-    };
-  };
+  dataContext: IWithDataContext<{ how: UserLoginErrorCode }>;
 }
 
-const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, url }) => {
+const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext: url }) => {
   let message: string | undefined;
   switch (url && url.query.how) {
     case 'up':
@@ -123,7 +119,7 @@ const registerUserMutation = gql`
   }
 `;
 
-const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUserMutation, {
+const ForgotPageWithGraphql = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUserMutation, {
   props: ({ ownProps, mutate }) => ({
     ...ownProps,
     registerUser: (id: string, password: string): Promise<void> => {
@@ -135,10 +131,10 @@ const ForgotPageWithData = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps
           .catch((reason) => console.error(reason))
       );
     },
-    url: ownProps.url,
+    dataContext: ownProps.dataContext,
   }),
 })(ForgotPageView);
 
-export const ForgotPage = withData((props) => <ForgotPageWithData url={props.url} />);
+export const ForgotPage = withData((props) => <ForgotPageWithGraphql dataContext={props.dataContext} />);
 
 export default ForgotPage;

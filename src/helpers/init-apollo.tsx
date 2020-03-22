@@ -41,7 +41,7 @@ export function initApollo(initialState, options) {
     return create(initialState, options);
   }
 
-  // Reuse client on the client-side
+  // Reuse client at module scope on the client-side
   if (!apolloClient) {
     apolloClient = create(initialState, options);
   }

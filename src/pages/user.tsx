@@ -315,13 +315,13 @@ const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUser
   }),
 })(UserPageView);
 
-export const UserPage = withData(props => {
-  const userId = (props.url.query && props.url.query.id) || '';
+export const UserPage = withData((props) => {
+  const userId = (props.dataContext.query && props.dataContext.query.id) || '';
 
   return (
     <UserPageWithGraphQL
       options={{
-        currentUrl: props.url.pathname,
+        currentUrl: props.dataContext.pathname,
         id: userId,
       }}
     />
