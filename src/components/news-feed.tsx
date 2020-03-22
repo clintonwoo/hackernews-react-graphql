@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataValue } from 'react-apollo';
 
-import { NewsItem } from '../data/models';
+import { NewsItemModel } from '../data/models';
 import { LoadingSpinner } from './loading-spinner';
 import { NewsDetail, newsDetailNewsItemFragment } from './news-detail';
 import { NewsTitle, newsTitleFragment } from './news-title';
@@ -9,7 +9,7 @@ import { NewsTitle, newsTitleFragment } from './news-title';
 export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
   first: number;
-  newsItems: NewsItem[];
+  newsItems: NewsItemModel[];
   notice?: JSX.Element;
   skip: number;
   isJobListing?: boolean;
@@ -84,7 +84,12 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
     <tr>
       <td style={{ padding: '0px' }}>
         <table
-          style={{ border: '0px', padding: '0px', borderCollapse: 'collapse', borderSpacing: '0px' }}
+          style={{
+            border: '0px',
+            padding: '0px',
+            borderCollapse: 'collapse',
+            borderSpacing: '0px',
+          }}
           className="itemlist"
         >
           <tbody>
@@ -115,7 +120,10 @@ export interface INewsFeedContainerProps {
   options;
 }
 
-export const NewsFeed: React.SFC<INewsFeedContainerProps> = ({ data: { error, feed }, options }) => {
+export const NewsFeed: React.SFC<INewsFeedContainerProps> = ({
+  data: { error, feed },
+  options,
+}) => {
   if (error) {
     return (
       <tr>

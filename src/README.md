@@ -2,7 +2,7 @@
 
 _src_ - Source code
 
-- _\_\_tests\_\__: Jest tests colocated in each folder.
+- \_\_\_tests\_\_\_: Jest tests colocated in each folder.
 - _.next_: Next build files containing code-split modules and assets.
 - _components_: React components with GraphQL fragments colocated in-file.
 - _data_: GraphQL Schema, HN Web APIs, cache, sample data.

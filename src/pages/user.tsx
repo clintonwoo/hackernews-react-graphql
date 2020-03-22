@@ -4,16 +4,16 @@ import * as React from 'react';
 import { graphql } from 'react-apollo';
 import renderHTML from 'react-render-html';
 
-import { User } from '../data/models';
+import { UserModel } from '../data/models';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 import { withData } from '../helpers/with-data';
-import { Blank } from '../layouts/blank';
+import { BlankLayout } from '../layouts/blank-layout';
 import { MainLayout } from '../layouts/main-layout';
 
 export interface IUserPageProps extends IUserPageOwnProps {
   loading: boolean;
   error;
-  user: User;
+  user: UserModel;
   me;
 }
 
@@ -26,10 +26,10 @@ interface IUserPageOwnProps {
 
 const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { currentUrl } }) => {
   if (error) {
-    return <Blank>Error loading news items.</Blank>;
+    return <BlankLayout>Error loading news items.</BlankLayout>;
   }
   if (!user) {
-    return <Blank>No such user.</Blank>;
+    return <BlankLayout>No such user.</BlankLayout>;
   }
 
   let about = user.about || '';
@@ -92,7 +92,13 @@ const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { c
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>email:</td>
                     <td>
-                      <input type="text" name="uemail" defaultValue={email} onChange={onEmailChange} size={60} />
+                      <input
+                        type="text"
+                        name="uemail"
+                        defaultValue={email}
+                        onChange={onEmailChange}
+                        size={60}
+                      />
                     </td>
                   </tr>
                   <tr>
@@ -300,20 +306,23 @@ const query = `
   }
 `;
 
-const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUserPageProps>(gql(query), {
-  options: ({ options: { id } }) => ({
-    variables: {
-      id,
-    },
-  }),
-  props: ({ ownProps, data }) => ({
-    ...ownProps,
-    loading: data?.loading!,
-    error: data?.error!,
-    user: data?.user!,
-    me: data?.me!,
-  }),
-})(UserPageView);
+const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUserPageProps>(
+  gql(query),
+  {
+    options: ({ options: { id } }) => ({
+      variables: {
+        id,
+      },
+    }),
+    props: ({ ownProps, data }) => ({
+      ...ownProps,
+      loading: data?.loading!,
+      error: data?.error!,
+      user: data?.user!,
+      me: data?.me!,
+    }),
+  }
+)(UserPageView);
 
 export const UserPage = withData((props) => {
   const userId = (props.dataContext.query && props.dataContext.query.id) || '';

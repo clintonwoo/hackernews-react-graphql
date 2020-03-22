@@ -74,9 +74,9 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
   <img alt="Hacker News Clone Architecture Overview" width="auto" height="400px" src="docs/HN-Clone-Architecture-overview.png">
 </p>
 
-_Server.js_ is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using `getInitialProps()` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
+_server.ts_ is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using `getServerSideProps()` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
 
-When the client receives the page it preloads next page JS designated with `<Link prefetch href="/">`. When the client navigates to the linked page it only needs to make a GraphQL query to render. _Great!_
+When the client loads the page it preloads next pages code from any `<Link href="/">`. When the client navigates to the next page it only needs to make one GraphQL query to render. _Great!_
 
 See more: <a href="https://github.com/zeit/next.js/">Next.js</a>,
 <a href="http://dev.apollodata.com/react/">Apollo GraphQL Client</a>

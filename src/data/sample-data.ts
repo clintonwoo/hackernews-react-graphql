@@ -3,18 +3,16 @@
 // Data Type: Comment, can be on a news item or another comment
 // Every time an upvote/downvote/comment is made, update the count
 
-import { NewsItem } from './models/news-item';
-import { Comment } from './models/comment';
-import { User } from './models/user';
+import { CommentModel, NewsItemModel, UserModel } from './models';
 
 export const sampleData: {
-  comments: Comment[];
+  comments: CommentModel[];
   top: number[];
   new: number[];
-  topStoriesCache: NewsItem[];
-  newStoriesCache: NewsItem[];
-  newsItems: NewsItem[];
-  users: User[];
+  topStoriesCache: NewsItemModel[];
+  newStoriesCache: NewsItemModel[];
+  newsItems: NewsItemModel[];
+  users: UserModel[];
 } = {
   /* A ranking of the hottest posts */
   top: [

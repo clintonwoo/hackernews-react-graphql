@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { NewsItem } from '../data/models/news-item';
+import { NewsItemModel } from '../data/models';
 import { Comment, commentFragment } from './comment';
 
 export interface ICommentsProps {
-  newsItem: NewsItem;
+  newsItem: NewsItemModel;
 }
 
 export const commentsFragment = `
@@ -32,8 +32,10 @@ export const commentsFragment = `
 `;
 
 export class Comments extends React.Component<ICommentsProps> {
-  renderComment = (comment, indent): JSX.Element => {
-    return <Comment key={comment.id} parentId={comment.parent} indentationLevel={indent} {...comment} />;
+  renderComment = (comment, indent: number): JSX.Element => {
+    return (
+      <Comment key={comment.id} parentId={comment.parent} indentationLevel={indent} {...comment} />
+    );
   };
 
   render(): JSX.Element {

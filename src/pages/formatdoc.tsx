@@ -20,12 +20,12 @@ export const FormatDocPage = withData((props) => (
                   <td>
                     Blank lines separate paragraphs.
                     <p>
-                      Text after a blank line that is indented by two or more spaces is reproduced verbatim. (This is
-                      intended for code.)
+                      Text after a blank line that is indented by two or more spaces is reproduced
+                      verbatim. (This is intended for code.)
                     </p>
                     <p>
-                      Text surrounded by asterisks is italicized, if the character after the first asterisk isn&#39;t
-                      whitespace.
+                      Text surrounded by asterisks is italicized, if the character after the first
+                      asterisk isn&#39;t whitespace.
                     </p>
                     <p>
                       Urls become links, except in the text field of a submission.

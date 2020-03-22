@@ -2,8 +2,13 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, newsFeedNewsItemFragment, INewsFeedData, INewsFeedContainerProps } from '../components/news-feed';
-import { FeedType } from '../data/models/feed';
+import {
+  NewsFeed,
+  newsFeedNewsItemFragment,
+  INewsFeedData,
+  INewsFeedContainerProps,
+} from '../components/news-feed';
+import { FeedType } from '../data/models';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -26,14 +31,17 @@ export interface IBestNewsFeedProps {
   };
 }
 
-const BestNewsFeed = graphql<IBestNewsFeedProps, INewsFeedData, {}, INewsFeedContainerProps>(query, {
-  options({ options: { first, skip } }) {
-    return { variables: { type: FeedType.BEST, first, skip } };
-  },
-  props({ ownProps, data }) {
-    return { ...ownProps, data: data! };
-  },
-})(NewsFeed);
+const BestNewsFeed = graphql<IBestNewsFeedProps, INewsFeedData, {}, INewsFeedContainerProps>(
+  query,
+  {
+    options({ options: { first, skip } }) {
+      return { variables: { type: FeedType.BEST, first, skip } };
+    },
+    props({ ownProps, data }) {
+      return { ...ownProps, data: data! };
+    },
+  }
+)(NewsFeed);
 
 export const BestPage = withData((props) => {
   const pageNumber = (props.dataContext.query && +props.dataContext.query.p) || 0;

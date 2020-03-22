@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql } from 'react-apollo';
 import { parse } from 'url';
 
-import { upvoteNewsItem } from '../data/mutations/upvote-news-item';
+import { upvoteNewsItemMutation } from '../data/mutations/upvote-news-item-mutation';
 
 export interface INewsTitleProps extends INewsItemOwnProps {
   upvoteNewsItem: (id: number) => void;
@@ -70,16 +70,19 @@ NewsTitleView.defaultProps = {
   isUpvoteVisible: true,
 };
 
-export const NewsTitle = graphql<INewsItemOwnProps, {}, {}, INewsTitleProps>(gql(upvoteNewsItem), {
-  props({ ownProps, mutate }) {
-    return {
-      ...ownProps,
-      upvoteNewsItem: (id: number) =>
-        mutate!({
-          variables: { id },
-        })
-          // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-          .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
-    };
-  },
-})(NewsTitleView);
+export const NewsTitle = graphql<INewsItemOwnProps, {}, {}, INewsTitleProps>(
+  gql(upvoteNewsItemMutation),
+  {
+    props({ ownProps, mutate }) {
+      return {
+        ...ownProps,
+        upvoteNewsItem: (id: number) =>
+          mutate!({
+            variables: { id },
+          })
+            // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+            .catch(() => Router.push('/login', `/vote?id=${id}&how=up&goto=news`)),
+      };
+    },
+  }
+)(NewsTitleView);

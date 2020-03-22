@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-import { Notice } from '../layouts/notice';
+import { NoticeLayout } from '../layouts/notice-layout';
 
 export const BookmarkletPage = (props) => (
-  <Notice>
+  <NoticeLayout>
     <b>Bookmarklet</b>
     <br />
     <br />
@@ -14,8 +14,8 @@ export const BookmarkletPage = (props) => (
         <Link href="/">
           <a>Hacker News</a>
         </Link>
-        . When you click on the bookmarklet, it will submit the page you&#39;re on. To install, drag this link to your
-        browser toolbar:
+        . When you click on the bookmarklet, it will submit the page you&#39;re on. To install, drag
+        this link to your browser toolbar:
         <br />
         <br />
       </p>
@@ -43,7 +43,7 @@ export const BookmarkletPage = (props) => (
         </span>
       </p>
     </div>
-  </Notice>
+  </NoticeLayout>
 );
 
 export default BookmarkletPage;

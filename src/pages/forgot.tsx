@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo';
 
 import { UserLoginErrorCode } from '../helpers/user-login-error-code';
 import { withData, IWithDataContext } from '../helpers/with-data';
-import { Blank } from '../layouts/blank';
+import { BlankLayout } from '../layouts/blank-layout';
 
 interface IForgotPageProps extends IForgotPageOwnProps {
   registerUser: (id: string, password: string) => void;
@@ -34,7 +34,7 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext
     pass = e.target.value;
   };
   return (
-    <Blank>
+    <BlankLayout>
       {message && <div>{message}</div>}
       <b>Login</b>
       <br />
@@ -76,7 +76,11 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext
       <b>Create Account</b>
       <br />
       <br />
-      <form method="post" action="/login" /* onSubmit={e => e.preventDefault()} */ style={{ marginBottom: '1em' }}>
+      <form
+        method="post"
+        action="/login"
+        /* onSubmit={e => e.preventDefault()} */ style={{ marginBottom: '1em' }}
+      >
         <input type="hidden" name="goto" value={`user?id=${user}`} />
         <input type="hidden" name="creating" value="true" />
         <table style={{ border: '0px' }}>
@@ -104,9 +108,13 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, dataContext
           </tbody>
         </table>
         <br />
-        <input type="submit" value="create account" onClick={(): void => registerUser(user, pass)} />
+        <input
+          type="submit"
+          value="create account"
+          onClick={(): void => registerUser(user, pass)}
+        />
       </form>
-    </Blank>
+    </BlankLayout>
   );
 };
 
@@ -119,22 +127,27 @@ const registerUserMutation = gql`
   }
 `;
 
-const ForgotPageWithGraphql = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(registerUserMutation, {
-  props: ({ ownProps, mutate }) => ({
-    ...ownProps,
-    registerUser: (id: string, password: string): Promise<void> => {
-      return (
-        mutate!({
-          variables: { id, password },
-        })
-          // .then(() => Router.push(`/login?id=${id}&password=${password}`))
-          .catch((reason) => console.error(reason))
-      );
-    },
-    dataContext: ownProps.dataContext,
-  }),
-})(ForgotPageView);
+const ForgotPageWithGraphql = graphql<IForgotPageOwnProps, {}, {}, IForgotPageProps>(
+  registerUserMutation,
+  {
+    props: ({ ownProps, mutate }) => ({
+      ...ownProps,
+      registerUser: (id: string, password: string): Promise<void> => {
+        return (
+          mutate!({
+            variables: { id, password },
+          })
+            // .then(() => Router.push(`/login?id=${id}&password=${password}`))
+            .catch((reason) => console.error(reason))
+        );
+      },
+      dataContext: ownProps.dataContext,
+    }),
+  }
+)(ForgotPageView);
 
-export const ForgotPage = withData((props) => <ForgotPageWithGraphql dataContext={props.dataContext} />);
+export const ForgotPage = withData((props) => (
+  <ForgotPageWithGraphql dataContext={props.dataContext} />
+));
 
 export default ForgotPage;

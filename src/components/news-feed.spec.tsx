@@ -9,7 +9,9 @@ MockDate.set(1506022129802);
 
 describe('NewsFeed component', () => {
   it('renders news items passed in as props', () => {
-    const wrapper = shallow(<NewsFeed newsItems={sampleData.newsItems} currentUrl="/" first={30} skip={0} />);
+    const wrapper = shallow(
+      <NewsFeed newsItems={sampleData.newsItems} currentUrl="/" first={30} skip={0} />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

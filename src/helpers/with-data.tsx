@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ApolloClient } from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory/lib/types';
 import * as cookie from 'cookie';
@@ -10,7 +11,12 @@ import { initApollo } from './init-apollo';
 const logger = debug('app:withData');
 logger.log = console.log.bind(console);
 
-function parseCookies(ctx: any = {}, options = {}) {
+function parseCookies(
+  ctx: any = {},
+  options = {}
+): {
+  [key: string]: string;
+} {
   const mycookie = cookie.parse(
     ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : '', // document.cookie,
     options
@@ -38,19 +44,22 @@ export type TComposedComponent<Props> = React.ComponentType<Props> & {
   getInitialProps?: (context, apollo) => any;
 };
 
-export function withData<Props extends IWithDataProps>(ComposedComponent: TComposedComponent<Props & any>) {
+export function withData<TProps extends IWithDataProps>(
+  ComposedComponent: TComposedComponent<TProps & any>
+): React.ComponentType<IWithDataProps> {
   return class WithData extends React.Component<IWithDataProps> {
     // Note: Apollo should never be used on the server side beyond the initial
-    // render within `getInitialProps()` above (since the entire prop tree
+    // render within `getInitialProps()` (since the entire prop tree
     // will be initialized there), meaning the below will only ever be
     // executed on the client.
-    private apollo: ApolloClient<NormalizedCacheObject> = initApollo(this.props.serverState.apollo.data, {
-      getToken: () => parseCookies(),
-    });
+    private apollo: ApolloClient<NormalizedCacheObject> = initApollo(
+      this.props.serverState.apollo.data,
+      { getToken: () => parseCookies() }
+    );
 
     static displayName = `WithData(${ComposedComponent.displayName})`;
 
-    static async getInitialProps(context) {
+    static async getInitialProps(context): Promise<{ serverState } | void> {
       let serverState: IWithDataServerState = { apollo: { data: {} } };
 
       // Setup a server-side one-time-use apollo client for initial props and
@@ -67,10 +76,10 @@ export function withData<Props extends IWithDataProps>(ComposedComponent: TCompo
       if (!(process as any).browser) {
         if (context.res && context.res.finished) {
           // When redirecting, the response is finished. No point in continuing to render
-          return;
+          return undefined;
         }
 
-        // Provide the `url` prop data in case a GraphQL query uses it
+        // Provide the dataContext prop in case a GraphQL query uses it
         const dataContext: IWithDataContext = { query: context.query, pathname: context.pathname };
 
         // Run all GraphQL queries

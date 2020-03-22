@@ -1,24 +1,29 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-import { Notice } from '../layouts/notice';
+import { NoticeLayout } from '../layouts/notice-layout';
 
-export const SecurityPage: React.FC = () => (
-  <Notice>
+export const SecurityPage = (): JSX.Element => (
+  <NoticeLayout>
     <b>Hacker News Security</b>
     <p>
       If you find a security hole, please let us know at{' '}
-      <a href="mailto:security@ycombinator.com">security@ycombinator.com</a>. We try to respond (with fixes!) as soon as
-      possible, and really appreciate the help.
+      <a href="mailto:security@ycombinator.com">security@ycombinator.com</a>. We try to respond
+      (with fixes!) as soon as possible, and really appreciate the help.
     </p>
-    <p>Thanks to the following people who have discovered and responsibly disclosed security holes in Hacker News:</p>
+    <p>
+      Thanks to the following people who have discovered and responsibly disclosed security holes in
+      Hacker News:
+    </p>
     <p>
       <b>
         20170430: <a href="http://www.michaelflaxman.com">Michael Flaxman</a>
       </b>
     </p>
     <ul>
-      <li>The minor version of bcrypt used for passwords was susceptible to a collision in some cases.</li>
+      <li>
+        The minor version of bcrypt used for passwords was susceptible to a collision in some cases.
+      </li>
     </ul>
     <p />
     <p>
@@ -69,7 +74,8 @@ export const SecurityPage: React.FC = () => (
     </p>
     <ul>
       <li>
-        An open redirect was possible by passing a URL with a mixed-case protocol as the <em>goto</em> parameter.
+        An open redirect was possible by passing a URL with a mixed-case protocol as the{' '}
+        <em>goto</em> parameter.
       </li>
     </ul>
     <p />
@@ -114,8 +120,8 @@ export const SecurityPage: React.FC = () => (
     </p>
     <ul>
       <li>
-        Information leaked during /r processing allowed an attacker to discover valid profile edit links and the user
-        for which they were valid.
+        Information leaked during /r processing allowed an attacker to discover valid profile edit
+        links and the user for which they were valid.
       </li>
       <li>
         <em>goto</em> parameters functioned as open redirects.
@@ -127,13 +133,16 @@ export const SecurityPage: React.FC = () => (
     </p>
     <ul>
       <li>
-        In rare cases some users&#39; profiles (including email addresses and password hashes) were mistakenly published
-        to the Firebase API.
+        In rare cases some users&#39; profiles (including email addresses and password hashes) were
+        mistakenly published to the Firebase API.
       </li>
     </ul>
     <p>
-      See <a href="https://news.ycombinator.com/item?id=8604586">https://news.ycombinator.com/item?id=8604586</a> for
-      details.
+      See{' '}
+      <a href="https://news.ycombinator.com/item?id=8604586">
+        https://news.ycombinator.com/item?id=8604586
+      </a>{' '}
+      for details.
     </p>
     <p />
     <p>
@@ -141,7 +150,8 @@ export const SecurityPage: React.FC = () => (
     </p>
     <ul>
       <li>
-        Some pages displaying forms were vulnerable to reflected XSS when provided malformed query string arguments.
+        Some pages displaying forms were vulnerable to reflected XSS when provided malformed query
+        string arguments.
       </li>
     </ul>
     <p />
@@ -174,7 +184,10 @@ export const SecurityPage: React.FC = () => (
       </b>
     </p>
     <ul>
-      <li>Incorrect handling of unauthenticated requests meant anyone could change rsvp status for Demo Day.</li>
+      <li>
+        Incorrect handling of unauthenticated requests meant anyone could change rsvp status for
+        Demo Day.
+      </li>
     </ul>
     <p />
     <p>
@@ -184,8 +197,9 @@ export const SecurityPage: React.FC = () => (
     </p>
     <ul>
       <li>
-        The state of the PRNG used to generate cookies could be determined from observed outputs. This allowed an
-        attacker to fairly easily determine valid user cookies and compromise accounts.
+        The state of the PRNG used to generate cookies could be determined from observed outputs.
+        This allowed an attacker to fairly easily determine valid user cookies and compromise
+        accounts.
       </li>
     </ul>
     <p>
@@ -197,11 +211,11 @@ export const SecurityPage: React.FC = () => (
     </p>
     <p />
     <p>
-      <b>Missing From This List?</b> If you reported a vulnerability to us and don&#39;t see your name, please shoot us
-      an email and we&#39;ll happily add you. We crawled through tons of emails trying to find all reports but
-      inevitably missed some.
+      <b>Missing From This List?</b> If you reported a vulnerability to us and don&#39;t see your
+      name, please shoot us an email and we&#39;ll happily add you. We crawled through tons of
+      emails trying to find all reports but inevitably missed some.
     </p>
-  </Notice>
+  </NoticeLayout>
 );
 
 export default SecurityPage;

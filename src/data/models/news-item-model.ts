@@ -1,15 +1,8 @@
-import { debug } from 'debug';
-
-import { cache } from '../cache';
-import * as HNDB from '../hn-data-api';
-import * as DB from '../database';
 import { isValidUrl } from '../../helpers/is-valid-url';
-
-const logger = debug('app:NewsItem');
 
 let newPostIdCounter = 100;
 
-export class NewsItem {
+export class NewsItemModel {
   /** ID of submitter */
   public readonly id: number;
 
@@ -48,14 +41,11 @@ export class NewsItem {
   constructor(fields) {
     if (!fields.id) {
       throw new Error(`Error instantiating News Item, id is required: ${fields.id}`);
-    }
-    if (!fields.submitterId) {
+    } else if (!fields.submitterId) {
       throw new Error(`Error instantiating News Item, submitterId is required: ${fields.id}`);
-    }
-    if (!fields.title) {
+    } else if (!fields.title) {
       throw new Error(`Error instantiating News Item, title is required: ${fields.id}`);
-    }
-    if (fields.url && !isValidUrl(fields.url)) {
+    } else if (fields.url && !isValidUrl(fields.url)) {
       throw new Error(`Error instantiating News Item ${fields.id}, invalid URL: ${fields.url}`);
     }
 
@@ -72,29 +62,4 @@ export class NewsItem {
     this.upvotes = fields.upvotes || [fields.submitterId];
     this.url = fields.url;
   }
-
-  static getNewsItem = (id) => cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
-
-  static getNewsItems = (ids) =>
-    Promise.all(ids.map((id) => NewsItem.getNewsItem(id)))
-      .then((newsItems) => newsItems.filter((newsItem) => newsItem !== undefined))
-      .catch((reason) => logger(`Rejected News Items: ${reason}`));
-
-  static upvoteNewsItem = (id, userId) => DB.upvoteNewsItem(id, userId);
-
-  static hideNewsItem = (id, userId) => DB.hideNewsItem(id, userId);
-
-  static submitNewsItem = ({ submitterId, title, text, url }) => {
-    const newsItem = new NewsItem({
-      id: newPostIdCounter += 1,
-      submitterId,
-      text,
-      title,
-      upvoteCount: 1,
-      upvotes: [submitterId],
-      url,
-    });
-
-    return DB.submitNewsItem(newsItem.id, newsItem);
-  };
 }

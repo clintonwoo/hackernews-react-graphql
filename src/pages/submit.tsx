@@ -4,7 +4,10 @@ import Router from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { ISubmitNewsItemGraphQL, submitNewsItemMutation } from '../data/mutations/submit-news-item';
+import {
+  ISubmitNewsItemGraphQL,
+  submitNewsItemMutation,
+} from '../data/mutations/submit-news-item-mutation';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -51,14 +54,26 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                 <tr>
                   <td>title</td>
                   <td>
-                    <input type="text" name="title" defaultValue="" size={50} onChange={onTitleChange} />
+                    <input
+                      type="text"
+                      name="title"
+                      defaultValue=""
+                      size={50}
+                      onChange={onTitleChange}
+                    />
                     <span style={{ marginLeft: '10px' }} />
                   </td>
                 </tr>
                 <tr>
                   <td>url</td>
                   <td>
-                    <input type="text" name="url" defaultValue="" size={50} onChange={onUrlChange} />
+                    <input
+                      type="text"
+                      name="url"
+                      defaultValue=""
+                      size={50}
+                      onChange={onUrlChange}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -80,15 +95,19 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                 <tr>
                   <td />
                   <td>
-                    <input type="submit" value="submit" onClick={(): void => submitNewsItem(title, url, text)} />
+                    <input
+                      type="submit"
+                      value="submit"
+                      onClick={(): void => submitNewsItem(title, url, text)}
+                    />
                   </td>
                 </tr>
                 <tr style={{ height: '20px' }} />
                 <tr>
                   <td />
                   <td>
-                    Leave url blank to submit a question for discussion. If there is no url, the text (if any) will
-                    appear at the top of the thread.
+                    Leave url blank to submit a question for discussion. If there is no url, the
+                    text (if any) will appear at the top of the thread.
                     <br />
                     <br />
                     You can also submit via{' '}
@@ -128,6 +147,8 @@ const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, IS
   }
 )(SubmitPageView);
 
-export const SubmitPage = withData((props) => <PageWithData currentUrl={props.dataContext.pathname} />);
+export const SubmitPage = withData((props) => (
+  <PageWithData currentUrl={props.dataContext.pathname} />
+));
 
 export default SubmitPage;

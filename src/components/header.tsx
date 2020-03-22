@@ -45,7 +45,11 @@ export function Header(props: IHeaderProps): JSX.Element {
                       <a>{me.id}</a>
                     </Link>
                     {` (${me.karma}) | `}
-                    <a href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}>logout</a>
+                    <a
+                      href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
+                    >
+                      logout
+                    </a>
                   </span>
                 ) : (
                   <span className="pagetop">

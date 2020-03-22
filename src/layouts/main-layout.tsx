@@ -18,37 +18,42 @@ interface IMainLayoutOwnProps {
   title?: string;
 }
 
-const MainLayoutView: React.SFC<IMainLayoutProps> = (props) => (
-  <div>
-    <Head>
-      <title>Hacker News Clone</title>
-      <meta name="referrer" content="origin" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link rel="stylesheet" type="text/css" href="/static/news.css" />
-      <link rel="shortcut icon" href="/static/favicon.ico" />
-    </Head>
-    <table
-      id="hnmain"
-      style={{
-        backgroundColor: '#f6f6ef',
-        border: '0px',
-        borderCollapse: 'collapse',
-        borderSpacing: '0px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        padding: '0px',
-        width: '85%',
-      }}
-    >
-      <tbody>
-        <Header currentUrl={props.currentUrl} isNavVisible={!!props.isNavVisible} me={props.me} title={props.title!} />
-        <tr style={{ height: '10px' }} />
-        {props.children}
-        {props.isFooterVisible && <Footer />}
-      </tbody>
-    </table>
-  </div>
-);
+function MainLayoutView(props: IMainLayoutProps): JSX.Element {
+  const { children, currentUrl, isNavVisible, me, isFooterVisible, title } = props;
+
+  return (
+    <div>
+      <Head>
+        <title>Hacker News Clone</title>
+        <meta name="referrer" content="origin" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="/static/news.css" />
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+      </Head>
+      <table
+        id="hnmain"
+        style={{
+          backgroundColor: '#f6f6ef',
+          border: '0px',
+          borderCollapse: 'collapse',
+          borderSpacing: '0px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          padding: '0px',
+          width: '85%',
+        }}
+      >
+        <tbody>
+          <Header currentUrl={currentUrl} isNavVisible={!!isNavVisible} me={me} title={title!} />
+          <tr style={{ height: '10px' }} />
+          {children}
+          {isFooterVisible && <Footer />}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 MainLayoutView.defaultProps = {
   isFooterVisible: true,
   isNavVisible: true,
@@ -57,9 +62,12 @@ MainLayoutView.defaultProps = {
   title: 'Hacker News',
 };
 
-export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, IMainLayoutProps>(gql(meQuery), {
-  props: ({ ownProps, data }) => ({
-    ...ownProps,
-    me: data?.me,
-  }),
-})(MainLayoutView);
+export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, IMainLayoutProps>(
+  gql(meQuery),
+  {
+    props: ({ ownProps, data }) => ({
+      ...ownProps,
+      me: data?.me,
+    }),
+  }
+)(MainLayoutView);

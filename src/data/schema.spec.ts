@@ -13,7 +13,8 @@ describe('GraphQL', () => {
           { id: sampleData.topStoriesCache[0].comments[0].id },
           {
             Comment: {
-              getComment: (id) => sampleData.topStoriesCache[0].comments.find((comment) => comment.id === id),
+              getComment: (id) =>
+                sampleData.topStoriesCache[0].comments.find((comment) => comment.id === id),
             },
           }
         );

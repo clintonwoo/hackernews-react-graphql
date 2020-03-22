@@ -1,20 +1,20 @@
 import { debug } from 'debug';
 
 import { cache } from './cache';
-import { FeedSingleton, User } from './models';
+import { NewsItemModel, UserModel } from './models';
 import { sampleData } from './sample-data';
-import { NewsItem } from './models/news-item';
+import { FeedSingleton } from './services';
 
 const logger = debug('app:Database');
 logger.log = console.log.bind(console);
 
 /*                  BEGIN NEWS ITEMS                      */
 
-export function getNewsItem(id: number): NewsItem | undefined {
+export function getNewsItem(id: number): NewsItemModel | undefined {
   return sampleData.newsItems.find((newsItem) => newsItem.id === id);
 }
 
-export function createNewsItem(newsItem: NewsItem): NewsItem {
+export function createNewsItem(newsItem: NewsItemModel): NewsItemModel {
   sampleData.newsItems.push(newsItem);
 
   return newsItem;
@@ -22,7 +22,7 @@ export function createNewsItem(newsItem: NewsItem): NewsItem {
 
 //                  NEWS ITEM MUTATIONS
 
-export function upvoteNewsItem(id: number, userId: string): NewsItem | undefined {
+export function upvoteNewsItem(id: number, userId: string): NewsItemModel | undefined {
   // Upvote the News Item in the DB
   const newsItem = cache.getNewsItem(id);
 
@@ -35,7 +35,7 @@ export function upvoteNewsItem(id: number, userId: string): NewsItem | undefined
   return newsItem;
 }
 
-export function unvoteNewsItem(id: number, userId: string): NewsItem | undefined {
+export function unvoteNewsItem(id: number, userId: string): NewsItemModel | undefined {
   const newsItem = cache.getNewsItem(id);
 
   if (newsItem && !newsItem.upvotes.includes(userId)) {
@@ -47,7 +47,7 @@ export function unvoteNewsItem(id: number, userId: string): NewsItem | undefined
   return newsItem;
 }
 
-export function hideNewsItem(id: number, userId: string): NewsItem {
+export function hideNewsItem(id: number, userId: string): NewsItemModel {
   logger(`Hiding News Item ${id} by ${userId}`);
 
   const newsItem = cache.getNewsItem(id);
@@ -68,7 +68,7 @@ export function hideNewsItem(id: number, userId: string): NewsItem {
   return newsItem;
 }
 
-export function submitNewsItem(id: number, newsItem: NewsItem) {
+export function submitNewsItem(id: number, newsItem: NewsItemModel) {
   // Submit the News Item in the DB
   if (cache.setNewsItem(id, newsItem)) {
     FeedSingleton.new.unshift(id);
@@ -94,11 +94,11 @@ export function getTopNewsItems(first: number, skip: number) {
   return sampleData.newsItems.slice(skip, skip + first);
 }
 
-export function getHotNews(): NewsItem[] {
+export function getHotNews(): NewsItemModel[] {
   return sampleData.newsItems;
 }
 
-export function getNewsItems(): NewsItem[] {
+export function getNewsItems(): NewsItemModel[] {
   return sampleData.newsItems;
 }
 
@@ -114,7 +114,7 @@ export function getUsers() {
   return sampleData.users;
 }
 
-export function createUser(user: User) {
+export function createUser(user: UserModel) {
   sampleData.users.push(user);
 
   return user;

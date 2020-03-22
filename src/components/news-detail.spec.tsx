@@ -13,7 +13,9 @@ MockDate.set(1506022129802);
 describe('NewsFeed component', () => {
   it('renders news items passed in as props', () => {
     const hideNewsItem = () => console.log('1');
-    const wrapper = shallow(<NewsDetail {...newsItem} hideNewsItem={hideNewsItem} isFavoriteVisible={false} />);
+    const wrapper = shallow(
+      <NewsDetail {...newsItem} hideNewsItem={hideNewsItem} isFavoriteVisible={false} />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

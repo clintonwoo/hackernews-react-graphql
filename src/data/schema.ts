@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
+import { NewsItemModel } from './models';
 
 // Read the complete docs for graphql-tools here:
 // http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
@@ -192,7 +193,7 @@ export const resolvers = {
   /*          QUERY RESOLVERS        */
 
   Query: {
-    comment: (_, { id }, context) => context.Comment.getComment(id),
+    comment: (_, { id }, context) => context.CommentService.getComment(id),
 
     feed(root, { type, first, skip }, context) {
       // Could put this constant limit of 30 items into config
@@ -202,12 +203,12 @@ export const resolvers = {
 
     me: (_, __, context) => {
       logger('Me: userId:', context.userId);
-      return context.userId && context.User.getUser(context.userId);
+      return context.userId && context.UserService.getUser(context.userId);
     },
 
-    newsItem: (_, { id }, context) => context.NewsItem.getNewsItem(id),
+    newsItem: (_, { id }, context) => context.NewsItemService.getNewsItem(id),
 
-    user: (_, { id }, context) => context.User.getUser(id),
+    user: (_, { id }, context) => context.UserService.getUser(id),
   },
 
   /*       MUTATION RESOLVERS       */
@@ -215,25 +216,28 @@ export const resolvers = {
   Mutation: {
     upvoteNewsItem: (_, { id }, context) => {
       if (!context.userId) throw new Error('Must be logged in to vote.');
-      return context.NewsItem.upvoteNewsItem(id, context.userId);
+
+      return context.NewsItemService.upvoteNewsItem(id, context.userId);
     },
 
     hideNewsItem: (_, { id }, context) => {
       if (!context.userId) throw new Error('Must be logged in to hide post.');
-      return context.NewsItem.hideNewsItem(id, context.userId);
+
+      return context.NewsItemService.hideNewsItem(id, context.userId);
     },
 
     submitNewsItem: (_, newsItem, context) => {
       if (!context.userId) throw new Error('Must be logged in to submit a news item.');
-      return context.NewsItem.submitNewsItem({ ...newsItem, submitterId: context.userId });
+
+      return context.NewsItemService.submitNewsItem({ ...newsItem, submitterId: context.userId });
     },
   },
 
   /*       GRAPHQL TYPE RESOLVERS        */
 
   Comment: {
-    author: (comment, _, context) => context.User.getUser(comment.submitterId),
-    comments: (comment, _, context) => context.Comment.getComments(comment.comments),
+    author: (comment, _, context) => context.UserService.getUser(comment.submitterId),
+    comments: (comment, _, context) => context.CommentService.getComments(comment.comments),
     upvoted: (comment, _, context) => comment.upvotes.includes(context.userId),
   },
 
@@ -241,36 +245,32 @@ export const resolvers = {
     // http://dev.apollodata.com/tools/graphql-tools/scalars.html#Date-as-a-scalar
     name: 'Date',
     description: 'UTC number of milliseconds since midnight Jan 1 1970 as in JS date',
-    parseValue(value) {
+    parseValue(value): number {
       // Turn an input into a date which we want as a number
       // value from the client
       return new Date(value).valueOf();
     },
-    serialize(value) {
+    serialize(value): number {
       // Convert Date to number primitive .getTime() or .valueOf()
       // value sent to the client
-      if (value instanceof Date) return value.valueOf();
-      return value;
+      return value instanceof Date ? value.valueOf() : value;
     },
-    parseLiteral(ast) {
+    parseLiteral(ast): number | null {
       // ast value is always in string format
-      if (ast.kind === Kind.INT) {
-        // parseInt turns a string number into number of a certain base
-        return parseInt(ast.value, 10);
-      }
-      return null;
+      // parseInt turns a string number into number of a certain base
+      return ast.kind === Kind.INT ? parseInt(ast.value, 10) : null;
     },
   }),
 
   NewsItem: {
-    author: (newsItem, _, context) => context.User.getUser(newsItem.submitterId),
-    comments: (newsItem, _, context) => context.Comment.getComments(newsItem.comments),
-    hidden: (newsItem, _, context) => newsItem.hides.includes(context.userId),
-    upvoted: (newsItem, _, context) => newsItem.upvotes.includes(context.userId),
+    author: (newsItem, _, context) => context.UserService.getUser(newsItem.submitterId),
+    comments: (newsItem, _, context) => context.CommentService.getComments(newsItem.comments),
+    hidden: (newsItem: NewsItemModel, _, context) => newsItem.hides.includes(context.userId),
+    upvoted: (newsItem: NewsItemModel, _, context) => newsItem.upvotes.includes(context.userId),
   },
 
   User: {
-    posts: (user, _, context) => context.User.getPostsForUser(user.id),
+    posts: (user, _, context) => context.UserService.getPostsForUser(user.id),
   },
 };
 

@@ -1,4 +1,4 @@
-export const upvoteNewsItem = `
+export const upvoteNewsItemMutation = `
   mutation UpvoteNewsItem($id: Int!) {
     upvoteNewsItem(id: $id) {
       id

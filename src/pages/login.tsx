@@ -6,9 +6,12 @@ import { graphql } from 'react-apollo';
 
 import { IMeQuery, meQuery } from '../data/queries/me-query';
 import { isValidNewUser } from '../data/validation/user';
-import { getUserLoginErrorCodeMessage, UserLoginErrorCode } from '../helpers/user-login-error-code';
+import {
+  getErrorMessageForLoginErrorCode,
+  UserLoginErrorCode,
+} from '../helpers/user-login-error-code';
 import { withData, IWithDataContext } from '../helpers/with-data';
-import { Blank } from '../layouts/blank';
+import { BlankLayout } from '../layouts/blank-layout';
 
 export interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
 
@@ -125,17 +128,22 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
 
     let message = '';
     if (url && url.query.how) {
-      message = getUserLoginErrorCodeMessage(url.query.how);
+      message = getErrorMessageForLoginErrorCode(url.query.how);
     }
 
     return (
-      <Blank>
+      <BlankLayout>
         {message && <p>{message}</p>}
         {validationMessage && <p>{validationMessage}</p>}
         <b>Login</b>
         <br />
         <br />
-        <form method="post" action="/login" onSubmit={(e) => this.validateLogin(e)} style={{ marginBottom: '1em' }}>
+        <form
+          method="post"
+          action="/login"
+          onSubmit={(e) => this.validateLogin(e)}
+          style={{ marginBottom: '1em' }}
+        >
           <input type="hidden" name="goto" value={(url && url.query.goto) || 'news'} />
           <table style={{ border: '0px' }}>
             <tbody>
@@ -157,7 +165,12 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
               <tr>
                 <td>password:</td>
                 <td>
-                  <input type="password" name="password" onChange={this.onLoginPasswordChange} size={20} />
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={this.onLoginPasswordChange}
+                    size={20}
+                  />
                 </td>
               </tr>
             </tbody>
@@ -198,7 +211,12 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
               <tr>
                 <td>password:</td>
                 <td>
-                  <input type="password" name="password" onChange={this.onRegisterPasswordChange} size={20} />
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={this.onRegisterPasswordChange}
+                    size={20}
+                  />
                 </td>
               </tr>
             </tbody>
@@ -206,19 +224,24 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
           <br />
           <input type="submit" value="create account" />
         </form>
-      </Blank>
+      </BlankLayout>
     );
   }
 }
 
-const LoginPageWithGraphql = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(gql(meQuery), {
-  options: {},
-  props: ({ ownProps, data }) => ({
-    ...ownProps,
-    me: data?.me,
-  }),
-})(LoginPageView);
+const LoginPageWithGraphql = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(
+  gql(meQuery),
+  {
+    options: {},
+    props: ({ ownProps, data }) => ({
+      ...ownProps,
+      me: data?.me,
+    }),
+  }
+)(LoginPageView);
 
-export const LoginPage = withData((props) => <LoginPageWithGraphql dataContext={props.dataContext} />);
+export const LoginPage = withData((props) => (
+  <LoginPageWithGraphql dataContext={props.dataContext} />
+));
 
 export default LoginPage;

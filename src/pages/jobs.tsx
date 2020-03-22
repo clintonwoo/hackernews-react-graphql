@@ -2,7 +2,12 @@ import { gql } from 'apollo-server-express';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
-import { NewsFeed, newsFeedNewsItemFragment, INewsFeedData, INewsFeedContainerProps } from '../components/news-feed';
+import {
+  NewsFeed,
+  newsFeedNewsItemFragment,
+  INewsFeedData,
+  INewsFeedContainerProps,
+} from '../components/news-feed';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
@@ -50,7 +55,8 @@ export const JobsPage = withData((props) => {
           <img alt="" src="/static/s.gif" height="1" width="14" />
         </td>
         <td>
-          These are jobs at startups that were funded by Y Combinator. You can also get a job at a YC startup through{' '}
+          These are jobs at startups that were funded by Y Combinator. You can also get a job at a
+          YC startup through{' '}
           <a href="https://triplebyte.com/?ref=yc_jobs">
             <u>Triplebyte</u>
           </a>

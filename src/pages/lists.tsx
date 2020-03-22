@@ -25,8 +25,8 @@ export const ListsPage = withData((props) => (
                 </Link>
               </td>
               <td>
-                Front page submissions for a given day (e.g. <a href="/front?day=2016-06-20">2016-06-20</a>), ordered by
-                time spent there.
+                Front page submissions for a given day (e.g.{' '}
+                <a href="/front?day=2016-06-20">2016-06-20</a>), ordered by time spent there.
               </td>
             </tr>
             <tr>

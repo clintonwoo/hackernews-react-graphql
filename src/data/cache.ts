@@ -1,35 +1,23 @@
 import { debug } from 'debug';
 import LRU from 'lru-cache';
 
-import { FeedSingleton, NewsItem } from './models';
-import { FeedType } from './models/feed';
-import { User } from './models/user';
-import { Comment } from './models/comment';
+import { NewsItemModel, UserModel, CommentModel } from './models';
 
 const logger = debug('app:Cache');
 logger.log = console.log.bind(console);
 
 // The cache is a singleton
 
-export function warmCache(): void {
-  // Fetch the front pages
-  FeedSingleton.getForType(FeedType.TOP, 30, 0);
-  FeedSingleton.getForType(FeedType.NEW, 30, 0);
-
-  // Run every 15 mins
-  setTimeout(warmCache, 1000 * 60 * 15);
-}
-
 class Cache {
   isReady = false;
 
   /*                  BEGIN NEWS ITEMS                      */
 
-  getNewsItem(id: number): NewsItem | undefined {
+  getNewsItem(id: number): NewsItemModel | undefined {
     return this.newsItemsCache.get(id.toString());
   }
 
-  setNewsItem(id: number, newsItem: NewsItem): boolean {
+  setNewsItem(id: number, newsItem: NewsItemModel): boolean {
     return this.newsItemsCache.set(id.toString(), newsItem);
   }
 
@@ -37,17 +25,19 @@ class Cache {
 
   /*                   BEGIN USERS                        */
 
-  getUser(id): User | undefined {
+  getUser(id: string): UserModel | undefined {
     return this.userCache.get(id);
   }
 
-  getUsers(): Array<LRU.Entry<string, User>> {
+  getUsers(): Array<LRU.Entry<string, UserModel>> {
     return this.userCache.dump();
   }
 
-  setUser(id: string, user: User): User {
+  setUser(id: string, user: UserModel): UserModel {
     logger(`Cache set user ${user}`);
+
     this.userCache.set(id, user);
+
     return user;
   }
 
@@ -55,13 +45,15 @@ class Cache {
 
   /*                   BEGIN COMMENTS                        */
 
-  getComment(id: number): Comment | undefined {
+  getComment(id: number): CommentModel | undefined {
     return this.commentCache.get(id.toString());
   }
 
-  setComment(id: number, comment: Comment): Comment {
+  setComment(id: number, comment: CommentModel): CommentModel {
     this.commentCache.set(comment.id.toString(), comment);
+
     logger(`Cache set comment ${comment}`);
+
     return comment;
   }
 
@@ -69,22 +61,22 @@ class Cache {
 
   /*                   BEGIN CACHES                         */
 
-  newNewsItemsCache = new LRU<string, NewsItem>({
+  newNewsItemsCache = new LRU<string, NewsItemModel>({
     max: 500,
     maxAge: 1000 * 60 * 60, // 60 Minute cache: ms * s * m
   });
 
-  newsItemsCache = new LRU<string, NewsItem>({
+  newsItemsCache = new LRU<string, NewsItemModel>({
     max: 1000,
     maxAge: 1000 * 60 * 60, // 60 Minute cache: ms * s * m
   });
 
-  userCache = new LRU<string, User>({
+  userCache = new LRU<string, UserModel>({
     max: 500,
     maxAge: 1000 * 60 * 60 * 2, // 2 hour cache: ms * s * m
   });
 
-  commentCache = new LRU<string, Comment>({
+  commentCache = new LRU<string, CommentModel>({
     max: 5000,
     maxAge: 1000 * 60 * 60 * 1, // 1 hour cache: ms * s * m
   });

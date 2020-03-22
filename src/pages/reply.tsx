@@ -63,7 +63,10 @@ const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => 
                     <a className="togg" onClick={toggle} />
                     <span className="storyon">
                       {' '}
-                      | on: <a href="item?id=15260384">Electric dump truck stores as much energy as 8 Mod...</a>
+                      | on:{' '}
+                      <a href="item?id=15260384">
+                        Electric dump truck stores as much energy as 8 Mod...
+                      </a>
                     </span>
                   </span>
                 </div>
@@ -71,15 +74,17 @@ const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => 
                 <div className="comment">
                   <span className="c00">
                     <i>
-                      Because the vehicle is electric, there is no need to “heat up” the brakes when descending. This is
-                      because the enormous electric engine acts as a generator and recharges the battery pack. That same
-                      energy is then used to help the vehicle travel back up the hill. Phys reports, “If all goes as
-                      planned, the electric dumper truck will even harvest more electricity while traveling downhill
-                      than it needs for the ascent. Instead of consuming fossil fuels, it would then feed surplus
-                      electricity into the grid.”
+                      Because the vehicle is electric, there is no need to “heat up” the brakes when
+                      descending. This is because the enormous electric engine acts as a generator
+                      and recharges the battery pack. That same energy is then used to help the
+                      vehicle travel back up the hill. Phys reports, “If all goes as planned, the
+                      electric dumper truck will even harvest more electricity while traveling
+                      downhill than it needs for the ascent. Instead of consuming fossil fuels, it
+                      would then feed surplus electricity into the grid.”
                     </i>
                     <p>
-                      Clever. It can do this because it travels uphill empty and comes downhill full.
+                      Clever. It can do this because it travels uphill empty and comes downhill
+                      full.
                       <span />
                     </p>
                     <div className="reply" />
@@ -94,7 +99,11 @@ const ReplyPageView = ({ data: { loading, error, comment }, data, options }) => 
                 <form method="post" action="comment">
                   <input type="hidden" name="parent" value="15260438" />
                   <input type="hidden" name="goto" value="item?id=15260384#15260438" />
-                  <input type="hidden" name="hmac" value="d4cda96b7000a0e0cd578dde21feb6c9070cda8a" />
+                  <input
+                    type="hidden"
+                    name="hmac"
+                    value="d4cda96b7000a0e0cd578dde21feb6c9070cda8a"
+                  />
                   <textarea name="text" rows={6} cols={60} />
                   <br />
                   <br />

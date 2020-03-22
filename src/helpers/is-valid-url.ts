@@ -1,7 +1,7 @@
 /**
  * Returns whether a string is a valid URL
  */
-export const isValidUrl = (str: string): boolean => {
+export function isValidUrl(str: string): boolean {
   const pattern = new RegExp(
     '^' +
       // protocol identifier
@@ -41,4 +41,4 @@ export const isValidUrl = (str: string): boolean => {
   );
 
   return pattern.test(str);
-};
+}

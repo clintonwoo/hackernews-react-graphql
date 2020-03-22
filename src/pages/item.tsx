@@ -1,17 +1,21 @@
 import { gql } from 'apollo-server-express';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 
 import { commentsFragment } from '../components/comments';
 import { newsDetailNewsItemFragment } from '../components/news-detail';
-import { INewsItemWithCommentsProps, NewsItemWithComments } from '../components/news-item-with-comments';
+import {
+  INewsItemWithCommentsProps,
+  NewsItemWithComments,
+} from '../components/news-item-with-comments';
 import { newsTitleFragment } from '../components/news-title';
-import { NewsItem } from '../data/models';
+import { NewsItemModel } from '../data/models';
 import { withData } from '../helpers/with-data';
 import { MainLayout } from '../layouts/main-layout';
 
 export interface INewsItemWithCommentsQuery {
-  newsItem: NewsItem;
+  newsItem: NewsItemModel;
 }
 
 const newsItemWithCommentsQuery = gql`
@@ -53,10 +57,14 @@ const NewsItemWithCommentsWithGraphQL = graphql<
   }),
 })(NewsItemWithComments);
 
-export const ItemPage = withData((props) => (
-  <MainLayout currentUrl={props.dataContext.pathname}>
-    <NewsItemWithCommentsWithGraphQL id={(props.dataContext.query && +props.dataContext.query.id) || 0} />
-  </MainLayout>
-));
+export const ItemPage = withData(() => {
+  const router = useRouter();
+
+  return (
+    <MainLayout currentUrl={router.pathname}>
+      <NewsItemWithCommentsWithGraphQL id={(router.query && +router.query.id) || 0} />
+    </MainLayout>
+  );
+});
 
 export default ItemPage;

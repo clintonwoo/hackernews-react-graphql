@@ -8,10 +8,14 @@ import passport from 'passport';
 import { Strategy } from 'passport-local';
 
 import { seedCache } from './data/hn-data-api';
-import { Comment, FeedSingleton, NewsItem, User } from './data/models';
+import { UserModel, FeedType } from './data/models';
 import { resolvers, typeDefs } from './data/schema';
+import { CommentService, NewsItemService, FeedSingleton, UserService } from './data/services';
 
 import { APP_PORT, APP_URI, dev, GRAPHQL_URL, graphQLPath, useGraphqlPlayground } from './config';
+
+const FIFTEEN_MINUTES = 1000 * 60 * 15;
+const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 
 // Seed the in-memory data using the HN api
 const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
@@ -19,6 +23,14 @@ seedCache(delay);
 
 const app = nextApp({ dev });
 const handle = app.getRequestHandler();
+
+function warmCache(): void {
+  // Fetch the front pages
+  FeedSingleton.getForType(FeedType.TOP, 30, 0);
+  FeedSingleton.getForType(FeedType.NEW, 30, 0);
+
+  setTimeout(warmCache, FIFTEEN_MINUTES);
+}
 
 app
   .prepare()
@@ -33,12 +45,12 @@ app
           usernameField: 'id',
         },
         async (username, password, done) => {
-          const user = await User.getUser(username);
+          const user = await UserService.getUser(username);
           if (!user) {
             return done(null, false, { message: 'Incorrect username.' });
           }
 
-          if (!(await User.validPassword(username, password))) {
+          if (!(await UserService.validatePassword(username, password))) {
             return done(null, false, { message: 'Incorrect password.' });
           }
 
@@ -53,17 +65,18 @@ app
       subsequent requests are received, this ID is used to find the user,
       which will be restored to req.user.
     */
-    passport.serializeUser((user: User, cb) => {
+    passport.serializeUser((user: UserModel, cb) => {
       cb(null, user.id);
     });
     passport.deserializeUser(async (id: string, cb) => {
-      const user = await User.getUser(id);
+      const user = await UserService.getUser(id);
       cb(null, user || null);
     });
+
     expressServer.use(cookieParser('mysecret'));
     expressServer.use(
       session({
-        cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, // Requires https: secure: false
+        cookie: { maxAge: SEVEN_DAYS }, // Requires https: secure: false
         resave: false,
         rolling: true,
         saveUninitialized: false,
@@ -90,7 +103,7 @@ app
       async (req, res, next) => {
         if (!req.user) {
           try {
-            await User.registerUser({
+            await UserService.registerUser({
               id: req.body.id,
               password: req.body.password,
             });
@@ -119,11 +132,11 @@ app
 
     const apolloServer = new ApolloServer({
       context: ({ req }) => ({
-        Comment,
-        Feed: FeedSingleton,
-        NewsItem,
-        User,
-        userId: (req.user as User)?.id,
+        CommentService,
+        FeedSingleton,
+        NewsItemService,
+        UserService,
+        userId: (req.user as UserModel)?.id,
       }),
       introspection: true,
       playground: useGraphqlPlayground,
@@ -163,5 +176,7 @@ app
     console.error(err.stack);
     process.exit(1);
   });
+
+warmCache();
 
 export default app;

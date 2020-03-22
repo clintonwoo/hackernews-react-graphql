@@ -7,7 +7,7 @@ export enum UserLoginErrorCode {
   USERNAME_TAKEN = 'id',
 }
 
-const _userLoginErrorCodeMessages = {
+const userLoginErrorCodeMessages = {
   [UserLoginErrorCode.INCORRECT_PASSWORD]: 'Incorrect password.',
   [UserLoginErrorCode.INVALID_ID]: 'User ID must be between 3 and 32 characters.',
   [UserLoginErrorCode.LOGGED_IN]: 'Logged in user must logout before logging in again.',
@@ -16,6 +16,6 @@ const _userLoginErrorCodeMessages = {
   [UserLoginErrorCode.USERNAME_TAKEN]: 'Username is taken.',
 };
 
-export function getUserLoginErrorCodeMessage(code: UserLoginErrorCode): string {
-  return _userLoginErrorCodeMessages[code];
+export function getErrorMessageForLoginErrorCode(code: UserLoginErrorCode): string {
+  return userLoginErrorCodeMessages[code];
 }

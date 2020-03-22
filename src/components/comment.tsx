@@ -50,7 +50,9 @@ export class Comment extends React.Component<ICommentProps> {
                     alt=""
                     src="/static/s.gif"
                     height="1"
-                    width={`${indentationLevel * 40}px`} /* Width varies depending on comment level */
+                    width={`${
+                      indentationLevel * 40
+                    }px`} /* Width varies depending on comment level */
                   />
                 </td>
                 <td style={{ verticalAlign: 'top' }} className="votelinks">
