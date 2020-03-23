@@ -5,12 +5,12 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": ["es6", "es7", "dom", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
-    "outDir": "./build/app/",
+    "outDir": "build/app/",
     "removeComments": true,
     "sourceMap": true,
     "target": "ES5",
@@ -21,6 +21,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src", "src/server.ts"],
+  "include": ["pages", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "**/__mocks__*", "**/__tests__*", "**/*.spec.*", "out", ".next"]
 }

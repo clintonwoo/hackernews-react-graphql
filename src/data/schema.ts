@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
+
 import { NewsItemModel } from './models';
 
 // Read the complete docs for graphql-tools here:
@@ -45,22 +46,22 @@ export const typeDefs = gql(`
   # A list of options for the sort order of the feed
   enum FeedType {
     # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
-    TOP
+    top
   
     # Newest entries first
-    NEW
+    new
 
     # Sort by score
-    BEST
+    best
 
     # SHOW HN articles
-    SHOW
+    show
 
     # ASK HN articles
-    ASK
+    ask
 
     # Job listings
-    JOB
+    job
   }
   
   type NewsItem {
@@ -276,7 +277,7 @@ export const resolvers = {
 
 // Example query
 // query {
-//   feed(type: 'TOP', first: 30, skip: 0) {
+//   feed(type: top, first: 30, skip: 0) {
 //     id
 //     submitterId
 //     author {
@@ -292,6 +293,5 @@ export const resolvers = {
 //     commentCount
 //     upvotes
 //     upvoteCount
-//     rank
 //   }
 // }

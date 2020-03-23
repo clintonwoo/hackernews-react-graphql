@@ -2,9 +2,9 @@ import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { debug } from 'debug';
-import fetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-fetch';
 
-import { GRAPHQL_URL } from '../config';
+import { GRAPHQL_URL } from '../../server/config';
 
 const logger = debug('app:initApollo');
 logger.log = console.log.bind(console);
@@ -28,6 +28,7 @@ function create(initialState, { getToken }): ApolloClient<NormalizedCacheObject>
         // HTTP Header:  Cookie: <cookiename>=<cookievalue>
         Cookie: `connect.sid=${getToken()['connect.sid']}`,
       },
+      // fetch,
     }),
     cache: new InMemoryCache().restore(initialState || {}),
     connectToDevTools: (process as any).browser,

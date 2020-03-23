@@ -9,7 +9,7 @@ import { NewsTitle, newsTitleFragment } from './news-title';
 export interface INewsFeedProps {
   isPostScrutinyVisible?: boolean;
   first: number;
-  newsItems: NewsItemModel[];
+  newsItems: Array<NewsItemModel | null>;
   notice?: JSX.Element;
   skip: number;
   isJobListing?: boolean;
@@ -46,7 +46,7 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
 
   const rows: JSX.Element[] = [];
   newsItems.forEach((newsItem, index) => {
-    if (!newsItem.hidden) {
+    if (newsItem && !newsItem.hidden) {
       rows.push(
         <NewsTitle
           key={`${newsItem.id}title`}
