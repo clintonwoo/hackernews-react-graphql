@@ -16,13 +16,12 @@ import {
   GRAPHQL_URL,
   useGraphqlPlayground,
 } from '../src/config';
-import { FeedType, UserModel } from '../src/data/models';
+import { UserModel } from '../src/data/models';
 import { resolvers, typeDefs } from '../src/data/schema';
-import { seedCache } from './database/hn-data-api';
+import { seedCache, warmCache } from './database/cache-warmer';
 import { CommentService, FeedService, NewsItemService, UserService } from './services';
 
 const ONE_MINUTE = 1000 * 60;
-const FIFTEEN_MINUTES = 1000 * 60 * 15;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 
 // Seed the in-memory data using the HN api
@@ -31,14 +30,6 @@ seedCache(delay);
 
 const app = nextApp({ dev });
 const handle = app.getRequestHandler();
-
-function warmCache(): void {
-  // Fetch the front pages
-  FeedService.getForType(FeedType.TOP, 30, 0);
-  FeedService.getForType(FeedType.NEW, 30, 0);
-
-  setTimeout(warmCache, FIFTEEN_MINUTES);
-}
 
 app
   .prepare()
@@ -192,5 +183,3 @@ app
   });
 
 warmCache();
-
-export default app;

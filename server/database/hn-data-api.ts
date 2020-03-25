@@ -4,7 +4,6 @@ import * as Firebase from 'firebase';
 import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../../src/config';
 import { CacheSingleton } from './cache';
 import { CommentModel, NewsItemModel, UserModel, FeedType } from '../../src/data/models';
-// import { FeedSingleton } from '../services';
 
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
@@ -120,48 +119,3 @@ export async function getFeed(feedType: FeedType): Promise<number[] | void> {
     .then((feed) => feed.filter((newsItem) => newsItem !== undefined && newsItem !== null))
     .catch((reason) => logger(`Fetching news feed failed: ${reason}`));
 }
-
-function rebuildFeed(feedType: FeedType): void {
-  setTimeout(rebuildFeed, 1000 * 60 * 15, feedType);
-
-  getFeed(feedType)
-    .then((feed) => {
-      if (feed) {
-        return Promise.all(feed.map((id: number) => fetchNewsItem(id))).then((newsItems) => {
-          logger(newsItems);
-
-          // FeedSingleton[`${feedType}NewsItems`] = newsItems.filter(
-          //   (newsItem) => newsItem !== undefined && newsItem !== null
-          // );
-
-          // FeedSingleton[feedType] = feed;
-
-          logger(`Updated ${feedType} ids`);
-        });
-      }
-
-      return undefined;
-    })
-    .catch((reason) => logger(`Error building feed: ${reason}`));
-}
-
-/* END NEWS ITEMS */
-
-/* BEGIN SEED DATA */
-
-export function seedCache(delay: number): void {
-  logger(`Waiting ${delay} ms before seeding the app with data.`);
-
-  // Delay seeding the cache so we don't spam in dev
-  setTimeout(() => {
-    logger('Seeding cache');
-
-    [FeedType.TOP, FeedType.NEW, FeedType.BEST, FeedType.SHOW, FeedType.ASK, FeedType.JOB].forEach(
-      (feedType): void => {
-        rebuildFeed(feedType);
-      }
-    );
-  }, delay);
-}
-
-/*  END SEED DATA */
