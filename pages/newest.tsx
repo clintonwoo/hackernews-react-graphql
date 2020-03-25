@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import gql from 'graphql-tag';
 import { withRouter } from 'next/router';
 import * as React from 'react';
 import { graphql } from 'react-apollo';

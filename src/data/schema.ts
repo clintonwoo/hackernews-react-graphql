@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import gql from 'graphql-tag';
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
