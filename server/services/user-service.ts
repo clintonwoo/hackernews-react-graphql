@@ -1,6 +1,6 @@
 import { passwordIterations } from '../../src/config';
 import { createHash, createSalt } from '../../src/helpers/hash-password';
-import { cache } from '../database/cache';
+import { CacheSingleton } from '../database/cache';
 import * as DB from '../database/database';
 import * as HNDB from '../database/hn-data-api';
 import { isValidNewUser } from '../../src/data/validation/user';
@@ -8,7 +8,7 @@ import { UserModel, NewsItemModel } from '../../src/data/models';
 
 export class UserService {
   static getUser(id: string): UserModel | Promise<UserModel | void> {
-    return cache.getUser(id) || HNDB.fetchUser(id);
+    return CacheSingleton.getUser(id) || HNDB.fetchUser(id);
   }
 
   static getPostsForUser(id: string): NewsItemModel[] {
@@ -16,7 +16,7 @@ export class UserService {
   }
 
   static async validatePassword(id: string, password: string): Promise<boolean> {
-    const user = cache.getUser(id);
+    const user = CacheSingleton.getUser(id);
     if (user) {
       return (
         (await createHash(password, user.passwordSalt!, passwordIterations)) === user.hashedPassword
@@ -31,7 +31,7 @@ export class UserService {
     isValidNewUser(user);
 
     // Check if user already exists
-    if (cache.getUser(user.id)) {
+    if (CacheSingleton.getUser(user.id)) {
       throw new Error('Username is taken.');
     }
 
@@ -46,7 +46,7 @@ export class UserService {
     });
 
     // Store the new user
-    cache.setUser(user.id, newUser);
+    CacheSingleton.setUser(user.id, newUser);
 
     return newUser;
   }

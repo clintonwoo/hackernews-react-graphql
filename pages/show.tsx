@@ -1,7 +1,7 @@
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
 import { withDataAndRouter } from '../src/helpers/with-data';

@@ -1,7 +1,7 @@
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
 import renderHTML from 'react-render-html';
 
 import { UserModel } from '../src/data/models';
@@ -18,13 +18,12 @@ export interface IUserPageProps extends IUserPageOwnProps {
 }
 
 interface IUserPageOwnProps {
-  options: {
-    currentUrl: string;
-    id: number;
-  };
+  currentUrl: string;
 }
 
-const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { currentUrl } }) => {
+const UserPageView: React.SFC<IUserPageProps> = (props) => {
+  const { error, user, me, currentUrl } = props;
+
   if (error) {
     return <BlankLayout>Error loading news items.</BlankLayout>;
   }
@@ -38,6 +37,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { c
   const onAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     about = e.target.value;
   };
+
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     email = e.target.value;
   };
@@ -224,6 +224,7 @@ const UserPageView: React.SFC<IUserPageProps> = ({ error, user, me, options: { c
         </tr>
       </MainLayout>
     );
+
   return (
     <MainLayout currentUrl={currentUrl} isFooterVisible={false}>
       <tr>
@@ -306,33 +307,18 @@ const query = `
   }
 `;
 
-const UserPageWithGraphQL = graphql<IUserPageOwnProps, IUserPageQuery, {}, IUserPageProps>(
-  gql(query),
-  {
-    options: ({ options: { id } }) => ({
-      variables: {
-        id,
-      },
-    }),
-    props: ({ ownProps, data }) => ({
-      ...ownProps,
-      loading: data?.loading!,
-      error: data?.error!,
-      user: data?.user!,
-      me: data?.me!,
-    }),
-  }
-)(UserPageView);
-
 export const UserPage = withDataAndRouter((props) => {
   const userId = (props.router.query && props.router.query.id) || '';
 
+  const { data } = useQuery(gql(query));
+
   return (
-    <UserPageWithGraphQL
-      options={{
-        currentUrl: props.router.pathname,
-        id: userId,
-      }}
+    <UserPageView
+      loading={data?.loading!}
+      error={data?.error!}
+      user={data?.user!}
+      me={data?.me!}
+      currentUrl={props.router.pathname}
     />
   );
 });

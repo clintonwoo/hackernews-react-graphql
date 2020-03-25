@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
-    "outDir": "build/app/",
+    "outDir": "dist",
     "removeComments": true,
     "sourceMap": true,
     "target": "ES5",

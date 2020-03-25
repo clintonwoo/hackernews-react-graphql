@@ -1,6 +1,6 @@
 import { debug } from 'debug';
 
-import { cache } from '../database/cache';
+import { CacheSingleton } from '../database/cache';
 import * as HNDB from '../database/hn-data-api';
 import * as DB from '../database/database';
 import { NewsItemModel } from '../../src/data/models';
@@ -11,7 +11,7 @@ let newPostIdCounter = 100;
 
 export class NewsItemService {
   static getNewsItem(id: number) {
-    return cache.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
+    return CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
   }
 
   static getNewsItems(ids: number[]) {

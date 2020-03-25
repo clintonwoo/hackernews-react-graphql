@@ -199,7 +199,7 @@ export const resolvers = {
     feed(root, { type, first, skip }, context) {
       // Could put this constant limit of 30 items into config
       const limit = first < 1 || first > 30 ? 30 : first;
-      return context.FeedSingleton.getForType(type, limit, skip);
+      return context.FeedService.getForType(type, limit, skip);
     },
 
     me: (_, __, context) => {

@@ -2,7 +2,7 @@ import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { debug } from 'debug';
-import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-unfetch';
 
 import { GRAPHQL_URL } from '../config';
 
@@ -11,16 +11,9 @@ logger.log = console.log.bind(console);
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
-declare let global;
-
-// Polyfill fetch() on the server (used by apollo-client)
-if (!(process as any).browser) {
-  global.fetch = fetch;
-}
-
 function create(initialState, { getToken }): ApolloClient<NormalizedCacheObject> {
   return new ApolloClient({
-    ssrMode: !(process as any).browser, // Disables forceFetch on the server (so queries are only run once)
+    ssrMode: !typeof window === undefined, // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
       uri: GRAPHQL_URL,
       credentials: 'same-origin',
@@ -28,17 +21,17 @@ function create(initialState, { getToken }): ApolloClient<NormalizedCacheObject>
         // HTTP Header:  Cookie: <cookiename>=<cookievalue>
         Cookie: `connect.sid=${getToken()['connect.sid']}`,
       },
-      // fetch,
+      fetch,
     }),
     cache: new InMemoryCache().restore(initialState || {}),
-    connectToDevTools: (process as any).browser,
+    connectToDevTools: !typeof window === undefined,
   });
 }
 
 export function initApollo(initialState, options): ApolloClient<NormalizedCacheObject> {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
-  if (!(process as any).browser) {
+  if (typeof window === undefined) {
     return create(initialState, options);
   }
 

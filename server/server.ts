@@ -19,22 +19,23 @@ import {
 import { FeedType, UserModel } from '../src/data/models';
 import { resolvers, typeDefs } from '../src/data/schema';
 import { seedCache } from './database/hn-data-api';
-import { CommentService, FeedSingleton, NewsItemService, UserService } from './services';
+import { CommentService, FeedService, NewsItemService, UserService } from './services';
 
+const ONE_MINUTE = 1000 * 60;
 const FIFTEEN_MINUTES = 1000 * 60 * 15;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 
 // Seed the in-memory data using the HN api
-const delay = dev ? /* 1000 * 60 * 1  1 minute */ 0 : 0;
+const delay = dev ? ONE_MINUTE : 0;
 seedCache(delay);
 
-const app = nextApp({ dev: true });
+const app = nextApp({ dev });
 const handle = app.getRequestHandler();
 
 function warmCache(): void {
   // Fetch the front pages
-  FeedSingleton.getForType(FeedType.TOP, 30, 0);
-  FeedSingleton.getForType(FeedType.NEW, 30, 0);
+  FeedService.getForType(FeedType.TOP, 30, 0);
+  FeedService.getForType(FeedType.NEW, 30, 0);
 
   setTimeout(warmCache, FIFTEEN_MINUTES);
 }
@@ -140,7 +141,7 @@ app
     const apolloServer = new ApolloServer({
       context: ({ req }) => ({
         CommentService,
-        FeedSingleton,
+        FeedService,
         NewsItemService,
         UserService,
         userId: (req.user as UserModel)?.id,

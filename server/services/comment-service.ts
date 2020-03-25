@@ -1,6 +1,6 @@
 import { debug } from 'debug';
 
-import { cache } from '../database/cache';
+import { CacheSingleton } from '../database/cache';
 import * as HNDB from '../database/hn-data-api';
 import { CommentModel } from '../../src/data/models';
 
@@ -9,7 +9,7 @@ const logger = debug('app:Comment');
 export class CommentService {
   static getComment(id: number): CommentModel | Promise<CommentModel | void> {
     return (
-      cache.getComment(id) ||
+      CacheSingleton.getComment(id) ||
       HNDB.fetchComment(id).catch((reason) => logger(`Rejected comment: ${reason}`))
     );
   }

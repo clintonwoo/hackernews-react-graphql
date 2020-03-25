@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
 import { commentFragment } from '../src/components/comment';
 import { withDataAndRouter } from '../src/helpers/with-data';

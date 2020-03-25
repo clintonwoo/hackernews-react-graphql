@@ -2,9 +2,9 @@ import { debug } from 'debug';
 import * as Firebase from 'firebase';
 
 import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../../src/config';
-import { cache } from './cache';
+import { CacheSingleton } from './cache';
 import { CommentModel, NewsItemModel, UserModel, FeedType } from '../../src/data/models';
-// import { FeedSingleton } from './services';
+// import { FeedSingleton } from '../services';
 
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
@@ -40,7 +40,7 @@ export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
           url: post.url,
         });
 
-        cache.setNewsItem(newsItem.id, newsItem);
+        CacheSingleton.setNewsItem(newsItem.id, newsItem);
         logger(`Created Post: ${post.id}`);
 
         return newsItem;
@@ -70,7 +70,7 @@ export async function fetchComment(id: number): Promise<CommentModel | void> {
           text: item.text,
         });
 
-        cache.setComment(comment.id, comment);
+        CacheSingleton.setComment(comment.id, comment);
         logger(`Created Comment: ${item.id}`);
 
         return comment;
@@ -99,7 +99,7 @@ export async function fetchUser(id: string): Promise<UserModel | void> {
           posts: item.submitted,
         });
 
-        cache.setUser(user.id, user);
+        CacheSingleton.setUser(user.id, user);
         logger(`Created User: ${item.id}`, item);
 
         return user;

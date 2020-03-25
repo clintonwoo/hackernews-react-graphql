@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import Router, { withRouter, NextRouter } from 'next/router';
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
+import { graphql } from 'react-apollo';
 
 import { IMeQuery, meQuery } from '../src/data/queries/me-query';
 import { isValidNewUser } from '../src/data/validation/user';
@@ -79,7 +79,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  private onRegisterPasswordChange = (e) => {
+  private onRegisterPasswordChange = (e): void => {
     this.setState({
       register: {
         id: this.state.register.id,
@@ -88,7 +88,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
 
-  private validateLogin = (e) => {
+  private validateLogin = (e): void => {
     const { me } = this.props;
     const { login } = this.state;
 
@@ -105,7 +105,7 @@ class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
     }
   };
 
-  private validateRegister = (e) => {
+  private validateRegister = (e): void => {
     const { me } = this.props;
     const { register } = this.state;
 

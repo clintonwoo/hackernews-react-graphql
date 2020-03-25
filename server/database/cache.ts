@@ -1,7 +1,8 @@
 import { debug } from 'debug';
 import LRU from 'lru-cache';
 
-import { NewsItemModel, UserModel, CommentModel } from '../../src/data/models';
+import { NewsItemModel, UserModel, CommentModel, FeedType } from '../../src/data/models';
+import { sampleData } from '../../src/data/sample-data';
 
 const logger = debug('app:Cache');
 logger.log = console.log.bind(console);
@@ -10,6 +11,32 @@ logger.log = console.log.bind(console);
 
 class Cache {
   isReady = false;
+
+  /* Feeds - Arrays of post ids in descending rank order */
+  [FeedType.TOP]: number[] = sampleData.top;
+
+  [FeedType.NEW]: number[] = sampleData.new;
+
+  [FeedType.BEST]: number[] = [];
+
+  [FeedType.SHOW]: number[] = [];
+
+  [FeedType.ASK]: number[] = [];
+
+  [FeedType.JOB]: number[] = [];
+
+  /* Pre constructed cache of news feeds with news item objects */
+  topNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
+
+  newNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
+
+  bestNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
+
+  showNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
+
+  askNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
+
+  jobNewsItems: NewsItemModel[] = sampleData.topStoriesCache;
 
   /*                  BEGIN NEWS ITEMS                      */
 
@@ -84,4 +111,4 @@ class Cache {
   /*                   END CACHES                         */
 }
 
-export const cache = new Cache();
+export const CacheSingleton = new Cache();

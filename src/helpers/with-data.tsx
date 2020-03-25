@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { ApolloClient } from 'apollo-client';
+import { ApolloProvider } from '@apollo/react-common';
+import { getDataFromTree } from '@apollo/react-ssr';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory/lib/types';
+import { ApolloClient } from 'apollo-client';
 import * as cookie from 'cookie';
 import { debug } from 'debug';
 import { withRouter } from 'next/router';
 import * as React from 'react';
-import { ApolloProvider, getDataFromTree } from 'react-apollo';
 
 import { initApollo } from './init-apollo';
 
@@ -74,7 +75,7 @@ export function withData<TProps extends IWithDataProps>(
         : {};
 
       // Run all GraphQL queries from component tree and extract the resulting data
-      if (!(process as any).browser) {
+      if (typeof window === undefined) {
         if (context.res && context.res.finished) {
           // When redirecting, the response is finished. No point in continuing to render
           return undefined;
@@ -118,5 +119,5 @@ export function withData<TProps extends IWithDataProps>(
   };
 }
 
-const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
+const compose = (...functions) => (args) => functions.reduceRight((arg, fn) => fn(arg), args);
 export const withDataAndRouter = compose(withRouter, withData);
