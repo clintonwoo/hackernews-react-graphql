@@ -7,13 +7,19 @@ import nextApp from 'next';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import { parse } from 'url';
-import qsMiddleware from 'qs-middleware';
 
-import { UserModel, FeedType } from '../src/data/models';
+import {
+  APP_PORT,
+  APP_URI,
+  dev,
+  graphQLPath,
+  GRAPHQL_URL,
+  useGraphqlPlayground,
+} from '../src/config';
+import { FeedType, UserModel } from '../src/data/models';
 import { resolvers, typeDefs } from '../src/data/schema';
 import { seedCache } from './database/hn-data-api';
-import { CommentService, NewsItemService, FeedSingleton, UserService } from './services';
-import { APP_PORT, APP_URI, dev, GRAPHQL_URL, graphQLPath, useGraphqlPlayground } from './config';
+import { CommentService, FeedSingleton, NewsItemService, UserService } from './services';
 
 const FIFTEEN_MINUTES = 1000 * 60 * 15;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
@@ -131,8 +137,6 @@ app
 
     /* BEGIN GRAPHQL */
 
-    expressServer.use(qsMiddleware());
-
     const apolloServer = new ApolloServer({
       context: ({ req }) => ({
         CommentService,
@@ -168,7 +172,7 @@ app
       // Be sure to pass `true` as the second argument to `url.parse`.
       // This tells it to parse the query portion of the URL.
       const parsedUrl = parse(req.url, true);
-      const { pathname, query } = parsedUrl;
+
       handle(req, res, parsedUrl);
     });
 

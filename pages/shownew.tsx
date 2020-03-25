@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 
 import {
   NewsFeed,
@@ -12,8 +12,6 @@ import {
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 import { FeedType } from '../src/data/models';
-
-const POSTS_PER_PAGE = 30;
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -76,12 +74,10 @@ export const ShowNewPage = withDataAndRouter((props) => {
   return (
     <MainLayout currentUrl={props.router.pathname}>
       <ShowHNNewsFeed
-        options={{
-          currentUrl: props.router.pathname,
-          first: POSTS_PER_PAGE,
-          skip: POSTS_PER_PAGE * pageNumber,
-          notice,
-        }}
+        currentUrl={props.router.pathname}
+        first={first}
+        skip={skip}
+        notice={notice}
       />
     </MainLayout>
   );

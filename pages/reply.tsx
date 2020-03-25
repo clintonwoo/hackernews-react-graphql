@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 
 import { commentFragment } from '../src/components/comment';
 import { withDataAndRouter } from '../src/helpers/with-data';
@@ -16,15 +16,16 @@ const query = gql`
   ${commentFragment}
 `;
 
-const variables = {
-  id: 100,
-};
+export interface IReplyPageProps {
+  data;
+}
 
-const ReplyPageView: React.FC = (props) => {
-  const vote = () => {
+function ReplyPageView(props: IReplyPageProps): JSX.Element {
+  const vote = (): void => {
     console.log('onclick');
   };
-  const toggle = () => {
+
+  const toggle = (): void => {
     console.log('toggle');
   };
 
@@ -116,23 +117,16 @@ const ReplyPageView: React.FC = (props) => {
       </td>
     </tr>
   );
-};
-
-const ReplyToComment = graphql(query, {
-  options: {
-    variables,
-  },
-  props({ ownProps, data }) {
-    return { ...ownProps, data: data! };
-  },
-})(ReplyPageView);
+}
 
 export const ReplyToCommentPage = withDataAndRouter((props) => {
-  variables.id = (props.router.query && +props.router.query.id) || 0;
+  const { data } = useQuery(query, {
+    variables: { id: (props.router.query && +props.router.query.id) || 0 },
+  });
 
   return (
     <MainLayout title="Add Comment" currentUrl={props.router.pathname} isNavVisible={false}>
-      <ReplyToComment />
+      <ReplyPageView data={data} />
     </MainLayout>
   );
 });

@@ -28,10 +28,10 @@ const ForgotPageView: React.SFC<IForgotPageProps> = ({ registerUser, router }) =
 
   let user = '';
   let pass = '';
-  const onUserChange = (e) => {
+  const onUserChange = (e): void => {
     user = e.target.value;
   };
-  const onPasswordChange = (e) => {
+  const onPasswordChange = (e): void => {
     pass = e.target.value;
   };
 

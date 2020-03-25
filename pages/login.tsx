@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import Router, { withRouter, NextRouter } from 'next/router';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 
 import { IMeQuery, meQuery } from '../src/data/queries/me-query';
 import { isValidNewUser } from '../src/data/validation/user';

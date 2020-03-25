@@ -1,15 +1,13 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { IMeQuery, meQuery } from '../data/queries/me-query';
 
-interface IMainLayoutProps extends Partial<IMeQuery>, IMainLayoutOwnProps {}
-
-interface IMainLayoutOwnProps {
+interface IMainLayoutProps {
   children: React.ReactChild;
   currentUrl: string;
   isNavVisible?: boolean;
@@ -18,8 +16,16 @@ interface IMainLayoutOwnProps {
   title?: string;
 }
 
-function MainLayoutView(props: IMainLayoutProps): JSX.Element {
-  const { children, currentUrl, isNavVisible, me, isFooterVisible, title } = props;
+export function MainLayout(props: IMainLayoutProps): JSX.Element {
+  const { data } = useQuery<IMeQuery>(gql(meQuery));
+
+  const {
+    children,
+    currentUrl,
+    isNavVisible = true,
+    isFooterVisible = true,
+    title = 'Hacker News',
+  } = props;
 
   return (
     <div>
@@ -44,7 +50,12 @@ function MainLayoutView(props: IMainLayoutProps): JSX.Element {
         }}
       >
         <tbody>
-          <Header currentUrl={currentUrl} isNavVisible={!!isNavVisible} me={me} title={title!} />
+          <Header
+            currentUrl={currentUrl}
+            isNavVisible={!!isNavVisible}
+            me={data?.me}
+            title={title!}
+          />
           <tr style={{ height: '10px' }} />
           {children}
           {isFooterVisible && <Footer />}
@@ -53,21 +64,3 @@ function MainLayoutView(props: IMainLayoutProps): JSX.Element {
     </div>
   );
 }
-
-MainLayoutView.defaultProps = {
-  isFooterVisible: true,
-  isNavVisible: true,
-  isUserVisible: true,
-  me: undefined,
-  title: 'Hacker News',
-};
-
-export const MainLayout = graphql<IMainLayoutOwnProps, IMeQuery, {}, IMainLayoutProps>(
-  gql(meQuery),
-  {
-    props: ({ ownProps, data }) => ({
-      ...ownProps,
-      me: data?.me,
-    }),
-  }
-)(MainLayoutView);

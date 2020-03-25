@@ -1,3 +1,4 @@
+/* SERVER CONFIG */
 export const graphQLPath = '/graphql';
 export const graphiQLPath = '/graphiql';
 
@@ -23,3 +24,6 @@ export const useGraphqlPlayground = true;
   https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2_password_salt_iterations_keylen_digest_callback
 */
 export const passwordIterations = 10000;
+
+/* UI CONFIG */
+export const POSTS_PER_PAGE = 30;

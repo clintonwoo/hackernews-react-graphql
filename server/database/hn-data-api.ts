@@ -1,7 +1,7 @@
 import { debug } from 'debug';
 import * as Firebase from 'firebase';
 
-import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../config';
+import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../../src/config';
 import { cache } from './cache';
 import { CommentModel, NewsItemModel, UserModel, FeedType } from '../../src/data/models';
 // import { FeedSingleton } from './services';

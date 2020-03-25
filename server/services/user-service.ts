@@ -1,4 +1,4 @@
-import { passwordIterations } from '../config';
+import { passwordIterations } from '../../src/config';
 import { createHash, createSalt } from '../../src/helpers/hash-password';
 import { cache } from '../database/cache';
 import * as DB from '../database/database';

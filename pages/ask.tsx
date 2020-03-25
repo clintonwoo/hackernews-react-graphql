@@ -1,18 +1,12 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
-import {
-  NewsFeed,
-  newsFeedNewsItemFragment,
-  INewsFeedContainerProps,
-  INewsFeedData,
-} from '../src/components/news-feed';
+import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
 import { FeedType } from '../src/data/models';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
-
-const POSTS_PER_PAGE = 30;
+import { POSTS_PER_PAGE } from '../src/config';
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -31,32 +25,17 @@ export interface IAskPageProps {
   };
 }
 
-const AskPageNewsFeedWithGraphQL = graphql<
-  IAskPageProps,
-  INewsFeedData,
-  {},
-  INewsFeedContainerProps
->(query, {
-  options({ options: { first, skip } }) {
-    return { variables: { first, skip, type: FeedType.ASK } };
-  },
-  props({ ownProps, data }) {
-    return { ...ownProps, data: data! };
-  },
-})(NewsFeed);
-
 export const AskPage = withDataAndRouter((props) => {
   const pageNumber = (props.router.query && +props.router.query.p) || 0;
 
+  const first = POSTS_PER_PAGE;
+  const skip = POSTS_PER_PAGE * pageNumber;
+
+  const { data } = useQuery(query, { variables: { first, skip, type: FeedType.ASK } });
+
   return (
     <MainLayout currentUrl={props.router.pathname}>
-      <AskPageNewsFeedWithGraphQL
-        options={{
-          currentUrl: props.router.pathname,
-          first: POSTS_PER_PAGE,
-          skip: POSTS_PER_PAGE * pageNumber,
-        }}
-      />
+      <NewsFeed data={data} currentUrl={props.router.pathname} first={first} skip={skip} />
     </MainLayout>
   );
 });

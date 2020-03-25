@@ -7,15 +7,15 @@ import { NewsDetail, newsDetailNewsItemFragment } from './news-detail';
 import { NewsTitle, newsTitleFragment } from './news-title';
 
 export interface INewsFeedProps {
-  isPostScrutinyVisible?: boolean;
+  currentUrl: string;
   first: number;
+  isJobListing?: boolean;
+  isPostScrutinyVisible?: boolean;
+  isRankVisible?: boolean;
+  isUpvoteVisible?: boolean;
   newsItems: Array<NewsItemModel | null>;
   notice?: JSX.Element;
   skip: number;
-  isJobListing?: boolean;
-  isRankVisible?: boolean;
-  isUpvoteVisible?: boolean;
-  currentUrl: string;
 }
 
 export const newsFeedNewsItemFragment = `
@@ -31,53 +31,57 @@ export const newsFeedNewsItemFragment = `
 
 export function NewsFeedView(props: INewsFeedProps): JSX.Element {
   const {
-    isPostScrutinyVisible,
+    isPostScrutinyVisible = false,
     first,
     newsItems,
-    notice,
+    notice = null,
     skip,
-    isJobListing,
-    isRankVisible,
-    isUpvoteVisible,
+    isJobListing = false,
+    isRankVisible = true,
+    isUpvoteVisible = true,
     currentUrl,
   } = props;
 
   const nextPage = Math.ceil((skip || 1) / first) + 1;
 
-  const rows: JSX.Element[] = [];
-  newsItems.forEach((newsItem, index) => {
-    if (newsItem && !newsItem.hidden) {
-      rows.push(
-        <NewsTitle
-          key={`${newsItem.id}title`}
-          isRankVisible={isRankVisible}
-          isUpvoteVisible={isUpvoteVisible}
-          rank={skip + index + 1}
-          {...newsItem}
-        />
-      );
-      rows.push(
-        <NewsDetail
-          key={`${newsItem.id}detail`}
-          isFavoriteVisible={false}
-          isPostScrutinyVisible={isPostScrutinyVisible}
-          isJobListing={isJobListing}
-          {...newsItem}
-        />
-      );
-      rows.push(<tr className="spacer" key={`${newsItem.id}spacer`} style={{ height: 5 }} />);
-    }
-  });
-  rows.push(<tr key="morespace" className="morespace" style={{ height: '10px' }} />);
-  rows.push(
-    <tr key="morelinktr">
-      <td key="morelinkcolspan" colSpan={2} />
-      <td key="morelinktd" className="title">
-        <a key="morelink" href={`${currentUrl}?p=${nextPage}`} className="morelink" rel="nofollow">
-          More
-        </a>
-      </td>
-    </tr>
+  const rows: JSX.Element = (
+    <>
+      {newsItems
+        .filter((newsItem): newsItem is NewsItemModel => !!newsItem && !newsItem.hidden)
+        .flatMap((newsItem, index) => {
+          return [
+            <NewsTitle
+              key={`${newsItem.id}title`}
+              isRankVisible={isRankVisible}
+              isUpvoteVisible={isUpvoteVisible}
+              rank={skip + index + 1}
+              {...newsItem}
+            />,
+            <NewsDetail
+              key={`${newsItem.id}detail`}
+              isFavoriteVisible={false}
+              isPostScrutinyVisible={isPostScrutinyVisible}
+              isJobListing={isJobListing}
+              {...newsItem}
+            />,
+            <tr className="spacer" key={`${newsItem.id}spacer`} style={{ height: 5 }} />,
+          ];
+        })}
+      <tr key="morespace" className="morespace" style={{ height: '10px' }} />
+      <tr key="morelinktr">
+        <td key="morelinkcolspan" colSpan={2} />
+        <td key="morelinktd" className="title">
+          <a
+            key="morelink"
+            href={`${currentUrl}?p=${nextPage}`}
+            className="morelink"
+            rel="nofollow"
+          >
+            More
+          </a>
+        </td>
+      </tr>
+    </>
   );
 
   return (
@@ -102,29 +106,26 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
   );
 }
 
-NewsFeedView.defaultProps = {
-  isPostScrutinyVisible: false,
-  isJobListing: false,
-  isRankVisible: true,
-  isUpvoteVisible: true,
-  notice: null,
-};
-
 export interface INewsFeedData {
-  loading;
   error;
   feed;
+  loading;
 }
 export interface INewsFeedContainerProps {
+  currentUrl: string;
   data: DataValue<INewsFeedData, {}>;
-  options;
+  first: number;
+  isJobListing?: boolean;
+  isRankVisible?: boolean;
+  isUpvoteVisible?: boolean;
+  notice?: JSX.Element;
+  skip: number;
 }
 
-export const NewsFeed: React.SFC<INewsFeedContainerProps> = ({
-  data: { error, feed },
-  options,
-}) => {
-  if (error) {
+export const NewsFeed: React.SFC<INewsFeedContainerProps> = (props) => {
+  const { data, currentUrl, first, skip, notice } = props;
+
+  if (data?.error) {
     return (
       <tr>
         <td>Error loading news items.</td>
@@ -132,8 +133,16 @@ export const NewsFeed: React.SFC<INewsFeedContainerProps> = ({
     );
   }
 
-  if (feed && feed.length) {
-    return <NewsFeedView newsItems={feed} {...options} />;
+  if (data?.feed?.length) {
+    return (
+      <NewsFeedView
+        newsItems={data?.feed}
+        currentUrl={currentUrl}
+        first={first}
+        skip={skip}
+        notice={notice}
+      />
+    );
   }
 
   return <LoadingSpinner />;

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import renderHTML from 'react-render-html';
 
 import { UserModel } from '../src/data/models';

@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-export function BlankLayout({ children }): JSX.Element {
+export function BlankLayout(props): JSX.Element {
+  const { children } = props;
+
   return (
     <div className="WordSection1">
       <Head>
