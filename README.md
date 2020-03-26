@@ -87,9 +87,9 @@ or
 
 ### Directory Structure
 
-Each directory contains a README.
+Each web page has a React component in `pages`. Server code is in `server`. Shared code that runs on client or server is in `src`. Do not import from `server` or `pages` in `src` to avoid running code in the wrong environment.
 
-_root_ - Only contains config files such as Babel, ESLint, Docker, Flow, NPM, Yarn, Git.
+The project root contains config files such as TypeScript, Babel, ESLint, Docker, Flow, NPM, Yarn, Git.
 
 ## How To Start
 
