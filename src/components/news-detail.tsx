@@ -1,22 +1,16 @@
-import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
 
-import { hideNewsItemMutation } from '../data/mutations/hide-news-item-mutation';
+import { HIDE_NEWS_ITEM_MUTATION } from '../data/mutations/hide-news-item-mutation';
 import { convertNumberToTimeAgo } from '../helpers/convert-number-to-time-ago';
 
-interface INewsDetailProps extends INewsDetailOwnProps {
-  hideNewsItem: (id: number) => void;
-  unhideNewsItem: (id: number) => void;
-}
-
-interface INewsDetailOwnProps {
-  id: number;
+export interface INewsDetailProps {
   commentCount: number;
   creationTime: number;
   hidden?: boolean;
+  id: number;
   isFavoriteVisible?: boolean;
   isJobListing?: boolean;
   isPostScrutinyVisible?: boolean;
@@ -35,20 +29,29 @@ export const newsDetailNewsItemFragment = `
   }
 `;
 
-export function NewsDetailView(props: INewsDetailProps): JSX.Element {
+const HIDE_BUTTON_STYLE = { cursor: 'pointer' };
+
+export function NewsDetail(props: INewsDetailProps): JSX.Element {
   const {
-    id,
     commentCount,
     creationTime,
     hidden,
-    hideNewsItem,
-    isFavoriteVisible,
-    isJobListing,
-    isPostScrutinyVisible,
+    id,
+    isFavoriteVisible = true,
+    isJobListing = false,
+    isPostScrutinyVisible = false,
     submitterId,
-    unhideNewsItem,
     upvoteCount,
   } = props;
+
+  const [hideNewsItem] = useMutation(HIDE_NEWS_ITEM_MUTATION, {
+    onError() {
+      Router.push('/login', `/hide?id=${id}&how=up&goto=news`);
+    },
+    variables: { id },
+  });
+
+  const unhideNewsItem = (): void => undefined;
 
   return isJobListing ? (
     <tr>
@@ -77,9 +80,13 @@ export function NewsDetailView(props: INewsDetailProps): JSX.Element {
         </span>
         {' | '}
         {hidden ? (
-          <a onClick={() => hideNewsItem(id)}>hide</a>
+          <a onClick={(): void => unhideNewsItem()} style={HIDE_BUTTON_STYLE}>
+            unhide
+          </a>
         ) : (
-          <a onClick={() => unhideNewsItem(id)}>hide</a>
+          <a onClick={(): Promise<any> => hideNewsItem()} style={HIDE_BUTTON_STYLE}>
+            hide
+          </a>
         )}
         {isPostScrutinyVisible && (
           <span>
@@ -106,28 +113,3 @@ export function NewsDetailView(props: INewsDetailProps): JSX.Element {
     </tr>
   );
 }
-
-NewsDetailView.defaultProps = {
-  isFavoriteVisible: true,
-  isJobListing: false,
-  isPostScrutinyVisible: false,
-};
-
-export const NewsDetail = graphql<INewsDetailOwnProps, {}, {}, INewsDetailProps>(
-  gql(hideNewsItemMutation),
-  {
-    props({ ownProps, mutate }) {
-      return {
-        ...ownProps,
-        hideNewsItem: (id: number): Promise<any> =>
-          mutate!({ variables: { id } }).catch(() => {
-            Router.push('/login', `/hide?id=${id}&how=up&goto=news`);
-          }),
-        unhideNewsItem: (id: number): Promise<any> =>
-          mutate!({ variables: { id } }).catch(() => {
-            Router.push('/login', `/unhide?id=${id}&how=up&goto=news`);
-          }),
-      };
-    },
-  }
-)(NewsDetailView);

@@ -3,7 +3,6 @@ import { debug } from 'debug';
 import { CacheSingleton } from './cache';
 import { NewsItemModel, UserModel } from '../../src/data/models';
 import { sampleData } from '../../src/data/sample-data';
-// import { FeedSingleton } from './services';
 
 const logger = debug('app:Database');
 logger.log = console.log.bind(console);
@@ -68,7 +67,7 @@ export function hideNewsItem(id: number, userId: string): NewsItemModel {
   return newsItem;
 }
 
-export function submitNewsItem(id: number, newsItem: NewsItemModel) {
+export function submitNewsItem(id: number, newsItem: NewsItemModel): NewsItemModel {
   // Submit the News Item in the DB
   if (CacheSingleton.setNewsItem(id, newsItem)) {
     // FeedSingleton.new.unshift(id);
@@ -83,14 +82,11 @@ export function submitNewsItem(id: number, newsItem: NewsItemModel) {
 
 /*                     BEGIN FEED                         */
 
-export function getNewNewsItems(first: number, skip: number) {
-  return sampleData.new.slice(skip, skip + first).map((postId, index) => ({
-    ...getNewsItem(postId),
-    rank: skip + index + 1,
-  }));
+export function getNewNewsItems(first: number, skip: number): NewsItemModel[] {
+  return sampleData.newsItems.slice(skip, skip + first);
 }
 
-export function getTopNewsItems(first: number, skip: number) {
+export function getTopNewsItems(first: number, skip: number): NewsItemModel[] {
   return sampleData.newsItems.slice(skip, skip + first);
 }
 
@@ -106,15 +102,15 @@ export function getNewsItems(): NewsItemModel[] {
 
 /*                   BEGIN USERS                        */
 
-export function getUser(id: string) {
+export function getUser(id: string): UserModel | undefined {
   return sampleData.users.find((user) => user.id === id);
 }
 
-export function getUsers() {
+export function getUsers(): UserModel[] {
   return sampleData.users;
 }
 
-export function createUser(user: UserModel) {
+export function createUser(user: UserModel): UserModel {
   sampleData.users.push(user);
 
   return user;

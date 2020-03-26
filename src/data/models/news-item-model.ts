@@ -38,6 +38,8 @@ export class NewsItemModel {
 
   public readonly hidden?: boolean; // TODO: exists?
 
+  public readonly rank?: number;
+
   constructor(fields) {
     if (!fields.id) {
       throw new Error(`Error instantiating News Item, id is required: ${fields.id}`);

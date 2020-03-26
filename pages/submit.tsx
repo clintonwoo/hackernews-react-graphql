@@ -1,41 +1,35 @@
-import gql from 'graphql-tag';
 import Link from 'next/link';
 import Router from 'next/router';
-import * as React from 'react';
-import { graphql } from 'react-apollo';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 
-import {
-  ISubmitNewsItemGraphQL,
-  submitNewsItemMutation,
-} from '../src/data/mutations/submit-news-item-mutation';
+import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-item-mutation';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
+import { NewsItemModel } from '../src/data/models';
 
-interface ISubmitPageProps extends ISubmitPageOwnProps {
-  submitNewsItem: (title: string, url: string, text: string) => void;
-}
-
-interface ISubmitPageOwnProps {
+interface ISubmitPageProps {
   currentUrl: string;
 }
 
 function SubmitPageView(props: ISubmitPageProps): JSX.Element {
-  const { currentUrl, submitNewsItem } = props;
+  const { currentUrl } = props;
 
-  let title = '';
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    title = e.target.value;
-  };
+  const [title, setTitle] = useState<string>('');
+  const [url, setUrl] = useState<string>('');
+  const [text, setText] = useState<string>('');
 
-  let url = '';
-  const onUrlChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    url = e.target.value;
-  };
-
-  let text = '';
-  const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    text = e.target.value;
-  };
+  const [submitNewsItem] = useMutation(SUBMIT_NEWS_ITEM_MUTATION, {
+    variables: { title, url, text },
+    onCompleted(res) {
+      if (res && res.data) {
+        Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+      }
+    },
+    onError(err) {
+      console.error(err);
+    },
+  });
 
   return (
     <MainLayout currentUrl={currentUrl} title="Submit" isNavVisible={false} isFooterVisible={false}>
@@ -59,7 +53,9 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                       name="title"
                       defaultValue=""
                       size={50}
-                      onChange={onTitleChange}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+                        setTitle(e.target.value);
+                      }}
                     />
                     <span style={{ marginLeft: '10px' }} />
                   </td>
@@ -72,7 +68,9 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                       name="url"
                       defaultValue=""
                       size={50}
-                      onChange={onUrlChange}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+                        setUrl(e.target.value);
+                      }}
                     />
                   </td>
                 </tr>
@@ -85,7 +83,14 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                 <tr>
                   <td>text</td>
                   <td>
-                    <textarea name="text" rows={4} cols={49} onChange={onTextChange} />
+                    <textarea
+                      name="text"
+                      rows={4}
+                      cols={49}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+                        setText(e.target.value);
+                      }}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -98,7 +103,7 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
                     <input
                       type="submit"
                       value="submit"
-                      onClick={(): void => submitNewsItem(title, url, text)}
+                      onClick={(): Promise<any> => submitNewsItem()}
                     />
                   </td>
                 </tr>
@@ -128,27 +133,8 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
   );
 }
 
-const PageWithData = graphql<ISubmitPageOwnProps, ISubmitNewsItemGraphQL, {}, ISubmitPageProps>(
-  gql(submitNewsItemMutation),
-  {
-    props: ({ ownProps, mutate }) => ({
-      ...ownProps,
-      submitNewsItem: (title: string, url: string, text: string): Promise<void> =>
-        mutate!({
-          variables: { title, url, text },
-        })
-          .then((res) => {
-            if (res && res.data) {
-              Router.push(`/item?id=${res.data.submitNewsItem.id}`);
-            }
-          })
-          .catch((reason) => console.error(reason)),
-    }),
-  }
-)(SubmitPageView);
-
 export const SubmitPage = withDataAndRouter((props) => (
-  <PageWithData currentUrl={props.router.pathname} />
+  <SubmitPageView currentUrl={props.router.pathname} />
 ));
 
 export default SubmitPage;

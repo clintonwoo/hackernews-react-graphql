@@ -67,9 +67,12 @@ app
     passport.serializeUser((user: UserModel, cb) => {
       cb(null, user.id);
     });
-    passport.deserializeUser(async (id: string, cb) => {
-      const user = await UserService.getUser(id);
-      cb(null, user || null);
+    passport.deserializeUser((id: string, cb) => {
+      (async (): Promise<void> => {
+        const user = await UserService.getUser(id);
+
+        cb(null, user || null);
+      })();
     });
 
     expressServer.use(cookieParser('mysecret'));

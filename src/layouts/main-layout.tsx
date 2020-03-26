@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
-import { IMeQuery, meQuery } from '../data/queries/me-query';
+import { IMeQuery, ME_QUERY } from '../data/queries/me-query';
 
 interface IMainLayoutProps {
   children: React.ReactChild;
@@ -17,7 +17,7 @@ interface IMainLayoutProps {
 }
 
 export function MainLayout(props: IMainLayoutProps): JSX.Element {
-  const { data } = useQuery<IMeQuery>(gql(meQuery));
+  const { data } = useQuery<IMeQuery>(ME_QUERY);
 
   const {
     children,

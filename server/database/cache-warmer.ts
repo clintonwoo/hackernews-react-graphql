@@ -1,5 +1,4 @@
 import { debug } from 'debug';
-import * as Firebase from 'firebase';
 
 import { CacheSingleton } from './cache';
 import { FeedType } from '../../src/data/models';

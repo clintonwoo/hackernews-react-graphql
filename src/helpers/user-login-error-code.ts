@@ -7,7 +7,7 @@ export enum UserLoginErrorCode {
   USERNAME_TAKEN = 'id',
 }
 
-const userLoginErrorCodeMessages = {
+const userLoginErrorCodeMessages: Record<UserLoginErrorCode, string> = {
   [UserLoginErrorCode.INCORRECT_PASSWORD]: 'Incorrect password.',
   [UserLoginErrorCode.INVALID_ID]: 'User ID must be between 3 and 32 characters.',
   [UserLoginErrorCode.LOGGED_IN]: 'Logged in user must logout before logging in again.',

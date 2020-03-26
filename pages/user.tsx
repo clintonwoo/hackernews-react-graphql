@@ -292,7 +292,7 @@ export interface IUserPageQuery {
   me;
 }
 
-const query = `
+const query = gql`
   query User($id: String!) {
     user(id: $id) {
       id
@@ -310,7 +310,7 @@ const query = `
 export const UserPage = withDataAndRouter((props) => {
   const userId = (props.router.query && props.router.query.id) || '';
 
-  const { data } = useQuery(gql(query));
+  const { data } = useQuery(query, { variables: { id: userId } });
 
   return (
     <UserPageView

@@ -1,248 +1,161 @@
-import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 import Router, { withRouter, NextRouter } from 'next/router';
-import * as React from 'react';
-import { graphql } from 'react-apollo';
+import React, { useState } from 'react';
 
-import { IMeQuery, meQuery } from '../src/data/queries/me-query';
+import { IMeQuery, ME_QUERY } from '../src/data/queries/me-query';
 import { isValidNewUser } from '../src/data/validation/user';
 import {
   getErrorMessageForLoginErrorCode,
   UserLoginErrorCode,
 } from '../src/helpers/user-login-error-code';
-import { withDataAndRouter, IWithDataContext } from '../src/helpers/with-data';
+import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
 
-export interface ILoginPageProps extends Partial<IMeQuery>, ILoginPageOwnProps {}
-
-export interface ILoginPageOwnProps {
+export interface ILoginPageProps {
   router?: NextRouter;
 }
 
-export interface ILoginPageState {
-  login: {
-    id: string;
-    password: string;
-  };
-  register: {
-    id: string;
-    password: string;
-  };
-  validationMessage: string;
-}
+function LoginPageView(props: ILoginPageProps): JSX.Element {
+  const { data } = useQuery<IMeQuery>(ME_QUERY);
 
-class LoginPageView extends React.Component<ILoginPageProps, ILoginPageState> {
-  public state: ILoginPageState = {
-    login: {
-      id: '',
-      password: '',
-    },
-    register: {
-      id: '',
-      password: '',
-    },
-    validationMessage: '',
-  };
+  const { router } = props;
 
-  /* Login User */
-  private onLoginIDChange = (e) => {
-    const { login } = this.state;
+  const routerQuery = router!.query as { how: UserLoginErrorCode; goto: string };
+  const message = routerQuery.how ? getErrorMessageForLoginErrorCode(routerQuery.how) : undefined;
 
-    this.setState({
-      login: {
-        id: e.target.value,
-        password: login.password,
-      },
-    });
-  };
+  const [loginId, setLoginId] = useState<string>('');
+  const [loginPassword, setLoginPassword] = useState<string>('');
+  const [registerId, setRegisterId] = useState<string>('');
+  const [registerPassword, setRegisterPassword] = useState<string>('');
+  const [validationMessage, setValidationMessage] = useState<string>('');
 
-  private onLoginPasswordChange = (e) => {
-    const { login } = this.state;
-
-    this.setState({
-      login: {
-        id: login.id,
-        password: e.target.value,
-      },
-    });
-  };
-
-  /* Register New User */
-  private onRegisterIDChange = (e) => {
-    const { register } = this.state;
-
-    this.setState({
-      register: {
-        id: e.target.value,
-        password: register.password,
-      },
-    });
-  };
-
-  private onRegisterPasswordChange = (e): void => {
-    this.setState({
-      register: {
-        id: this.state.register.id,
-        password: e.target.value,
-      },
-    });
-  };
-
-  private validateLogin = (e): void => {
-    const { me } = this.props;
-    const { login } = this.state;
-
-    if (me) {
+  const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
+    if (data?.me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser(login);
+        isValidNewUser({ id: loginId, password: loginPassword });
       } catch (err) {
         e.preventDefault();
-        this.setState({ validationMessage: err.message });
+        setValidationMessage(err.message);
       }
     }
   };
 
-  private validateRegister = (e): void => {
-    const { me } = this.props;
-    const { register } = this.state;
-
-    if (me) {
+  const validateRegister = (e: React.FormEvent<HTMLFormElement>): void => {
+    if (data?.me) {
       e.preventDefault();
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser(register);
+        isValidNewUser({ id: registerId, password: registerPassword });
       } catch (err) {
         e.preventDefault();
-        this.setState({ validationMessage: err.message });
+        setValidationMessage(err.message);
       }
     }
   };
 
-  public render(): JSX.Element {
-    const { router } = this.props;
-    const { validationMessage } = this.state;
-
-    const routerQuery = router!.query as { how: UserLoginErrorCode; goto: string };
-    let message = '';
-    if (routerQuery.how) {
-      message = getErrorMessageForLoginErrorCode(routerQuery.how);
-    }
-
-    return (
-      <BlankLayout>
-        {message && <p>{message}</p>}
-        {validationMessage && <p>{validationMessage}</p>}
-        <b>Login</b>
+  return (
+    <BlankLayout>
+      {message && <p>{message}</p>}
+      {validationMessage && <p>{validationMessage}</p>}
+      <b>Login</b>
+      <br />
+      <br />
+      <form
+        method="post"
+        action="/login"
+        onSubmit={(e): void => validateLogin(e)}
+        style={{ marginBottom: '1em' }}
+      >
+        <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
+        <table style={{ border: '0px' }}>
+          <tbody>
+            <tr>
+              <td>username:</td>
+              <td>
+                <input
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  name="id"
+                  onChange={(e): void => setLoginId(e.target.value)}
+                  size={20}
+                  spellCheck={false}
+                  type="text"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>password:</td>
+              <td>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={(e): void => setLoginPassword(e.target.value)}
+                  size={20}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <br />
+        <input type="submit" value="login" />
+      </form>
+      <Link href="/forgot">
+        <a>Forgot your password?</a>
+      </Link>
+      <br />
+      <br />
+      <b>Create Account</b>
+      <br />
+      <br />
+      <form
+        method="post"
+        action="/register"
+        onSubmit={(e): void => validateRegister(e)}
+        style={{ marginBottom: '1em' }}
+      >
+        <table style={{ border: '0px' }}>
+          <tbody>
+            <tr>
+              <td>username:</td>
+              <td>
+                <input
+                  type="text"
+                  name="id"
+                  onChange={(e): void => setRegisterId(e.target.value)}
+                  size={20}
+                  autoCorrect="off"
+                  spellCheck={false}
+                  autoCapitalize="off"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>password:</td>
+              <td>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={(e): void => setRegisterPassword(e.target.value)}
+                  size={20}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <br />
-        <form
-          method="post"
-          action="/login"
-          onSubmit={(e) => this.validateLogin(e)}
-          style={{ marginBottom: '1em' }}
-        >
-          <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
-          <table style={{ border: '0px' }}>
-            <tbody>
-              <tr>
-                <td>username:</td>
-                <td>
-                  <input
-                    type="text"
-                    name="id"
-                    onChange={this.onLoginIDChange}
-                    size={20}
-                    autoCorrect="off"
-                    spellCheck={false}
-                    autoCapitalize="off"
-                    autoFocus
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>password:</td>
-                <td>
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={this.onLoginPasswordChange}
-                    size={20}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <input type="submit" value="login" />
-        </form>
-        <Link href="/forgot">
-          <a>Forgot your password?</a>
-        </Link>
-        <br />
-        <br />
-        <b>Create Account</b>
-        <br />
-        <br />
-        <form
-          method="post"
-          action="/register"
-          onSubmit={(e) => this.validateRegister(e)}
-          style={{ marginBottom: '1em' }}
-        >
-          <table style={{ border: '0px' }}>
-            <tbody>
-              <tr>
-                <td>username:</td>
-                <td>
-                  <input
-                    type="text"
-                    name="id"
-                    onChange={this.onRegisterIDChange}
-                    size={20}
-                    autoCorrect="off"
-                    spellCheck={false}
-                    autoCapitalize="off"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>password:</td>
-                <td>
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={this.onRegisterPasswordChange}
-                    size={20}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <input type="submit" value="create account" />
-        </form>
-      </BlankLayout>
-    );
-  }
+        <input type="submit" value="create account" />
+      </form>
+    </BlankLayout>
+  );
 }
-
-const LoginPageWithGraphql = graphql<ILoginPageOwnProps, IMeQuery, {}, ILoginPageProps>(
-  gql(meQuery),
-  {
-    options: {},
-    props: ({ ownProps, data }) => ({
-      ...ownProps,
-      me: data?.me,
-    }),
-  }
-)(LoginPageView);
 
 export const LoginPage = withDataAndRouter(
-  withRouter((props) => <LoginPageWithGraphql router={props.router} />)
+  withRouter((props) => <LoginPageView router={props.router} />)
 );
 
 export default LoginPage;
