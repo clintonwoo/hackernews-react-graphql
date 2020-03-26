@@ -1,3 +1,6 @@
+/** True if the app is running on the server, false if running on the client */
+export const IS_SERVER = typeof window === 'undefined';
+
 /* SERVER CONFIG */
 export const graphQLPath = '/graphql';
 export const graphiQLPath = '/graphiql';
@@ -11,8 +14,7 @@ export const HN_API_URL = process.env.HN_API_URL || `${HN_DB_URI}${HN_API_VERSIO
 
 export const HOST_NAME = process.env.HOST_NAME || 'localhost';
 export const APP_PORT = process.env.APP_PORT || 3000;
-export const HOST =
-  (!typeof window === undefined && window.location.host) || `${HOST_NAME}:${APP_PORT}`;
+export const HOST = (!IS_SERVER && window.location.host) || `${HOST_NAME}:${APP_PORT}`;
 
 export const APP_URI = `http://${HOST}`;
 export const GRAPHQL_URL = `${APP_URI}${graphQLPath}`;

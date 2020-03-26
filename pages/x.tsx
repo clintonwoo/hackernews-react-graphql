@@ -21,7 +21,6 @@ function PasswordRecoveryPage(): JSX.Element {
         <tr>
           <td>
             <span className="admin">
-              {/* <center> */}
               <table style={{ width: 500 }}>
                 <tbody>
                   <tr>
@@ -32,7 +31,6 @@ function PasswordRecoveryPage(): JSX.Element {
                   </tr>
                 </tbody>
               </table>
-              {/* </center> */}
             </span>
             <br />
             <br />

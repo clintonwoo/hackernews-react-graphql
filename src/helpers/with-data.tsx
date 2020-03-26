@@ -9,6 +9,7 @@ import { withRouter } from 'next/router';
 import * as React from 'react';
 
 import { initApollo } from './init-apollo';
+import { IS_SERVER } from '../config';
 
 const logger = debug('app:withData');
 logger.log = console.log.bind(console);
@@ -75,7 +76,7 @@ export function withData<TProps extends IWithDataProps>(
         : {};
 
       // Run all GraphQL queries from component tree and extract the resulting data
-      if (typeof window === undefined) {
+      if (IS_SERVER) {
         if (context.res && context.res.finished) {
           // When redirecting, the response is finished. No point in continuing to render
           return undefined;
