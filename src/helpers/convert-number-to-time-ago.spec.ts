@@ -7,7 +7,7 @@ const ONE_DAY = 8.64e7;
 const ONE_HOUR = 3.6e6;
 const ONE_MINUTE = 60000;
 
-describe('convertNumberToTimeAgo helper function', () => {
+describe('convert-number-to-time-ago helper function', () => {
   it('accepts negative numbers (date older than 1970)', () => {
     const now = new Date();
     const sixtyYearsAgo = new Date(now.valueOf() - ONE_YEAR * 60);

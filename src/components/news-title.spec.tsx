@@ -1,3 +1,4 @@
+import { MockedProvider } from '@apollo/react-testing';
 import * as React from 'react';
 import MockDate from 'mockdate';
 // import renderer from 'react-test-renderer';
@@ -15,18 +16,17 @@ describe('NewsTitle component', () => {
   //   );
   //   expect(wrapper).toMatchSnapshot();
   // });
+
   it('renders news item properties passed in as props', () => {
-    const upvoteNewsItem = () => console.log('upvoteNewsItem');
     const wrapper = shallow(
-      <NewsTitle
-        {...sampleData.newsItems[0]}
-        upvoteNewsItem={upvoteNewsItem}
-        isRankVisible={true}
-        rank={1}
-      />
+      <MockedProvider>
+        <NewsTitle {...sampleData.newsItems[0]} isRankVisible={true} rank={1} />
+      </MockedProvider>
     );
+
     expect(wrapper).toMatchSnapshot();
   });
+
   // it('renders news items passed in as props', () => {
   //   const wrapper = shallow((
   //     <NewsFeed newsItems={data.newsItems} />

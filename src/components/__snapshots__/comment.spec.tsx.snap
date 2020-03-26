@@ -33,7 +33,13 @@ exports[`Comment component renders a comment passed in as props 1`] = `
               }
             }
           >
-            <center>
+            <div
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
               <a
                 href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
                 id="up_15238246"
@@ -44,7 +50,7 @@ exports[`Comment component renders a comment passed in as props 1`] = `
                   title="upvote"
                 />
               </a>
-            </center>
+            </div>
           </td>
           <td
             className="default"
@@ -62,7 +68,6 @@ exports[`Comment component renders a comment passed in as props 1`] = `
               >
                 <Link
                   href="/user?id=mstade"
-                  prefetch={true}
                 >
                   <a
                     className="hnuser"
@@ -76,7 +81,6 @@ exports[`Comment component renders a comment passed in as props 1`] = `
                    
                   <Link
                     href="/item?id=15289630"
-                    prefetch={true}
                   >
                     <a>
                       1 day ago
@@ -93,7 +97,6 @@ exports[`Comment component renders a comment passed in as props 1`] = `
                  
                 <a
                   className="togg"
-                  href="javascript:void(0)"
                   id="24"
                   onClick={[Function]}
                 >
@@ -122,21 +125,22 @@ exports[`Comment component renders a comment passed in as props 1`] = `
                 <div
                   className="reply"
                 >
-                  <p>
-                    <font
-                      size="1"
-                    >
-                      <u>
-                        <Link
-                          href="/reply?id=15289630&goto=item%3Fid%3D15289630"
-                          prefetch={true}
-                        >
-                          <a>
-                            reply
-                          </a>
-                        </Link>
-                      </u>
-                    </font>
+                  <p
+                    style={
+                      Object {
+                        "fontSize": "1",
+                      }
+                    }
+                  >
+                    <u>
+                      <Link
+                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
+                      >
+                        <a>
+                          reply
+                        </a>
+                      </Link>
+                    </u>
                   </p>
                 </div>
               </span>
@@ -182,7 +186,13 @@ exports[`Comment component renders at different indentation levels 1`] = `
               }
             }
           >
-            <center>
+            <div
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
               <a
                 href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
                 id="up_15238246"
@@ -193,7 +203,7 @@ exports[`Comment component renders at different indentation levels 1`] = `
                   title="upvote"
                 />
               </a>
-            </center>
+            </div>
           </td>
           <td
             className="default"
@@ -211,7 +221,6 @@ exports[`Comment component renders at different indentation levels 1`] = `
               >
                 <Link
                   href="/user?id=mstade"
-                  prefetch={true}
                 >
                   <a
                     className="hnuser"
@@ -225,7 +234,6 @@ exports[`Comment component renders at different indentation levels 1`] = `
                    
                   <Link
                     href="/item?id=15289630"
-                    prefetch={true}
                   >
                     <a>
                       1 day ago
@@ -242,7 +250,6 @@ exports[`Comment component renders at different indentation levels 1`] = `
                  
                 <a
                   className="togg"
-                  href="javascript:void(0)"
                   id="24"
                   onClick={[Function]}
                 >
@@ -271,21 +278,22 @@ exports[`Comment component renders at different indentation levels 1`] = `
                 <div
                   className="reply"
                 >
-                  <p>
-                    <font
-                      size="1"
-                    >
-                      <u>
-                        <Link
-                          href="/reply?id=15289630&goto=item%3Fid%3D15289630"
-                          prefetch={true}
-                        >
-                          <a>
-                            reply
-                          </a>
-                        </Link>
-                      </u>
-                    </font>
+                  <p
+                    style={
+                      Object {
+                        "fontSize": "1",
+                      }
+                    }
+                  >
+                    <u>
+                      <Link
+                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
+                      >
+                        <a>
+                          reply
+                        </a>
+                      </Link>
+                    </u>
                   </p>
                 </div>
               </span>
@@ -331,7 +339,13 @@ exports[`Comment component shallow renders 1`] = `
               }
             }
           >
-            <center>
+            <div
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
               <a
                 href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
                 id="up_15238246"
@@ -342,7 +356,7 @@ exports[`Comment component shallow renders 1`] = `
                   title="upvote"
                 />
               </a>
-            </center>
+            </div>
           </td>
           <td
             className="default"
@@ -360,7 +374,6 @@ exports[`Comment component shallow renders 1`] = `
               >
                 <Link
                   href="/user?id=mstade"
-                  prefetch={true}
                 >
                   <a
                     className="hnuser"
@@ -374,7 +387,6 @@ exports[`Comment component shallow renders 1`] = `
                    
                   <Link
                     href="/item?id=15289630"
-                    prefetch={true}
                   >
                     <a>
                       1 day ago
@@ -391,7 +403,6 @@ exports[`Comment component shallow renders 1`] = `
                  
                 <a
                   className="togg"
-                  href="javascript:void(0)"
                   id="24"
                   onClick={[Function]}
                 >
@@ -420,21 +431,22 @@ exports[`Comment component shallow renders 1`] = `
                 <div
                   className="reply"
                 >
-                  <p>
-                    <font
-                      size="1"
-                    >
-                      <u>
-                        <Link
-                          href="/reply?id=15289630&goto=item%3Fid%3D15289630"
-                          prefetch={true}
-                        >
-                          <a>
-                            reply
-                          </a>
-                        </Link>
-                      </u>
-                    </font>
+                  <p
+                    style={
+                      Object {
+                        "fontSize": "1",
+                      }
+                    }
+                  >
+                    <u>
+                      <Link
+                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
+                      >
+                        <a>
+                          reply
+                        </a>
+                      </Link>
+                    </u>
                   </p>
                 </div>
               </span>

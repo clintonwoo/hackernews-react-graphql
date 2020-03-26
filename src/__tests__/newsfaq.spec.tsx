@@ -5,7 +5,8 @@ import Page from '../../pages/newsfaq';
 
 describe('FAQ Page', () => {
   it('is defined', () => {
-    const app = shallow(<Page serverState={{}} />);
+    const app = shallow(<Page />);
+
     expect(app).toBeDefined();
   });
 });

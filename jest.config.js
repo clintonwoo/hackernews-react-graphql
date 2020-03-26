@@ -4,6 +4,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: { '^.+\\.tsx?$': 'ts-jest' },
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(test).ts?(x)'],
+  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec).ts?(x)'],
   verbose: true,
 };

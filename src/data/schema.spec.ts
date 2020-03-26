@@ -13,7 +13,7 @@ describe('schema', () => {
           undefined,
           { id: sampleData.topStoriesCache[0].comments[0].id },
           {
-            Comment: {
+            CommentService: {
               getComment: (id) =>
                 sampleData.topStoriesCache[0].comments.find((comment) => comment.id === id),
             },

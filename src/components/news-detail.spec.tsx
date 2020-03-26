@@ -1,3 +1,4 @@
+import { MockedProvider } from '@apollo/react-testing';
 import { shallow } from 'enzyme';
 import MockDate from 'mockdate';
 import * as React from 'react';
@@ -12,10 +13,12 @@ MockDate.set(1506022129802);
 
 describe('NewsFeed component', () => {
   it('renders news items passed in as props', () => {
-    const hideNewsItem = () => console.log('1');
     const wrapper = shallow(
-      <NewsDetail {...newsItem} hideNewsItem={hideNewsItem} isFavoriteVisible={false} />
+      <MockedProvider>
+        <NewsDetail {...newsItem} isFavoriteVisible={false} />
+      </MockedProvider>
     );
+
     expect(wrapper).toMatchSnapshot();
   });
 });

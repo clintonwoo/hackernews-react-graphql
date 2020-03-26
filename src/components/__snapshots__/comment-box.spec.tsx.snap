@@ -3,7 +3,7 @@
 exports[`Comment component renders a comment passed in as props 1`] = `
 <tr>
   <td
-    colSpan="2"
+    colSpan={2}
   />
   <td>
     <form
@@ -26,9 +26,9 @@ exports[`Comment component renders a comment passed in as props 1`] = `
         value="02641d0660c89c1a83ccf0d171e42497d10d2135"
       />
       <textarea
-        cols="60"
+        cols={60}
         name="text"
-        rows="6"
+        rows={6}
       />
       <br />
       <br />
@@ -44,7 +44,7 @@ exports[`Comment component renders a comment passed in as props 1`] = `
 exports[`Comment component renders at different indentation levels 1`] = `
 <tr>
   <td
-    colSpan="2"
+    colSpan={2}
   />
   <td>
     <form
@@ -67,9 +67,9 @@ exports[`Comment component renders at different indentation levels 1`] = `
         value="02641d0660c89c1a83ccf0d171e42497d10d2135"
       />
       <textarea
-        cols="60"
+        cols={60}
         name="text"
-        rows="6"
+        rows={6}
       />
       <br />
       <br />
@@ -85,7 +85,7 @@ exports[`Comment component renders at different indentation levels 1`] = `
 exports[`Comment component shallow renders 1`] = `
 <tr>
   <td
-    colSpan="2"
+    colSpan={2}
   />
   <td>
     <form
@@ -108,9 +108,9 @@ exports[`Comment component shallow renders 1`] = `
         value="02641d0660c89c1a83ccf0d171e42497d10d2135"
       />
       <textarea
-        cols="60"
+        cols={60}
         name="text"
-        rows="6"
+        rows={6}
       />
       <br />
       <br />

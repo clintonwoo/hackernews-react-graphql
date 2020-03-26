@@ -44,46 +44,6 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
 
   const nextPage = Math.ceil((skip || 1) / first) + 1;
 
-  const rows: JSX.Element = (
-    <>
-      {newsItems
-        .filter((newsItem): newsItem is NewsItemModel => !!newsItem && !newsItem.hidden)
-        .flatMap((newsItem, index) => {
-          return [
-            <NewsTitle
-              key={`${newsItem.id}title`}
-              isRankVisible={isRankVisible}
-              isUpvoteVisible={isUpvoteVisible}
-              rank={skip + index + 1}
-              {...newsItem}
-            />,
-            <NewsDetail
-              key={`${newsItem.id}detail`}
-              isFavoriteVisible={false}
-              isPostScrutinyVisible={isPostScrutinyVisible}
-              isJobListing={isJobListing}
-              {...newsItem}
-            />,
-            <tr className="spacer" key={`${newsItem.id}spacer`} style={{ height: 5 }} />,
-          ];
-        })}
-      <tr key="morespace" className="morespace" style={{ height: '10px' }} />
-      <tr key="morelinktr">
-        <td key="morelinkcolspan" colSpan={2} />
-        <td key="morelinktd" className="title">
-          <a
-            key="morelink"
-            href={`${currentUrl}?p=${nextPage}`}
-            className="morelink"
-            rel="nofollow"
-          >
-            More
-          </a>
-        </td>
-      </tr>
-    </>
-  );
-
   return (
     <tr>
       <td style={{ padding: '0px' }}>
@@ -98,7 +58,41 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
         >
           <tbody>
             {notice && notice}
-            {rows}
+            <>
+              {newsItems
+                .filter((newsItem): newsItem is NewsItemModel => !!newsItem && !newsItem.hidden)
+                .flatMap((newsItem, index) => [
+                  <NewsTitle
+                    key={`${newsItem.id}title`}
+                    isRankVisible={isRankVisible}
+                    isUpvoteVisible={isUpvoteVisible}
+                    rank={skip + index + 1}
+                    {...newsItem}
+                  />,
+                  <NewsDetail
+                    key={`${newsItem.id}detail`}
+                    isFavoriteVisible={false}
+                    isPostScrutinyVisible={isPostScrutinyVisible}
+                    isJobListing={isJobListing}
+                    {...newsItem}
+                  />,
+                  <tr className="spacer" key={`${newsItem.id}spacer`} style={{ height: 5 }} />,
+                ])}
+              <tr key="morespace" className="morespace" style={{ height: '10px' }} />
+              <tr key="morelinktr">
+                <td key="morelinkcolspan" colSpan={2} />
+                <td key="morelinktd" className="title">
+                  <a
+                    key="morelink"
+                    href={`${currentUrl}?p=${nextPage}`}
+                    className="morelink"
+                    rel="nofollow"
+                  >
+                    More
+                  </a>
+                </td>
+              </tr>
+            </>
           </tbody>
         </table>
       </td>

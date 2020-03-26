@@ -21,7 +21,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
       }
     >
       <tbody>
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -37,11 +37,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="“Learning How to Learn,” the most popular course on Coursera"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -57,7 +56,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="“Learning How to Learn,” the most popular course on Coursera"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -70,7 +68,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={38}
           comments={Array []}
           creationTime={1504740146516}
@@ -86,11 +84,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Weird Python Integers"
           upvoteCount={125}
-          upvoted={false}
           upvotes={Array []}
           url="https://kate.io/blog/2017/08/22/weird-python-integers/"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={38}
           comments={Array []}
           creationTime={1504740146516}
@@ -106,7 +103,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Weird Python Integers"
           upvoteCount={125}
-          upvoted={false}
           upvotes={Array []}
           url="https://kate.io/blog/2017/08/22/weird-python-integers/"
         />
@@ -119,7 +115,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={101}
           comments={Array []}
           creationTime={1504740146516}
@@ -135,11 +131,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="I spent my career in tech and wasn’t prepared for its effect on my kids"
           upvoteCount={90}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={101}
           comments={Array []}
           creationTime={1504740146516}
@@ -155,7 +150,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="I spent my career in tech and wasn’t prepared for its effect on my kids"
           upvoteCount={90}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -168,7 +162,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={0}
           comments={Array []}
           creationTime={1504740146516}
@@ -192,7 +186,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           }
           url="https://www.shavelikeaboss.com.au"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={0}
           comments={Array []}
           creationTime={1504740146516}
@@ -225,7 +219,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={1}
           comments={
             Array [
@@ -246,9 +240,8 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           title="Clinton wins yet another time"
           upvoteCount={20}
           upvotes={Array []}
-          url={null}
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={1}
           comments={
             Array [
@@ -269,7 +262,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           title="Clinton wins yet another time"
           upvoteCount={20}
           upvotes={Array []}
-          url={null}
         />
         <tr
           className="spacer"
@@ -280,7 +272,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -296,11 +288,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Water Found Deep Inside the Moon"
           upvoteCount={455}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -316,7 +307,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Water Found Deep Inside the Moon"
           upvoteCount={455}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -329,7 +319,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -345,11 +335,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="How did “Handbook for Mortals” get on the NYT bestseller list?"
           upvoteCount={331}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -365,7 +354,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="How did “Handbook for Mortals” get on the NYT bestseller list?"
           upvoteCount={331}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -378,7 +366,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -394,11 +382,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Titan in depth: Security in plaintext"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -414,7 +401,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Titan in depth: Security in plaintext"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -427,7 +413,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -443,11 +429,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="The Librem 5: A Matrix-Native FLOSS Smartphone"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -463,7 +448,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="The Librem 5: A Matrix-Native FLOSS Smartphone"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -476,7 +460,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -492,11 +476,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Generic GPU Kernels in Julia"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -512,7 +495,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Generic GPU Kernels in Julia"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -525,7 +507,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -541,11 +523,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="VW Strike in Slovakia Exposes a European Divide"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -561,7 +542,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="VW Strike in Slovakia Exposes a European Divide"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -574,7 +554,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -590,11 +570,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Gtk-rs: The huge and long awaited release is finally here"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -610,7 +589,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Gtk-rs: The huge and long awaited release is finally here"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -623,7 +601,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -639,11 +617,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Rich Hickey's Greatest Hits"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -659,7 +636,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Rich Hickey's Greatest Hits"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -672,7 +648,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -688,11 +664,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -708,7 +683,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Tesla’s Push to Build a Self-Driving Car Sparks Dissent Among Its Engineers"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -721,7 +695,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -737,11 +711,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="How Redlining’s Racist Effects Lasted for Decades"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -757,7 +730,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="How Redlining’s Racist Effects Lasted for Decades"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -770,7 +742,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -786,11 +758,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -806,7 +777,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Uber, Mired in Corporate Scandals, Sees Uptick in Bookings"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -819,7 +789,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -835,11 +805,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Feather: Open-source icons"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -855,7 +824,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Feather: Open-source icons"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -868,7 +836,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -884,11 +852,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Spacex Launch Webcast: Formosat-5 Mission"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -904,7 +871,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Spacex Launch Webcast: Formosat-5 Mission"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -917,7 +883,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -933,11 +899,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Ask HN: What is your favorite CS paper?"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -953,7 +918,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Ask HN: What is your favorite CS paper?"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -966,7 +930,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -982,11 +946,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1002,7 +965,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Launch HN: Life Bot (YC S17) – Voice app to help with daily activities"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1015,7 +977,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1031,11 +993,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Debian reproducibility statistics"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1051,7 +1012,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Debian reproducibility statistics"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1064,7 +1024,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1080,11 +1040,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="The Scotsmen Who Invented Modernity"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1100,7 +1059,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="The Scotsmen Who Invented Modernity"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1113,7 +1071,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1129,11 +1087,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Deterministic Browser"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1149,7 +1106,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Deterministic Browser"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1162,7 +1118,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1178,11 +1134,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Deep Learning for Siri’s Voice"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1198,7 +1153,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Deep Learning for Siri’s Voice"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1211,7 +1165,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1227,11 +1181,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="I'm giving up on HPKP"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1247,7 +1200,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="I'm giving up on HPKP"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1260,7 +1212,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1276,11 +1228,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Introducing App Engine Firewall"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1296,7 +1247,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Introducing App Engine Firewall"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1309,7 +1259,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1325,11 +1275,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Profiling Internet Users in Africa: Insights from the Google Play Store"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1345,7 +1294,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Profiling Internet Users in Africa: Insights from the Google Play Store"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1358,7 +1306,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1374,11 +1322,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1394,7 +1341,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Turing.jl: A Fresh Approach to Probabilistic Programming in Julia"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1407,7 +1353,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1423,11 +1369,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="GCC tiny"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1443,7 +1388,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="GCC tiny"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1456,7 +1400,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
             }
           }
         />
-        <Apollo(NewsTitle)
+        <NewsTitle
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1472,11 +1416,10 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Tesorio is hiring engineers and a product designer to modernize finance teams"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
-        <Apollo(NewsDetail)
+        <NewsDetail
           commentCount={44}
           comments={Array []}
           creationTime={1504740146516}
@@ -1492,7 +1435,6 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           text={null}
           title="Tesorio is hiring engineers and a product designer to modernize finance teams"
           upvoteCount={171}
-          upvoted={false}
           upvotes={Array []}
           url="https://www.nytimes.com/2017/08/04/education/edlife/learning-how-to-learn-barbara-oakley.html?hpw&rref=education&action=click&pgtype=Homepage&module=well-region&region=bottom-well&WT.nav=bottom-well"
         />
@@ -1518,7 +1460,7 @@ exports[`NewsFeed component renders news items passed in as props 1`] = `
           key="morelinktr"
         >
           <td
-            colSpan="2"
+            colSpan={2}
             key="morelinkcolspan"
           />
           <td

@@ -6,6 +6,7 @@ import Page from '../../pages/shownew';
 describe('Show New Page', () => {
   it('is defined', () => {
     const app = shallow(<Page serverState={{}} />);
+
     expect(app).toBeDefined();
   });
 });

@@ -6,6 +6,7 @@ import Page from '../../pages/noobcomments';
 describe('Noob Comments Page', () => {
   it('is defined', () => {
     const app = shallow(<Page serverState={{}} />);
+
     expect(app).toBeDefined();
   });
 });
