@@ -42,31 +42,31 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 
 **Front End**
 
-- Declarative UI - (react)
-- Static Typing (typescript)
-- GraphQL Fragment Colocation - (react-apollo)
-- Prefetch Page Assets - (next)
+- Declarative UI - (`react`)
+- Static Typing (`typescript`)
+- GraphQL Fragment Colocation - (`react-apollo`)
+- Prefetch Page Assets - (`next`)
 
 **Server**
 
-- Universal JS - (node & express)
-- Declarative GraphQL Schema - (apollo-server)
-- GraphQL Query Batching - (apollo-server-express)
-- GraphQL Stored Queries - (apollo-server-express)
-- Easy GraphiQL Include - (apollo-server-express)
-- Local Authentication Strategy - (passport)
-- Server Side Rendering - (next)
-- Code Splitting - (next)
-- Build to Static Website - (next)
-- Container Based Runtime - (docker)
+- Universal JS - (`node` & `express`)
+- Declarative GraphQL Schema - (`apollo-server`)
+- GraphQL Query Batching - (`apollo-server-express`)
+- GraphQL Stored Queries - (`apollo-server-express`)
+- Easy GraphiQL Include - (`apollo-server-express`)
+- Local Authentication Strategy - (`passport`)
+- Server Side Rendering - (`next`)
+- Code Splitting - (`next`)
+- Build to Static Website - (`next`)
+- Container Based Runtime - (`docker`)
 
 **Dev/Test**
 
-- Hot Module Reloading - (next)
-- Snapshot Testing - (jest)
-- GraphQL Playground
-- Faster Package Install - (yarn)
-- JS/TS Best Practices - (eslint)
+- Hot Module Reloading - (`next`)
+- Snapshot Testing - (`jest`)
+- GraphQL Playground - (`apollo-server-express`)
+- Faster Package Install - (`pnpm`/`yarn`)
+- JS/TS Best Practices - (`eslint`)
 
 ### Architecture Overview
 
@@ -74,7 +74,7 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
   <img alt="Hacker News Clone Architecture Overview" width="auto" height="400px" src="docs/HN-Clone-Architecture-overview.png">
 </p>
 
-_server.ts_ is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using `getServerSideProps()` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
+`server.ts` is the entry point. It uses Express and passes requests to Next. Next SSR renders the pages using `getServerSideProps()` hook from Apollo helper. Therefore the app makes GraphQL requests on the client or server.
 
 When the client loads the page it preloads next pages code from any `<Link href="/">`. When the client navigates to the next page it only needs to make one GraphQL query to render. _Great!_
 
@@ -113,7 +113,7 @@ To run in production mode:
 
 ### Configuration
 
-The project runs out of the box with default settings (_/src/config.ts_). You can include a .env file in your project root to configure settings (this is the '_dotenv_' npm package). The _.env_ file is included in _.gitignore_.
+The project runs out of the box with default settings (`/src/config.ts`). You can include a .env file in your project root to configure settings (this is the '_dotenv_' npm package). The _.env_ file is included in _.gitignore_.
 
 ## How To Test
 
@@ -121,11 +121,11 @@ The project runs out of the box with default settings (_/src/config.ts_). You ca
 
 `npm test`
 
-This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `jest --updateSnapshot`.
+This project uses Jest and can do snapshot testing of React components. Whenever a component is changed, please update the snapshots using `npm test -- -u` or `npx jest --updateSnapshot`.
 
 ## How To Build For Deployment
 
-`npm run build:prod`: NextJS app with entry point _server.ts_ that uses Node.js/Express. Uses TypeScript compiler to transpile project src to build.
+`npm run build:prod`: NextJS app with entry point `server.ts` that uses Node.js/Express. Uses TypeScript compiler to transpile project src to build.
 
 OR
 
@@ -136,7 +136,7 @@ Docker Container: Builds a docker container using Dockerfile.
 
 NextJS lets us make a powerful static website but you need to consider if you need server side rendering.
 
-`npm run build-static-website`: Builds static website to _/build/static_. Use a static web server _eg._ NGINX/Github Pages.
+`npm run build-static-website`: Builds static website to `/build/static`. Use a static web server _eg._ NGINX/Github Pages.
 
 ## Contributing
 
