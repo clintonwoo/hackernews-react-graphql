@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Page from '../dmca';
+import Page from '../../pages/dmca';
 
 describe('DMCA Page', () => {
   it('is defined', () => {

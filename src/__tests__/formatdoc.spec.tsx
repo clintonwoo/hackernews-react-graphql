@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Page from '../formatdoc';
+import Page from '../../pages/formatdoc';
 
 describe('Format Doc Page', () => {
   it('is defined', () => {

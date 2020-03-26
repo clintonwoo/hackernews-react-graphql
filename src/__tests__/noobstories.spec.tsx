@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Page from '../noobstories';
+import Page from '../../pages/noobstories';
 
 describe('Noob Stories Page', () => {
   it('is defined', () => {
