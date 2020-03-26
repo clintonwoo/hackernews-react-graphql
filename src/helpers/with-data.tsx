@@ -20,13 +20,13 @@ function parseCookies(
 ): {
   [key: string]: string;
 } {
-  const mycookie = cookie.parse(
+  const userCookie = cookie.parse(
     ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : '', // document.cookie,
     options
   );
 
-  logger('Parsing cookie: ', mycookie);
-  return mycookie;
+  logger('Parsing cookie: ', userCookie);
+  return userCookie;
 }
 
 export interface IWithDataProps<Q = any> {
@@ -67,7 +67,7 @@ export function withData<TProps extends IWithDataProps>(
 
       // Setup a server-side one-time-use apollo client for initial props and
       // rendering (on server)
-      logger('getInitialProps with context: ', context);
+      logger('getInitialProps with context:', context);
       const apollo = initApollo({}, { getToken: () => parseCookies(context) });
 
       // Evaluate the composed component's getInitialProps()

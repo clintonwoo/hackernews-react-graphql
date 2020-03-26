@@ -32,7 +32,7 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 - Node.js - (Web Server)
 - Express - (Web App Server)
 - Passport - (Authentication)
-- TSLint - (JS Best Practices/Code Highlighting)
+- ESLint - (Coding Best Practices/Code Highlighting)
 - Jest - (Tests)
 - Docker - (Container Deployment)
 
@@ -66,7 +66,7 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 - Snapshot Testing - (jest)
 - GraphQL Playground
 - Faster Package Install - (yarn)
-- JS Best Practices - (tslint)
+- JS/TS Best Practices - (eslint)
 
 ### Architecture Overview
 
@@ -109,11 +109,11 @@ Running the app in dev mode is fully featured including _hot module reloading_:
 
 To run in production mode:
 
-`npm run build && npm start`
+`npm run build:prod && npm run start:prod`
 
 ### Configuration
 
-The project runs out of the box with default settings (_/src/config.js_). You can include a .env file in your project root to configure settings (this is the '_dotenv_' npm package). The _.env_ file is included in _.gitignore_.
+The project runs out of the box with default settings (_/src/config.ts_). You can include a .env file in your project root to configure settings (this is the '_dotenv_' npm package). The _.env_ file is included in _.gitignore_.
 
 ## How To Test
 
@@ -125,7 +125,7 @@ This project uses Jest and can do snapshot testing of React components. Whenever
 
 ## How To Build For Deployment
 
-`npm run build`: NextJS app with entry point _server.js_ that uses Node.js/Express. Uses Babel compiler to transpile project src to build.
+`npm run build:prod`: NextJS app with entry point _server.ts_ that uses Node.js/Express. Uses TypeScript compiler to transpile project src to build.
 
 OR
 

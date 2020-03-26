@@ -1,4 +1,3 @@
-import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
 import { useQuery } from '@apollo/react-hooks';

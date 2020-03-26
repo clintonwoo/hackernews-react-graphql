@@ -6,7 +6,7 @@ import * as HNDB from '../database/hn-data-api';
 import { isValidNewUser } from '../../src/data/validation/user';
 import { UserModel, NewsItemModel } from '../../src/data/models';
 
-export class UserService {
+export abstract class UserService {
   static getUser(id: string): UserModel | Promise<UserModel | void> {
     return CacheSingleton.getUser(id) || HNDB.fetchUser(id);
   }

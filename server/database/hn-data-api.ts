@@ -19,7 +19,7 @@ const api = Firebase.database().ref(HN_API_VERSION);
 /* BEGIN NEWS ITEMS */
 
 export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
-  logger(`Fetching post ${HN_API_URL}/item/${id}.json`);
+  logger('Fetching post:', `${HN_API_URL}/item/${id}.json`);
 
   return api
     .child(`item/${id}`)
@@ -40,18 +40,18 @@ export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
         });
 
         CacheSingleton.setNewsItem(newsItem.id, newsItem);
-        logger(`Created Post: ${post.id}`);
+        logger('Created Post:', post.id);
 
         return newsItem;
       }
 
       throw post;
     })
-    .catch((reason) => logger(`Fetching post failed: ${reason}`));
+    .catch((reason) => logger('Fetching post failed:', reason));
 }
 
 export async function fetchComment(id: number): Promise<CommentModel | void> {
-  logger(`Fetching comment ${HN_API_URL}/item/${id}.json`);
+  logger('Fetching comment:', `${HN_API_URL}/item/${id}.json`);
 
   return api
     .child(`item/${id}`)
@@ -70,18 +70,18 @@ export async function fetchComment(id: number): Promise<CommentModel | void> {
         });
 
         CacheSingleton.setComment(comment.id, comment);
-        logger(`Created Comment: ${item.id}`);
+        logger('Created Comment:', item.id);
 
         return comment;
       }
 
       throw item;
     })
-    .catch((reason) => logger(`Fetching comment failed: ${reason}`));
+    .catch((reason) => logger('Fetching comment failed:', reason));
 }
 
 export async function fetchUser(id: string): Promise<UserModel | void> {
-  logger(`Fetching user ${HN_API_URL}/user/${id}.json`);
+  logger('Fetching user:', `${HN_API_URL}/user/${id}.json`);
 
   return api
     .child(`user/${id}`)
@@ -99,23 +99,23 @@ export async function fetchUser(id: string): Promise<UserModel | void> {
         });
 
         CacheSingleton.setUser(user.id, user);
-        logger(`Created User: ${item.id}`, item);
+        logger('Created User:', item.id, item);
 
         return user;
       }
 
       throw item;
     })
-    .catch((reason) => logger(`Fetching user failed: ${reason}`));
+    .catch((reason) => logger('Fetching user failed:', reason));
 }
 
 export async function getFeed(feedType: FeedType): Promise<number[] | void> {
-  logger(`Fetching /${feedType}stories.json`);
+  logger('Fetching', `/${feedType}stories.json`);
 
   return api
     .child(`${feedType}stories`)
     .once('value')
     .then((feedSnapshot) => feedSnapshot.val())
     .then((feed) => feed.filter((newsItem) => newsItem !== undefined && newsItem !== null))
-    .catch((reason) => logger(`Fetching news feed failed: ${reason}`));
+    .catch((reason) => logger('Fetching news feed failed:', reason));
 }

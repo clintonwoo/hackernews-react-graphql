@@ -1,4 +1,4 @@
-import { sampleData } from './sample-data';
+import { sampleData } from '../src/data/sample-data';
 import { resolvers } from './schema';
 
 describe('schema', () => {

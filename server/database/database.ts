@@ -47,7 +47,7 @@ export function unvoteNewsItem(id: number, userId: string): NewsItemModel | unde
 }
 
 export function hideNewsItem(id: number, userId: string): NewsItemModel {
-  logger(`Hiding News Item ${id} by ${userId}`);
+  logger('Hiding News Item id by userId:', id, userId);
 
   const newsItem = CacheSingleton.getNewsItem(id);
   const user = CacheSingleton.getUser(userId);
@@ -59,7 +59,7 @@ export function hideNewsItem(id: number, userId: string): NewsItemModel {
     newsItem.hides.push(userId);
     CacheSingleton.setNewsItem(id, newsItem);
 
-    logger(`Hid News Item ${id} by ${userId}`);
+    logger('Hid News Item id by userId:', id, userId);
   } else {
     throw new Error(`Data error, user has already hidden ${id} by ${userId}`);
   }

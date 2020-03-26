@@ -9,7 +9,7 @@ const logger = debug('app:NewsItem');
 
 let newPostIdCounter = 100;
 
-export class NewsItemService {
+export abstract class NewsItemService {
   static getNewsItem(id: number): NewsItemModel | Promise<NewsItemModel | void> {
     return CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
   }
@@ -17,7 +17,7 @@ export class NewsItemService {
   static getNewsItems(ids: number[]): Promise<Array<NewsItemModel | void> | void> {
     return Promise.all(ids.map((id) => NewsItemService.getNewsItem(id)))
       .then((newsItems) => newsItems.filter((newsItem) => newsItem !== undefined))
-      .catch((reason) => logger(`Rejected News Items: ${reason}`));
+      .catch((reason) => logger('Rejected News Items:', reason));
   }
 
   static upvoteNewsItem(id: number, userId: string): NewsItemModel | undefined {

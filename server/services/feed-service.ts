@@ -8,13 +8,13 @@ import { FeedType, NewsItemModel } from '../../src/data/models';
 const logger = debug('app:Feed');
 logger.log = console.log.bind(console);
 
-export class FeedService {
+export abstract class FeedService {
   public static getForType(
     type: FeedType,
     first: number,
     skip: number
   ): Promise<Array<NewsItemModel | void>> | NewsItemModel[] {
-    logger(`Get first ${first} ${type} stories skip ${skip}.`);
+    logger('Get first', first, type, 'stories skip', skip);
 
     switch (type) {
       case FeedType.TOP:

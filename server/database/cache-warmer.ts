@@ -33,13 +33,13 @@ function rebuildFeed(feedType: FeedType): void {
 
           CacheSingleton[feedType] = feed;
 
-          logger(`Updated ${feedType} ids`);
+          logger('Updated Feed ids for type: ', feedType);
         });
       }
 
       return undefined;
     })
-    .catch((reason) => logger(`Error building feed: ${reason}`));
+    .catch((reason) => logger('Error building feed: ', reason));
 }
 
 /* END NEWS ITEMS */
@@ -47,7 +47,7 @@ function rebuildFeed(feedType: FeedType): void {
 /* BEGIN SEED DATA */
 
 export function seedCache(delay: number): void {
-  logger(`Waiting ${delay} ms before seeding the app with data.`);
+  logger('Waiting ms before seeding the app with data:', delay);
 
   // Delay seeding the cache so we don't spam in dev
   setTimeout(() => {

@@ -6,11 +6,11 @@ import { CommentModel } from '../../src/data/models';
 
 const logger = debug('app:Comment');
 
-export class CommentService {
+export abstract class CommentService {
   static getComment(id: number): CommentModel | Promise<CommentModel | void> {
     return (
       CacheSingleton.getComment(id) ||
-      HNDB.fetchComment(id).catch((reason) => logger(`Rejected comment: ${reason}`))
+      HNDB.fetchComment(id).catch((reason) => logger('Rejected comment:', reason))
     );
   }
 
@@ -19,6 +19,6 @@ export class CommentService {
       .then((comments): CommentModel[] =>
         comments.filter((comment): comment is CommentModel => comment !== undefined)
       )
-      .catch((reason) => logger(`Rejected comments: ${reason}`));
+      .catch((reason) => logger('Rejected comments:', reason));
   }
 }

@@ -17,7 +17,8 @@ import {
   useGraphqlPlayground,
 } from '../src/config';
 import { UserModel } from '../src/data/models';
-import { resolvers, typeDefs } from '../src/data/schema';
+import { typeDefs } from './graphql-schema';
+import { resolvers, IGraphQlSchemaContext } from './graphql-resolvers';
 import { seedCache, warmCache } from './database/cache-warmer';
 import { CommentService, FeedService, NewsItemService, UserService } from './services';
 
@@ -133,7 +134,7 @@ app
     /* BEGIN GRAPHQL */
 
     const apolloServer = new ApolloServer({
-      context: ({ req }) => ({
+      context: ({ req }): IGraphQlSchemaContext => ({
         CommentService,
         FeedService,
         NewsItemService,

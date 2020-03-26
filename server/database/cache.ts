@@ -61,7 +61,7 @@ class Cache {
   }
 
   setUser(id: string, user: UserModel): UserModel {
-    logger(`Cache set user ${user}`);
+    logger('Cache set user:', user);
 
     this.userCache.set(id, user);
 
@@ -79,7 +79,7 @@ class Cache {
   setComment(id: number, comment: CommentModel): CommentModel {
     this.commentCache.set(comment.id.toString(), comment);
 
-    logger(`Cache set comment ${comment}`);
+    logger('Cache set comment:', comment);
 
     return comment;
   }
