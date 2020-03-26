@@ -4,6 +4,7 @@
 .vscode
 *.DS_Store
 *.log
+build
 coverage
 dist
 logs
