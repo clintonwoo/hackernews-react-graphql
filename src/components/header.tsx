@@ -66,7 +66,3 @@ export function Header(props: IHeaderProps): JSX.Element {
     </tr>
   );
 }
-
-Header.defaultProps = {
-  me: undefined,
-};

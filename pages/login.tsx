@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
-import Router, { withRouter, NextRouter } from 'next/router';
+import Router, { NextRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { IMeQuery, ME_QUERY } from '../src/data/queries/me-query';
@@ -16,7 +16,7 @@ export interface ILoginPageProps {
   router?: NextRouter;
 }
 
-function LoginPageView(props: ILoginPageProps): JSX.Element {
+function LoginPage(props: ILoginPageProps): JSX.Element {
   const { data } = useQuery<IMeQuery>(ME_QUERY);
 
   const { router } = props;
@@ -154,8 +154,4 @@ function LoginPageView(props: ILoginPageProps): JSX.Element {
   );
 }
 
-export const LoginPage = withDataAndRouter(
-  withRouter((props) => <LoginPageView router={props.router} />)
-);
-
-export default LoginPage;
+export default withDataAndRouter(LoginPage);

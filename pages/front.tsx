@@ -3,10 +3,13 @@ import * as React from 'react';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 
-export const FrontPage = withDataAndRouter((props) => (
-  <MainLayout currentUrl={props.router.pathname}>
-    <span>total</span>
-  </MainLayout>
-));
+export function FrontPage(props): JSX.Element {
+  const { router } = props;
+  return (
+    <MainLayout currentUrl={router.pathname}>
+      <span>total</span>
+    </MainLayout>
+  );
+}
 
-export default FrontPage;
+export default withDataAndRouter(FrontPage);

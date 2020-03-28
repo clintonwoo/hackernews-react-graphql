@@ -6,14 +6,13 @@ import { useMutation } from '@apollo/react-hooks';
 import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-item-mutation';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
-import { NewsItemModel } from '../src/data/models';
 
 interface ISubmitPageProps {
-  currentUrl: string;
+  router;
 }
 
-function SubmitPageView(props: ISubmitPageProps): JSX.Element {
-  const { currentUrl } = props;
+function SubmitPage(props: ISubmitPageProps): JSX.Element {
+  const { router } = props;
 
   const [title, setTitle] = useState<string>('');
   const [url, setUrl] = useState<string>('');
@@ -32,7 +31,12 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
   });
 
   return (
-    <MainLayout currentUrl={currentUrl} title="Submit" isNavVisible={false} isFooterVisible={false}>
+    <MainLayout
+      currentUrl={router.pathname}
+      title="Submit"
+      isNavVisible={false}
+      isFooterVisible={false}
+    >
       <tr>
         <td>
           <form onSubmit={(e): void => e.preventDefault()}>
@@ -133,8 +137,4 @@ function SubmitPageView(props: ISubmitPageProps): JSX.Element {
   );
 }
 
-export const SubmitPage = withDataAndRouter((props) => (
-  <SubmitPageView currentUrl={props.router.pathname} />
-));
-
-export default SubmitPage;
+export default withDataAndRouter(SubmitPage);

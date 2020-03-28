@@ -3,12 +3,14 @@ import * as React from 'react';
 import { MainLayout } from '../src/layouts/main-layout';
 import { withDataAndRouter } from '../src/helpers/with-data';
 
-export const FormatDocPage = withDataAndRouter((props) => {
+export function FormatDocPage(props): JSX.Element {
+  const { router } = props;
+
   return (
     <MainLayout
       isFooterVisible={false}
       isNavVisible={false}
-      currentUrl={props.router.pathname}
+      currentUrl={router.pathname}
       title="Formatting Options"
     >
       <tr>
@@ -45,6 +47,6 @@ export const FormatDocPage = withDataAndRouter((props) => {
       </tr>
     </MainLayout>
   );
-});
+}
 
-export default FormatDocPage;
+export default withDataAndRouter(FormatDocPage);

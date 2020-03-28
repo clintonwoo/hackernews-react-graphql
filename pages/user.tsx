@@ -4,35 +4,53 @@ import Link from 'next/link';
 import * as React from 'react';
 import renderHTML from 'react-render-html';
 
-import { UserModel } from '../src/data/models';
 import { convertNumberToTimeAgo } from '../src/helpers/convert-number-to-time-ago';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
 import { MainLayout } from '../src/layouts/main-layout';
 
-export interface IUserPageProps extends IUserPageOwnProps {
-  loading: boolean;
+const query = gql`
+  query User($id: String!) {
+    user(id: $id) {
+      id
+      about
+      creationTime
+      email
+      karma
+    }
+    me {
+      id
+    }
+  }
+`;
+
+export interface IUserPageProps {
+  router;
+}
+
+export interface IUserPageQuery {
+  loading;
   error;
-  user: UserModel;
+  user;
   me;
 }
 
-interface IUserPageOwnProps {
-  currentUrl: string;
-}
+function UserPage(props: IUserPageProps): JSX.Element {
+  const { router } = props;
 
-const UserPageView: React.SFC<IUserPageProps> = (props) => {
-  const { error, user, me, currentUrl } = props;
+  const userId = (router.query && router.query.id) || '';
 
-  if (error) {
+  const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
+
+  if (data?.error) {
     return <BlankLayout>Error loading news items.</BlankLayout>;
   }
-  if (!user) {
+  if (data?.user) {
     return <BlankLayout>No such user.</BlankLayout>;
   }
 
-  let about = user.about || '';
-  let email = user.email || '';
+  let about = data?.user.about || '';
+  let email = data?.user.email || '';
 
   const onAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     about = e.target.value;
@@ -42,9 +60,9 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
     email = e.target.value;
   };
 
-  if (me && user.id === me.id)
+  if (data?.me && data?.user.id === data.me.id)
     return (
-      <MainLayout currentUrl={currentUrl} isFooterVisible={false}>
+      <MainLayout currentUrl={router.pathname} isFooterVisible={false}>
         <tr>
           <td>
             <form className="profileform" method="post" action="/xuser">
@@ -57,18 +75,18 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
                     <td>
                       <Link href="/user?id=clintonwoo">
                         <a className="hnuser" style={{ color: '#3c963c' }}>
-                          {user.id}
+                          {data?.user.id}
                         </a>
                       </Link>
                     </td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>created:</td>
-                    <td>{convertNumberToTimeAgo(user.creationTime)}</td>
+                    <td>{convertNumberToTimeAgo(data?.user.creationTime)}</td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>karma:</td>
-                    <td>{user.karma}</td>
+                    <td>{data?.user.karma}</td>
                   </tr>
                   <tr>
                     <td style={{ verticalAlign: 'top' }}>about:</td>
@@ -226,7 +244,7 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
     );
 
   return (
-    <MainLayout currentUrl={currentUrl} isFooterVisible={false}>
+    <MainLayout currentUrl={router.pathname} isFooterVisible={false}>
       <tr>
         <td>
           <table style={{ border: '0' }}>
@@ -234,27 +252,27 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
               <tr className="athing">
                 <td style={{ verticalAlign: 'top' }}>user:</td>
                 <td>
-                  <a href={`user?id=${user.id}`} className="hnuser">
-                    {user.id}
+                  <a href={`user?id=${data?.user.id}`} className="hnuser">
+                    {data?.user.id}
                   </a>
                 </td>
               </tr>
               <tr>
                 <td style={{ verticalAlign: 'top' }}>created:</td>
-                <td>{convertNumberToTimeAgo(user.creationTime)}</td>
+                <td>{convertNumberToTimeAgo(data?.user.creationTime)}</td>
               </tr>
               <tr>
                 <td style={{ verticalAlign: 'top' }}>karma:</td>
-                <td>{user.karma}</td>
+                <td>{data?.user.karma}</td>
               </tr>
               <tr>
                 <td style={{ verticalAlign: 'top' }}>about:</td>
-                <td>{user.about && renderHTML(user.about)}</td>
+                <td>{data?.user.about && renderHTML(data?.user.about)}</td>
               </tr>
               <tr>
                 <td />
                 <td>
-                  <a href={`submitted?id=${user.id}`}>
+                  <a href={`submitted?id=${data?.user.id}`}>
                     <u>submissions</u>
                   </a>
                 </td>
@@ -262,7 +280,7 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
               <tr>
                 <td />
                 <td>
-                  <a href={`threads?id=${user.id}`}>
+                  <a href={`threads?id=${data?.user.id}`}>
                     <u>comments</u>
                   </a>
                 </td>
@@ -270,7 +288,7 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
               <tr>
                 <td />
                 <td>
-                  <a href={`favorites?id=${user.id}`}>
+                  <a href={`favorites?id=${data?.user.id}`}>
                     <u>favorites</u>
                   </a>
                 </td>
@@ -283,44 +301,6 @@ const UserPageView: React.SFC<IUserPageProps> = (props) => {
       </tr>
     </MainLayout>
   );
-};
-
-export interface IUserPageQuery {
-  loading;
-  error;
-  user;
-  me;
 }
 
-const query = gql`
-  query User($id: String!) {
-    user(id: $id) {
-      id
-      about
-      creationTime
-      email
-      karma
-    }
-    me {
-      id
-    }
-  }
-`;
-
-export const UserPage = withDataAndRouter((props) => {
-  const userId = (props.router.query && props.router.query.id) || '';
-
-  const { data } = useQuery(query, { variables: { id: userId } });
-
-  return (
-    <UserPageView
-      loading={data?.loading!}
-      error={data?.error!}
-      user={data?.user!}
-      me={data?.me!}
-      currentUrl={props.router.pathname}
-    />
-  );
-});
-
-export default UserPage;
+export default withDataAndRouter(UserPage);

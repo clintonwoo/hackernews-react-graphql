@@ -1,13 +1,13 @@
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
+import { POSTS_PER_PAGE } from '../src/config';
+import { FeedType } from '../src/data/models';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
-import { FeedType } from '../src/data/models';
-import { POSTS_PER_PAGE } from '../src/config';
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -27,8 +27,10 @@ export interface IShowHNNewsFeedProps {
   };
 }
 
-export const ShowNewPage = withDataAndRouter((props) => {
-  const pageNumber = (props.router.query && +props.router.query.p) || 0;
+export function ShowNewPage(props): JSX.Element {
+  const { router } = props;
+
+  const pageNumber = (router.query && +router.query.p) || 0;
 
   const first = POSTS_PER_PAGE;
   const skip = POSTS_PER_PAGE * pageNumber;
@@ -36,9 +38,9 @@ export const ShowNewPage = withDataAndRouter((props) => {
   const { data } = useQuery(query, { variables: { first, skip, type: FeedType.SHOW } });
 
   return (
-    <MainLayout currentUrl={props.router.pathname}>
+    <MainLayout currentUrl={router.pathname}>
       <NewsFeed
-        currentUrl={props.router.pathname}
+        currentUrl={router.pathname}
         data={data}
         first={first}
         skip={skip}
@@ -69,6 +71,6 @@ export const ShowNewPage = withDataAndRouter((props) => {
       />
     </MainLayout>
   );
-});
+}
 
-export default ShowNewPage;
+export default withDataAndRouter(ShowNewPage);

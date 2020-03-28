@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { withRouter, NextRouter } from 'next/router';
+import { NextRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { withDataAndRouter } from '../src/helpers/with-data';
@@ -9,7 +8,7 @@ export interface IForgotPageProps {
   router: NextRouter; // { how: UserLoginErrorCode }
 }
 
-function ForgotPageView(props: IForgotPageProps): JSX.Element {
+function ForgotPage(props: IForgotPageProps): JSX.Element {
   const [username, setUsername] = useState<string>('');
 
   return (
@@ -30,8 +29,4 @@ function ForgotPageView(props: IForgotPageProps): JSX.Element {
   );
 }
 
-export const ForgotPage = withDataAndRouter(
-  withRouter((props) => <ForgotPageView router={props.router} />)
-);
-
-export default ForgotPage;
+export default withDataAndRouter(ForgotPage);

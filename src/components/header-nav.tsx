@@ -67,7 +67,3 @@ export function HeaderNav(props: IHeaderNavProps): JSX.Element {
     </span>
   );
 }
-
-HeaderNav.defaultProps = {
-  userId: null,
-};

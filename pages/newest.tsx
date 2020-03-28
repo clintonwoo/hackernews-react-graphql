@@ -1,7 +1,6 @@
-import gql from 'graphql-tag';
-import { withRouter } from 'next/router';
-import * as React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import * as React from 'react';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
 import { withDataAndRouter } from '../src/helpers/with-data';
@@ -26,21 +25,21 @@ export interface INewestNewsFeedProps {
   };
 }
 
-export const NewestPage = withDataAndRouter(
-  withRouter((props) => {
-    const pageNumber = (props.router.query && +props.router.query.p) || 0;
+export function NewestPage(props): JSX.Element {
+  const { router } = props;
 
-    const first = POSTS_PER_PAGE;
-    const skip = POSTS_PER_PAGE * pageNumber;
+  const pageNumber = (router.query && +router.query.p) || 0;
 
-    const { data } = useQuery(query, { variables: { first, skip, type: FeedType.NEW } });
+  const first = POSTS_PER_PAGE;
+  const skip = POSTS_PER_PAGE * pageNumber;
 
-    return (
-      <MainLayout currentUrl={props.router.pathname}>
-        <NewsFeed data={data} currentUrl={props.router.pathname} first={first} skip={skip} />
-      </MainLayout>
-    );
-  })
-);
+  const { data } = useQuery(query, { variables: { first, skip, type: FeedType.NEW } });
 
-export default NewestPage;
+  return (
+    <MainLayout currentUrl={router.pathname}>
+      <NewsFeed data={data} currentUrl={router.pathname} first={first} skip={skip} />
+    </MainLayout>
+  );
+}
+
+export default withDataAndRouter(NewestPage);

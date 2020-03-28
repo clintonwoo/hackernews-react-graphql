@@ -1,6 +1,6 @@
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
 import { withDataAndRouter } from '../src/helpers/with-data';
@@ -29,8 +29,10 @@ export interface IJobsPageOwnProps {
   };
 }
 
-export const JobsPage = withDataAndRouter((props) => {
-  const pageNumber = (props.router.query && +props.router.query.p) || 0;
+export function JobsPage(props): JSX.Element {
+  const { router } = props;
+
+  const pageNumber = (router.query && +router.query.p) || 0;
 
   const first = POSTS_PER_PAGE;
   const skip = POSTS_PER_PAGE * pageNumber;
@@ -38,9 +40,9 @@ export const JobsPage = withDataAndRouter((props) => {
   const { data } = useQuery(query, { variables: { first, skip, type: FeedType.JOB } });
 
   return (
-    <MainLayout currentUrl={props.router.pathname}>
+    <MainLayout currentUrl={router.pathname}>
       <NewsFeed
-        currentUrl={props.router.pathname}
+        currentUrl={router.pathname}
         data={data}
         first={POSTS_PER_PAGE}
         isJobListing
@@ -70,6 +72,6 @@ export const JobsPage = withDataAndRouter((props) => {
       />
     </MainLayout>
   );
-});
+}
 
-export default JobsPage;
+export default withDataAndRouter(JobsPage);

@@ -25,8 +25,10 @@ export interface INewestNewsFeedOwnProps {
   };
 }
 
-export const FavoritesPage = withDataAndRouter((props) => {
-  const pageNumber = (props.router.query && +props.router.query.p) || 0;
+export function FavoritesPage(props): JSX.Element {
+  const { router } = props;
+
+  const pageNumber = (router.query && +router.query.p) || 0;
 
   const first = POSTS_PER_PAGE;
   const skip = POSTS_PER_PAGE * pageNumber;
@@ -34,10 +36,10 @@ export const FavoritesPage = withDataAndRouter((props) => {
   const { data } = useQuery(query, { variables: { first, skip, type: FeedType.NEW } });
 
   return (
-    <MainLayout currentUrl={props.router.pathname}>
-      <NewsFeed data={data} currentUrl={props.router.pathname} first={first} skip={skip} />
+    <MainLayout currentUrl={router.pathname}>
+      <NewsFeed data={data} currentUrl={router.pathname} first={first} skip={skip} />
     </MainLayout>
   );
-});
+}
 
-export default FavoritesPage;
+export default withDataAndRouter(FavoritesPage);

@@ -22,7 +22,7 @@ exports[`Comment component renders a comment passed in as props 1`] = `
               alt=""
               height="1"
               src="/static/s.gif"
-              width="0px"
+              width={0}
             />
           </td>
           <td
@@ -175,7 +175,7 @@ exports[`Comment component renders at different indentation levels 1`] = `
               alt=""
               height="1"
               src="/static/s.gif"
-              width="0px"
+              width={0}
             />
           </td>
           <td
@@ -328,7 +328,7 @@ exports[`Comment component shallow renders 1`] = `
               alt=""
               height="1"
               src="/static/s.gif"
-              width="0px"
+              width={0}
             />
           </td>
           <td

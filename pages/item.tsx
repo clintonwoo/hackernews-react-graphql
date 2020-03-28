@@ -34,24 +34,18 @@ export interface INewsItemWithCommentsWithGraphQLOwnProps {
   id: number;
 }
 
-export const ItemPage = withDataAndRouter(
-  (props): JSX.Element => {
-    const { router } = props;
+export function ItemPage(props): JSX.Element {
+  const { router } = props;
 
-    const { data } = useQuery(newsItemWithCommentsQuery, {
-      variables: { id: (router.query && +router.query.id) || 0 },
-    });
+  const { data } = useQuery(newsItemWithCommentsQuery, {
+    variables: { id: (router.query && +router.query.id) || 0 },
+  });
 
-    return (
-      <MainLayout currentUrl={router.pathname}>
-        <NewsItemWithComments
-          error={data?.error}
-          loading={data?.loading}
-          newsItem={data?.newsItem}
-        />
-      </MainLayout>
-    );
-  }
-);
+  return (
+    <MainLayout currentUrl={router.pathname}>
+      <NewsItemWithComments error={data?.error} loading={data?.loading} newsItem={data?.newsItem} />
+    </MainLayout>
+  );
+}
 
-export default ItemPage;
+export default withDataAndRouter(ItemPage);
