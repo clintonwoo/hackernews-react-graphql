@@ -54,7 +54,7 @@
     "graphql-tools": "4.0.7",
     "isomorphic-unfetch": "3.0.0",
     "lru-cache": "5.1.1",
-    "next": "9.3.1",
+    "next": "9.3.2",
     "passport": "0.4.1",
     "passport-local": "1.0.0",
     "react": "16.13.1",
