@@ -7,10 +7,12 @@ ENV NODE_ENV=production
 RUN npm config ls
 RUN env
 
-# Copy the source code and build
-COPY . .
+# Copy the project files so docker caches dependencies
+COPY package.json package-lock.json /app/
 RUN ls -a
 RUN npm install --production=false
+# Copy the source code and build
+COPY . .
 RUN npm run build:prod
 RUN ls -a
 
