@@ -1,4 +1,4 @@
-// This file is used to run health checks with Node in the Docker container
+// This file is used to run health checks in the Docker container via Node JS
 
 var http = require('http');
 
@@ -10,6 +10,7 @@ var options = {
 
 var request = http.request(options, (res) => {
   console.log(`STATUS: ${res.statusCode}`);
+
   if (res.statusCode == 200) {
     process.exit(0);
   } else {
@@ -19,6 +20,7 @@ var request = http.request(options, (res) => {
 
 request.on('error', function (err) {
   console.log('ERROR');
+
   process.exit(1);
 });
 

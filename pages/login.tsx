@@ -7,10 +7,11 @@ import { IMeQuery, ME_QUERY } from '../src/data/queries/me-query';
 import { isValidNewUser } from '../src/data/validation/user';
 import {
   getErrorMessageForLoginErrorCode,
-  UserLoginErrorCode,
+  UserLoginErrorCode
 } from '../src/helpers/user-login-error-code';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
+import { BACK_END_URI } from '../src/config';
 
 export interface ILoginPageProps {
   router?: NextRouter;
@@ -114,7 +115,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
       <br />
       <form
         method="post"
-        action="/register"
+        action={`${BACK_END_URI}/register`}
         onSubmit={(e): void => validateRegister(e)}
         style={{ marginBottom: '1em' }}
       >

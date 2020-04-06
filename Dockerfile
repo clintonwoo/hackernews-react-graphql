@@ -28,21 +28,19 @@ ENV NODE_ENV=production
 COPY --from=devBuild /app/dist ./dist
 COPY --from=devBuild /app/.next ./.next
 COPY --from=devBuild /app/public ./public
-COPY --from=devBuild /app/next.config.js ./next.config.js
-COPY package.json package-lock.json healthcheck.js ./
+COPY --from=devBuild /app/scripts ./scripts
+COPY package.json package-lock.json next.config.js public ./
 
 RUN ls -a
-
-RUN npm install --only=prod
-
-RUN npx next telemetry disable
+RUN npm install --production
 
 # Expose the container port to the OS
 # docker run takes -p argument to forward this port to network
 EXPOSE 3000
+EXPOSE 1500
 
 # Start the application
 CMD npm run start:prod
 
 HEALTHCHECK --interval=30s --timeout=12s --start-period=30s \  
-  CMD node /healthcheck.js
+  CMD node scripts/healthcheck.js

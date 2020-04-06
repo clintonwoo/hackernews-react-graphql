@@ -1,5 +1,6 @@
 import { debug } from 'debug';
-import * as Firebase from 'firebase';
+import { apps, initializeApp, database } from 'firebase/app';
+import 'firebase/database';
 
 import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../../src/config';
 import { CacheSingleton } from './cache';
@@ -8,11 +9,11 @@ import { CommentModel, NewsItemModel, UserModel, FeedType } from '../../src/data
 const logger = debug('app:HNDataAPI');
 logger.log = console.log.bind(console);
 
-if (!Firebase.apps.length) {
-  Firebase.initializeApp({ databaseURL: HN_DB_URI });
+if (!apps.length) {
+  initializeApp({ databaseURL: HN_DB_URI });
 }
 
-const api = Firebase.database().ref(HN_API_VERSION);
+const api = database().ref(HN_API_VERSION);
 
 // https://github.com/HackerNews/API
 
@@ -24,7 +25,7 @@ export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
   return api
     .child(`item/${id}`)
     .once('value')
-    .then((postSnapshot) => {
+    .then(postSnapshot => {
       const post = postSnapshot.val();
 
       if (post !== null) {
@@ -36,7 +37,7 @@ export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
           submitterId: post.by,
           title: post.title,
           upvoteCount: post.score,
-          url: post.url,
+          url: post.url
         });
 
         CacheSingleton.setNewsItem(newsItem.id, newsItem);
@@ -47,7 +48,7 @@ export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
 
       throw post;
     })
-    .catch((reason) => logger('Fetching post failed:', reason));
+    .catch(reason => logger('Fetching post failed:', reason));
 }
 
 export async function fetchComment(id: number): Promise<CommentModel | void> {
@@ -56,7 +57,7 @@ export async function fetchComment(id: number): Promise<CommentModel | void> {
   return api
     .child(`item/${id}`)
     .once('value')
-    .then((itemSnapshot) => {
+    .then(itemSnapshot => {
       const item = itemSnapshot.val();
 
       if (item !== null && !item.deleted && !item.dead) {
@@ -66,7 +67,7 @@ export async function fetchComment(id: number): Promise<CommentModel | void> {
           id: item.id,
           parent: item.parent,
           submitterId: item.by,
-          text: item.text,
+          text: item.text
         });
 
         CacheSingleton.setComment(comment.id, comment);
@@ -77,7 +78,7 @@ export async function fetchComment(id: number): Promise<CommentModel | void> {
 
       throw item;
     })
-    .catch((reason) => logger('Fetching comment failed:', reason));
+    .catch(reason => logger('Fetching comment failed:', reason));
 }
 
 export async function fetchUser(id: string): Promise<UserModel | void> {
@@ -86,7 +87,7 @@ export async function fetchUser(id: string): Promise<UserModel | void> {
   return api
     .child(`user/${id}`)
     .once('value')
-    .then((itemSnapshot) => {
+    .then(itemSnapshot => {
       const item = itemSnapshot.val();
 
       if (item !== null && !item.deleted && !item.dead) {
@@ -95,7 +96,7 @@ export async function fetchUser(id: string): Promise<UserModel | void> {
           creationTime: item.created * 1000,
           id: item.id,
           karma: item.karma,
-          posts: item.submitted,
+          posts: item.submitted
         });
 
         CacheSingleton.setUser(user.id, user);
@@ -106,7 +107,7 @@ export async function fetchUser(id: string): Promise<UserModel | void> {
 
       throw item;
     })
-    .catch((reason) => logger('Fetching user failed:', reason));
+    .catch(reason => logger('Fetching user failed:', reason));
 }
 
 export async function getFeed(feedType: FeedType): Promise<number[] | void> {
@@ -115,7 +116,7 @@ export async function getFeed(feedType: FeedType): Promise<number[] | void> {
   return api
     .child(`${feedType}stories`)
     .once('value')
-    .then((feedSnapshot) => feedSnapshot.val())
-    .then((feed) => feed.filter((newsItem) => newsItem !== undefined && newsItem !== null))
-    .catch((reason) => logger('Fetching news feed failed:', reason));
+    .then(feedSnapshot => feedSnapshot.val())
+    .then(feed => feed.filter(newsItem => newsItem !== undefined && newsItem !== null))
+    .catch(reason => logger('Fetching news feed failed:', reason));
 }

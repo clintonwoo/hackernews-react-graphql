@@ -12,13 +12,19 @@ export const HN_DB_URI = process.env.DB_URI || 'https://hacker-news.firebaseio.c
 export const HN_API_VERSION = process.env.HN_API_VERSION || '/v0';
 export const HN_API_URL = process.env.HN_API_URL || `${HN_DB_URI}${HN_API_VERSION}`;
 
-export const HOST_NAME = process.env.HOST_NAME || 'localhost';
-export const APP_PORT = process.env.APP_PORT || 3000;
-export const HOST = (!IS_SERVER && window.location.host) || `${HOST_NAME}:${APP_PORT}`;
+export const BACK_END_PORT = process.env.APP_PORT || 1500;
+export const BACK_END_HOST_NAME = (!IS_SERVER && window.location.hostname) || 'localhost';
 
-export const APP_URI = `http://${HOST}`;
-export const GRAPHQL_URL = `${APP_URI}${graphQLPath}`;
-export const GRAPHIQL_URL = `${APP_URI}${graphiQLPath}`;
+export const APP_HOST_NAME = process.env.HOST_NAME || 'localhost';
+export const APP_HOST = (!IS_SERVER && window.location.host) || `${APP_HOST_NAME}:${BACK_END_PORT}`;
+
+/** URI for where the app is running */
+export const APP_URI = `http://${APP_HOST}`;
+
+/** URI for the back end with authentication and GraphQL endpoints */
+export const BACK_END_URI = `http://${BACK_END_HOST_NAME}:${BACK_END_PORT}`;
+export const GRAPHQL_URL = `${BACK_END_URI}${graphQLPath}`;
+export const GRAPHIQL_URL = `${BACK_END_URI}${graphiQLPath}`;
 export const useGraphqlPlayground = true;
 
 /*
