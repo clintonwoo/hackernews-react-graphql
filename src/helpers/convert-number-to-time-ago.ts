@@ -2,7 +2,7 @@
  * Converts a number to text to show how long ago it was
  * eg. 2 years ago. 3 months ago. 16 minutes ago.
  */
-export const convertNumberToTimeAgo = (number: number): string => {
+export const convertNumberToTimeAgo = (number: number = 0): string => {
   const now = +new Date();
   const timeAgo = now - number;
 
