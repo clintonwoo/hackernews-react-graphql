@@ -40,12 +40,13 @@ function UserPage(props: IUserPageProps): JSX.Element {
 
   const userId = (router.query && router.query.id) || '';
 
-  const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
+  const result = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
+  const data = result.data;
 
   if (data?.error) {
     return <BlankLayout>Error loading news items.</BlankLayout>;
   }
-  if (data?.user) {
+  if (!data?.user) {
     return <BlankLayout>No such user.</BlankLayout>;
   }
 
