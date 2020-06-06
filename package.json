@@ -39,7 +39,7 @@
     "apollo-client": "2.6.8",
     "apollo-fetch": "0.7.0",
     "apollo-link-http": "1.5.16",
-    "apollo-server-express": "2.11.0",
+    "apollo-server-express": "2.14.2",
     "body-parser": "1.19.0",
     "cookie": "0.4.0",
     "cookie-parser": "1.4.5",
