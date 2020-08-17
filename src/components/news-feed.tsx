@@ -64,7 +64,7 @@ export function NewsFeedView(props: INewsFeedProps): JSX.Element {
               <>
                 {newsItems
                   .filter((newsItem): newsItem is NewsItemModel => !!newsItem && !newsItem.hidden)
-                  .flatMap((newsItem, index) => [
+                  .map((newsItem, index) => [
                     <NewsTitle
                       key={`${newsItem.id}title`}
                       isRankVisible={isRankVisible}
