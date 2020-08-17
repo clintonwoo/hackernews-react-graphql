@@ -13,6 +13,7 @@ interface IMainLayoutProps {
   isUserVisible?: boolean;
   isFooterVisible?: boolean;
   title?: string;
+  isLoginVisible?: boolean;
 }
 
 export function MainLayout(props: IMainLayoutProps): JSX.Element {
@@ -24,6 +25,7 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
     isNavVisible = true,
     isFooterVisible = true,
     title = 'Hacker News',
+    isLoginVisible=false
   } = props;
 
   return (
@@ -54,6 +56,7 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
             isNavVisible={!!isNavVisible}
             me={data?.me}
             title={title!}
+            isLoginVisible= {isLoginVisible}
           />
           <tr style={{ height: '10px' }} />
           {children}

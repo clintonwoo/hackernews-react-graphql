@@ -4,6 +4,7 @@ import { CacheSingleton } from '../database/cache';
 import * as HNDB from '../database/hn-data-api';
 import { sampleData } from '../../src/data/sample-data';
 import { FeedType, NewsItemModel } from '../../src/data/models';
+import * as DB from '../database/database';
 
 const logger = debug('app:Feed');
 logger.log = console.log.bind(console);
@@ -22,21 +23,21 @@ export abstract class FeedService {
         return Promise.all(
           CacheSingleton.top
             .slice(skip, first + skip)
-            .map((id) => CacheSingleton.getNewsItem(id) || HNDB.fetchNewsItem(id))
+            .map((id) => CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id))
         );
 
       case FeedType.NEW:
         return Promise.all(
           CacheSingleton.new
             .slice(skip, first + skip)
-            .map((id) => CacheSingleton.getNewsItem(id) || HNDB.fetchNewsItem(id))
+            .map((id) => CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id))
         );
 
       case FeedType.BEST:
         return Promise.all(
           CacheSingleton.best
             .slice(skip, first + skip)
-            .map((id) => CacheSingleton.getNewsItem(id) || HNDB.fetchNewsItem(id))
+            .map((id) => CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id))
         );
 
       case FeedType.SHOW:

@@ -1,7 +1,7 @@
 import { debug } from 'debug';
 import * as Firebase from 'firebase';
 
-import { HN_API_URL, HN_API_VERSION, HN_DB_URI } from '../../src/config';
+import { HN_API_URL, HN_API_VERSION, HN_DB_URI, dev } from '../../src/config';
 import { CacheSingleton } from './cache';
 import { CommentModel, NewsItemModel, UserModel, FeedType } from '../../src/data/models';
 
@@ -19,6 +19,9 @@ const api = Firebase.database().ref(HN_API_VERSION);
 /* BEGIN NEWS ITEMS */
 
 export async function fetchNewsItem(id: number): Promise<NewsItemModel | void> {
+  if(dev)
+    return ;
+    
   logger('Fetching post:', `${HN_API_URL}/item/${id}.json`);
 
   return api

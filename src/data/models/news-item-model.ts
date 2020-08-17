@@ -29,6 +29,9 @@ export class NewsItemModel {
   /** Post title */
   public readonly title: string;
 
+  /** Post subtitle */
+  public readonly subtitle?: string ;
+
   /** Number of upvotes */
   public upvoteCount: number;
 
@@ -60,6 +63,7 @@ export class NewsItemModel {
     this.submitterId = fields.submitterId;
     this.text = fields.text || null;
     this.title = fields.title;
+    this.subtitle = fields.subtitle||null;
     this.upvoteCount = fields.upvoteCount || 1;
     this.upvotes = fields.upvotes || [fields.submitterId];
     this.url = fields.url;

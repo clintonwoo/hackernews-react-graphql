@@ -16,6 +16,7 @@ export interface INewsDetailProps {
   isPostScrutinyVisible?: boolean;
   submitterId: string;
   upvoteCount: number;
+  subtitle?: string;
 }
 
 export const newsDetailNewsItemFragment = `
@@ -26,12 +27,14 @@ export const newsDetailNewsItemFragment = `
     hidden
     submitterId
     upvoteCount
+    subtitle
   }
 `;
 
 const HIDE_BUTTON_STYLE = { cursor: 'pointer' };
 
 export function NewsDetail(props: INewsDetailProps): JSX.Element {
+  
   const {
     commentCount,
     creationTime,
@@ -42,8 +45,8 @@ export function NewsDetail(props: INewsDetailProps): JSX.Element {
     isPostScrutinyVisible = false,
     submitterId,
     upvoteCount,
+    subtitle,
   } = props;
-
   const [hideNewsItem] = useMutation(HIDE_NEWS_ITEM_MUTATION, {
     onError() {
       Router.push('/login', `/hide?id=${id}&how=up&goto=news`);
@@ -65,51 +68,64 @@ export function NewsDetail(props: INewsDetailProps): JSX.Element {
       </td>
     </tr>
   ) : (
-    <tr>
-      <td colSpan={2} />
-      <td className="subtext">
-        <span className="score">{upvoteCount} points</span>
-        {' by '}
-        <Link href={`/user?id=${submitterId}`}>
-          <a className="hnuser">{submitterId}</a>
-        </Link>{' '}
-        <span className="age">
-          <Link href={`/item?id=${id}`}>
-            <a>{convertNumberToTimeAgo(creationTime)}</a>
-          </Link>
-        </span>
-        {' | '}
-        {hidden ? (
-          <a onClick={(): void => unhideNewsItem()} style={HIDE_BUTTON_STYLE}>
-            unhide
-          </a>
-        ) : (
-          <a onClick={(): Promise<any> => hideNewsItem()} style={HIDE_BUTTON_STYLE}>
-            hide
-          </a>
-        )}
-        {isPostScrutinyVisible && (
-          <span>
-            {' | '}
-            <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
-              past
-            </a>
-            {' | '}
-            <a href="https://www.google.com/search?q=Sublime%20Text%203.0">web</a>
+    <>
+      {(subtitle && subtitle!==undefined)?
+      <tr>
+        <td colSpan={2} />
+        <td className="title">
+        
+          <span className="sitebit comhead">
+            {subtitle}
           </span>
-        )}
-        {' | '}
-        <Link href={`/item?id=${id}`}>
-          <a>
-            {commentCount === 0
-              ? 'discuss'
-              : commentCount === 1
-              ? '1 comment'
-              : `${commentCount} comments`}
-          </a>
-        </Link>
-        {isFavoriteVisible && ' | favorite'}
+      
       </td>
-    </tr>
+      </tr>:null}
+      <tr>
+        <td colSpan={2} />
+        <td className="subtext">
+          <span className="score">{upvoteCount} points</span>
+          {' by '}
+          <Link href={`/user?id=${submitterId}`}>
+            <a className="hnuser">{submitterId}</a>
+          </Link>{' '}
+          <span className="age">
+            <Link href={`/item?id=${id}`}>
+              <a>{convertNumberToTimeAgo(creationTime)}</a>
+            </Link>
+          </span>
+          {' | '}
+          {hidden ? (
+            <a onClick={(): void => unhideNewsItem()} style={HIDE_BUTTON_STYLE}>
+              unhide
+            </a>
+          ) : (
+            <a onClick={(): Promise<any> => hideNewsItem()} style={HIDE_BUTTON_STYLE}>
+              hide
+            </a>
+          )}
+          {isPostScrutinyVisible && (
+            <span>
+              {' | '}
+              <a href="https://hn.algolia.com/?query=Sublime%20Text%203.0&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0">
+                past
+              </a>
+              {' | '}
+              <a href="https://www.google.com/search?q=Sublime%20Text%203.0">web</a>
+            </span>
+          )}
+          {' | '}
+          <Link href={`/item?id=${id}`}>
+            <a>
+              {commentCount === 0
+                ? 'discuss'
+                : commentCount === 1
+                ? '1 comment'
+                : `${commentCount} comments`}
+            </a>
+          </Link>
+          {isFavoriteVisible && ' | favorite'}
+        </td>
+      </tr>
+    </>
   );
 }

@@ -16,7 +16,7 @@ export abstract class NewsItemService {
 
   static getNewsItems(ids: number[]): Promise<Array<NewsItemModel | void> | void> {
     return Promise.all(ids.map((id) => NewsItemService.getNewsItem(id)))
-      .then((newsItems) => newsItems.filter((newsItem) => newsItem !== undefined))
+      .then((newsItems) => newsItems.filter((newsItem): newsItem is NewsItemModel => (newsItem!=null && newsItem !== undefined)))
       .catch((reason) => logger('Rejected News Items:', reason));
   }
 
@@ -28,12 +28,13 @@ export abstract class NewsItemService {
     return DB.hideNewsItem(id, userId);
   }
 
-  static submitNewsItem({ submitterId, title, text, url }): NewsItemModel {
+  static submitNewsItem({ submitterId, title,subtitle, text, url }): NewsItemModel {
     const newsItem = new NewsItemModel({
       id: newPostIdCounter += 1,
       submitterId,
       text,
       title,
+      subtitle,
       upvoteCount: 1,
       upvotes: [submitterId],
       url,

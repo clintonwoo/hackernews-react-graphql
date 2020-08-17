@@ -7,11 +7,12 @@ export interface IHeaderProps {
   me: { id: string; karma: number } | undefined;
   currentUrl: string;
   isNavVisible: boolean;
+  isLoginVisible: boolean;
   title: string;
 }
 
 export function Header(props: IHeaderProps): JSX.Element {
-  const { currentUrl, isNavVisible, me, title } = props;
+  const { currentUrl, isNavVisible,isLoginVisible, me, title } = props;
 
   return (
     <tr>
@@ -38,27 +39,30 @@ export function Header(props: IHeaderProps): JSX.Element {
               <td style={{ lineHeight: '12px', height: '10px', padding: '0px' }}>
                 <HeaderNav currentUrl={currentUrl} isNavVisible={isNavVisible} title={title} />
               </td>
-              <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
-                {me ? (
-                  <span className="pagetop">
-                    <Link href={`/user?id=${me.id}`}>
-                      <a>{me.id}</a>
-                    </Link>
-                    {` (${me.karma}) | `}
-                    <a
-                      href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
-                    >
-                      logout
-                    </a>
-                  </span>
-                ) : (
-                  <span className="pagetop">
-                    <Link href={`/login?goto=${currentUrl}`}>
-                      <a>login</a>
-                    </Link>
-                  </span>
-                )}
-              </td>
+              {(isLoginVisible)?
+                <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
+                  {me ? (
+                    <span className="pagetop">
+                      <Link href={`/user?id=${me.id}`}>
+                        <a>{me.id}</a>
+                      </Link>
+                      {` (${me.karma}) | `}
+                      <a
+                        href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
+                      >
+                        logout
+                      </a>
+                    </span>
+                  ) : (
+                    <span className="pagetop">
+                      <Link href={`/login?goto=${currentUrl}`}>
+                        <a>login</a>
+                      </Link>
+                    </span>
+                  )}
+                </td>:null
+              }
+              
             </tr>
           </tbody>
         </table>

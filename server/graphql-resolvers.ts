@@ -86,7 +86,7 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
 
     submitNewsItem(_, newsItem, context): NewsItemModel {
       if (!context.userId) throw new Error('Must be logged in to submit a news item.');
-
+      
       return context.NewsItemService.submitNewsItem({ ...newsItem, submitterId: context.userId });
     },
   },

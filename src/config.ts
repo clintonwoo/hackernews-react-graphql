@@ -28,4 +28,4 @@ export const useGraphqlPlayground = true;
 export const passwordIterations = 10000;
 
 /* UI CONFIG */
-export const POSTS_PER_PAGE = 30;
+export const POSTS_PER_PAGE = 12;

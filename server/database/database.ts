@@ -10,6 +10,7 @@ logger.log = console.log.bind(console);
 /*                  BEGIN NEWS ITEMS                      */
 
 export function getNewsItem(id: number): NewsItemModel | undefined {
+  
   return sampleData.newsItems.find((newsItem) => newsItem.id === id);
 }
 
@@ -70,6 +71,8 @@ export function hideNewsItem(id: number, userId: string): NewsItemModel {
 export function submitNewsItem(id: number, newsItem: NewsItemModel): NewsItemModel {
   // Submit the News Item in the DB
   if (CacheSingleton.setNewsItem(id, newsItem)) {
+    CacheSingleton.top.unshift(id);
+    CacheSingleton.new.unshift(id);
     // FeedSingleton.new.unshift(id);
     // FeedSingleton.new.pop();
     return newsItem;

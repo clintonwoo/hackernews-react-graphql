@@ -7,8 +7,8 @@ export interface ISubmitNewsItemGraphQL {
 }
 
 export const SUBMIT_NEWS_ITEM_MUTATION = gql`
-  mutation SubmitNewsItem($title: String!, $url: String) {
-    submitNewsItem(title: $title, url: $url) {
+  mutation SubmitNewsItem($title: String!, $subtitle: String, $url: String) {
+    submitNewsItem(title: $title, subtitle: $subtitle, url: $url) {
       id
       ...NewsFeed
     }

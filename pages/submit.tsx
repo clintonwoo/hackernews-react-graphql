@@ -6,6 +6,8 @@ import { useMutation } from '@apollo/react-hooks';
 import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-item-mutation';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
+import { render } from 'enzyme';
+
 
 interface ISubmitPageProps {
   router;
@@ -15,14 +17,20 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   const { router } = props;
 
   const [title, setTitle] = useState<string>('');
+  const [subtitle, setSubtitle] = useState<string>('');
   const [url, setUrl] = useState<string>('');
   const [text, setText] = useState<string>('');
+  const [showText, setShowText] = useState<boolean>(false);
 
   const [submitNewsItem] = useMutation(SUBMIT_NEWS_ITEM_MUTATION, {
-    variables: { title, url, text },
+    variables: { title, subtitle, url },
     onCompleted(res) {
       if (res && res.data) {
-        Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+        //Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+        Router.push(`/news`);
+      }else if(res && res.submitNewsItem.id){
+        //Router.push(`/item?id=${res.submitNewsItem.id}`);
+        Router.push(`/?newRecord=${res.submitNewsItem.id}`);
       }
     },
     onError(err) {
@@ -31,12 +39,15 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   });
 
   return (
+    
     <MainLayout
       currentUrl={router.pathname}
       title="Submit"
-      isNavVisible={false}
+      isNavVisible={true}
       isFooterVisible={false}
+      isLoginVisible={false}
     >
+      
       <tr>
         <td>
           <form onSubmit={(e): void => e.preventDefault()}>
@@ -65,6 +76,22 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                   </td>
                 </tr>
                 <tr>
+                  <td>subtitle</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="subtitle"
+                      defaultValue=""
+                      placeholder="(otional)"
+                      size={50}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+                        setSubtitle(e.target.value);
+                      }}
+                    />
+                    <span style={{ marginLeft: '10px' }} />
+                  </td>
+                </tr>
+                <tr>
                   <td>url</td>
                   <td>
                     <input
@@ -78,12 +105,14 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                     />
                   </td>
                 </tr>
+                {showText?
                 <tr>
                   <td />
                   <td>
                     <b>or</b>
                   </td>
-                </tr>
+                </tr>:null}
+                {showText?
                 <tr>
                   <td>text</td>
                   <td>
@@ -96,7 +125,8 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                       }}
                     />
                   </td>
-                </tr>
+                </tr>:null}
+                
                 <tr>
                   <td />
                   <td />
@@ -115,8 +145,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                 <tr>
                   <td />
                   <td>
-                    Leave url blank to submit a question for discussion. If there is no url, the
-                    text (if any) will appear at the top of the thread.
+                    
                     <br />
                     <br />
                     You can also submit via{' '}
@@ -134,6 +163,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
         </td>
       </tr>
     </MainLayout>
+    
   );
 }
 

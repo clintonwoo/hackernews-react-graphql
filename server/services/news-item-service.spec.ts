@@ -28,7 +28,8 @@ describe('NewsItem Model', () => {
     const title = 'wow.';
     const url = 'http://www.google.com';
     const text = undefined;
-    const newsItem = NewsItemService.submitNewsItem({ submitterId, text, title, url });
+    const subtitle = undefined;
+    const newsItem = NewsItemService.submitNewsItem({ submitterId, text, subtitle, title, url });
 
     expect(newsItem);
   });

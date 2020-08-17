@@ -78,6 +78,8 @@ export const typeDefs = gql(`
     # The news item headline
     title: String!
 
+    subtitle: String
+
     text: String
 
     # Whether the currently logged in user has upvoted the post
@@ -158,6 +160,7 @@ export const typeDefs = gql(`
 
     submitNewsItem (
       title: String!
+      subtitle: String
       url: String
       text: String
     ): NewsItem

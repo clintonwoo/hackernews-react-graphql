@@ -23,10 +23,11 @@ import { seedCache, warmCache } from './database/cache-warmer';
 import { CommentService, FeedService, NewsItemService, UserService } from './services';
 
 const ONE_MINUTE = 1000 * 60;
+const ONE_HOUR = 1000 * 60 * 60;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 
 // Seed the in-memory data using the HN api
-const delay = dev ? ONE_MINUTE : 0;
+const delay = dev ? ONE_HOUR : 0;
 seedCache(delay);
 
 const app = nextApp({ dev });
@@ -139,7 +140,7 @@ app
         FeedService,
         NewsItemService,
         UserService,
-        userId: (req.user as UserModel)?.id,
+        userId: (req.user as UserModel)?.id?(req.user as UserModel)?.id:"default",
       }),
       introspection: true,
       playground: useGraphqlPlayground,

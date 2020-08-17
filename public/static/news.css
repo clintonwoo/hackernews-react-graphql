@@ -174,6 +174,16 @@ pre { max-width: 900px; }
   pre { max-width: 840px; }
 }
 
+.message {
+  position: fixed;
+  top: 25px; right: 25px; bottom: 20%; left: auto;
+  width: 125px; height:50px;
+  padding: 2;
+  box-Shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.5);
+  overflow: auto; background: #fff;
+  border-Radius: 5px 5px 5px 5px 
+}
+
 .sk-circle {
   margin: 100px auto;
   width: 40px;
@@ -275,6 +285,8 @@ pre { max-width: 900px; }
 .sk-circle .sk-circle12:before {
   -webkit-animation-delay: -0.1s;
           animation-delay: -0.1s; }
+
+
 
 @-webkit-keyframes sk-circleBounceDelay {
   0%, 80%, 100% {
