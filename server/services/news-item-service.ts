@@ -6,6 +6,7 @@ import * as DB from '../database/database';
 import { NewsItemModel } from '../../src/data/models';
 
 const logger = debug('app:NewsItem');
+logger.log = console.log.bind(console);
 
 let newPostIdCounter = 100;
 

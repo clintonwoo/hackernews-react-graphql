@@ -5,6 +5,7 @@ import * as HNDB from '../database/hn-data-api';
 import { CommentModel } from '../../src/data/models';
 
 const logger = debug('app:Comment');
+logger.log = console.log.bind(console);
 
 export abstract class CommentService {
   static getComment(id: number): CommentModel | Promise<CommentModel | void> {
