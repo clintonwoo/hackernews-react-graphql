@@ -18,7 +18,7 @@
     "lint": "eslint \"src/**/*.ts?(x)\" --ext .js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --check .",
     "prettier:format": "prettier --write .",
-    "test": "jest --config --runInBand jest.config.js",
+    "test": "jest --config jest.config.js --runInBand",
     "tsc:check": "tsc --noEmit",
     "start": "nodemon",
     "start:prod": "cross-env NODE_ENV=production node dist/server/server.js"
