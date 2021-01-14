@@ -1,0 +1,2 @@
+User-Agent: *
+Disallow: / # Dont allow any pages to be indexed by robots for demo
