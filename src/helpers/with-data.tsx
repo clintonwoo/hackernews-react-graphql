@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { ApolloProvider } from '@apollo/react-common';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory/lib/types';
 import { ApolloClient } from 'apollo-client';
