@@ -44,7 +44,7 @@ This project is a clone of hacker news rewritten with universal JavaScript, usin
 
 - Declarative UI - (`react`)
 - Static Typing (`typescript`)
-- GraphQL Fragment Colocation - (`react-apollo`)
+- GraphQL Fragment Colocation - (`@apollo/client`)
 - Prefetch Page Assets - (`next`)
 
 **Server**

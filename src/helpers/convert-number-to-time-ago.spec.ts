@@ -64,5 +64,4 @@ describe('convert-number-to-time-ago helper function', () => {
     const oneMinuteAgo = new Date(now.valueOf() - ONE_MINUTE);
     expect(convertNumberToTimeAgo(oneMinuteAgo.valueOf())).toMatch('1 minute ago');
   });
-  it('throws an error for date in the future', () => {});
 });

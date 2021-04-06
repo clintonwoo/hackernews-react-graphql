@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';

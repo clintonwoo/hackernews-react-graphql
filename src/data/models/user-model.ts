@@ -1,4 +1,4 @@
-import { isValidUser } from '../validation/user';
+import { validateUsername } from '../validation/user';
 
 export class UserModel {
   public readonly id: string;
@@ -32,7 +32,7 @@ export class UserModel {
       throw new Error(`Error instantiating User, id invalid: ${props.id}`);
     }
 
-    isValidUser(props);
+    validateUsername(props);
 
     this.id = props.id;
     this.about = props.about || '';

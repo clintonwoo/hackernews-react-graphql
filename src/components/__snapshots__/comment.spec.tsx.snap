@@ -1,460 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Comment component renders a comment passed in as props 1`] = `
-<tr
-  className="athing comtr "
-  id="15238246"
->
-  <td>
-    <table
-      style={
-        Object {
-          "border": "0",
-        }
-      }
-    >
-      <tbody>
-        <tr>
-          <td
-            className="ind"
-          >
-            <img
-              alt=""
-              height="1"
-              src="/static/s.gif"
-              width={0}
-            />
-          </td>
-          <td
-            className="votelinks"
-            style={
-              Object {
-                "verticalAlign": "top",
-              }
-            }
-          >
-            <div
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
-            >
-              <a
-                href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
-                id="up_15238246"
-                onClick={[Function]}
-              >
-                <div
-                  className="votearrow"
-                  title="upvote"
-                />
-              </a>
-            </div>
-          </td>
-          <td
-            className="default"
-          >
-            <div
-              style={
-                Object {
-                  "marginBottom": "-10px",
-                  "marginTop": "2px",
-                }
-              }
-            >
-              <span
-                className="comhead"
-              >
-                <Link
-                  href="/user?id=mstade"
-                >
-                  <a
-                    className="hnuser"
-                  >
-                    megous
-                  </a>
-                </Link>
-                <span
-                  className="age"
-                >
-                   
-                  <Link
-                    href="/item?id=15289630"
-                  >
-                    <a>
-                      1 day ago
-                    </a>
-                  </Link>
-                </span>
-                 
-                <span
-                  id="unv_15238246"
-                />
-                <span
-                  className="par"
-                />
-                 
-                <a
-                  className="togg"
-                  id="24"
-                  onClick={[Function]}
-                >
-                  [-]
-                </a>
-                <span
-                  className="storyon"
-                />
-              </span>
-            </div>
-            <br />
-            <div
-              className="comment"
-            >
-              <span
-                className="c00"
-              >
-                <span>
-                  It is part of it in this case. You've just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.
-                  <p
-                    key="1"
-                  >
-                    This might help in forensic investigation afterwards. Less crap to wade through.
-                  </p>
-                </span>
-                <div
-                  className="reply"
-                >
-                  <p
-                    style={
-                      Object {
-                        "fontSize": "1",
-                      }
-                    }
-                  >
-                    <u>
-                      <Link
-                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
-                      >
-                        <a>
-                          reply
-                        </a>
-                      </Link>
-                    </u>
-                  </p>
-                </div>
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </td>
-</tr>
-`;
-
 exports[`Comment component renders at different indentation levels 1`] = `
-<tr
-  className="athing comtr "
-  id="15238246"
->
-  <td>
-    <table
-      style={
-        Object {
-          "border": "0",
-        }
-      }
+<body>
+  <div>
+    <tr
+      class="athing comtr "
+      id="15238246"
     >
-      <tbody>
-        <tr>
-          <td
-            className="ind"
-          >
-            <img
-              alt=""
-              height="1"
-              src="/static/s.gif"
-              width={0}
-            />
-          </td>
-          <td
-            className="votelinks"
-            style={
-              Object {
-                "verticalAlign": "top",
-              }
-            }
-          >
-            <div
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
-            >
-              <a
-                href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
-                id="up_15238246"
-                onClick={[Function]}
+      <td>
+        <table
+          style="border: 0px;"
+        >
+          <tbody>
+            <tr>
+              <td
+                class="ind"
+              >
+                <img
+                  alt=""
+                  height="1"
+                  src="/static/s.gif"
+                  width="0"
+                />
+              </td>
+              <td
+                class="votelinks"
+                style="vertical-align: top;"
               >
                 <div
-                  className="votearrow"
-                  title="upvote"
-                />
-              </a>
-            </div>
-          </td>
-          <td
-            className="default"
-          >
-            <div
-              style={
-                Object {
-                  "marginBottom": "-10px",
-                  "marginTop": "2px",
-                }
-              }
-            >
-              <span
-                className="comhead"
-              >
-                <Link
-                  href="/user?id=mstade"
+                  style="text-align: center;"
                 >
                   <a
-                    className="hnuser"
+                    href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
+                    id="up_15238246"
                   >
-                    megous
+                    <div
+                      class="votearrow"
+                      title="upvote"
+                    />
                   </a>
-                </Link>
-                <span
-                  className="age"
-                >
-                   
-                  <Link
-                    href="/item?id=15289630"
-                  >
-                    <a>
-                      1 day ago
-                    </a>
-                  </Link>
-                </span>
-                 
-                <span
-                  id="unv_15238246"
-                />
-                <span
-                  className="par"
-                />
-                 
-                <a
-                  className="togg"
-                  id="24"
-                  onClick={[Function]}
-                >
-                  [-]
-                </a>
-                <span
-                  className="storyon"
-                />
-              </span>
-            </div>
-            <br />
-            <div
-              className="comment"
-            >
-              <span
-                className="c00"
-              >
-                <span>
-                  It is part of it in this case. You've just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.
-                  <p
-                    key="1"
-                  >
-                    This might help in forensic investigation afterwards. Less crap to wade through.
-                  </p>
-                </span>
-                <div
-                  className="reply"
-                >
-                  <p
-                    style={
-                      Object {
-                        "fontSize": "1",
-                      }
-                    }
-                  >
-                    <u>
-                      <Link
-                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
-                      >
-                        <a>
-                          reply
-                        </a>
-                      </Link>
-                    </u>
-                  </p>
                 </div>
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </td>
-</tr>
-`;
-
-exports[`Comment component shallow renders 1`] = `
-<tr
-  className="athing comtr "
-  id="15238246"
->
-  <td>
-    <table
-      style={
-        Object {
-          "border": "0",
-        }
-      }
-    >
-      <tbody>
-        <tr>
-          <td
-            className="ind"
-          >
-            <img
-              alt=""
-              height="1"
-              src="/static/s.gif"
-              width={0}
-            />
-          </td>
-          <td
-            className="votelinks"
-            style={
-              Object {
-                "verticalAlign": "top",
-              }
-            }
-          >
-            <div
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
-            >
-              <a
-                href="vote?id=15238246&how=up&auth=4eb97bf0d2568aa743691210b904f0c5182bb0fc&goto=item%3Fid%3D15237896#15238246"
-                id="up_15238246"
-                onClick={[Function]}
+              </td>
+              <td
+                class="default"
               >
                 <div
-                  className="votearrow"
-                  title="upvote"
-                />
-              </a>
-            </div>
-          </td>
-          <td
-            className="default"
-          >
-            <div
-              style={
-                Object {
-                  "marginBottom": "-10px",
-                  "marginTop": "2px",
-                }
-              }
-            >
-              <span
-                className="comhead"
-              >
-                <Link
-                  href="/user?id=mstade"
+                  style="margin-top: 2px; margin-bottom: -10px;"
                 >
-                  <a
-                    className="hnuser"
+                  <span
+                    class="comhead"
                   >
-                    megous
-                  </a>
-                </Link>
-                <span
-                  className="age"
-                >
-                   
-                  <Link
-                    href="/item?id=15289630"
-                  >
-                    <a>
-                      1 day ago
+                    <a
+                      class="hnuser"
+                      href="/user?id=mstade"
+                    >
+                      megous
                     </a>
-                  </Link>
-                </span>
-                 
-                <span
-                  id="unv_15238246"
-                />
-                <span
-                  className="par"
-                />
-                 
-                <a
-                  className="togg"
-                  id="24"
-                  onClick={[Function]}
-                >
-                  [-]
-                </a>
-                <span
-                  className="storyon"
-                />
-              </span>
-            </div>
-            <br />
-            <div
-              className="comment"
-            >
-              <span
-                className="c00"
-              >
-                <span>
-                  It is part of it in this case. You've just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.
-                  <p
-                    key="1"
-                  >
-                    This might help in forensic investigation afterwards. Less crap to wade through.
-                  </p>
-                </span>
-                <div
-                  className="reply"
-                >
-                  <p
-                    style={
-                      Object {
-                        "fontSize": "1",
-                      }
-                    }
-                  >
-                    <u>
-                      <Link
-                        href="/reply?id=15289630&goto=item%3Fid%3D15289630"
+                    <span
+                      class="age"
+                    >
+                       
+                      <a
+                        href="/item?id=15289630"
                       >
-                        <a>
-                          reply
-                        </a>
-                      </Link>
-                    </u>
-                  </p>
+                        1 day ago
+                      </a>
+                    </span>
+                     
+                    <span
+                      id="unv_15238246"
+                    />
+                    <span
+                      class="par"
+                    />
+                     
+                    <a
+                      class="togg"
+                      id="24"
+                    >
+                      [-]
+                    </a>
+                    <span
+                      class="storyon"
+                    />
+                  </span>
                 </div>
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </td>
-</tr>
+                <br />
+                <div
+                  class="comment"
+                >
+                  <span
+                    class="c00"
+                  >
+                    <span>
+                      It is part of it in this case. You've just eliminated most of non-targeted scanners. Your log is much more readable and what is left will probably be dedicated attackers.
+                      <p>
+                        This might help in forensic investigation afterwards. Less crap to wade through.
+                      </p>
+                    </span>
+                    <div
+                      class="reply"
+                    >
+                      <p>
+                        <u>
+                          <a
+                            href="/reply?id=15289630&goto=item%3Fid%3D15289630"
+                          >
+                            reply
+                          </a>
+                        </u>
+                      </p>
+                    </div>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </div>
+</body>
 `;

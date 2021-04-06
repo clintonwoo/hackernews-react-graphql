@@ -1,8 +1,9 @@
 import { ApolloServer } from 'apollo-server-express';
-import * as bodyParser from 'body-parser';
+import { urlencoded } from 'body-parser';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import session from 'express-session';
+import Firebase from 'firebase';
 import nextApp from 'next';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
@@ -10,24 +11,28 @@ import { parse } from 'url';
 
 import {
   APP_PORT,
-  APP_URI,
   dev,
-  graphQLPath,
-  GRAPHQL_URL,
+  GRAPHQL_PATH,
+  HN_API_VERSION,
+  HN_DB_URI,
   useGraphqlPlayground,
 } from '../src/config';
 import { UserModel } from '../src/data/models';
-import { typeDefs } from './graphql-schema';
-import { resolvers, IGraphQlSchemaContext } from './graphql-resolvers';
+import { HnCache } from './database/cache';
 import { seedCache, warmCache } from './database/cache-warmer';
-import { CommentService, FeedService, NewsItemService, UserService } from './services';
+import { HnDatabase } from './database/database';
+import { IGraphQlSchemaContext, resolvers } from './graphql-resolvers';
+import { typeDefs } from './graphql-schema';
+import { CommentService } from './services/comment-service';
+import { FeedService } from './services/feed-service';
+import { NewsItemService } from './services/news-item-service';
+import { UserService } from './services/user-service';
 
 const ONE_MINUTE = 1000 * 60;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 
 // Seed the in-memory data using the HN api
 const delay = dev ? ONE_MINUTE : 0;
-seedCache(delay);
 
 const app = nextApp({ dev });
 const handle = app.getRequestHandler();
@@ -35,6 +40,20 @@ const handle = app.getRequestHandler();
 app
   .prepare()
   .then(() => {
+    if (!Firebase.apps.length) {
+      Firebase.initializeApp({ databaseURL: HN_DB_URI });
+    }
+
+    const firebaseApi = Firebase.database().ref(HN_API_VERSION);
+    const cache = new HnCache();
+    const db = new HnDatabase(firebaseApi, cache);
+    seedCache(db, cache, delay);
+
+    const commentService = new CommentService(db, cache);
+    const feedService = new FeedService(db, cache);
+    const newsItemService = new NewsItemService(db, cache);
+    const userService = new UserService(db, cache);
+
     const expressServer = express();
 
     /* BEGIN PASSPORT.JS AUTHENTICATION */
@@ -45,12 +64,12 @@ app
           usernameField: 'id',
         },
         async (username, password, done) => {
-          const user = await UserService.getUser(username);
+          const user = await userService.getUser(username);
           if (!user) {
             return done(null, false, { message: 'Incorrect username.' });
           }
 
-          if (!(await UserService.validatePassword(username, password))) {
+          if (!(await userService.validatePassword(username, password))) {
             return done(null, false, { message: 'Incorrect password.' });
           }
 
@@ -65,12 +84,12 @@ app
       subsequent requests are received, this ID is used to find the user,
       which will be restored to req.user.
     */
-    passport.serializeUser((user: UserModel, cb) => {
-      cb(null, user.id);
+    passport.serializeUser((user: unknown, cb) => {
+      cb(null, (user as UserModel).id);
     });
     passport.deserializeUser((id: string, cb) => {
       (async (): Promise<void> => {
-        const user = await UserService.getUser(id);
+        const user = await userService.getUser(id);
 
         cb(null, user || null);
       })();
@@ -87,12 +106,13 @@ app
       })
     );
     expressServer.use(passport.initialize());
-    expressServer.use(bodyParser.urlencoded({ extended: false }));
+    expressServer.use(urlencoded({ extended: false }));
     expressServer.use(passport.session());
 
     expressServer.post(
       '/login',
       (req, res, next) => {
+        // @ts-ignore returnTo is an undocumented feature of passportjs
         req.session!.returnTo = req.body.goto;
         next();
       },
@@ -106,15 +126,18 @@ app
       async (req, res, next) => {
         if (!req.user) {
           try {
-            await UserService.registerUser({
+            await userService.registerUser({
               id: req.body.id,
               password: req.body.password,
             });
+            // @ts-ignore returnTo is an undocumented feature of passportjs
             req.session!.returnTo = `/user?id=${req.body.id}`;
           } catch (err) {
+            // @ts-ignore returnTo is an undocumented feature of passportjs
             req.session!.returnTo = `/login?how=${err.code}`;
           }
         } else {
+          // @ts-ignore returnTo is an undocumented feature of passportjs
           req.session!.returnTo = '/login?how=user';
         }
         next();
@@ -135,10 +158,10 @@ app
 
     const apolloServer = new ApolloServer({
       context: ({ req }): IGraphQlSchemaContext => ({
-        CommentService,
-        FeedService,
-        NewsItemService,
-        UserService,
+        commentService,
+        feedService,
+        newsItemService,
+        userService,
         userId: (req.user as UserModel)?.id,
       }),
       introspection: true,
@@ -146,7 +169,7 @@ app
       resolvers,
       typeDefs,
     } as any);
-    apolloServer.applyMiddleware({ app: expressServer, path: graphQLPath });
+    apolloServer.applyMiddleware({ app: expressServer, path: GRAPHQL_PATH });
 
     /* END GRAPHQL */
 
@@ -174,10 +197,12 @@ app
 
     /* END EXPRESS ROUTES */
 
+    warmCache(db, cache, feedService);
+
     expressServer.listen(APP_PORT, () => {
-      console.log(`> App ready on ${APP_URI}`);
-      console.log(`> GraphQL ready on ${GRAPHQL_URL}`);
-      console.log(`> GraphQL Playground is${useGraphqlPlayground ? ' ' : ' not '}enabled`);
+      console.log(`> App listening on port ${APP_PORT}`);
+      console.log(`> GraphQL ready on ${GRAPHQL_PATH}`);
+      console.log(`> GraphQL Playground is ${useGraphqlPlayground ? '' : 'not '}enabled`);
       console.log(`Dev: ${dev}`);
     });
   })
@@ -185,5 +210,3 @@ app
     console.error(err.stack);
     process.exit(1);
   });
-
-warmCache();

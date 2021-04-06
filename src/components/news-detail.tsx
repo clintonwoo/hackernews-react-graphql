@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';

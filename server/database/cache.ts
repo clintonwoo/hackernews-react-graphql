@@ -9,7 +9,7 @@ logger.log = console.log.bind(console);
 
 // The cache is a singleton
 
-class Cache {
+export class HnCache {
   isReady = false;
 
   /* Feeds - Arrays of post ids in descending rank order */
@@ -110,5 +110,3 @@ class Cache {
 
   /*                   END CACHES                         */
 }
-
-export const CacheSingleton = new Cache();

@@ -1,22 +1,29 @@
 import { passwordIterations } from '../../src/config';
+import { NewsItemModel, UserModel } from '../../src/data/models';
+import { validateNewUser } from '../../src/data/validation/user';
 import { createHash, createSalt } from '../../src/helpers/hash-password';
-import { CacheSingleton } from '../database/cache';
-import * as DB from '../database/database';
-import * as HNDB from '../database/hn-data-api';
-import { isValidNewUser } from '../../src/data/validation/user';
-import { UserModel, NewsItemModel } from '../../src/data/models';
+import type { HnCache } from '../database/cache';
+import type { HnDatabase } from '../database/database';
 
-export abstract class UserService {
-  static getUser(id: string): UserModel | Promise<UserModel | void> {
-    return CacheSingleton.getUser(id) || HNDB.fetchUser(id);
+export class UserService {
+  db: HnDatabase;
+  cache: HnCache;
+
+  constructor(db: HnDatabase, cache: HnCache) {
+    this.db = db;
+    this.cache = cache;
   }
 
-  static getPostsForUser(id: string): NewsItemModel[] {
-    return DB.getNewsItems().filter((newsItem) => newsItem.submitterId === id);
+  async getUser(id: string): Promise<UserModel | void> {
+    return this.cache.getUser(id) || this.db.fetchUser(id);
   }
 
-  static async validatePassword(id: string, password: string): Promise<boolean> {
-    const user = CacheSingleton.getUser(id);
+  async getPostsForUser(id: string): Promise<NewsItemModel[]> {
+    return this.db.getNewsItems().filter((newsItem) => newsItem.submitterId === id);
+  }
+
+  async validatePassword(id: string, password: string): Promise<boolean> {
+    const user = this.cache.getUser(id);
     if (user) {
       return (
         (await createHash(password, user.passwordSalt!, passwordIterations)) === user.hashedPassword
@@ -26,12 +33,12 @@ export abstract class UserService {
     return false;
   }
 
-  static async registerUser(user: { id: string; password: string }): Promise<UserModel> {
+  async registerUser(user: { id: string; password: string }): Promise<UserModel> {
     // Check if user is valid
-    isValidNewUser(user);
+    validateNewUser(user);
 
     // Check if user already exists
-    if (CacheSingleton.getUser(user.id)) {
+    if (this.cache.getUser(user.id)) {
       throw new Error('Username is taken.');
     }
 
@@ -46,7 +53,7 @@ export abstract class UserService {
     });
 
     // Store the new user
-    CacheSingleton.setUser(user.id, newUser);
+    this.cache.setUser(user.id, newUser);
 
     return newUser;
   }

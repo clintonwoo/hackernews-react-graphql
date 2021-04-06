@@ -1,36 +1,43 @@
 import { debug } from 'debug';
 
-import { CacheSingleton } from '../database/cache';
-import * as HNDB from '../database/hn-data-api';
-import * as DB from '../database/database';
 import { NewsItemModel } from '../../src/data/models';
+import { HnCache } from '../database/cache';
+import { HnDatabase } from '../database/database';
 
 const logger = debug('app:NewsItem');
 
 let newPostIdCounter = 100;
 
-export abstract class NewsItemService {
-  static getNewsItem(id: number): NewsItemModel | Promise<NewsItemModel | void> {
-    return CacheSingleton.getNewsItem(id) || DB.getNewsItem(id) || HNDB.fetchNewsItem(id);
+export class NewsItemService {
+  db: HnDatabase;
+  cache: HnCache;
+
+  constructor(db: HnDatabase, cache: HnCache) {
+    this.db = db;
+    this.cache = cache;
   }
 
-  static getNewsItems(ids: number[]): Promise<Array<NewsItemModel | void> | void> {
-    return Promise.all(ids.map((id) => NewsItemService.getNewsItem(id)))
+  async getNewsItem(id: number): Promise<NewsItemModel | void> {
+    return this.cache.getNewsItem(id) || this.db.getNewsItem(id) || this.db.fetchNewsItem(id);
+  }
+
+  async getNewsItems(ids: number[]): Promise<Array<NewsItemModel | void> | void> {
+    return Promise.all(ids.map((id) => this.getNewsItem(id)))
       .then((newsItems) => newsItems.filter((newsItem) => newsItem !== undefined))
       .catch((reason) => logger('Rejected News Items:', reason));
   }
 
-  static upvoteNewsItem(id: number, userId: string): NewsItemModel | undefined {
-    return DB.upvoteNewsItem(id, userId);
+  async upvoteNewsItem(id: number, userId: string): Promise<NewsItemModel | undefined> {
+    return this.db.upvoteNewsItem(id, userId);
   }
 
-  static hideNewsItem(id: number, userId: string): NewsItemModel {
-    return DB.hideNewsItem(id, userId);
+  async hideNewsItem(id: number, userId: string): Promise<NewsItemModel> {
+    return this.db.hideNewsItem(id, userId);
   }
 
-  static submitNewsItem({ submitterId, title, text, url }): NewsItemModel {
+  async submitNewsItem({ submitterId, title, text, url }): Promise<NewsItemModel> {
     const newsItem = new NewsItemModel({
-      id: newPostIdCounter += 1,
+      id: (newPostIdCounter += 1),
       submitterId,
       text,
       title,
@@ -39,6 +46,6 @@ export abstract class NewsItemService {
       url,
     });
 
-    return DB.submitNewsItem(newsItem.id, newsItem);
+    return this.db.submitNewsItem(newsItem.id, newsItem);
   }
 }

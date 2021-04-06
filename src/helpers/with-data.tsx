@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { ApolloProvider } from '@apollo/react-common';
-import { getDataFromTree } from '@apollo/react-ssr';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory/lib/types';
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient, ApolloProvider, NormalizedCacheObject } from '@apollo/client';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 import * as cookie from 'cookie';
 import { debug } from 'debug';
 import { withRouter } from 'next/router';

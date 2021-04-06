@@ -22,35 +22,35 @@ describe('graphql-resolvers', () => {
     });
 
     it('returns expected data for query on Me', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
 
     it('returns expected data for News Item query', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
 
     it('returns expected data for User query', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
   });
 
   describe('Mutations', () => {
     it('returns data for upvoteNewsItem mutation', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
 
     it('returns data for submitNewsItem mutation', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
   });
 
   describe('Property Resolvers', () => {
     it('newsItem author is a user', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
 
     it('newsItem comments are comments', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
   });
 });

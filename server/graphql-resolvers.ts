@@ -4,16 +4,19 @@ import { Kind } from 'graphql/language';
 import { IResolvers } from 'graphql-tools';
 
 import { NewsItemModel, CommentModel, UserModel } from '../src/data/models';
-import { CommentService, FeedService, NewsItemService, UserService } from './services';
+import type { CommentService } from './services/comment-service';
+import type { FeedService } from './services/feed-service';
+import type { NewsItemService } from './services/news-item-service';
+import type { UserService } from './services/user-service';
 
 const logger = debug('app:Graphql-Resolvers');
 logger.log = console.log.bind(console);
 
 export interface IGraphQlSchemaContext {
-  CommentService: typeof CommentService;
-  FeedService: typeof FeedService;
-  NewsItemService: typeof NewsItemService;
-  UserService: typeof UserService;
+  commentService: CommentService;
+  feedService: FeedService;
+  newsItemService: NewsItemService;
+  userService: UserService;
   userId: string | undefined;
 }
 
@@ -38,67 +41,63 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
   /*          QUERY RESOLVERS        */
 
   Query: {
-    comment(_, { id }, context): CommentModel | Promise<void | CommentModel> {
-      return context.CommentService.getComment(id);
+    async comment(_, { id }, context): Promise<CommentModel | void> {
+      return context.commentService.getComment(id);
     },
 
-    feed(
-      root,
-      { type, first, skip },
-      context
-    ): Promise<Array<NewsItemModel | void>> | NewsItemModel[] {
+    async feed(root, { type, first, skip }, context): Promise<(NewsItemModel | void)[]> {
       const limit = first < 1 || first > 30 ? 30 : first; // Could put this constant limit of 30 items into config
 
-      return context.FeedService.getForType(type, limit, skip);
+      return context.feedService.getForType(type, limit, skip);
     },
 
-    me(_, __, context): void | UserModel | Promise<void | UserModel> {
+    async me(_, __, context): Promise<UserModel | void> {
       logger('Me: userId:', context.userId);
 
       return typeof context.userId === 'string'
-        ? context.UserService.getUser(context.userId)
+        ? context.userService.getUser(context.userId)
         : undefined;
     },
 
-    newsItem(_, { id }, context): NewsItemModel | Promise<void | NewsItemModel> {
-      return context.NewsItemService.getNewsItem(id);
+    async newsItem(_, { id }, context): Promise<NewsItemModel | void> {
+      return context.newsItemService.getNewsItem(id);
     },
 
-    user(_, { id }, context): UserModel | Promise<void | UserModel> {
-      return context.UserService.getUser(id);
+    async user(_, { id }, context): Promise<UserModel | void> {
+      return context.userService.getUser(id);
     },
   },
 
   /*       MUTATION RESOLVERS       */
 
   Mutation: {
-    upvoteNewsItem(_, { id }, context): NewsItemModel | undefined {
+    async upvoteNewsItem(_, { id }, context): Promise<NewsItemModel | undefined> {
       if (!context.userId) throw new Error('Must be logged in to vote.');
 
-      return context.NewsItemService.upvoteNewsItem(id, context.userId);
+      return context.newsItemService.upvoteNewsItem(id, context.userId);
     },
 
-    hideNewsItem(_, { id }, context): NewsItemModel {
+    async hideNewsItem(_, { id }, context): Promise<NewsItemModel> {
       if (!context.userId) throw new Error('Must be logged in to hide post.');
 
-      return context.NewsItemService.hideNewsItem(id, context.userId);
+      return context.newsItemService.hideNewsItem(id, context.userId);
     },
 
-    submitNewsItem(_, newsItem, context): NewsItemModel {
+    async submitNewsItem(_, newsItem, context): Promise<NewsItemModel> {
       if (!context.userId) throw new Error('Must be logged in to submit a news item.');
 
-      return context.NewsItemService.submitNewsItem({ ...newsItem, submitterId: context.userId });
+      return context.newsItemService.submitNewsItem({ ...newsItem, submitterId: context.userId });
     },
   },
 
   /*       GRAPHQL TYPE RESOLVERS        */
 
   Comment: {
-    author(comment, _, context): UserModel | Promise<UserModel | void> {
-      return context.UserService.getUser(comment.submitterId);
+    async author(comment, _, context): Promise<UserModel | void> {
+      return context.userService.getUser(comment.submitterId);
     },
-    comments(comment, _, context): Promise<void | CommentModel[]> {
-      return context.CommentService.getComments(comment.comments);
+    async comments(comment, _, context): Promise<void | CommentModel[]> {
+      return context.commentService.getComments(comment.comments);
     },
     upvoted(comment, _, context): boolean {
       return comment.upvotes.includes(context.userId);
@@ -127,11 +126,11 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
   }),
 
   NewsItem: {
-    author(newsItem, _, context): UserModel | Promise<UserModel | void> {
-      return context.UserService.getUser(newsItem.submitterId);
+    async author(newsItem, _, context): Promise<UserModel | void> {
+      return context.userService.getUser(newsItem.submitterId);
     },
-    comments(newsItem, _, context): Promise<CommentModel[] | void> {
-      return context.CommentService.getComments(newsItem.comments);
+    async comments(newsItem, _, context): Promise<CommentModel[] | void> {
+      return context.commentService.getComments(newsItem.comments);
     },
     hidden(newsItem: NewsItemModel, _, context): boolean {
       return newsItem.hides.includes(context.userId!);
@@ -142,8 +141,8 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
   },
 
   User: {
-    posts(user, _, context): NewsItemModel[] {
-      return context.UserService.getPostsForUser(user.id);
+    async posts(user, _, context): Promise<NewsItemModel[]> {
+      return context.userService.getPostsForUser(user.id);
     },
   },
 };

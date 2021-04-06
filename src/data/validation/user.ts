@@ -1,6 +1,6 @@
 import { ValidationError, ValidationCode } from './validation-error';
 
-export function isValidUser({ id }): boolean {
+export function validateUsername({ id }): boolean {
   if (id.length < 3 || id.length > 32) {
     throw new ValidationError({
       code: ValidationCode.ID,
@@ -11,7 +11,7 @@ export function isValidUser({ id }): boolean {
   return true;
 }
 
-export function isValidNewUser({ id, password }): boolean {
+export function validateNewUser({ id, password }): boolean {
   if (id.length < 3 || id.length > 32) {
     throw new ValidationError({
       code: ValidationCode.ID,

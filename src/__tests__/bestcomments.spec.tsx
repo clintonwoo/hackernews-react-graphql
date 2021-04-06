@@ -1,12 +1,9 @@
-import * as React from 'react';
-import { shallow } from 'enzyme';
+/** @jest-environment jsdom */
 
-import BestCommentsPage from '../../pages/bestcomments';
+import Page from '../../pages/bestcomments';
 
 describe('Best Comments Page', () => {
-  it('is defined', () => {
-    const app = shallow(<BestCommentsPage serverState={{}} />);
-
-    expect(app).toBeDefined();
+  it('has default export', () => {
+    expect(Page).toBeDefined();
   });
 });

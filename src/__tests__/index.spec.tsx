@@ -1,12 +1,9 @@
-import { shallow } from 'enzyme';
-import * as React from 'react';
+/** @jest-environment jsdom */
 
 import Page from '../../pages/index';
 
 describe('Home Page', () => {
-  it('is defined', () => {
-    const app = shallow(<Page serverState={{}} />);
-
-    expect(app).toBeDefined();
+  it('has default export', () => {
+    expect(Page).toBeDefined();
   });
 });

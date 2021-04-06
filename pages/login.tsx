@@ -1,10 +1,10 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import Router, { NextRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { IMeQuery, ME_QUERY } from '../src/data/queries/me-query';
-import { isValidNewUser } from '../src/data/validation/user';
+import { validateNewUser } from '../src/data/validation/user';
 import {
   getErrorMessageForLoginErrorCode,
   UserLoginErrorCode,
@@ -36,7 +36,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser({ id: loginId, password: loginPassword });
+        validateNewUser({ id: loginId, password: loginPassword });
       } catch (err) {
         e.preventDefault();
         setValidationMessage(err.message);
@@ -50,7 +50,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
       Router.push('/login?how=loggedin');
     } else {
       try {
-        isValidNewUser({ id: registerId, password: registerPassword });
+        validateNewUser({ id: registerId, password: registerPassword });
       } catch (err) {
         e.preventDefault();
         setValidationMessage(err.message);

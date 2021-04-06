@@ -5,14 +5,14 @@ describe('NewsItem Model', () => {
     const id = 1224;
     const newsItem = NewsItemService.getNewsItem(id);
 
-    expect(newsItem);
+    expect(newsItem).toBeDefined();
   });
 
   it('gets multiple News Items', () => {
     const ids = [1224, 1225];
     const newsItems = NewsItemService.getNewsItems(ids);
 
-    expect(newsItems);
+    expect(newsItems).toBeDefined();
   });
 
   it('upvotes a News Item', () => {
@@ -20,7 +20,7 @@ describe('NewsItem Model', () => {
     const userId = 'testuser';
     const newsItem = NewsItemService.upvoteNewsItem(id, userId);
 
-    expect(newsItem);
+    expect(newsItem).toBeDefined();
   });
 
   it('submits a new News Item', () => {
@@ -30,6 +30,6 @@ describe('NewsItem Model', () => {
     const text = undefined;
     const newsItem = NewsItemService.submitNewsItem({ submitterId, text, title, url });
 
-    expect(newsItem);
+    expect(newsItem).toBeDefined();
   });
 });

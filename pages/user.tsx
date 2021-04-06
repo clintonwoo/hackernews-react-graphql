@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
@@ -45,12 +45,12 @@ function UserPage(props: IUserPageProps): JSX.Element {
   if (data?.error) {
     return <BlankLayout>Error loading news items.</BlankLayout>;
   }
-  if (data?.user) {
+  if (!data?.user) {
     return <BlankLayout>No such user.</BlankLayout>;
   }
 
-  let about = data?.user.about || '';
-  let email = data?.user.email || '';
+  let about = data?.user?.about || '';
+  let email = data?.user?.email || '';
 
   const onAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     about = e.target.value;
@@ -252,7 +252,7 @@ function UserPage(props: IUserPageProps): JSX.Element {
               <tr className="athing">
                 <td style={{ verticalAlign: 'top' }}>user:</td>
                 <td>
-                  <a href={`user?id=${data?.user.id}`} className="hnuser">
+                  <a href={`user?id=${data?.user?.id}`} className="hnuser">
                     {data?.user.id}
                   </a>
                 </td>

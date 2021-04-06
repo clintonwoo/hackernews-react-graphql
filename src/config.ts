@@ -2,9 +2,6 @@
 export const IS_SERVER = typeof window === 'undefined';
 
 /* SERVER CONFIG */
-export const graphQLPath = '/graphql';
-export const graphiQLPath = '/graphiql';
-
 export const dev = process.env.NODE_ENV !== 'production';
 export const appPath = process.env.NODE_ENV === 'production' ? './dist' : './src';
 
@@ -16,9 +13,8 @@ export const HOST_NAME = process.env.HOST_NAME || 'localhost';
 export const APP_PORT = process.env.APP_PORT || 3000;
 export const HOST = (!IS_SERVER && window.location.host) || `${HOST_NAME}:${APP_PORT}`;
 
-export const APP_URI = `http://${HOST}`;
-export const GRAPHQL_URL = `${APP_URI}${graphQLPath}`;
-export const GRAPHIQL_URL = `${APP_URI}${graphiQLPath}`;
+export const GRAPHQL_PATH = '/graphql';
+export const GRAPHIQL_PATH = '/graphiql';
 export const useGraphqlPlayground = true;
 
 /*

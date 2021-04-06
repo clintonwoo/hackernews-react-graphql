@@ -1,37 +1,37 @@
 import { debug } from 'debug';
 
-import { CacheSingleton } from './cache';
 import { FeedType } from '../../src/data/models';
-import { FeedService } from '../services';
-import { fetchNewsItem, getFeed } from './hn-data-api';
+import type { FeedService } from '../services/feed-service';
+import type { HnCache } from './cache';
+import type { HnDatabase } from './database';
 
 const logger = debug('app:cache-warmer');
 logger.log = console.log.bind(console);
 
 const FIFTEEN_MINUTES = 1000 * 60 * 15;
 
-export function warmCache(): void {
+export function warmCache(db: HnDatabase, cache: HnCache, feedService: FeedService): void {
   // Fetch the front pages
-  FeedService.getForType(FeedType.TOP, 30, 0);
-  FeedService.getForType(FeedType.NEW, 30, 0);
+  feedService.getForType(FeedType.TOP, 30, 0);
+  feedService.getForType(FeedType.NEW, 30, 0);
 
-  setTimeout(warmCache, FIFTEEN_MINUTES);
+  setTimeout(() => warmCache(db, cache, feedService), FIFTEEN_MINUTES);
 }
 
-function rebuildFeed(feedType: FeedType): void {
+function rebuildFeed(db: HnDatabase, cache: HnCache, feedType: FeedType): void {
   setTimeout(rebuildFeed, 1000 * 60 * 15, feedType);
 
-  getFeed(feedType)
+  db.getFeed(feedType)
     .then((feed) => {
       if (feed) {
-        return Promise.all(feed.map((id: number) => fetchNewsItem(id))).then((newsItems) => {
+        return Promise.all(feed.map((id: number) => db.fetchNewsItem(id))).then((newsItems) => {
           logger(newsItems);
 
-          CacheSingleton[`${feedType}NewsItems`] = newsItems.filter(
+          cache[`${feedType}NewsItems`] = newsItems.filter(
             (newsItem) => newsItem !== undefined && newsItem !== null
           );
 
-          CacheSingleton[feedType] = feed;
+          cache[feedType] = feed;
 
           logger('Updated Feed ids for type: ', feedType);
         });
@@ -46,7 +46,7 @@ function rebuildFeed(feedType: FeedType): void {
 
 /* BEGIN SEED DATA */
 
-export function seedCache(delay: number): void {
+export function seedCache(db: HnDatabase, cache: HnCache, delay: number): void {
   logger('Waiting ms before seeding the app with data:', delay);
 
   // Delay seeding the cache so we don't spam in dev
@@ -55,7 +55,7 @@ export function seedCache(delay: number): void {
 
     [FeedType.TOP, FeedType.NEW, FeedType.BEST, FeedType.SHOW, FeedType.ASK, FeedType.JOB].forEach(
       (feedType): void => {
-        rebuildFeed(feedType);
+        rebuildFeed(db, cache, feedType);
       }
     );
   }, delay);
