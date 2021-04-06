@@ -11,10 +11,11 @@ export const HN_API_URL = process.env.HN_API_URL || `${HN_DB_URI}${HN_API_VERSIO
 
 export const HOST_NAME = process.env.HOST_NAME || 'localhost';
 export const APP_PORT = process.env.APP_PORT || 3000;
-export const HOST = (!IS_SERVER && window.location.host) || `${HOST_NAME}:${APP_PORT}`;
+export const ORIGIN = !IS_SERVER ? window.location.origin : `http://${HOST_NAME}:${APP_PORT}`;
 
 export const GRAPHQL_PATH = '/graphql';
 export const GRAPHIQL_PATH = '/graphiql';
+export const GRAPHQL_URI = ORIGIN + GRAPHQL_PATH;
 export const useGraphqlPlayground = true;
 
 /*

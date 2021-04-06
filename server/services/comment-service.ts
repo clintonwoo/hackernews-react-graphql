@@ -5,6 +5,7 @@ import type { HnCache } from '../database/cache';
 import type { HnDatabase } from '../database/database';
 
 const logger = debug('app:Comment');
+logger.log = console.log.bind(console);
 
 export class CommentService {
   db: HnDatabase;

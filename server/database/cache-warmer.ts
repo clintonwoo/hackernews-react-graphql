@@ -19,7 +19,7 @@ export function warmCache(db: HnDatabase, cache: HnCache, feedService: FeedServi
 }
 
 function rebuildFeed(db: HnDatabase, cache: HnCache, feedType: FeedType): void {
-  setTimeout(rebuildFeed, 1000 * 60 * 15, feedType);
+  setTimeout(() => rebuildFeed(db, cache, feedType), 1000 * 60 * 15, feedType);
 
   db.getFeed(feedType)
     .then((feed) => {

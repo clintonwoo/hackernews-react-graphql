@@ -3,7 +3,7 @@ import { ApolloClient, createHttpLink } from '@apollo/client';
 import { debug } from 'debug';
 import fetch from 'isomorphic-unfetch';
 
-import { GRAPHQL_PATH, IS_SERVER } from '../config';
+import { IS_SERVER, GRAPHQL_URI } from '../config';
 
 const logger = debug('app:initApollo');
 logger.log = console.log.bind(console);
@@ -14,7 +14,7 @@ function create(initialState, { getToken }): ApolloClient<NormalizedCacheObject>
   return new ApolloClient({
     ssrMode: !IS_SERVER, // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
-      uri: GRAPHQL_PATH,
+      uri: GRAPHQL_URI,
       credentials: 'same-origin',
       headers: {
         // HTTP Header:  Cookie: <cookiename>=<cookievalue>

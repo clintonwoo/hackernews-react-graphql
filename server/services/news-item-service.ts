@@ -5,6 +5,7 @@ import { HnCache } from '../database/cache';
 import { HnDatabase } from '../database/database';
 
 const logger = debug('app:NewsItem');
+logger.log = console.log.bind(console);
 
 let newPostIdCounter = 100;
 
