@@ -1,7 +1,7 @@
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-import { IResolvers } from 'graphql-tools';
+import type { IResolvers } from 'graphql-tools';
 
 import { NewsItemModel, CommentModel, UserModel } from '../src/data/models';
 import type { CommentService } from './services/comment-service';

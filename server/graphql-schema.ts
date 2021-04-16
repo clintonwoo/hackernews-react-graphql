@@ -1,8 +1,5 @@
 import gql from 'graphql-tag';
 
-// Read the complete docs for graphql-tools here:
-// http://dev.apollodata.com/tools/graphql-tools/generate-schema.html
-
 /*
   Schema properties are in following order:
     Alphabetical
