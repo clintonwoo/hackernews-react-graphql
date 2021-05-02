@@ -116,7 +116,7 @@ export interface INewsFeedContainerProps {
   skip: number;
 }
 
-export const NewsFeed: React.SFC<INewsFeedContainerProps> = (props) => {
+export const NewsFeed: React.FC<INewsFeedContainerProps> = (props) => {
   const { data, currentUrl, first, skip, notice } = props;
 
   if (data?.error) {

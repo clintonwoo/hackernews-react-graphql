@@ -8,6 +8,9 @@ import nextApp from 'next';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import { parse } from 'url';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 import {
   APP_PORT,
