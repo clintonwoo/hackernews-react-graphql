@@ -1,11 +1,15 @@
 import Head from 'next/head';
 import * as React from 'react';
 
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
 export function NoticeLayout(props): JSX.Element {
   const { children } = props;
 
   return (
     <div>
+      <ReactNotification />
       <Head>
         <title>Hacker News Clone</title>
         <meta name="referrer" content="origin" />

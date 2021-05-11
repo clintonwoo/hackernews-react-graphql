@@ -116,12 +116,12 @@ app
       '/login',
       (req, res, next) => {
         // @ts-ignore returnTo is an undocumented feature of passportjs
-        req.session!.returnTo = req.body.goto;
+        req.session!.returnTo = '/?login=true';
         next();
       },
       passport.authenticate('local', {
         failureRedirect: '/login?how=unsuccessful',
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/?login=true',
       })
     );
     expressServer.post(
@@ -134,7 +134,7 @@ app
               password: req.body.password,
             });
             // @ts-ignore returnTo is an undocumented feature of passportjs
-            req.session!.returnTo = `/user?id=${req.body.id}`;
+            req.session!.returnTo = `/user?id=${req.body.id}&login=true`;
           } catch (err) {
             // @ts-ignore returnTo is an undocumented feature of passportjs
             req.session!.returnTo = `/login?how=${err.code}`;
@@ -152,7 +152,7 @@ app
     );
     expressServer.get('/logout', (req, res) => {
       req.logout();
-      res.redirect('/');
+      res.redirect('/?logout=true');
     });
 
     /* END PASSPORT.JS AUTHENTICATION */
