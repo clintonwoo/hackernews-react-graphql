@@ -6,6 +6,9 @@ import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { IMeQuery, ME_QUERY } from '../data/queries/me-query';
 
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
 interface IMainLayoutProps {
   children: React.ReactChild;
   currentUrl: string;
@@ -28,6 +31,7 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
 
   return (
     <div>
+      <ReactNotification />
       <Head>
         <title>Hacker News Clone</title>
         <meta name="referrer" content="origin" />

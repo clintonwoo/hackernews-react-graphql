@@ -152,7 +152,7 @@ app
     );
     expressServer.get('/logout', (req, res) => {
       req.logout();
-      res.redirect('/');
+      res.redirect('/?logout=true');
     });
 
     /* END PASSPORT.JS AUTHENTICATION */

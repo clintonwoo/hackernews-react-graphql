@@ -12,6 +12,10 @@ import {
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
 
+import { store } from 'react-notifications-component';
+
+import { useAlert } from 'react-alert';
+
 export interface ILoginPageProps {
   router?: NextRouter;
 }
@@ -30,6 +34,8 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [registerPassword, setRegisterPassword] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<string>('');
 
+  //const alert = useAlert();
+
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
     if (data?.me) {
       e.preventDefault();
@@ -37,6 +43,22 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: loginId, password: loginPassword });
+        /* store.addNotification({
+          title: "Wonderful!",
+          message: "teodosii@react-notifications-component",
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true
+          }
+        }); */
+
+        alert('Oh look, an alert!');
+
       } catch (err) {
         e.preventDefault();
         setValidationMessage(err.message);

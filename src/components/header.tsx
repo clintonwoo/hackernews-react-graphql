@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import { HeaderNav } from './header-nav';
+
+import { store } from 'react-notifications-component';
 
 export interface IHeaderProps {
   me: { id: string; karma: number } | undefined;
@@ -12,6 +15,32 @@ export interface IHeaderProps {
 
 export function Header(props: IHeaderProps): JSX.Element {
   const { currentUrl, isNavVisible, me, title } = props;
+  const router = useRouter();
+
+  const validateLogin = (e): void => {
+
+    e.preventDefault();
+
+    console.log(currentUrl);
+
+    var tempUrl = `/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`;
+
+    console.log(tempUrl);
+    //Router.push(`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`);
+
+    /*   router.push({
+        pathname: "/logout",
+        query: { logout: true }
+      }); */
+
+    router.push(`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl};logout=true`, undefined, { shallow: true })
+
+    /* Router.push({
+      pathname: tempUrl,
+      query: { logout: true }
+    }); */
+
+  };
 
   return (
     <tr>
@@ -20,7 +49,7 @@ export function Header(props: IHeaderProps): JSX.Element {
           <tbody>
             <tr>
               <td style={{ width: '18px', padding: '0px', paddingRight: '4px' }}>
-                <Link href="/">
+                <Link href="/" >
                   <a>
                     <img
                       src="/static/y18.gif"
@@ -46,7 +75,8 @@ export function Header(props: IHeaderProps): JSX.Element {
                     </Link>
                     {` (${me.karma}) | `}
                     <a
-                      href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
+                      // href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
+                      onClick={validateLogin}
                     >
                       logout
                     </a>

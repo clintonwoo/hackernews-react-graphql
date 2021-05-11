@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
+import React, { ReactDOM, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';
@@ -7,6 +7,10 @@ import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 import { FeedType } from '../src/data/models';
 import { POSTS_PER_PAGE } from '../src/config';
+
+
+import { BlankLayout } from '../src/layouts/blank-layout';
+import { loginSuccessMessage, logoutSuccessMessage } from './../src/data/validation/user';
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -17,12 +21,15 @@ const query = gql`
   ${newsFeedNewsItemFragment}
 `;
 
+
+
 export interface ITopNewsFeedProps {
   options: {
     currentUrl: string;
     first: number;
     skip: number;
   };
+
 }
 
 export function IndexPage(props): JSX.Element {
@@ -35,10 +42,24 @@ export function IndexPage(props): JSX.Element {
 
   const { data } = useQuery(query, { variables: { first, skip, type: FeedType.TOP } });
 
+
+  useEffect(() => {
+    if (router.query.logout) {
+      logoutSuccessMessage();
+    }
+
+    window.history.replaceState(null, '', '/');
+  }, [router.query.logout]);
+
+  router.pathname = "/";
+
+
   return (
-    <MainLayout currentUrl={router.pathname}>
-      <NewsFeed data={data} currentUrl={router.pathname} first={first} skip={skip} />
-    </MainLayout>
+    <BlankLayout>
+      <MainLayout currentUrl={router.pathname}>
+        <NewsFeed data={data} currentUrl={router.pathname} first={first} skip={skip} />
+      </MainLayout>
+    </BlankLayout>
   );
 }
 
