@@ -46,10 +46,12 @@ export function IndexPage(props): JSX.Element {
   useEffect(() => {
     if (router.query.logout) {
       logoutSuccessMessage();
+    } else if (router.query.login) {
+      loginSuccessMessage();
     }
 
     window.history.replaceState(null, '', '/');
-  }, [router.query.logout]);
+  }, [router.query.logout, router.query.login]);
 
   router.pathname = "/";
 

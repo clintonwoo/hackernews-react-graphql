@@ -2,12 +2,14 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import * as React from 'react';
+import { useEffect } from 'react';
 import renderHTML from 'react-render-html';
 
 import { convertNumberToTimeAgo } from '../src/helpers/convert-number-to-time-ago';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
 import { MainLayout } from '../src/layouts/main-layout';
+import { loginSuccessMessage } from './../src/data/validation/user';
 
 const query = gql`
   query User($id: String!) {
@@ -38,6 +40,8 @@ export interface IUserPageQuery {
 function UserPage(props: IUserPageProps): JSX.Element {
   const { router } = props;
 
+  console.log(router);
+
   const userId = (router.query && router.query.id) || '';
 
   const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
@@ -46,6 +50,7 @@ function UserPage(props: IUserPageProps): JSX.Element {
     return <BlankLayout>Error loading news items.</BlankLayout>;
   }
   if (!data?.user) {
+
     return <BlankLayout>No such user.</BlankLayout>;
   }
 
@@ -59,6 +64,16 @@ function UserPage(props: IUserPageProps): JSX.Element {
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     email = e.target.value;
   };
+
+  useEffect(() => {
+    if (router.query.login) {
+      loginSuccessMessage();
+    }
+
+    window.history.replaceState(null, '', `/user?id=${router.query.id}`);
+  }, [router.query.login]);
+
+  console.log(data);
 
   if (data?.me && data?.user.id === data.me.id)
     return (
