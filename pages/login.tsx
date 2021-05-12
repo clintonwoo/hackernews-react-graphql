@@ -10,7 +10,7 @@ import {
   UserLoginErrorCode,
 } from '../src/helpers/user-login-error-code';
 import { withDataAndRouter } from '../src/helpers/with-data';
-import { BlankLayout } from '../src/layouts/blank-layout';
+import { LoginLayout } from '../src/layouts/login-layout';
 
 import { store } from 'react-notifications-component';
 
@@ -31,8 +31,8 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [loginPassword, setLoginPassword] = useState<string>('');
   const [registerId, setRegisterId] = useState<string>('');
   const [registerPassword, setRegisterPassword] = useState<string>('');
-  const [validationMessage, setValidationMessage] = useState<string>('');
-
+  const [loginValidationMessage, setLoginValidationMessage] = useState<string>('');
+  const [registerValidationMessage, setRegisterValidationMessage] = useState<string>('');
   //const alert = useAlert();
 
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -45,7 +45,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
 
       } catch (err) {
         e.preventDefault();
-        setValidationMessage(err.message);
+        setLoginValidationMessage(err.message);
       }
     }
   };
@@ -59,104 +59,116 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         validateNewUser({ id: registerId, password: registerPassword });
       } catch (err) {
         e.preventDefault();
-        setValidationMessage(err.message);
+        setRegisterValidationMessage(err.message);
       }
     }
   };
 
   return (
-    <BlankLayout>
-      {message && <p>{message}</p>}
-      {validationMessage && <p>{validationMessage}</p>}
-      <b>Login</b>
-      <br />
-      <br />
-      <form
-        method="post"
-        action="/login"
-        onSubmit={(e): void => validateLogin(e)}
-        style={{ marginBottom: '1em' }}
-      >
-        <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
-        <table style={{ border: '0px' }}>
-          <tbody>
-            <tr>
-              <td>username:</td>
-              <td>
-                <input
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  name="id"
-                  onChange={(e): void => setLoginId(e.target.value)}
-                  size={20}
-                  spellCheck={false}
-                  type="text"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>password:</td>
-              <td>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={(e): void => setLoginPassword(e.target.value)}
-                  size={20}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <LoginLayout>
+      <div>
+        {message && <p style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{message}</p>}
         <br />
-        <input type="submit" value="login" />
-      </form>
-      <Link href="/forgot">
-        <a>Forgot your password?</a>
-      </Link>
-      <br />
-      <br />
-      <b>Create Account</b>
-      <br />
-      <br />
-      <form
-        method="post"
-        action="/register"
-        onSubmit={(e): void => validateRegister(e)}
-        style={{ marginBottom: '1em' }}
-      >
-        <table style={{ border: '0px' }}>
-          <tbody>
-            <tr>
-              <td>username:</td>
-              <td>
-                <input
-                  type="text"
-                  name="id"
-                  onChange={(e): void => setRegisterId(e.target.value)}
-                  size={20}
-                  autoCorrect="off"
-                  spellCheck={false}
-                  autoCapitalize="off"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>password:</td>
-              <td>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={(e): void => setRegisterPassword(e.target.value)}
-                  size={20}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Login</b>
         <br />
-        <input type="submit" value="create account" />
-      </form>
-    </BlankLayout>
+        <br />
+        <form
+          method="post"
+          action="/login"
+          onSubmit={(e): void => validateLogin(e)}
+          style={{ marginBottom: '2em' }}
+        >
+          <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
+          <table style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
+            <tbody>
+              <tr>
+                <td>username:</td>
+                <td>
+                  <input
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                    name="id"
+                    onChange={(e): void => setLoginId(e.target.value)}
+                    size={20}
+                    spellCheck={false}
+                    type="text"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>password:</td>
+                <td>
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={(e): void => setLoginPassword(e.target.value)}
+                    size={20}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {loginValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{loginValidationMessage}</p>}
+          <br />
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} >
+            <input type="submit" value="login" />
+          </div>
+        </form>
+        <Link href="/forgot">
+          <a style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Forgot your password?</a>
+        </Link>
+        <br />
+        <br />
+        <hr></hr>
+        <br />
+        <br />
+        <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Create Account</b>
+        <br />
+        <br />
+        <form
+          method="post"
+          action="/register"
+          onSubmit={(e): void => validateRegister(e)}
+          style={{ marginBottom: '2em' }}
+        >
+          <table style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
+            <tbody>
+              <tr>
+                <td>username:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="id"
+                    onChange={(e): void => setRegisterId(e.target.value)}
+                    size={20}
+                    autoCorrect="off"
+                    spellCheck={false}
+                    autoCapitalize="off"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>password:</td>
+                <td>
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={(e): void => setRegisterPassword(e.target.value)}
+                    size={20}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {registerValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{registerValidationMessage}</p>}
+          <br />
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} >
+            <input type="submit" value="create account" />
+          </div>
+          <br />
+        </form>
+      </div>
+    </LoginLayout>
   );
 }
 
