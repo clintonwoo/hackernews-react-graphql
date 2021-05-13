@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-export function Footer(): JSX.Element {
+export function Footer(props): JSX.Element {
+  const {isFooterNotVisible} = props;
   return (
     <tr>
       <td style={{ padding: '0px' }}>
@@ -44,18 +45,22 @@ export function Footer(): JSX.Element {
           </span>
           <br />
           <br />
-          <form method="get" action="//hn.algolia.com/" style={{ marginBottom: '1em' }}>
-            Search:
-            <input
-              type="text"
-              name="q"
-              size={17}
-              autoCorrect="off"
-              spellCheck={false}
-              autoCapitalize="off"
-              autoComplete="false"
-            />
-          </form>
+          {isFooterNotVisible?
+            (null):
+            (<form method="get" action="//hn.algolia.com/" style={{ marginBottom: '1em' }}>
+              Search:
+              <input
+                type="text"
+                name="q"
+                size={17}
+                autoCorrect="off"
+                spellCheck={false}
+                autoCapitalize="off"
+                autoComplete="false"
+              />
+            </form>)
+          }
+          
         </div>
       </td>
     </tr>
