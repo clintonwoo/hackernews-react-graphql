@@ -32,8 +32,7 @@ export function NewsTitle(props: INewsTitleProps): JSX.Element {
 
   const [upvoteNewsItem] = useMutation(UPVOTE_NEWS_ITEM_MUTATION, {
     onError: () => {     
-      // setNotLoggedIn(true); 
-      Router.push('/login', `/vote?id=${id}&how=up&goto=news`);
+      setNotLoggedIn(true);
     },
     variables: { id },
   });
