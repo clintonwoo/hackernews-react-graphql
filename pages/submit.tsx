@@ -1,7 +1,10 @@
+import { useQuery } from '@apollo/client';
+import { IMeQuery, ME_QUERY } from '../src/data/queries/me-query';
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { validateText,validateTitle,validateUrl } from '../src/data/validation/submit';
 
 import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-item-mutation';
 import { withDataAndRouter } from '../src/helpers/with-data';
@@ -12,11 +15,30 @@ interface ISubmitPageProps {
 }
 
 function SubmitPage(props: ISubmitPageProps): JSX.Element {
+  const { data } = useQuery<IMeQuery>(ME_QUERY);
   const { router } = props;
 
   const [title, setTitle] = useState<string>('');
   const [url, setUrl] = useState<string>('');
   const [text, setText] = useState<string>('');
+  const [submitValidationMessage, setSubmitValidationMessage] = useState<string>('');
+
+  const validateSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    if (!(data?.me)) {
+      e.preventDefault();
+      Router.push('/login?how=loggedin');
+    } else {
+      try {
+        validateTitle({title});
+        validateUrl({url});
+        validateText({text});
+      } catch (err) {
+        console.log(err.message);
+        setSubmitValidationMessage(err.message);
+        e.preventDefault();
+      }
+    }
+  };
 
   const [submitNewsItem] = useMutation(SUBMIT_NEWS_ITEM_MUTATION, {
     variables: { title, url, text },
@@ -39,7 +61,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
     >
       <tr>
         <td>
-          <form onSubmit={(e): void => e.preventDefault()}>
+          <form onSubmit={(e): void => validateSubmit(e)}>
             <input type="hidden" name="fnid" value="GvyHFpy11L26dCAIgGQ9rv" />
             <input type="hidden" name="fnop" value="submit-page" />
             <script type="text/javascript">
@@ -104,6 +126,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                 <tr>
                   <td />
                   <td>
+                    {submitValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{submitValidationMessage}</p>}
                     <input
                       type="submit"
                       value="submit"
