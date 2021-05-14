@@ -55,9 +55,9 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   return (
     <MainLayout
       currentUrl={router.pathname}
-      title="Submit"
-      isNavVisible={false}
-      isFooterVisible={false}
+      title="Hacker News"
+      isNavVisible={true}
+      isFooterVisible={true}
     >
       <tr>
         <td>
