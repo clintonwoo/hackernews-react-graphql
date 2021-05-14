@@ -4,6 +4,7 @@ import * as React from 'react';
 import { parse } from 'url';
 
 import { UPVOTE_NEWS_ITEM_MUTATION } from '../data/mutations/upvote-news-item-mutation';
+import { ErrorAction } from './error-action';
 
 export interface INewsTitleProps {
   id: number;
@@ -27,8 +28,13 @@ export const newsTitleFragment = `
 export function NewsTitle(props: INewsTitleProps): JSX.Element {
   const { id, isRankVisible = true, isUpvoteVisible = true, rank, title, upvoted, url } = props;
 
+  const [notLoggedIn, setNotLoggedIn] = React.useState(false);
+
   const [upvoteNewsItem] = useMutation(UPVOTE_NEWS_ITEM_MUTATION, {
-    onError: () => Router.push('/login', `/vote?id=${id}&how=up&goto=news`),
+    onError: () => {     
+      // setNotLoggedIn(true); 
+      Router.push('/login', `/vote?id=${id}&how=up&goto=news`);
+    },
     variables: { id },
   });
 
@@ -48,7 +54,8 @@ export function NewsTitle(props: INewsTitleProps): JSX.Element {
               <div className="votearrow" title="upvote" />
             </a>
           )}
-        </div>
+        </div>            
+        <div>{ notLoggedIn && (<ErrorAction currentUrl="news" />) }</div>
       </td>
       <td className="title">
         <a className="storylink" href={url || `item?id=${id}`}>
