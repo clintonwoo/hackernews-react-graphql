@@ -47,8 +47,8 @@ export function Header(props: IHeaderProps): JSX.Element {
       <td style={{ backgroundColor: '#ff6600', padding: '0px' }}>
         <table style={{ border: '0px', padding: '2px', borderSpacing: '0px', width: '100%' }}>
           <tbody>
-            <tr>
-              <td style={{ width: '18px', padding: '0px', paddingRight: '4px' }}>
+            <tr className="header" >
+              <td style={{width: '18px', padding: '0px', paddingRight: '4px'}}>
                 <Link href="/" >
                   <a>
                     <img
@@ -57,8 +57,8 @@ export function Header(props: IHeaderProps): JSX.Element {
                         border: '1px',
                         borderColor: 'white',
                         borderStyle: 'solid',
-                        height: '18px',
-                        width: '18px',
+                        height: '30px',
+                        width: '30px',
                       }}
                     />
                   </a>

@@ -127,7 +127,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <br />
         <form
           method="post"
-          action="/register"
+          action={`/register`}
           onSubmit={(e): void => validateRegister(e)}
           style={{ marginBottom: '2em' }}
         >
@@ -155,6 +155,16 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
                     name="password"
                     onChange={(e): void => setRegisterPassword(e.target.value)}
                     size={20}
+                  />
+                </td>
+              </tr>
+              <tr>                
+                <td>
+                  <input
+                    type="text"
+                    name="goto"
+                    value={routerQuery.goto}  
+                    hidden                
                   />
                 </td>
               </tr>

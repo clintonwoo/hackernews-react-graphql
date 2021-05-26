@@ -3,12 +3,7 @@ import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export interface IErrorActionProps {
-    currentUrl: string;
-}
-
-export function ErrorAction(props: IErrorActionProps): JSX.Element {
-    const { currentUrl } = props;
+export function ErrorAction(): JSX.Element {
 
     const [show, setShow] = React.useState(true);
 
@@ -17,7 +12,7 @@ export function ErrorAction(props: IErrorActionProps): JSX.Element {
     const handleClose = () => setShow(false);
 
     const handleLogin = () => {
-        router.push(`/login?goto=${currentUrl}`);       
+        router.push(`/login?goto=${router.pathname}`);       
     }
   
     return (

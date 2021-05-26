@@ -134,7 +134,8 @@ app
               password: req.body.password,
             });
             // @ts-ignore returnTo is an undocumented feature of passportjs
-            req.session!.returnTo = `/user?id=${req.body.id}&login=true`;
+            // req.session!.returnTo = `/user?id=${req.body.id}&login=true`;
+            req.session!.returnTo = `${req.body.goto}`;
           } catch (err) {
             // @ts-ignore returnTo is an undocumented feature of passportjs
             req.session!.returnTo = `/login?how=${err.code}`;

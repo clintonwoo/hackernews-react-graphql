@@ -31,7 +31,14 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
 
   return (
     <div>
-      <ReactNotification />
+      <link rel="stylesheet" type="text/css" href="/static/notification.css" />
+      <ReactNotification 
+        types={[{
+          htmlClasses: ["notification-custom"],
+          name: "custom"
+        }]}
+      />
+
       <Head>
         <title>Hacker News Clone</title>
         <meta name="referrer" content="origin" />

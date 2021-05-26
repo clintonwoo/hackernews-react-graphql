@@ -1,0 +1,19 @@
+.notification-custom {
+  text-align: center;
+  background-color: #ef5d0f;
+  max-height: 30px;
+  max-width: 300px;
+}
+
+.notification__message {
+  color: #000;
+  max-width: calc(100% - 15px);
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bolder;
+  font-size: 10pt;
+  text-transform: capitalize;
+  line-height: 100%;
+  word-wrap: break-word;
+  margin-bottom: 0;
+  margin-top: 0;
+}

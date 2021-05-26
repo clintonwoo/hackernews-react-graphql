@@ -54,10 +54,10 @@ export function NewsTitle(props: INewsTitleProps): JSX.Element {
             </a>
           )}
         </div>            
-        <div>{ notLoggedIn && (<ErrorAction currentUrl="news" />) }</div>
+        <div>{ notLoggedIn && (<ErrorAction />) }</div>
       </td>
       <td className="title">
-        <a className="storylink" href={url || `item?id=${id}`}>
+        <a className="storylink" target="_blank" href={url || `item?id=${id}`}>
           {title}
         </a>
         {url && (

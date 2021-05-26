@@ -7,7 +7,6 @@ import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 import { FeedType } from '../src/data/models';
 import { POSTS_PER_PAGE } from '../src/config';
-import { loginSuccessMessage } from '../src/data/validation/user';
 
 const query = gql`
   query NewestFeed($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -35,8 +34,6 @@ export function NewestPage(props): JSX.Element {
   const skip = POSTS_PER_PAGE * pageNumber;
 
   const { data } = useQuery(query, { variables: { first, skip, type: FeedType.NEW } });
-
-  // loginSuccessMessage();
 
   return (
     <MainLayout currentUrl={router.pathname}>
