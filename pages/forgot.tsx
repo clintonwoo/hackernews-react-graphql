@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { LoginLayout } from '../src/layouts/login-layout';
 
+import useSound from 'use-sound';
+
 export interface IForgotPageProps {
   router: NextRouter; // { how: UserLoginErrorCode }
 }
@@ -11,13 +13,25 @@ export interface IForgotPageProps {
 function ForgotPage(props: IForgotPageProps): JSX.Element {
   const [username, setUsername] = useState<string>('');
 
+  const { router } = props;
+
+  const [playActive] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
+  const onSubmit = (form) => {
+    playActive();
+    form.submit();
+  };
+
   return (
     <LoginLayout>
       <div>
         <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Reset your password</b>
         <br />
         <br />
-        <form method="post" action="/x" >
+        <form method="post" action="/login" onSubmit={() => playActive()}>
           <input type="hidden" name="fnid" value="SW3mxENlH7rdjgxwWaobR5" />
           <input type="hidden" name="fnop" value="forgot-password" />
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} > username:{' '} 

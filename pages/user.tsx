@@ -11,6 +11,8 @@ import { BlankLayout } from '../src/layouts/blank-layout';
 import { MainLayout } from '../src/layouts/main-layout';
 import { logoutSuccessMessage } from './../src/data/validation/user';
 
+import useSound from 'use-sound';
+
 const query = gql`
   query User($id: String!) {
     user(id: $id) {
@@ -65,6 +67,11 @@ function UserPage(props: IUserPageProps): JSX.Element {
     email = e.target.value;
   };
 
+  const [playActive] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
   useEffect(() => {
     if (router.query.logout) {
       logoutSuccessMessage();
@@ -73,14 +80,14 @@ function UserPage(props: IUserPageProps): JSX.Element {
     window.history.replaceState(null, '', `/user?id=${router.query.id}`);
   }, [router.query.login]);
 
-  console.log(data);
+  const url = `/user?id=${router.query.id}`;
 
   if (data?.me && data?.user.id === data.me.id)
     return (
       <MainLayout currentUrl={router.pathname} isFooterVisible={false}>
         <tr>
           <td>
-            <form className="profileform" method="post" action="/xuser">
+            <form className="profileform" onSubmit={() => playActive()} method="post" action="/login">
               <input type="hidden" name="id" value="clintonwoo" />
               <input type="hidden" name="hmac" value="71104445c3c41b4167c38db67a656e610d5fbad9" />
               <table style={{ border: '0px' }}>

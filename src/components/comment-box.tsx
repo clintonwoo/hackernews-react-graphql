@@ -1,11 +1,19 @@
 import * as React from 'react';
 
+import useSound from 'use-sound';
+
 export function CommentBox(): JSX.Element {
+
+  const [playActive] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
   return (
     <tr>
       <td colSpan={2} />
       <td>
-        <form method="post" action="comment">
+        <form method="post" onSubmit={() => playActive()} action="comment">
           <input type="hidden" name="parent" value="15237896" />
           <input type="hidden" name="goto" value="item?id=15237896" />
           <input type="hidden" name="hmac" value="02641d0660c89c1a83ccf0d171e42497d10d2135" />

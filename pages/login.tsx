@@ -12,8 +12,7 @@ import {
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { LoginLayout } from '../src/layouts/login-layout';
 
-import { store } from 'react-notifications-component';
-
+import useSound from 'use-sound';
 
 export interface ILoginPageProps {
   router?: NextRouter;
@@ -34,6 +33,11 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [loginValidationMessage, setLoginValidationMessage] = useState<string>('');
   const [registerValidationMessage, setRegisterValidationMessage] = useState<string>('');
   //const alert = useAlert();
+
+  const [playActive] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
 
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
     if (data?.me) {
@@ -75,7 +79,10 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <form
           method="post"
           action="/login"
-          onSubmit={(e): void => validateLogin(e)}
+          onSubmit={(e): void => {
+            playActive();
+            validateLogin(e);
+          }}
           style={{ marginBottom: '2em' }}
         >
           <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
@@ -88,7 +95,9 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
                     autoCapitalize="off"
                     autoCorrect="off"
                     name="id"
-                    onChange={(e): void => setLoginId(e.target.value)}
+                    onChange={(e): void => {
+                      setLoginId(e.target.value);                      
+                    }}
                     size={20}
                     spellCheck={false}
                     type="text"
@@ -128,7 +137,10 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <form
           method="post"
           action={`/register`}
-          onSubmit={(e): void => validateRegister(e)}
+          onSubmit={(e): void => {
+            playActive();
+            validateRegister(e);
+          }}
           style={{ marginBottom: '2em' }}
         >
           <table style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>

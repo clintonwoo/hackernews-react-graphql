@@ -10,6 +10,8 @@ import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-ite
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 
+import useSound from 'use-sound';
+
 interface ISubmitPageProps {
   router;
 }
@@ -22,6 +24,11 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   const [url, setUrl] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [submitValidationMessage, setSubmitValidationMessage] = useState<string>('');
+
+  const [playActive] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
 
   const validateSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     if (!(data?.me)) {
@@ -61,7 +68,10 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
     >
       <tr>
         <td>
-          <form onSubmit={(e): void => validateSubmit(e)}>
+          <form onSubmit={(e): void => {
+              validateSubmit(e);
+              playActive();
+            }}>
             <input type="hidden" name="fnid" value="GvyHFpy11L26dCAIgGQ9rv" />
             <input type="hidden" name="fnop" value="submit-page" />
             <script type="text/javascript">

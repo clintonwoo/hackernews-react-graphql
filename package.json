@@ -61,7 +61,8 @@
     "react-dom": "17.0.2",
     "react-notifications-component": "^3.1.0",
     "react-render-html": "0.6.0",
-    "url": "0.11.0"
+    "url": "0.11.0",
+    "use-sound": "^3.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.10",
