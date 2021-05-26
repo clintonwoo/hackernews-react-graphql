@@ -30,35 +30,30 @@ export function validateNewUser({ id, password }): boolean {
   return true;
 }
 
-export function loginSuccessMessage(): void {
-  store.addNotification({
-    title: "Login Success",
-    message: "Successfully Logged in",
-    type: "success",
-    insert: "top",
-    container: "top-right",
-    animationIn: ["animate__animated", "animate__fadeIn"],
-    animationOut: ["animate__animated", "animate__fadeOut"],
-    dismiss: {
-      duration: 5000,
-      onScreen: true
-    }
-  });
-}
-
 export function logoutSuccessMessage(): void {
 
   store.addNotification({
-    title: "Logout Success",
-    message: "Successfully Logged Out",
-    type: "danger",
+    message: "You have successfully logged out",
+    type: "custom",
     insert: "top",
-    container: "top-right",
+    container: "bottom-right",
     animationIn: ["animate__animated", "animate__fadeIn"],
     animationOut: ["animate__animated", "animate__fadeOut"],
     dismiss: {
-      duration: 5000,
+      duration: 50000,
       onScreen: true
-    }
+    },
+    touchSlidingExit: {
+      swipe: {
+        duration: 400,
+        timingFunction: 'ease-out',
+        delay: 0,
+      },
+      fade: {
+        duration: 400,
+        timingFunction: 'ease-out',
+        delay: 0
+      }
+    },
   });
 }

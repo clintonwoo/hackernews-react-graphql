@@ -10,7 +10,7 @@ import { POSTS_PER_PAGE } from '../src/config';
 
 
 import { BlankLayout } from '../src/layouts/blank-layout';
-import { loginSuccessMessage, logoutSuccessMessage } from './../src/data/validation/user';
+import { logoutSuccessMessage } from './../src/data/validation/user';
 
 const query = gql`
   query topNewsItems($type: FeedType!, $first: Int!, $skip: Int!) {
@@ -46,8 +46,6 @@ export function IndexPage(props): JSX.Element {
   useEffect(() => {
     if (router.query.logout) {
       logoutSuccessMessage();
-    } else if (router.query.login) {
-      loginSuccessMessage();
     }
 
     window.history.replaceState(null, '', '/');

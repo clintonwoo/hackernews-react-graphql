@@ -9,7 +9,7 @@ import { convertNumberToTimeAgo } from '../src/helpers/convert-number-to-time-ag
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { BlankLayout } from '../src/layouts/blank-layout';
 import { MainLayout } from '../src/layouts/main-layout';
-import { loginSuccessMessage } from './../src/data/validation/user';
+import { logoutSuccessMessage } from './../src/data/validation/user';
 
 const query = gql`
   query User($id: String!) {
@@ -66,8 +66,8 @@ function UserPage(props: IUserPageProps): JSX.Element {
   };
 
   useEffect(() => {
-    if (router.query.login) {
-      loginSuccessMessage();
+    if (router.query.logout) {
+      logoutSuccessMessage();
     }
 
     window.history.replaceState(null, '', `/user?id=${router.query.id}`);
