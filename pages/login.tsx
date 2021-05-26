@@ -67,7 +67,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   return (
     <LoginLayout>
       <div>
-        {message && <p style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{message}</p>}
+        {message && <p style={{display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e'}}>{message}</p>}
         <br />
         <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Login</b>
         <br />
