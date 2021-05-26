@@ -8,8 +8,6 @@ import { IMeQuery, ME_QUERY } from '../data/queries/me-query';
 
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import { logoutSuccessMessage } from '../../src/data/validation/user';
-
 
 interface IMainLayoutProps {
   children: React.ReactChild;
@@ -40,8 +38,6 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
           name: "custom"
         }]}
       />
-
-      <button onClick={()=> logoutSuccessMessage()}>Click Me</button>
 
       <Head>
         <title>Hacker News Clone</title>
