@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import React, { ReactDOM, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { NewsFeed, newsFeedNewsItemFragment } from '../src/components/news-feed';

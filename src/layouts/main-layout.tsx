@@ -8,6 +8,8 @@ import { IMeQuery, ME_QUERY } from '../data/queries/me-query';
 
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import useSound from 'use-sound';
+import { useSoundContext } from '../context/state';
 
 interface IMainLayoutProps {
   children: React.ReactChild;
@@ -18,7 +20,7 @@ interface IMainLayoutProps {
   title?: string;
 }
 
-export function MainLayout(props: IMainLayoutProps): JSX.Element {
+export function MainLayout(props: IMainLayoutProps, pageProps: any): JSX.Element {
   const { data } = useQuery<IMeQuery>(ME_QUERY);
 
   const {
@@ -29,8 +31,23 @@ export function MainLayout(props: IMainLayoutProps): JSX.Element {
     title = 'Hacker News',
   } = props;
 
+  const { state, toggle } = useSoundContext();
+
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.25 }
+  );
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if ((event.target instanceof HTMLAnchorElement || event.target instanceof HTMLButtonElement) && state) {
+      playClick();
+    }
+  };
+
+  console.log(pageProps);
+
   return (
-    <div>
+    <div onClick={handleClick}>
       <link rel="stylesheet" type="text/css" href="/static/notification.css" />
       <ReactNotification 
         types={[{

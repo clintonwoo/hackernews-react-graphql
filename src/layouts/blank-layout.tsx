@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-
-import { render } from 'react-dom'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-oldschool-dark';
+import useSound from 'use-sound';
 
 
 export function BlankLayout(props): JSX.Element {
@@ -20,9 +19,20 @@ export function BlankLayout(props): JSX.Element {
     transition: transitions.SCALE
   }
 
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.25 }
+  );
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.target instanceof HTMLAnchorElement || event.target instanceof HTMLButtonElement) {
+      playClick();
+    }
+  };
+
   return (
     <AlertProvider template={AlertTemplate} {...options}>
-      <div className="WordSection1">
+      <div className="WordSection1" onClick={handleClick}>
 
         <Head>
           <title>Hacker News Clone</title>

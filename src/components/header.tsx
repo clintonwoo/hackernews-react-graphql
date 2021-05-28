@@ -4,7 +4,9 @@ import * as React from 'react';
 
 import { HeaderNav } from './header-nav';
 
-import { store } from 'react-notifications-component';
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+import CSS from 'csstype';
+import { useSoundContext } from '../context/state';
 
 export interface IHeaderProps {
   me: { id: string; karma: number } | undefined;
@@ -12,6 +14,10 @@ export interface IHeaderProps {
   isNavVisible: boolean;
   title: string;
 }
+
+const soundIconSpan: CSS.Properties = {
+  margin: '0px 5px'
+};
 
 export function Header(props: IHeaderProps): JSX.Element {
   const { currentUrl, isNavVisible, me, title } = props;
@@ -41,6 +47,8 @@ export function Header(props: IHeaderProps): JSX.Element {
     }); */
 
   };
+
+  const { state, toggle } = useSoundContext();
 
   return (
     <tr>
@@ -85,11 +93,16 @@ export function Header(props: IHeaderProps): JSX.Element {
                       (currentUrl=='login'
                         ? null
                         : (
-                          <span className="pagetop">
-                            <Link href={`/login?goto=${currentUrl}`}>
-                              <a>login</a>
-                            </Link>
-                          </span>
+                          <div>
+                            <span className="pagetop">
+                              <Link href={`/login?goto=${currentUrl}`}>
+                                <a>login</a>
+                              </Link>
+                            </span>
+                            <span className="pagetop" style={soundIconSpan} onClick={toggle}>
+                              {state ? <FaVolumeMute /> : <FaVolumeUp />}
+                            </span>
+                          </div>
                         )
                       )
                     ]

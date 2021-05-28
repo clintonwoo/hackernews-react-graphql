@@ -34,9 +34,9 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [registerValidationMessage, setRegisterValidationMessage] = useState<string>('');
   //const alert = useAlert();
 
-  const [playActive] = useSound(
-    '/click.mp3',
-    { volume: 0.5 }
+  const [playError] = useSound(
+    '/tap2.mp3',
+    { volume: 0.25 }
   );
 
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -50,6 +50,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
       } catch (err) {
         e.preventDefault();
         setLoginValidationMessage(err.message);
+        playError();
       }
     }
   };
@@ -80,7 +81,6 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
           method="post"
           action="/login"
           onSubmit={(e): void => {
-            playActive();
             validateLogin(e);
           }}
           style={{ marginBottom: '2em' }}
@@ -138,7 +138,6 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
           method="post"
           action={`/register`}
           onSubmit={(e): void => {
-            playActive();
             validateRegister(e);
           }}
           style={{ marginBottom: '2em' }}
