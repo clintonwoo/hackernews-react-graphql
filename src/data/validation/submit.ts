@@ -21,11 +21,11 @@ export function validateTitle({ title }): boolean {
 }
 
 
-export function validateUrl({ url }): boolean {
-  if (!isValidUrl(url)) {
+export function validateUrlorText({ url, text }): boolean {
+  if (!isValidUrl(url) && text.length ===0) {
     throw new ValidationError({
       code: ValidationCode.URL,
-      message: 'Invalid Url',
+      message: 'Invalid Url or Invalid Text',
     });
   }
 
