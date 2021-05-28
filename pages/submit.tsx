@@ -26,7 +26,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   const validateSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     if (!(data?.me)) {
       e.preventDefault();
-      Router.push('/login?how=loggedin');
+      Router.push('/login');
     } else {
       try {
         validateTitle({title});
