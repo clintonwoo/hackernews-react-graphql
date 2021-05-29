@@ -36,7 +36,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
 
   const [playError] = useSound(
     '/tap2.mp3',
-    { volume: 0.25 }
+    { volume: 0.5 }
   );
 
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -65,6 +65,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
       } catch (err) {
         e.preventDefault();
         setRegisterValidationMessage(err.message);
+        playError();
       }
     }
   };

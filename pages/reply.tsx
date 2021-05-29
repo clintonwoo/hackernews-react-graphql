@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client';
 import { commentFragment } from '../src/components/comment';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
-import useSound from 'use-sound';
 
 const query = gql`
   query Comment($id: Int!) {
@@ -35,11 +34,6 @@ function ReplyPage(props: IReplyPageProps): JSX.Element {
   const toggle = (): void => {
     console.log('toggle');
   };
-
-  const [playActive] = useSound(
-    '/click.mp3',
-    { volume: 0.5 }
-  );
 
   return (
     <MainLayout title="Add Comment" currentUrl={router.pathname} isNavVisible={false}>
@@ -110,7 +104,7 @@ function ReplyPage(props: IReplyPageProps): JSX.Element {
               <tr>
                 <td colSpan={2} />
                 <td>
-                  <form method="post" action="comment" onSubmit={() => playActive()}>
+                  <form method="post" action="comment" >
                     <input type="hidden" name="parent" value="15260438" />
                     <input type="hidden" name="goto" value="item?id=15260384#15260438" />
                     <input

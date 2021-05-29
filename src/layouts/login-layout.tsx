@@ -40,11 +40,11 @@ export function LoginLayout(props: IMainLayoutProps): JSX.Element {
 
   const [playClick] = useSound(
     '/click.mp3',
-    { volume: 0.25 }
+    { volume: 0.5 }
   );
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
-    if (event.target instanceof HTMLAnchorElement || event.target instanceof HTMLButtonElement) {
+    if (event.target instanceof HTMLAnchorElement) {
       playClick();
     }
   };

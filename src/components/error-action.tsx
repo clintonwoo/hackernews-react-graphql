@@ -2,27 +2,17 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal'
 import "bootstrap/dist/css/bootstrap.min.css";
-import useSound from 'use-sound';
 
 export function ErrorAction(): JSX.Element {
 
     const [show, setShow] = React.useState(true);
 
     const router = useRouter();
-
-    const [playActive] = useSound(
-      '/click.mp3',
-      { volume: 0.5 }
-    );
   
-    const handleClose = () => {
-      playActive();
-      setShow(false);
-    }
+    const handleClose = () => setShow(false);
 
     const handleLogin = () => {
-      playActive();
-      router.push(`/login?goto=${router.pathname}`);       
+        router.push(`/login?goto=${router.pathname}`);       
     }
   
     return (
