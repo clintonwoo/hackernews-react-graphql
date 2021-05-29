@@ -49,7 +49,7 @@
     "graphql-tools": "7.0.4",
     "isomorphic-unfetch": "3.1.0",
     "lru-cache": "6.0.0",
-    "next": "^10.2.0",
+    "next": "^10.2.3",
     "passport": "0.4.1",
     "passport-local": "1.0.0",
     "react": "17.0.2",

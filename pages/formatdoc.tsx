@@ -16,9 +16,10 @@ export function FormatDocPage(props): JSX.Element {
       <tr>
         <td>
           <span className="admin">
-            <div style={{ textAlign: 'center' }}>
-              <table style={{ width: '500px' }}>
+            <div>
+              <table style={{width: '500px', paddingLeft:'15px' }}>
                 <tbody>
+                  <br></br>
                   <tr>
                     <td>
                       Blank lines separate paragraphs.

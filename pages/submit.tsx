@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { validateText,validateTitle,validateUrl } from '../src/data/validation/submit';
+import { validateTitle, validateUrlorText } from '../src/data/validation/submit';
 
 import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-item-mutation';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
+
+import { ErrorAction } from '../src/components/error-action';
 
 interface ISubmitPageProps {
   router;
@@ -22,16 +24,20 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   const [url, setUrl] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [submitValidationMessage, setSubmitValidationMessage] = useState<string>('');
+  const [notLoggedIn, setNotLoggedIn] = React.useState(false);
+
+  const onCancel = () => {
+    setNotLoggedIn(false);
+  }
 
   const validateSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     if (!(data?.me)) {
       e.preventDefault();
-      Router.push('/login?how=loggedin');
+      setNotLoggedIn(true);
     } else {
       try {
         validateTitle({title});
-        validateUrl({url});
-        validateText({text});
+        validateUrlorText({url, text});
       } catch (err) {
         console.log(err.message);
         setSubmitValidationMessage(err.message);
@@ -48,6 +54,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       }
     },
     onError(err) {
+
       console.error(err);
     },
   });
@@ -59,6 +66,8 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       isNavVisible={true}
       isFooterVisible={true}
     >
+    <React.Fragment>
+    <div><ErrorAction onNotLoggedIn={notLoggedIn} onCancel={onCancel} /></div>
       <tr>
         <td>
           <form onSubmit={(e): void => {
@@ -70,13 +79,15 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
               {
                 "function tlen(el) { var n = el.value.length - 80; el.nextSibling.innerText = n > 0 ? n + ' too long' : ''; }"
               }
-            </script>
-            <table style={{ border: '0' }}>
+            </script><br></br>
+            <table style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
               <tbody>
-                <tr>
-                  <td>title</td>
+                <tr style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
+                  
+                  <td style ={{width: '30px'}}>title</td>
                   <td>
                     <input
+                      style ={{width: '400px'}}
                       type="text"
                       name="title"
                       defaultValue=""
@@ -85,13 +96,14 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                         setTitle(e.target.value);
                       }}
                     />
-                    <span style={{ marginLeft: '10px' }} />
                   </td>
                 </tr>
-                <tr>
-                  <td>url</td>
+                <br></br>
+                <tr style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
+                  <td style ={{width: '30px'}}>url</td>
                   <td>
                     <input
+                      style ={{width: '400px'}}
                       type="text"
                       name="url"
                       defaultValue=""
@@ -102,17 +114,20 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                     />
                   </td>
                 </tr>
-                <tr>
+                <br></br>
+                <tr style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
                   <td />
                   <td>
                     <b>or</b>
                   </td>
                 </tr>
-                <tr>
-                  <td>text</td>
+                <br></br>
+                <tr style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>
+                  <td style ={{width: '30px'}}>text</td>
                   <td>
                     <textarea
                       name="text"
+                      style ={{width: '400px'}}
                       rows={4}
                       cols={49}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -121,6 +136,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                     />
                   </td>
                 </tr>
+                <br></br>
                 <tr>
                   <td />
                   <td />
@@ -129,11 +145,13 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                   <td />
                   <td>
                     {submitValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{submitValidationMessage}</p>}
-                    <input
-                      type="submit"
-                      value="submit"
-                      onClick={(): Promise<any> => submitNewsItem()}
-                    />
+                    <div style={{display: 'flex',  justifyContent:'center'}}>
+                      <input
+                        type="submit"
+                        value="submit"
+                        onClick={(): Promise<any> => submitNewsItem()}
+                      />
+                    </div>
                   </td>
                 </tr>
                 <tr style={{ height: '20px' }} />
@@ -158,6 +176,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
           </form>
         </td>
       </tr>
+      </React.Fragment>
     </MainLayout>
   );
 }

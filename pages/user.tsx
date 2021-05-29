@@ -40,8 +40,6 @@ export interface IUserPageQuery {
 function UserPage(props: IUserPageProps): JSX.Element {
   const { router } = props;
 
-  console.log(router);
-
   const userId = (router.query && router.query.id) || '';
 
   const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
@@ -77,13 +75,14 @@ function UserPage(props: IUserPageProps): JSX.Element {
 
   if (data?.me && data?.user.id === data.me.id)
     return (
-      <MainLayout currentUrl={router.pathname} isFooterVisible={false}>
+      <MainLayout currentUrl={router.pathname} isFooterVisible={true}>
         <tr>
           <td>
             <form className="profileform" method="post" action="/xuser">
               <input type="hidden" name="id" value="clintonwoo" />
               <input type="hidden" name="hmac" value="71104445c3c41b4167c38db67a656e610d5fbad9" />
-              <table style={{ border: '0px' }}>
+              <br/>
+              <table style={{display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px'}}>
                 <tbody>
                   <tr className="athing">
                     <td style={{ verticalAlign: 'top' }}>user:</td>
@@ -249,7 +248,10 @@ function UserPage(props: IUserPageProps): JSX.Element {
                 </tbody>
               </table>
               <br />
-              <input type="submit" value="update" />
+              <br/>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                <input type="submit" value="update" />
+              </div>
             </form>
             <br />
             <br />
@@ -259,10 +261,11 @@ function UserPage(props: IUserPageProps): JSX.Element {
     );
 
   return (
-    <MainLayout currentUrl={router.pathname} isFooterVisible={false}>
+    <MainLayout currentUrl={router.pathname} isFooterVisible={true}>
       <tr>
         <td>
-          <table style={{ border: '0' }}>
+          <br/>
+          <table style={{display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px'}}>
             <tbody>
               <tr className="athing">
                 <td style={{ verticalAlign: 'top' }}>user:</td>
