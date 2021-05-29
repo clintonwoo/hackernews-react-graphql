@@ -88,15 +88,6 @@ export class Comment extends React.Component<ICommentProps> {
                   <div className="comment">
                     <span className="c00">
                       <span>{renderHTML(text)}</span>
-                      <div className="reply">
-                        <p style={{ fontSize: '1' }}>
-                          <u>
-                            <Link href={`/reply?id=${id}&goto=item%3Fid%3D${id}`}>
-                              <a>reply</a>
-                            </Link>
-                          </u>
-                        </p>
-                      </div>
                     </span>
                   </div>
                 </td>
