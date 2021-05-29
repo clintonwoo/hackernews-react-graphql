@@ -12,6 +12,9 @@ import { MainLayout } from '../src/layouts/main-layout';
 
 import { ErrorAction } from '../src/components/error-action';
 
+import useSound from 'use-sound';
+import { useSoundContext } from '../src/context/state';
+
 interface ISubmitPageProps {
   router;
 }
@@ -41,6 +44,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       } catch (err) {
         console.log(err.message);
         setSubmitValidationMessage(err.message);
+        if (state) { playError(); }
         e.preventDefault();
       }
     }
@@ -58,6 +62,16 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       console.error(err);
     },
   });
+
+  const { state } = useSoundContext();
+  const [playError] = useSound(
+    '/tap2.mp3',
+    { volume: 0.5 }
+  );
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
 
   return (
     <MainLayout
@@ -149,7 +163,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
                       <input
                         type="submit"
                         value="submit"
-                        onClick={(): Promise<any> => submitNewsItem()}
+                        onClick={(): Promise<any> =>  {if (state) { playClick(); } return submitNewsItem();}}
                       />
                     </div>
                   </td>

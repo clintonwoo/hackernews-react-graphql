@@ -52,9 +52,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: loginId, password: loginPassword });
-        if (state) {
-          playClick();
-        }
+        if (state) { playClick(); }
       } catch (err) {
         e.preventDefault();
         setLoginValidationMessage(err.message);
@@ -72,15 +70,11 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: registerId, password: registerPassword });
-        if (state) {
-          playClick();
-        }
+        if (state) { playClick(); }
       } catch (err) {
         e.preventDefault();
         setRegisterValidationMessage(err.message);
-        if (state) {
-          playError();
-        }
+        if (state) { playError(); }
       }
     }
   };

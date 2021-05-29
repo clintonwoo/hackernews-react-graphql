@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal'
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import useSound from 'use-sound';
+import { useSoundContext } from '../context/state';
+
 export interface IErrorActionProps {
   onCancel: any;
   onNotLoggedIn: boolean;
@@ -18,13 +21,21 @@ export function ErrorAction(props: IErrorActionProps): JSX.Element {
     }, [onNotLoggedIn]);
   
     const handleClose = () => {
+      if(state) { playClick(); }
       setShow(false);
       onCancel();
     };
 
     const handleLogin = () => {
+        if(state) { playClick(); }
         router.push(`/login?goto=${router.pathname}`);       
     }
+
+    const { state } = useSoundContext();
+    const [playClick] = useSound(
+      '/click.mp3',
+      { volume: 0.5 }
+    );
   
     return (
       <React.Fragment>

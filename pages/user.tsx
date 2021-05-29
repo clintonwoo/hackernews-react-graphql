@@ -11,6 +11,9 @@ import { BlankLayout } from '../src/layouts/blank-layout';
 import { MainLayout } from '../src/layouts/main-layout';
 import { logoutSuccessMessage } from './../src/data/validation/user';
 
+import useSound from 'use-sound';
+import { useSoundContext } from '../src/context/state';
+
 const query = gql`
   query User($id: String!) {
     user(id: $id) {
@@ -74,12 +77,24 @@ function UserPage(props: IUserPageProps): JSX.Element {
 
   const url = `/user?id=${router.query.id}`;
 
+  const { state } = useSoundContext();
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>): void => {
+      if (state) {
+        playClick();
+      }
+  };
+
   if (data?.me && data?.user.id === data.me.id)
     return (
       <MainLayout currentUrl={router.pathname} isFooterVisible={true}>
         <tr>
           <td>
-            <form className="profileform" method="post" action="/xuser">
+            <form className="profileform" method="post" action="/xuser" >
               <input type="hidden" name="id" value="clintonwoo" />
               <input type="hidden" name="hmac" value="71104445c3c41b4167c38db67a656e610d5fbad9" />
               <br/>
@@ -115,11 +130,11 @@ function UserPage(props: IUserPageProps): JSX.Element {
                         style={{ fontSize: '-2' }}
                         wrap="virtual"
                       />
-                      <Link href="/formatdoc">
+                      {/* <Link href="/formatdoc">
                         <a tabIndex={-1} style={{ color: '#afafaf' }}>
                           help
                         </a>
-                      </Link>
+                      </Link> */}
                     </td>
                   </tr>
                   <tr>
@@ -183,7 +198,7 @@ function UserPage(props: IUserPageProps): JSX.Element {
                   <tr>
                     <td />
                     <td>
-                      <Link href="/submitted?id=clintonwoo">
+                      <Link href={`/submitted?id=${data?.user.id}`}>
                         <a>
                           <u>submissions</u>
                         </a>
@@ -193,7 +208,7 @@ function UserPage(props: IUserPageProps): JSX.Element {
                   <tr>
                     <td />
                     <td>
-                      <Link href="/threads?id=clintonwoo">
+                      <Link href={`/threads?id=${data?.user.id}`}>
                         <a>
                           <u>comments</u>
                         </a>
@@ -251,7 +266,7 @@ function UserPage(props: IUserPageProps): JSX.Element {
               <br />
               <br/>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-                <input type="submit" value="update" />
+                <input type="submit" value="update" onClick={handleSubmit}/>
               </div>
             </form>
             <br />
