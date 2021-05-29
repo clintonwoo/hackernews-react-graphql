@@ -248,10 +248,6 @@ function UserPage(props: IUserPageProps): JSX.Element {
                 </tbody>
               </table>
               <br />
-              <br/>
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-                <input type="submit" value="update" />
-              </div>
             </form>
             <br />
             <br />

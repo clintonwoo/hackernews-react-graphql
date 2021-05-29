@@ -71,7 +71,6 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <br />
         <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Login</b>
         <br />
-        <br />
         <form
           method="post"
           action="/login"
@@ -108,22 +107,16 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
               </tr>
             </tbody>
           </table>
-          {loginValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{loginValidationMessage}</p>}
+          {loginValidationMessage && <p style={{ marginBottom:"-5px", display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{loginValidationMessage}</p>}
           <br />
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} >
             <input type="submit" value="login" />
           </div>
         </form>
-        <Link href="/forgot">
-          <a style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Forgot your password?</a>
-        </Link>
-        <br />
         <br />
         <hr></hr>
         <br />
-        <br />
         <b style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Create Account</b>
-        <br />
         <br />
         <form
           method="post"
@@ -170,7 +163,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
               </tr>
             </tbody>
           </table>
-          {registerValidationMessage && <p style={{ display: 'flex',  justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{registerValidationMessage}</p>}
+          {registerValidationMessage && <p style={{ display: 'flex', marginBottom:"-5px", justifyContent:'center', alignItems:'center', color: '#f1080e' }}>{registerValidationMessage}</p>}
           <br />
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} >
             <input type="submit" value="create account" />

@@ -26,7 +26,7 @@ function ForgotPage(props: IForgotPageProps): JSX.Element {
           <br />
           <br />
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-            <input type="submit" value="Send reset email" />
+            <input type="submit" disabled value="Send reset email" />
           </div>
         </form>
       </div>
