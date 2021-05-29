@@ -104,7 +104,7 @@ function ReplyPage(props: IReplyPageProps): JSX.Element {
               <tr>
                 <td colSpan={2} />
                 <td>
-                  <form method="post" action="comment">
+                  <form method="post" action="comment" >
                     <input type="hidden" name="parent" value="15260438" />
                     <input type="hidden" name="goto" value="item?id=15260384#15260438" />
                     <input

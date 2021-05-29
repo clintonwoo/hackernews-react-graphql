@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export function CommentBox(): JSX.Element {
+
   return (
     <tr>
       <td colSpan={2} />

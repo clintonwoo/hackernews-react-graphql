@@ -4,7 +4,9 @@ import * as React from 'react';
 
 import { HeaderNav } from './header-nav';
 
-import { store } from 'react-notifications-component';
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+import CSS from 'csstype';
+import { useSoundContext } from '../context/state';
 
 export interface IHeaderProps {
   me: { id: string; karma: number } | undefined;
@@ -12,6 +14,10 @@ export interface IHeaderProps {
   isNavVisible: boolean;
   title: string;
 }
+
+const cursorPoint: CSS.Properties = {
+  cursor: 'pointer'
+};
 
 export function Header(props: IHeaderProps): JSX.Element {
   const { currentUrl, isNavVisible, me, title } = props;
@@ -41,6 +47,13 @@ export function Header(props: IHeaderProps): JSX.Element {
     }); */
 
   };
+
+  const { state, toggle } = useSoundContext();
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key == 'Enter') {
+      toggle();
+    }
+  }
 
   return (
     <tr>
@@ -77,6 +90,7 @@ export function Header(props: IHeaderProps): JSX.Element {
                     <a
                       // href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
                       onClick={validateLogin}
+                      style={cursorPoint}
                     >
                       logout
                     </a>
@@ -85,15 +99,30 @@ export function Header(props: IHeaderProps): JSX.Element {
                       (currentUrl=='login'
                         ? null
                         : (
-                          <span className="pagetop">
-                            <Link href={`/login?goto=${currentUrl}`}>
-                              <a>login</a>
-                            </Link>
-                          </span>
+                          <div>
+                            <span className="pagetop">
+                              <Link href={`/login?goto=${currentUrl}`}>
+                                <a>login</a>
+                              </Link>
+                            </span>
+                            
+                          </div>
                         )
                       )
                     ]
                 }
+              </td>
+              <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
+                <div className="pagetop" >
+                  {state 
+                      ? <span style={cursorPoint} onClick={toggle} tabIndex={0} onKeyPress={handleKeyPress}>
+                          <FaVolumeUp /> Sound On
+                        </span> 
+                      : <span style={cursorPoint} onClick={toggle} tabIndex={0} onKeyPress={handleKeyPress}>
+                          <FaVolumeMute /> Sound Off
+                        </span>
+                    }
+                </div>
               </td>
             </tr>
           </tbody>

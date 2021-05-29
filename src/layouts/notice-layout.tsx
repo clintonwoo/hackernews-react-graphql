@@ -3,12 +3,24 @@ import * as React from 'react';
 
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import useSound from 'use-sound';
 
 export function NoticeLayout(props): JSX.Element {
   const { children } = props;
 
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.target instanceof HTMLAnchorElement || event.target instanceof HTMLButtonElement) {
+      playClick();
+    }
+  };
+
   return (
-    <div>
+    <div onClick={handleClick}>
       <ReactNotification />
       <Head>
         <title>Hacker News Clone</title>

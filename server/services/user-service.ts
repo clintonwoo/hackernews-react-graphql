@@ -27,7 +27,7 @@ export class UserService {
     if (user) {
       return (
         (await createHash(password, user.passwordSalt!, passwordIterations)) === user.hashedPassword
-      );
+      );  
     }
 
     return false;

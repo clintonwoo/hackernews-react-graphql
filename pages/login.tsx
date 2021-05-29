@@ -12,8 +12,8 @@ import {
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { LoginLayout } from '../src/layouts/login-layout';
 
-import { store } from 'react-notifications-component';
-
+import useSound from 'use-sound';
+import { useSoundContext } from '../src/context/state';
 
 export interface ILoginPageProps {
   router?: NextRouter;
@@ -35,6 +35,16 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [registerValidationMessage, setRegisterValidationMessage] = useState<string>('');
   //const alert = useAlert();
 
+  const { state } = useSoundContext();
+  const [playError] = useSound(
+    '/tap2.mp3',
+    { volume: 0.5 }
+  );
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
   const validateLogin = (e: React.FormEvent<HTMLFormElement>): void => {
     if (data?.me) {
       e.preventDefault();
@@ -42,10 +52,13 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: loginId, password: loginPassword });
-
+        if (state) { playClick(); }
       } catch (err) {
         e.preventDefault();
         setLoginValidationMessage(err.message);
+        if (state) {
+          playError();
+        }
       }
     }
   };
@@ -57,9 +70,11 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: registerId, password: registerPassword });
+        if (state) { playClick(); }
       } catch (err) {
         e.preventDefault();
         setRegisterValidationMessage(err.message);
+        if (state) { playError(); }
       }
     }
   };
@@ -75,7 +90,9 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <form
           method="post"
           action="/login"
-          onSubmit={(e): void => validateLogin(e)}
+          onSubmit={(e): void => {
+            validateLogin(e);
+          }}
           style={{ marginBottom: '2em' }}
         >
           <input type="hidden" name="goto" value={routerQuery.goto || 'news'} />
@@ -88,7 +105,9 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
                     autoCapitalize="off"
                     autoCorrect="off"
                     name="id"
-                    onChange={(e): void => setLoginId(e.target.value)}
+                    onChange={(e): void => {
+                      setLoginId(e.target.value);                      
+                    }}
                     size={20}
                     spellCheck={false}
                     type="text"
@@ -128,7 +147,9 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
         <form
           method="post"
           action={`/register`}
-          onSubmit={(e): void => validateRegister(e)}
+          onSubmit={(e): void => {
+            validateRegister(e);
+          }}
           style={{ marginBottom: '2em' }}
         >
           <table style={{ display: 'flex',  justifyContent:'center', alignItems:'center', border: '0px' }}>

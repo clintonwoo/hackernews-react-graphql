@@ -2,7 +2,8 @@ import * as crypto from 'crypto';
 
 export const createHash = (password: string, salt: string, iterations: number): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const saltBuffer = typeof salt === 'string' ? Buffer.from(salt, 'base64') : salt;
+    const saltBuffer = typeof salt === 'undefined' ? ''
+                      : typeof salt === 'string' ? Buffer.from(salt, 'base64') : salt;
 
     const callback = (err: Error | null, derivedKey: Buffer): void =>
       err ? reject(err) : resolve(derivedKey.toString('base64'));

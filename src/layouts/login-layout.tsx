@@ -9,6 +9,7 @@ import AlertTemplate from 'react-alert-template-oldschool-dark';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import useSound from 'use-sound';
 
 interface IMainLayoutProps {
   children: React.ReactChild;
@@ -36,9 +37,21 @@ export function LoginLayout(props: IMainLayoutProps): JSX.Element {
     // you can also just use 'scale'
     transition: transitions.SCALE
   }
+
+  const [playClick] = useSound(
+    '/click.mp3',
+    { volume: 0.5 }
+  );
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      playClick();
+    }
+  };
+
   return (
     <AlertProvider template={AlertTemplate} {...options}>
-        <div>
+        <div onClick={handleClick}>
         <ReactNotification />
         <Head>
             <title>Hacker News Clone</title>

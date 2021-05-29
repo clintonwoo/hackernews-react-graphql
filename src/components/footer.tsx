@@ -45,7 +45,7 @@ export function Footer(props): JSX.Element {
           </span>
           <br />
           <br />
-          {isFooterNotVisible?
+          {/* {isFooterNotVisible?
             (null):
             (<form method="get" action="//hn.algolia.com/" style={{ marginBottom: '1em' }}>
               Search:
@@ -59,7 +59,7 @@ export function Footer(props): JSX.Element {
                 autoComplete="false"
               />
             </form>)
-          }
+          } */}
           
         </div>
       </td>
