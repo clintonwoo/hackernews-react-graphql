@@ -3,13 +3,24 @@ import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export function ErrorAction(): JSX.Element {
+export interface IErrorActionProps {
+  onCancel: any;
+  onNotLoggedIn: boolean;
+}
 
-    const [show, setShow] = React.useState(true);
-
+export function ErrorAction(props: IErrorActionProps): JSX.Element {
+    const { onCancel, onNotLoggedIn } = props;
+    const [show, setShow] = React.useState(onNotLoggedIn);
     const router = useRouter();
+
+    React.useEffect(() => {
+      setShow(onNotLoggedIn);
+    }, [onNotLoggedIn]);
   
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+      setShow(false);
+      onCancel();
+    };
 
     const handleLogin = () => {
         router.push(`/login?goto=${router.pathname}`);       
