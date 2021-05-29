@@ -10,6 +10,8 @@ import { SUBMIT_NEWS_ITEM_MUTATION } from '../src/data/mutations/submit-news-ite
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 
+import { ErrorAction } from '../src/components/error-action';
+
 interface ISubmitPageProps {
   router;
 }
@@ -22,11 +24,16 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
   const [url, setUrl] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [submitValidationMessage, setSubmitValidationMessage] = useState<string>('');
+  const [notLoggedIn, setNotLoggedIn] = React.useState(false);
+
+  const onCancel = () => {
+    setNotLoggedIn(false);
+  }
 
   const validateSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     if (!(data?.me)) {
       e.preventDefault();
-      Router.push('/login');
+      setNotLoggedIn(true);
     } else {
       try {
         validateTitle({title});
@@ -47,6 +54,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       }
     },
     onError(err) {
+
       console.error(err);
     },
   });
@@ -58,6 +66,8 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
       isNavVisible={true}
       isFooterVisible={true}
     >
+    <React.Fragment>
+    <div><ErrorAction onNotLoggedIn={notLoggedIn} onCancel={onCancel} /></div>
       <tr>
         <td>
           <form onSubmit={(e): void => validateSubmit(e)}>
@@ -164,6 +174,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
           </form>
         </td>
       </tr>
+      </React.Fragment>
     </MainLayout>
   );
 }

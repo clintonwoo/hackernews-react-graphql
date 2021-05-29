@@ -30,6 +30,10 @@ export function NewsTitle(props: INewsTitleProps): JSX.Element {
 
   const [notLoggedIn, setNotLoggedIn] = React.useState(false);
 
+  const onCancel = () => {
+    setNotLoggedIn(false);
+  }
+
   const [upvoteNewsItem] = useMutation(UPVOTE_NEWS_ITEM_MUTATION, {
     onError: () => {     
       setNotLoggedIn(true);
@@ -54,7 +58,7 @@ export function NewsTitle(props: INewsTitleProps): JSX.Element {
             </a>
           )}
         </div>            
-        <div>{ notLoggedIn && (<ErrorAction />) }</div>
+        <div><ErrorAction onNotLoggedIn={notLoggedIn} onCancel={onCancel} /></div>
       </td>
       <td className="title">
         <a className="storylink" target="_blank" href={url || `item?id=${id}`}>

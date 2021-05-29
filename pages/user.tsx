@@ -40,8 +40,6 @@ export interface IUserPageQuery {
 function UserPage(props: IUserPageProps): JSX.Element {
   const { router } = props;
 
-  console.log(router);
-
   const userId = (router.query && router.query.id) || '';
 
   const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
