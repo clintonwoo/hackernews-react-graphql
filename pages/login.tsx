@@ -13,6 +13,7 @@ import { withDataAndRouter } from '../src/helpers/with-data';
 import { LoginLayout } from '../src/layouts/login-layout';
 
 import useSound from 'use-sound';
+import { useSoundContext } from '../src/context/state';
 
 export interface ILoginPageProps {
   router?: NextRouter;
@@ -34,8 +35,13 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
   const [registerValidationMessage, setRegisterValidationMessage] = useState<string>('');
   //const alert = useAlert();
 
+  const { state } = useSoundContext();
   const [playError] = useSound(
     '/tap2.mp3',
+    { volume: 0.5 }
+  );
+  const [playClick] = useSound(
+    '/click.mp3',
     { volume: 0.5 }
   );
 
@@ -46,11 +52,15 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: loginId, password: loginPassword });
-
+        if (state) {
+          playClick();
+        }
       } catch (err) {
         e.preventDefault();
         setLoginValidationMessage(err.message);
-        playError();
+        if (state) {
+          playError();
+        }
       }
     }
   };
@@ -62,10 +72,15 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: registerId, password: registerPassword });
+        if (state) {
+          playClick();
+        }
       } catch (err) {
         e.preventDefault();
         setRegisterValidationMessage(err.message);
-        playError();
+        if (state) {
+          playError();
+        }
       }
     }
   };

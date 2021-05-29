@@ -15,8 +15,8 @@ export interface IHeaderProps {
   title: string;
 }
 
-const soundIconSpan: CSS.Properties = {
-  margin: '0px 5px'
+const cursorPoint: CSS.Properties = {
+  cursor: 'pointer'
 };
 
 export function Header(props: IHeaderProps): JSX.Element {
@@ -49,6 +49,11 @@ export function Header(props: IHeaderProps): JSX.Element {
   };
 
   const { state, toggle } = useSoundContext();
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key == 'Enter') {
+      toggle();
+    }
+  }
 
   return (
     <tr>
@@ -85,6 +90,7 @@ export function Header(props: IHeaderProps): JSX.Element {
                     <a
                       // href={`/logout?auth=d78ccc2c6120ffe08f32451519c2ff46d34c51ab&amp;goto=${currentUrl}`}
                       onClick={validateLogin}
+                      style={cursorPoint}
                     >
                       logout
                     </a>
@@ -99,14 +105,24 @@ export function Header(props: IHeaderProps): JSX.Element {
                                 <a>login</a>
                               </Link>
                             </span>
-                            <span className="pagetop" style={soundIconSpan} onClick={toggle}>
-                              {state ? <FaVolumeMute /> : <FaVolumeUp />}
-                            </span>
+                            
                           </div>
                         )
                       )
                     ]
                 }
+              </td>
+              <td style={{ textAlign: 'right', padding: '0px', paddingRight: '4px' }}>
+                <div className="pagetop" >
+                  {state 
+                      ? <span style={cursorPoint} onClick={toggle} tabIndex={0} onKeyPress={handleKeyPress}>
+                          <FaVolumeUp /> Sound On
+                        </span> 
+                      : <span style={cursorPoint} onClick={toggle} tabIndex={0} onKeyPress={handleKeyPress}>
+                          <FaVolumeMute /> Sound Off
+                        </span>
+                    }
+                </div>
               </td>
             </tr>
           </tbody>

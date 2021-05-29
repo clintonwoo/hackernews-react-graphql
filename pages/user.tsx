@@ -38,11 +38,20 @@ export interface IUserPageQuery {
 }
 
 function UserPage(props: IUserPageProps): JSX.Element {
+  
   const { router } = props;
-
+  console.log(router.query);
   const userId = (router.query && router.query.id) || '';
 
   const { data } = useQuery<IUserPageQuery>(query, { variables: { id: userId } });
+
+  useEffect(() => {
+    if (router.query.logout) {
+      logoutSuccessMessage();
+    }
+
+    window.history.replaceState(null, '', `/user?id=${router.query.id}`);
+  }, [router.query.login]);
 
   if (data?.error) {
     return <BlankLayout>Error loading news items.</BlankLayout>;
@@ -62,14 +71,6 @@ function UserPage(props: IUserPageProps): JSX.Element {
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     email = e.target.value;
   };
-
-  useEffect(() => {
-    if (router.query.logout) {
-      logoutSuccessMessage();
-    }
-
-    window.history.replaceState(null, '', `/user?id=${router.query.id}`);
-  }, [router.query.login]);
 
   const url = `/user?id=${router.query.id}`;
 

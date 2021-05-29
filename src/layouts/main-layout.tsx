@@ -39,12 +39,10 @@ export function MainLayout(props: IMainLayoutProps, pageProps: any): JSX.Element
   );
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
-    if ((event.target instanceof HTMLAnchorElement || event.target instanceof HTMLButtonElement) && state) {
+    if ((event.target instanceof HTMLAnchorElement) && state) {
       playClick();
     }
   };
-
-  console.log(pageProps);
 
   return (
     <div onClick={handleClick}>
