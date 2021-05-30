@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useContext, ReactNode, useState } from 'react';
 
 type soundContextType = {
@@ -7,7 +8,7 @@ type soundContextType = {
 
 const soundContextDefaultValues: soundContextType = {
   state: false,
-  toggle: () => {}
+  toggle: () => { }
 };
 
 const SoundContext = createContext<soundContextType>(soundContextDefaultValues);
@@ -23,17 +24,17 @@ type Props = {
 export function SoundProvider({ children }: Props) {
   const [state, setState] = useState<boolean>(true);
   const toggle = () => {
-      setState(!state);
+    setState(!state);
   };
 
   const value = {
-      state,
-      toggle
+    state,
+    toggle
   };
 
   return (
-      <SoundContext.Provider value={value}>
-          {children}
-      </SoundContext.Provider>
+    <SoundContext.Provider value={value}>
+      {children}
+    </SoundContext.Provider>
   );
 }
