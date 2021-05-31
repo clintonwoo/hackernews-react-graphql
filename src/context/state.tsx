@@ -1,4 +1,4 @@
-import React from 'react';//simple
+import React from 'react';
 import { createContext, useContext, ReactNode, useState } from 'react';
 
 type soundContextType = {
