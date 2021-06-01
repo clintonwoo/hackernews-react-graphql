@@ -20,7 +20,7 @@
     "prettier:format": "prettier --write .",
     "test": "jest --runInBand --config jest.config.js",
     "tsc:check": "tsc --noEmit",
-    "start": "next start -p $PORT",
+    "start": "nodemon",
     "start:prod": "cross-env NODE_ENV=production node dist/server/server.js"
   },
   "author": "Clinton D'Annolfo",
