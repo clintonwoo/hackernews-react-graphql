@@ -2,22 +2,22 @@
 FROM node:14.17-alpine3.13 as devBuild
 WORKDIR /app
 
-# Log the settings for NPM and Environment variables
+# Log the npm config and env variables
 ENV NODE_ENV=production
 RUN npm config ls
 RUN env
 
-# Copy the project files so docker caches dependencies
+# Install dependencies first so docker caches them
 COPY package.json package-lock.json /app/
 RUN ls -a
 RUN npm install --production=false
+
 # Copy the source code and build
 COPY . .
 RUN npm run build:prod
 RUN ls -a
 
 # PROD BUILD STEP
-# Using latest LTS release of Node
 FROM node:14.17-alpine3.13
 
 # Create an app directory on the container

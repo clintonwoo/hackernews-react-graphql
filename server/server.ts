@@ -31,6 +31,7 @@ import { CommentService } from './services/comment-service';
 import { FeedService } from './services/feed-service';
 import { NewsItemService } from './services/news-item-service';
 import { UserService } from './services/user-service';
+import { ServerResponse } from 'http';
 
 const ONE_MINUTE = 1000 * 60;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
@@ -188,7 +189,7 @@ app
 
     expressServer.get('/news', (req, res) => {
       const actualPage = '/';
-      void app.render(req, res, actualPage);
+      void app.render(req, res as ServerResponse, actualPage);
     });
 
     expressServer.get('*', (req, res) => {
@@ -196,7 +197,7 @@ app
       // This tells it to parse the query portion of the URL.
       const parsedUrl = parse(req.url, true);
 
-      void handle(req, res, parsedUrl);
+      void handle(req, res as ServerResponse, parsedUrl);
     });
 
     /* END EXPRESS ROUTES */
