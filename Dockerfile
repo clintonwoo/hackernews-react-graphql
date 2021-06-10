@@ -1,5 +1,5 @@
 # DEV BUILD STEP
-FROM node:14.16-alpine3.13 as devBuild
+FROM node:14.17-alpine3.13 as devBuild
 WORKDIR /app
 
 # Log the settings for NPM and Environment variables
@@ -18,7 +18,7 @@ RUN ls -a
 
 # PROD BUILD STEP
 # Using latest LTS release of Node
-FROM node:14.16-alpine3.13
+FROM node:14.17-alpine3.13
 
 # Create an app directory on the container
 WORKDIR /app

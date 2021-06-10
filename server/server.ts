@@ -11,6 +11,7 @@ import { parse } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
+/* eslint-disable import/first */
 
 import {
   APP_PORT,
@@ -109,7 +110,7 @@ app
       })
     );
     expressServer.use(passport.initialize());
-    expressServer.use(urlencoded({ extended: false }));
+    expressServer.use(urlencoded({ extended: false }) as express.Handler);
     expressServer.use(passport.session());
 
     expressServer.post(
@@ -187,7 +188,7 @@ app
 
     expressServer.get('/news', (req, res) => {
       const actualPage = '/';
-      app.render(req, res, actualPage);
+      void app.render(req, res, actualPage);
     });
 
     expressServer.get('*', (req, res) => {
@@ -195,7 +196,7 @@ app
       // This tells it to parse the query portion of the URL.
       const parsedUrl = parse(req.url, true);
 
-      handle(req, res, parsedUrl);
+      void handle(req, res, parsedUrl);
     });
 
     /* END EXPRESS ROUTES */
@@ -206,10 +207,10 @@ app
       console.log(`> App listening on port ${APP_PORT}`);
       console.log(`> GraphQL ready on ${GRAPHQL_PATH}`);
       console.log(`> GraphQL Playground is ${useGraphqlPlayground ? '' : 'not '}enabled`);
-      console.log(`Dev: ${dev}`);
+      console.log(`Dev: ${String(dev)}`);
     });
   })
   .catch((err) => {
-    console.error(err.stack);
+    console.error((err as Error).stack);
     process.exit(1);
   });
