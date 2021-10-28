@@ -17,9 +17,10 @@ model Article {
     description String?
     userId    String?
     User      User?    @relation(fields: [userId], references: [id])
-    score   Float?  @default(3)
+    score   Float?
 
     tags Tag[]
+    votes Vote[]
 }
 
 model Vote {
@@ -50,5 +51,6 @@ model User {
     updatedAt DateTime @updatedAt
     zendeskId String
     articles     Article[]
-    comments    Comment[]
+    tags    Tag[]
+    votes   Vote[]
 }

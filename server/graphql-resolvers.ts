@@ -102,15 +102,7 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
   /*       GRAPHQL TYPE RESOLVERS        */
 
   Comment: {
-    async author(comment, _, context): Promise<UserModel | void> {
-      return context.userService.getUser(comment.submitterId);
-    },
-    async comments(comment, _, context): Promise<void | CommentModel[]> {
-      return context.commentService.getComments(comment.comments);
-    },
-    upvoted(comment, _, context): boolean {
-      return comment.upvotes.includes(context.userId);
-    },
+
   },
 
   Date: new GraphQLScalarType({
