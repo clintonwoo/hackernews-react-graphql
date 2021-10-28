@@ -26,7 +26,8 @@ export const typeDefs = gql`
 
         id: String!
 
-        comments: [Comment]!
+        tags: [Tag]!
+        votes: [Vote]!
         
         # The news item headline
         title: String!
@@ -47,6 +48,7 @@ export const typeDefs = gql`
         createdAt: Date!
         updatedAt: Date
         
+        text: String!
         userId: String!
         user: User
         articleId: String!
@@ -64,26 +66,21 @@ export const typeDefs = gql`
 
         articles: [Article]!
         tags: [Tag]!
+        votes: [Vote]!
     }
 
     # the schema allows the following queries:
     type Query {
         # A comment, it's parent could be another comment or a news item.
-        comment(id: Int!): Comment
+        tag(id: Int!): Tag
 
         feed(
-            # The sort order for the feed
-#            type: FeedType!,
-
-            # The number of items to fetch (starting from the skip index), for pagination
-#            first: Int
-
             # The number of items to skip, for pagination
             skip: Int,
         ): [Article]
         
         # A news item
-        article(id: Int!): Article
+        article(id: String!): Article
 
         # A user
         user(zendeskId: String!): User
@@ -99,9 +96,9 @@ export const typeDefs = gql`
 
         tagArticle(
             articleId: String!
-            UserId: String!
-            tag: String
-        ): Article
+            userId: String!
+            tag: String!
+        ): Tag
         
         submitArticle (
             title: String!
@@ -111,7 +108,7 @@ export const typeDefs = gql`
         ): Article
         
         initializeUser(
-            userId: String!
+            zendeskId: String!
         ): User
     }
 `;
