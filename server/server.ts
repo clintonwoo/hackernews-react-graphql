@@ -32,6 +32,7 @@ import { FeedService } from './services/feed-service';
 import { NewsItemService } from './services/news-item-service';
 import { UserService } from './services/user-service';
 import { ServerResponse } from 'http';
+import {getPrismaClient} from "prisma/prisma-client/runtime";
 
 const ONE_MINUTE = 1000 * 60;
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
@@ -159,6 +160,9 @@ app
 
     /* END PASSPORT.JS AUTHENTICATION */
 
+    /* PRISMA */
+    const prismaClient = getPrismaClient()
+
     /* BEGIN GRAPHQL */
 
     const apolloServer = new ApolloServer({
@@ -168,6 +172,7 @@ app
         newsItemService,
         userService,
         userId: (req.user as UserModel)?.id,
+
       }),
       introspection: true,
       playground: useGraphqlPlayground,

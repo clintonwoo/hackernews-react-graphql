@@ -21,7 +21,8 @@
     "test": "jest --runInBand --config jest.config.js",
     "tsc:check": "tsc --noEmit",
     "start": "nodemon",
-    "start:prod": "cross-env NODE_ENV=production node dist/server/server.js"
+    "start:prod": "cross-env NODE_ENV=production node dist/server/server.js",
+    "prisma": "prisma db push"
   },
   "author": "Clinton D'Annolfo",
   "license": "Apache-2.0",
@@ -33,6 +34,7 @@
   ],
   "dependencies": {
     "@apollo/client": "3.3.20",
+    "@prisma/client": "^3.3.0",
     "apollo-server-express": "2.25.1",
     "body-parser": "1.19.0",
     "cookie": "0.4.1",
@@ -51,6 +53,7 @@
     "next": "10.2.3",
     "passport": "0.4.1",
     "passport-local": "1.0.0",
+    "prisma": "^3.3.0",
     "react": "17.0.2",
     "react-apollo": "3.1.5",
     "react-dom": "17.0.2",
@@ -85,6 +88,7 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.24.0",
+    "faker": "^5.5.3",
     "jest": "27.0.4",
     "mockdate": "3.0.5",
     "nodemon": "2.0.7",
