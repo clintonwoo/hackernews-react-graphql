@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+datasource db {
+    provider = "postgresql"
+    url      = "postgresql://postgres:indigovnewsftw!!!@database-1.cseskcptbmvp.us-east-2.rds.amazonaws.com:5432/postgres"
+}
+
+model Article {
+    id        String   @id @default(uuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    url       String
+    title     String?
+    description String?
+    userId    String?
+    User      User?    @relation(fields: [userId], references: [id])
+    score   Float?  @default(3)
+
+    tags Tag[]
+}
+
+model Vote {
+    id        String   @id @default(uuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    value   Float
+    userId  String?
+    User      User?    @relation(fields: [userId], references: [id])
+    articleId String
+    Article     Article @relation(fields: [articleId], references: [id])
+}
+
+model Tag {
+    id      String @id @default(uuid())
+    text    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    userId  String?
+    User      User?    @relation(fields: [userId], references: [id])
+    articleId String
+    Article     Article @relation(fields: [articleId], references: [id])
+}
+
+model User {
+    id        String   @id @default(uuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    zendeskId String
+    articles     Article[]
+    comments    Comment[]
+}

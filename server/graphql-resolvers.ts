@@ -8,6 +8,7 @@ import type { CommentService } from './services/comment-service';
 import type { FeedService } from './services/feed-service';
 import type { NewsItemService } from './services/news-item-service';
 import type { UserService } from './services/user-service';
+import type { PrismaClient } from '@prisma/client';
 
 const logger = debug('app:Graphql-Resolvers');
 logger.log = console.log.bind(console);
@@ -19,6 +20,7 @@ export interface IGraphQlSchemaContext {
   newsItemService: NewsItemService;
   userService: UserService;
   userId: string | undefined;
+  prisma: PrismaClient;
 }
 
 export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
@@ -42,14 +44,20 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
   /*          QUERY RESOLVERS        */
 
   Query: {
-    async comment(_, { id }, context): Promise<CommentModel | void> {
-      return context.commentService.getComment(id);
+    async comment(_, { id }, context): Promise<unknown | void> {
+      return context.prisma.comment.findUnique({
+        where: {
+          id
+        }
+      })
     },
 
-    async feed(root, { type, first, skip }, context): Promise<(NewsItemModel | void)[]> {
+    async feed(root, { type, first, skip }, context): Promise<(unknown | void)[]> {
       const limit = first < 1 || first > 30 ? 30 : first; // Could put this constant limit of 30 items into config
 
-      return context.feedService.getForType(type, limit, skip);
+      const articles = await context.prisma.article.findMany()
+
+      return articles
     },
 
     async me(_, __, context): Promise<UserModel | void> {
@@ -126,20 +134,20 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
     },
   }),
 
-  NewsItem: {
-    async author(newsItem, _, context): Promise<UserModel | void> {
-      return context.userService.getUser(newsItem.submitterId);
-    },
-    async comments(newsItem, _, context): Promise<CommentModel[] | void> {
-      return context.commentService.getComments(newsItem.comments);
-    },
-    hidden(newsItem: NewsItemModel, _, context): boolean {
-      return newsItem.hides.includes(context.userId!);
-    },
-    upvoted(newsItem: NewsItemModel, _, context): boolean {
-      return newsItem.upvotes.includes(context.userId);
-    },
-  },
+  // NewsItem: {
+  //   async author(newsItem, _, context): Promise<UserModel | void> {
+  //     return context.userService.getUser(newsItem.submitterId);
+  //   },
+  //   async comments(newsItem, _, context): Promise<CommentModel[] | void> {
+  //     return context.commentService.getComments(newsItem.comments);
+  //   },
+  //   hidden(newsItem: NewsItemModel, _, context): boolean {
+  //     return newsItem.hides.includes(context.userId!);
+  //   },
+  //   upvoted(newsItem: NewsItemModel, _, context): boolean {
+  //     return newsItem.upvotes.includes(context.userId);
+  //   },
+  // },
 
   User: {
     async posts(user, _, context): Promise<NewsItemModel[]> {

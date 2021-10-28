@@ -7,159 +7,181 @@ import gql from 'graphql-tag';
 
   Comments are provided when property is not obvious
 */
-export const typeDefs = gql(`
-  type Comment {
-    id: Int!
+export const typeDefs = gql`
+    type Comment {
+        id: Int!
 
-    creationTime: Date!
+        creationTime: Date!
 
-    comments: [Comment]!
+        comments: [Comment]!
 
-    # The ID of the item to which the comment was made on
-    parent: Int!
+        # The ID of the item to which the comment was made on
+        parent: Int!
 
-    # The ID of the user who submitted the comment
-    submitterId: String!
+        # The ID of the user who submitted the comment
+        submitterId: String!
 
-    text: String
+        text: String
 
-    # Whether the currently logged in user has upvoted the comment
-    upvoted: Boolean!
+        # Whether the currently logged in user has upvoted the comment
+        upvoted: Boolean!
 
-    # The User who submitted the comment
-    author: User
-  }
+        # The User who submitted the comment
+        author: User
+    }
 
-  scalar Date
+    type Vote {
+    id:        String!
+#    createdAt: DateTime
+#    updatedAt DateTime @updatedAt
+#    value   Float
+#    userId  String?
+#    User      User?    @relation(fields: [userId], references: [id])
+#    articleId String
+#    Article     Article @relation(fields: [articleId], references: [id])
+    }
 
-  # A list of options for the sort order of the feed
-  enum FeedType {
-    # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
-    top
-  
-    # Newest entries first
-    new
 
-    # Sort by score
-    best
+    scalar Date
 
-    # SHOW HN articles
-    show
+    # A list of options for the sort order of the feed
+    enum FeedType {
+        # Sort by a combination of freshness and score, using an algorithm (Could use Reddit's)
+        top
 
-    # ASK HN articles
-    ask
+        # Newest entries first
+        new
 
-    # Job listings
-    job
-  }
-  
-  type NewsItem {
+        # Sort by score
+        best
 
-    id: Int!
+        # SHOW HN articles
+        show
 
-    comments: [Comment]!
+        # ASK HN articles
+        ask
 
-    commentCount: Int!
+        # Job listings
+        job
+    }
 
-    creationTime: Date!
+    type Article {
 
-    # List of user ids who have hidden this post
-    hides: [String]!
+        id: String!
 
-    # Whether the currently logged in user has hidden the post
-    hidden: Boolean!
+        comments: [Comment]!
 
-    # The ID of the news item submitter
-    submitterId: String!
+        # commentCount: Int!
 
-    # The news item headline
-    title: String!
+        # creationTime: Date!
 
-    text: String
+        # List of user ids who have hidden this post
+        # hides: [String]!
 
-    # Whether the currently logged in user has upvoted the post
-    upvoted: Boolean!
+        # Whether the currently logged in user has hidden the post
+        # hidden: Boolean!
 
-    upvotes: [String]!
+        # The ID of the news item submitter
+        # submitterId: String!
 
-    upvoteCount: Int!
+        # The news item headline
+        title: String!
 
-    url: String
+        description: String
 
-    # Fetches the author based on submitterId
-    author: User
-  }
+        # Whether the currently logged in user has upvoted the post
+        # upvoted: Boolean!
 
-  type User {
-    # The user ID is a string of the username
-    id: String!
+        # upvotes: [String]!
 
-    about: String
+        # upvoteCount: Int!
 
-    creationTime: Date!
+        url: String
 
-    dateOfBirth: Date
-
-    email: String
-
-    favorites: [Int]
-
-    firstName: String
-
-    hides: [Int]!
-
-    karma: Int!
-
-    lastName: String
-
-    likes: [Int]!
+        # Fetches the author based on submitterId
+        user: User
+    }
     
-    posts: [Int]!
-  }
 
-  # the schema allows the following queries:
-  type Query {
-    # A comment, it's parent could be another comment or a news item.
-    comment(id: Int!): Comment
+    type User {
+        # The user ID is a string of the username
+        id: String!
 
-    feed(
-      # The sort order for the feed
-      type: FeedType!,
+        about: String
 
-      # The number of items to fetch (starting from the skip index), for pagination
-      first: Int
+        creationTime: Date!
 
-      # The number of items to skip, for pagination
-      skip: Int,    
-    ): [NewsItem]
+        dateOfBirth: Date
 
-    # The currently logged in user or null if not logged in
-    me: User
+        email: String
 
-    # A news item
-    newsItem(id: Int!): NewsItem
+        favorites: [Int]
 
-    # A user
-    user(id: String!): User
-  }
+        firstName: String
 
-  # This schema allows the following mutations:
-  type Mutation {
-    upvoteNewsItem (
-      id: Int!
-    ): NewsItem
+        hides: [Int]!
 
-    hideNewsItem (
-      id: Int!
-    ): NewsItem
+        karma: Int!
 
-    submitNewsItem (
-      title: String!
-      url: String
-      text: String
-    ): NewsItem
-  }
-`);
+        lastName: String
+
+        likes: [Int]!
+
+        posts: [Int]!
+    }
+
+    # the schema allows the following queries:
+    type Query {
+        # A comment, it's parent could be another comment or a news item.
+        comment(id: Int!): Comment
+
+        feed(
+            # The sort order for the feed
+#            type: FeedType!,
+
+            # The number of items to fetch (starting from the skip index), for pagination
+#            first: Int
+
+            # The number of items to skip, for pagination
+            skip: Int,
+        ): [Article]
+
+        # The currently logged in user or null if not logged in
+        me: User
+
+        # A news item
+        article(id: Int!): Article
+
+        # A user
+        user(id: String!): User
+    }
+
+    # This schema allows the following mutations:
+    type Mutation {
+        voteOnArticle(
+            articleId: String!
+            userId: String!
+            vote: Int! # 1-4
+        ): Article
+
+        tagArticle(
+            articleId: String!
+            UserId: String!
+            tag: String
+        ): Article
+        
+        submitArticle (
+            title: String!
+            url: String!
+            description: String
+            userId: String!
+        ): Article
+        
+        initializeUser(
+            userId: String!
+        ): User
+    }
+`;
 
 // Example query
 // query {
