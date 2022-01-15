@@ -5,7 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": false,
@@ -14,13 +18,28 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "ES5",
-    "typeRoots": ["./node_modules/@types", "src/@types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "src/@types"
+    ],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
-  "include": ["pages", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/__mocks__*", "**/__tests__*", "**/*.spec.*", "out", ".next"]
+  "include": [
+    "pages",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__mocks__*",
+    "**/__tests__*",
+    "**/*.spec.*",
+    "out",
+    ".next"
+  ]
 }

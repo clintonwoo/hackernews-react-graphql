@@ -25,8 +25,8 @@ function PasswordRecoveryPage(): JSX.Element {
                 <tbody>
                   <tr>
                     <td>
-                      Password recovery message sent. If you don't see it, you might want to check
-                      your spam folder.
+                      Password recovery message sent. If you don&apos;t see it, you might want to
+                      check your spam folder.
                     </td>
                   </tr>
                 </tbody>

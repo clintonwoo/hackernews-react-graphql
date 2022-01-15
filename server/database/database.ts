@@ -1,5 +1,5 @@
 import { debug } from 'debug';
-import type Firebase from 'firebase';
+import { child, get, DatabaseReference } from 'firebase/database';
 
 import type { HnCache } from './cache';
 import { CommentModel, FeedType, NewsItemModel, UserModel } from '../../src/data/models';
@@ -12,10 +12,10 @@ logger.log = console.log.bind(console);
 // https://github.com/HackerNews/API
 
 export class HnDatabase {
-  db: Firebase.database.Reference;
+  db: DatabaseReference;
   cache: HnCache;
 
-  constructor(db: Firebase.database.Reference, cache: HnCache) {
+  constructor(db: DatabaseReference, cache: HnCache) {
     this.db = db;
     this.cache = cache;
   }
@@ -23,9 +23,7 @@ export class HnDatabase {
   async fetchNewsItem(id: number): Promise<NewsItemModel | void> {
     logger('Fetching post:', `${HN_API_URL}/item/${id}.json`);
 
-    return this.db
-      .child(`item/${id}`)
-      .once('value')
+    return get(child(this.db, `item/${id}`))
       .then((postSnapshot) => {
         const post = postSnapshot.val();
 
@@ -55,9 +53,7 @@ export class HnDatabase {
   async fetchComment(id: number): Promise<CommentModel | void> {
     logger('Fetching comment:', `${HN_API_URL}/item/${id}.json`);
 
-    return this.db
-      .child(`item/${id}`)
-      .once('value')
+    return get(child(this.db, `item/${id}`))
       .then((itemSnapshot) => {
         const item = itemSnapshot.val();
 
@@ -85,9 +81,7 @@ export class HnDatabase {
   async fetchUser(id: string): Promise<UserModel | void> {
     logger('Fetching user:', `${HN_API_URL}/user/${id}.json`);
 
-    return this.db
-      .child(`user/${id}`)
-      .once('value')
+    return get(child(this.db, `user/${id}`))
       .then((itemSnapshot) => {
         const item = itemSnapshot.val();
 
@@ -114,9 +108,7 @@ export class HnDatabase {
   async getFeed(feedType: FeedType): Promise<number[] | void> {
     logger('Fetching', `/${feedType}stories.json`);
 
-    return this.db
-      .child(`${feedType}stories`)
-      .once('value')
+    return get(child(this.db, `${feedType}stories`))
       .then((feedSnapshot) => feedSnapshot.val())
       .then((feed) => feed.filter((newsItem) => newsItem !== undefined && newsItem !== null))
       .catch((reason) => logger('Fetching news feed failed:', reason));

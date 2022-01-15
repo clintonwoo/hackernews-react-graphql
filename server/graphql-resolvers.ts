@@ -1,7 +1,7 @@
 import { debug } from 'debug';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-import type { IResolvers } from 'graphql-tools';
+import type { IResolvers } from '@graphql-tools/utils';
 
 import { NewsItemModel, CommentModel, UserModel } from '../src/data/models';
 import type { CommentService } from './services/comment-service';
@@ -108,12 +108,12 @@ export const resolvers: IResolvers<any, IGraphQlSchemaContext> = {
     // http://dev.apollodata.com/tools/graphql-tools/scalars.html#Date-as-a-scalar
     name: 'Date',
     description: 'UTC number of milliseconds since midnight Jan 1 1970 as in JS date',
-    parseValue(value): number {
+    parseValue(value: any): number {
       // Turn an input into a date which we want as a number
       // value from the client
       return new Date(value).valueOf();
     },
-    serialize(value): number {
+    serialize(value: any): number {
       // Convert Date to number primitive .getTime() or .valueOf()
       // value sent to the client
       return value instanceof Date ? value.valueOf() : value;

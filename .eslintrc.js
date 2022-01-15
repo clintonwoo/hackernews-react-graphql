@@ -31,6 +31,7 @@ module.exports = {
     'react/static-property-placement': ['error', 'static public field'],
     'react/destructuring-assignment': ['warn', 'always', { ignoreClassFields: true }],
     'no-nested-ternary': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
     // '@typescript-eslint/adjacent-overload-signatures': 'warn',
     // '@typescript-eslint/array-type': 'warn',
     // '@typescript-eslint/ban-types': 'warn',

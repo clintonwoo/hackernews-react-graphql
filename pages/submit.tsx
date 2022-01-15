@@ -22,7 +22,7 @@ function SubmitPage(props: ISubmitPageProps): JSX.Element {
     variables: { title, url, text },
     onCompleted(res) {
       if (res && res.data) {
-        Router.push(`/item?id=${res.data.submitNewsItem.id}`);
+        void Router.push(`/item?id=${res.data.submitNewsItem.id}`);
       }
     },
     onError(err) {

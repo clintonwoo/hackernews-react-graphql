@@ -1,6 +1,6 @@
 import { debug } from 'debug';
 
-import { FeedType } from '../../src/data/models';
+import { FeedType, NewsItemModel } from '../../src/data/models';
 import type { FeedService } from '../services/feed-service';
 import type { HnCache } from './cache';
 import type { HnDatabase } from './database';
@@ -29,7 +29,7 @@ function rebuildFeed(db: HnDatabase, cache: HnCache, feedType: FeedType): void {
 
           cache[`${feedType}NewsItems`] = newsItems.filter(
             (newsItem) => newsItem !== undefined && newsItem !== null
-          );
+          ) as NewsItemModel[];
 
           cache[feedType] = feed;
 

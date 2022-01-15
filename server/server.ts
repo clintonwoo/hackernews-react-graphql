@@ -3,7 +3,8 @@ import { urlencoded } from 'body-parser';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import session from 'express-session';
-import Firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref } from 'firebase/database';
 import nextApp from 'next';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
@@ -44,14 +45,13 @@ const handle = app.getRequestHandler();
 
 app
   .prepare()
-  .then(() => {
-    if (!Firebase.apps.length) {
-      Firebase.initializeApp({ databaseURL: HN_DB_URI });
-    }
+  .then(async () => {
+    const firebaseApp = initializeApp({ databaseURL: HN_DB_URI });
+    const firebaseDb = getDatabase(firebaseApp); //Firebase.database().ref(HN_API_VERSION);
+    const firebaseRef = ref(firebaseDb, HN_API_VERSION);
 
-    const firebaseApi = Firebase.database().ref(HN_API_VERSION);
     const cache = new HnCache();
-    const db = new HnDatabase(firebaseApi, cache);
+    const db = new HnDatabase(firebaseRef, cache);
     seedCache(db, cache, delay);
 
     const commentService = new CommentService(db, cache);
@@ -174,6 +174,7 @@ app
       resolvers,
       typeDefs,
     } as any);
+    await apolloServer.start();
     apolloServer.applyMiddleware({ app: expressServer, path: GRAPHQL_PATH });
 
     /* END GRAPHQL */

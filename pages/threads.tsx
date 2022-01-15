@@ -5,7 +5,11 @@ import { sampleData } from '../src/data/sample-data';
 import { withDataAndRouter } from '../src/helpers/with-data';
 import { MainLayout } from '../src/layouts/main-layout';
 
-export function ThreadsPage(props): JSX.Element {
+export interface IThreadsPageProps {
+  router;
+}
+
+export function ThreadsPage(props: IThreadsPageProps): JSX.Element {
   const { router } = props;
 
   const pageNumber = (router.query && +router.query.p) || 0;

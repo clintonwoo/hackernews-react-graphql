@@ -37,7 +37,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: loginId, password: loginPassword });
-      } catch (err) {
+      } catch (err: any) {
         e.preventDefault();
         setValidationMessage(err.message);
       }
@@ -51,7 +51,7 @@ function LoginPage(props: ILoginPageProps): JSX.Element {
     } else {
       try {
         validateNewUser({ id: registerId, password: registerPassword });
-      } catch (err) {
+      } catch (err: any) {
         e.preventDefault();
         setValidationMessage(err.message);
       }
