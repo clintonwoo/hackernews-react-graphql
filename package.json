@@ -87,7 +87,7 @@
     "eslint-plugin-react": "7.28.0",
     "jest": "27.4.7",
     "mockdate": "3.0.5",
-    "nodemon": "2.0.15",
+    "nodemon": "2.0.20",
     "postcss": "8.4.5",
     "postcss-preset-env": "7.2.3",
     "prettier": "2.5.1",
